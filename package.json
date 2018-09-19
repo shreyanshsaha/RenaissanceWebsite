@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/erixerns/IEEE_website#readme",
   "dependencies": {
+<<<<<<< HEAD
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
@@ -26,5 +27,9 @@
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
+=======
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
+>>>>>>> b5c9e7d09652451bc8cbafbd4e00dfc8cc72e7a0
   }
 }

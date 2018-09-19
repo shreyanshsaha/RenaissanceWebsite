@@ -1,3 +1,4 @@
+
 var express = require('express'),
 		seedDB = require('./seed');
 		bodyParser=require('body-parser'),
@@ -51,7 +52,7 @@ app.get("/getAllStudent", function(req, res){
 	})
 });
 
-app.listen(80, function(){
-	console.log("Server has started!");
-})
-// app.listen(process.env.PORT, process.env.IP);
+// app.listen(80, function(){
+// 	console.log("Server has started!");
+// })
+app.listen(process.env.PORT, process.env.IP);
