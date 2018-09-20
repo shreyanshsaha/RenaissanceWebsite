@@ -18,18 +18,16 @@
   },
   "homepage": "https://github.com/erixerns/IEEE_website#readme",
   "dependencies": {
-<<<<<<< HEAD
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "mongoose": "^5.2.15",
-    "passport": "^0.4.0"
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
-=======
-    "ejs": "^2.6.1",
-    "express": "^4.16.3"
->>>>>>> b5c9e7d09652451bc8cbafbd4e00dfc8cc72e7a0
   }
 }

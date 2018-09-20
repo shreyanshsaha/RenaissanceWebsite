@@ -1,17 +1,39 @@
 
-var express = require('express'),
-		seedDB = require('./seed');
-		bodyParser=require('body-parser'),
-		User = require('./models/userModel'),
-		mongoose = require('mongoose');
+var express 			= require('express'),
+		seedDB 				= require('./seed');
+		bodyParser		= require('body-parser'),
+		User 					= require('./models/userModel'),
+		mongoose 			= require('mongoose'),
+		passport 			= require('passport'),
+		LocalStrategy = require('passport-local');
 	
 var app = express();
-
+// mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp
 mongoose.connect("mongodb://localhost/renaissance");
 app.set("view engine", "ejs");
+// app.use(express.static(__dirname + "/public"));
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }))
+
+// PASSPORT CONFIGURATION
+app.use(require("express-session")({
+	secret: "Renaissance Website VIT!",
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+passport.use(User.createStrategy());
+// Middleware
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
+});
+
 
 seedDB();
 
@@ -52,7 +74,23 @@ app.get("/getAllStudent", function(req, res){
 	})
 });
 
-// app.listen(80, function(){
-// 	console.log("Server has started!");
-// })
-app.listen(process.env.PORT, process.env.IP);
+app.get("/login", function(req, res){
+	res.render("login");
+});
+
+app.post("/login",passport.authenticate("local",
+	{
+		successRedirect: "/",
+		failureRedirect: "/login"
+	}), function(req, res){}
+);
+
+app.get("/logout", function(req, res){
+	res.logout();
+	res.send("Logged Out!");
+});
+
+app.listen(80, function(){
+	console.log("Server has started!");
+})
+// app.listen(process.env.PORT, process.env.IP);

@@ -13,8 +13,10 @@ function seedDB(){
       console.log(err);
     studentData.forEach(function(student){
       User.create(student, function(err, stu){
-        if(err)
-          console.log(err);
+        if(err){
+          console.log("Error", err);
+          console.log(student);
+        }
         else
           console.log("Student added to database!");  
       })

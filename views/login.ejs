@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
+  <script src="/lib/jquery.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+</head>
+<body>
+  <% include partials/navbar %>
+  <form class="container mt-4" method="POST" action="/login">
+    <div class="form-group">
+      <input class="form-control" name="registrationNo" placeholder="Registration Number">
+    </div>
+    <div class="form-group">
+      <input class="form-control" name="password" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</body>
+</html>
