@@ -28,7 +28,9 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Middleware
+// ===========
+// Middlewares
+// ===========
 app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
 	next();
@@ -42,7 +44,7 @@ function isLoggedIn(req, res, next){
 	res.redirect("/login");
 }
 
-
+// Seed the database
 seedDB();
 
 // ======
@@ -96,6 +98,11 @@ app.get("/logout", isLoggedIn, function(req, res){
 	res.send("Logged Out!");
 });
 
+app.get("/profile", isLoggedIn, function(req, res){
+	res.send("User logged in!"+JSON.stringify(req.user));
+})
+
+
 //! Debug Routes Remove them in release
 app.get("/getAllStudent", function(req, res){
 	User.find({}, function(err, users){
@@ -105,11 +112,6 @@ app.get("/getAllStudent", function(req, res){
 			res.send(users);
 	})
 });
-
-
-app.get("/profile", isLoggedIn, function(req, res){
-	res.send("User logged in!"+JSON.stringify(req.user));
-})
 
 app.listen(80, function(){
 	console.log("Server has started!");

@@ -1,3 +1,6 @@
+
+// * This file is only for debugging
+// * This file adds data to the database when server is started
 var mongoose = require('mongoose');
 var User = require("./models/userModel");
 var Company = require("./models/companyModel");
