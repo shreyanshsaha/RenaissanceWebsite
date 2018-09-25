@@ -29,10 +29,10 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Middleware
-// app.use(function(req, res, next){
-// 	res.locals.currentUser = req.user;
-// 	next();
-// });
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
+});
 
 function isLoggedIn(req, res, next){
 	if(req.isAuthenticated()){
@@ -48,14 +48,13 @@ seedDB();
 // ======
 // Routes
 // ======
-app.get("/secret",isLoggedIn, function(req, res){
-	res.send("secret"); 
-})
 
+// Root
 app.get("/", function(req, res){
 	res.render("home");
 });
 
+// Register
 app.get("/register", function(req, res){
 	res.render("register", {messages: undefined});
 });
@@ -73,12 +72,31 @@ app.post("/register", function(req, res){
 		else{
 			console.log("[+] User Registered:", newUser);
 			passport.authenticate("local")(req, res, function(){
-				res.redirect("/secret");
-		 });
+				res.render("home");
+			});
 		}
 	});
 });
 
+
+// Login and Logout
+app.get("/login", function(req, res){
+	res.render("login");
+});
+
+app.post("/login",passport.authenticate("local",
+	{
+		successRedirect: "/profile",
+		failureRedirect: "/register",
+	}), function(req, res){}
+);
+
+app.get("/logout", isLoggedIn, function(req, res){
+	req.logout();
+	res.send("Logged Out!");
+});
+
+//! Debug Routes Remove them in release
 app.get("/getAllStudent", function(req, res){
 	User.find({}, function(err, users){
 		if(err)
@@ -88,21 +106,10 @@ app.get("/getAllStudent", function(req, res){
 	})
 });
 
-app.get("/login", function(req, res){
-	res.render("login");
-});
 
-app.post("/login",passport.authenticate("local",
-	{
-		successRedirect: "/secret",
-		failureRedirect: "/secret",
-	}), function(req, res){}
-);
-
-app.get("/logout", function(req, res){
-	res.logout();
-	res.send("Logged Out!");
-});
+app.get("/profile", isLoggedIn, function(req, res){
+	res.send("User logged in!"+JSON.stringify(req.user));
+})
 
 app.listen(80, function(){
 	console.log("Server has started!");
