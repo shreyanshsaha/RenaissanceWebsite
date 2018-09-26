@@ -1,12 +1,12 @@
 
 var express 			= require('express'),
-		seedDB 				= require('./seed');
+		seedDB 				= require('./seed'),
 		bodyParser		= require('body-parser'),
 		User 					= require('./models/userModel'),
 		mongoose 			= require('mongoose'),
 		passport 			= require('passport'),
 		LocalStrategy = require('passport-local');
-	
+
 var app = express();
 // mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp
 mongoose.connect("mongodb://localhost/renaissance");
@@ -27,44 +27,83 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-passport.use(User.createStrategy());
-// Middleware
+
+// ===========
+// Middlewares
+// ===========
 app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
 	next();
 });
 
+function isLoggedIn(req, res, next){
+	if(req.isAuthenticated()){
+			return next();
+	}
+	console.log(req.user, " not logged in!");
+	res.redirect("/login");
+}
 
+// Seed the database
 seedDB();
 
 // ======
 // Routes
 // ======
+
+// Root
 app.get("/", function(req, res){
 	res.render("home");
 });
 
+// Register
 app.get("/register", function(req, res){
 	res.render("register", {messages: undefined});
 });
 
 app.post("/register", function(req, res){
-	console.log(req.body);
-  var user={
+	User.register(new User({
 		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		email: req.body.email,
-		registrationNo: req.body.registrationNo
-	};
-	User.create(user, function(err, newUser){
-		if(err)
+		lastName: req.body.lastName, 
+		email: req.body.email, 
+		username: req.body.username}), req.body.password, function(err, newUser){
+		if(err){
 			console.log(err);
+			res.send(err);
+		}
 		else{
-			console.log("[+] User Added:", newUser);
+			console.log("[+] User Registered:", newUser);
+			passport.authenticate("local")(req, res, function(){
+				res.render("home");
+			});
 		}
 	});
 });
 
+
+// Login and Logout
+app.get("/login", function(req, res){
+	res.render("login");
+});
+
+app.post("/login",passport.authenticate("local",
+	{
+		successRedirect: "/profile",
+		failureRedirect: "/register",
+	}), function(req, res){}
+);
+
+app.get("/logout", isLoggedIn, function(req, res){
+	req.logout();
+	res.send("Logged Out!");
+});
+
+app.get("/profile", isLoggedIn, function(req, res){
+	res.send("User logged in!"+JSON.stringify(req.user));
+})
+
+
+//! Debug Routes Remove them in release
 app.get("/getAllStudent", function(req, res){
 	User.find({}, function(err, users){
 		if(err)
@@ -72,22 +111,6 @@ app.get("/getAllStudent", function(req, res){
 		else
 			res.send(users);
 	})
-});
-
-app.get("/login", function(req, res){
-	res.render("login");
-});
-
-app.post("/login",passport.authenticate("local",
-	{
-		successRedirect: "/",
-		failureRedirect: "/login"
-	}), function(req, res){}
-);
-
-app.get("/logout", function(req, res){
-	res.logout();
-	res.send("Logged Out!");
 });
 
 app.listen(80, function(){

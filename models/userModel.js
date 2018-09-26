@@ -7,10 +7,17 @@ var userSchema = new mongoose.Schema({
   firstName:      {type: String, lowercase: true, required: true},
   lastName:       {type: String, lowercase: true, required: true},
   email:          {type: String, lowercase: true, required: true},
-  registrationNo: {type: String, lowercase: true, required: true},
+  username: String,
   contact: Number,
+  password: String,
   dateRegistered: {type: Date, default: Date.now},
   interestedFields: [{type: String}]
 });
-userSchema.plugin(passportLocalMongoose, {usernameField: 'registrationNo'})
+userSchema.plugin(passportLocalMongoose);
+
+// var userSchema = new mongoose.Schema({
+//   username: String,
+//   password: String
+// });
+userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('user', userSchema);
