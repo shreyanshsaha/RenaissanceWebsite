@@ -110,7 +110,7 @@ lname.addEventListener('input', function() {
 });
 
 age.addEventListener('input', function() {
-    checkAge('age', 2); //label 2 condition: 5<=age<=140
+    checkAge('age', 2); //label 2 condition: 14<=age<=30
     verifiedForm();
 });
 
@@ -144,4 +144,4 @@ passwordConf.addEventListener('input', function() {
 send.addEventListener('click', function(e) {
     e.preventDefault();
     alert("You've successfully registered!");
-})
+});
