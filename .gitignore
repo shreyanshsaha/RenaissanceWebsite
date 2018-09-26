@@ -1,6 +1,3 @@
 .vscode
 node_modules
-views/login
-views/events
-views/company
-views/registration
+views/temp
