@@ -1,0 +1,82 @@
+body {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    
+    height:100vh;
+    .draw {
+       position: relative;
+       
+       padding:3px 20px;
+       margin:2px 0;
+          
+       color:transparent;
+       
+       font-size:32px;
+       font-family: 'Montserrat', sans-serif;
+       
+       
+       &.-small {
+          padding:2px 10px;
+          
+          font-size:14px;
+       }
+       &:before {
+          position: absolute;
+          top:0px;
+          bottom:0px;
+          left:0%;
+          right:100%;
+          
+          background-color:black;
+          
+          content: '';
+       }
+       &.-do {
+          animation:show 2.5s forwards;
+          &:before {
+             animation:intro 2.5s ease-in-out;
+          }
+       }
+       
+       //I have added an extra 0.5s on top of document ready because I kept getting it slightly juttering
+       @for $i from 1 through 8 { //Add the class '-wave' to make each line add .25s delay per line
+          &.-wave:nth-child(#{$i}) {
+             &, &::before {
+                animation-delay: #{0.5 + $i/4}s;
+             }
+          }
+       }
+       @for $i from 1 through 30 { //add the attribute 'delay="1"' for a 1 second delay
+          &[delay="#{$i/10}"] {
+             &, &::before {
+                animation-delay: #{0.5 + $i/10}s;
+             }
+          }
+       }
+       
+       @keyframes intro {
+          0% {
+             left:0%;
+             right:100%;
+          }
+          50% {
+             left:0%;
+             right:0%;
+          }
+          100% {
+             left:100%;
+             right:0%;
+          }
+       }
+       @keyframes show {
+          0%, 50% {
+             color:transparent;
+          }
+          50.00001%, 100% {
+             color:black;
+          }
+       }
+    }
+ }
