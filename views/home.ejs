@@ -6,8 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Renaissance</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/home.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/scrollbar.css" />
@@ -26,18 +25,17 @@
 				<h1><i class="far fa-lightbulb"></i> Renaissance</h1>
 				<p class="text-muted">Tagline about renaissance</p>
 				<div class="row">
-					<div class="col-md-12">
-						<% if(!currentUser){ %>
-						<a href="/login" class="btn btn-sm btn-outline-primary">Login / Register</a>
-						<% } else { %>
-						<a href="/logout" class="btn btn-sm btn-outline-primary">Logout
-							<%=currentUser.username%></a>
-						<% }; %>
-
+					<div class="text-center mx-auto">
+						<div class="col-md-12 btn-group">
+							<% if(!currentUser){ %>
+							<a href="/login" class="btn btn-sm btn-outline-primary">Login</a>						
+							<a href="/register" class="btn btn-sm btn-outline-primary">Register</a>
+							<% } else { %>
+							<a href="/logout" class="btn btn-sm btn-outline-primary">Logout
+								<%=currentUser.username%></a>
+							<% }; %>
+						</div>
 					</div>
-					<!-- <div class="col-md-6">
-						<a href="/register" class="btn btn-sm btn-outline-primary">Register</a>
-					</div> -->
 				</div>
 			</div>
 		</div>
@@ -91,7 +89,17 @@
 
 	<div class="seperation"></div>
 
-	<div class="footer"></div>
+	<div class="footer">
+		<i class="far fa-lightbulb"></i>
+		<p>Renaissance VIT Chennai, Address, pincode</p>
+		<div class="links">
+			<a href="#"><i class="fab fa-facebook-f"></i></a>
+			<a href="#"><i class="fab fa-twitter"></i></a>
+			<a href="#"><i class="fab fa-instagram"></i></a>
+			<a href="#"><i class="fab fa-linkedin-in"></i></a>
+		</div>
+		<p>For sponsorship, contact <span class="text-primary">email@email.com</span></p>
+	</div>
 </body>
 
 </html>

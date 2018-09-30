@@ -91,6 +91,31 @@ body, html{
 
 
 .footer{
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(200, 200, 200, 0.8);
   min-height: 20vh;
+  width: 90vw;
+  margin: auto;
+  padding-top:10px;
+  padding-bottom: 10px;
+  &>*{
+    margin:auto;
+    display: block;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+  .links>*{
+    display: inline-block;
+    font-size: 1.5rem;
+    color:black;
+    &:hover{
+      color:rgba(0, 0, 0, 0.5);
+    }
+  }
+  p{
+    text-align: center;
+    font-size: 0.7rem;
+
+  }
 }

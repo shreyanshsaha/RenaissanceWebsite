@@ -2,109 +2,112 @@
 <!-- TODO: Add age and gender to database -->
 <!DOCTYPE html>
 <html>
-        <title>Registration</title>
+<title>Registration</title>
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/scrollbar.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/reg_style.css" />
-    
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/scrollbar.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/reg_style.css" />
+
 </head>
 
 
 <body>
-    <% include partials/navbar %>
-    <h1>Renessiance</h1>
-    <div class="details">Register Here</div>
-    <!-- <div class="details">Here</div> -->
-    <form method="POST" action="/register">
-        <div class="col">
-            <div class="minput">
-                <input type="text" id="fname" dir="auto" name="firstName" required>
-                <span class="bar"></span>
-                <label>First Name</label>
-            </div>
-            <div class="minput">
-                <input type="text" id="lname" dir="auto" name="lastName" required>
-                <span class="bar"></span>
-                <label>Last Name</label>
-            </div>
+	<% include partials/navbar %>
+	<h1>Renessiance</h1>
+	<div class="details">Register Here</div>
+	<!-- <div class="details">Here</div> -->
+	<form method="POST" action="/register">
+		<div class="col">
+			<div class="minput">
+				<input type="text" id="fname" dir="auto" name="firstName" required>
+				<span class="bar"></span>
+				<label>First Name</label>
+			</div>
+			<div class="minput">
+				<input type="text" id="lname" dir="auto" name="lastName" required>
+				<span class="bar"></span>
+				<label>Last Name</label>
+			</div>
 
-            <!-- We are not storing age into database yet -->
-            <div class="minput">
-                <input type="number" id="age" dir="auto" required>
-                <span class="bar"></span>
-                <label>Age</label>
-            </div>
-            <!-- We are not storing gender into database yet -->
-            <div class="control-group">
-                <span class="sex">Sex :</span>
-                <label class="control control--radio">Male
-                    <input type="radio" name="radio" id="male" />
-                    <div class="control__indicator"></div>
-                </label>
-                <label class="control control--radio">Female
-                    <input type="radio" name="radio" id="femelle" />
-                    <div class="control__indicator"></div>
-                </label>
-            </div>
+			<!-- We are not storing age into database yet -->
+			<div class="minput">
+				<input type="number" id="age" dir="auto" required>
+				<span class="bar"></span>
+				<label>Age</label>
+			</div>
+			<!-- We are not storing gender into database yet -->
+			<div class="control-group">
+				<span class="sex">Sex :</span>
+				<label class="control control--radio">Male
+					<input type="radio" name="radio" id="male" />
+					<div class="control__indicator"></div>
+				</label>
+				<label class="control control--radio">Female
+					<input type="radio" name="radio" id="femelle" />
+					<div class="control__indicator"></div>
+				</label>
+			</div>
 
-            <!-- Change this to checkbox -->
-            <div class="minput">
-                <div class="select">
-                    <select id="pays">
-                        <option value="">-- Department --</option>
-                        <option value="finance">Finance</option>
-                        <option value="webdev">WebDev</option>
-                        <option value="sponsorship">Sponsorship</option>
-                    </select>
-                    <div class="select__arrow"></div>
-                </div>
-            </div>
-        </div>
+			<!-- Change this to checkbox -->
+			<div class="minput">
+				<div class="select">
+					<select id="pays">
+						<option value="">-- Department --</option>
+						<option value="finance">Finance</option>
+						<option value="webdev">WebDev</option>
+						<option value="sponsorship">Sponsorship</option>
+					</select>
+					<div class="select__arrow"></div>
+				</div>
+			</div>
+		</div>
 
-        <div class="col">
-            <div class="minput">
-                <input type="text" id="pseudo" dir="auto" name="username" required>
+		<div class="col">
+			<div class="minput">
+				<input type="text" id="pseudo" dir="auto" name="username" required>
 
-                <span class="bar"></span>
-                <label>Username</label>
-            </div>
+				<span class="bar"></span>
+				<label>Username</label>
+			</div>
 
-            <div class="minput">
-                <input type="email" id="email" dir="ltr" class="" name="email" required>
-                <span class="bar"></span>
-                <label>Email</label>
-            </div>
+			<div class="minput">
+				<input type="email" id="email" dir="ltr" class="" name="email" required>
+				<span class="bar"></span>
+				<label>Email</label>
+			</div>
 
-            <div class="minput">
-                <input type="password" id="password" dir="auto" required>
-                <span class="bar"></span>
-                <label>Password</label>
-            </div>
+			<div class="minput">
+				<input type="password" id="password" dir="auto" required>
+				<span class="bar"></span>
+				<label>Password</label>
+			</div>
 
-            <div class="minput">
-                <input type="password" id="passwordConf" name="password" required>
-                <span class="bar"></span>
-                <label>Retype Password</label>
-            </div>
-            <div class="control-group">
+			<div class="minput">
+				<input type="password" id="passwordConf" name="password" required>
+				<span class="bar"></span>
+				<label>Retype Password</label>
+			</div>
+			<div class="control-group">
 
-                <label class="control control--checkbox">I agree to all terms and conditions
-                    <input type="checkbox" checked/>
-                    <div class="control__indicator"></div>
-                </label>
-            </div>
+				<label class="control control--checkbox">I agree to all terms and conditions
+					<input type="checkbox" checked />
+					<div class="control__indicator"></div>
+				</label>
+			</div>
 
-            <div class="minput">
-              <span id="valid" style="margin-bottom: 5px;">Valid fields : 1/10</span>
-                
-                <input type="submit" id="send" value="Submit" disabled="true" style="padding:5px;padding-top:7px;">
-            </div>
-        </div>
-    </form>
-    <script src = "/js/reg_script.js"></script>
+			<div class="minput">
+				<span id="valid" style="margin-bottom: 5px;">Valid fields : 1/10</span>
+
+				<input type="submit" id="send" value="Submit" disabled="true" style="padding:5px;padding-top:7px;">
+			</div>
+		</div>
+	</form>
+	<script src="/js/reg_script.js"></script>
 </body>
+
 </html>
