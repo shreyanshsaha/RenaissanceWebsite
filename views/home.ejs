@@ -25,7 +25,12 @@
 				<p class="text-muted">Tagline about renaissance</p>
 				<div class="row">
 					<div class="col-md-12">
-						<a href="/login" class="btn btn-sm btn-outline-primary">Login / Register</a>
+						<% if(!currentUser){ %>
+							<a href="/login" class="btn btn-sm btn-outline-primary">Login / Register</a>
+						<% } else { %>
+							<a href="/logout" class="btn btn-sm btn-outline-primary">Logout <%=currentUser.username%></a>
+						<% }; %>
+						
 					</div>
 					<!-- <div class="col-md-6">
 						<a href="/register" class="btn btn-sm btn-outline-primary">Register</a>

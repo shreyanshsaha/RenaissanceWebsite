@@ -1,3 +1,5 @@
+<!-- TODO: remove style tags! -->
+<!-- TODO: Add age and gender to database -->
 <!DOCTYPE html>
 <html>
         <title>Registration</title>
@@ -13,23 +15,26 @@
     <h1>Renessiance</h1>
     <div class="details">Register</div>
     <div class="details">Here</div>
-    <form method="POST" action="">
+    <form method="POST" action="/register">
         <div class="col">
             <div class="minput">
-                <input type="text" id="fname" dir="auto" required>
+                <input type="text" id="fname" dir="auto" name="firstName" required>
                 <span class="bar"></span>
                 <label>First Name</label>
             </div>
             <div class="minput">
-                <input type="text" id="lname" dir="auto" required>
+                <input type="text" id="lname" dir="auto" name="lastName" required>
                 <span class="bar"></span>
                 <label>Last Name</label>
             </div>
+
+            <!-- We are not storing age into database yet -->
             <div class="minput">
                 <input type="number" id="age" dir="auto" required>
                 <span class="bar"></span>
                 <label>Age</label>
             </div>
+            <!-- We are not storing gender into database yet -->
             <div class="control-group">
                 <span class="sex">Sex :</span>
                 <label class="control control--radio">Male
@@ -41,6 +46,8 @@
                     <div class="control__indicator"></div>
                 </label>
             </div>
+
+            <!-- Change this to checkbox -->
             <div class="minput">
                 <div class="select">
                     <select id="pays">
@@ -53,16 +60,17 @@
                 </div>
             </div>
         </div>
+
         <div class="col">
             <div class="minput">
-                <input type="text" id="pseudo" dir="auto" required>
+                <input type="text" id="pseudo" dir="auto" name="username" required>
 
                 <span class="bar"></span>
                 <label>Username</label>
             </div>
 
             <div class="minput">
-                <input type="email" id="email" dir="ltr" class="" required>
+                <input type="email" id="email" dir="ltr" class="" name="email" required>
                 <span class="bar"></span>
                 <label>Email</label>
             </div>
@@ -70,11 +78,11 @@
             <div class="minput">
                 <input type="password" id="password" dir="auto" required>
                 <span class="bar"></span>
-                <label>Passwrod</label>
+                <label>Password</label>
             </div>
 
             <div class="minput">
-                <input type="password" id="passwordConf" required>
+                <input type="password" id="passwordConf" name="password" required>
                 <span class="bar"></span>
                 <label>Retype Password</label>
             </div>

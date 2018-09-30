@@ -58,7 +58,7 @@ app.get("/", function(req, res){
 
 // Register
 app.get("/register", function(req, res){
-	res.render("register", {messages: undefined});
+	res.render("reg_page", {messages: undefined});
 });
 
 app.post("/register", function(req, res){
@@ -74,7 +74,7 @@ app.post("/register", function(req, res){
 		else{
 			console.log("[+] User Registered:", newUser);
 			passport.authenticate("local")(req, res, function(){
-				res.redirect("home");
+				res.redirect("/");
 			});
 		}
 	});
@@ -88,14 +88,16 @@ app.get("/login", function(req, res){
 
 app.post("/login",passport.authenticate("local",
 	{
-		successRedirect: "/profile",
+		successRedirect: "/",
 		failureRedirect: "/register",
 	}), function(req, res){}
 );
 
 app.get("/logout", isLoggedIn, function(req, res){
+	console.log("Logout: ", req.currentUser.username);
 	req.logout();
-	res.send("Logged Out!");
+	// res.send("Logged Out!");
+	res.redirect("/");
 });
 
 app.get("/profile", isLoggedIn, function(req, res){

@@ -1,3 +1,4 @@
+<!-- TODO: Add form tag so that the form actually submits -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,10 +23,14 @@
 		<div class="center">
 			<h2 class="form-title" id="login"><span>or</span>Log in</h2>
 			<div class="form-holder">
-				<input type="email" class="input" placeholder="Email" />
-				<input type="password" class="input" placeholder="Password" />
+				<form action="/login" method="POST">
+					<!-- <input type="email" class="input" placeholder="Email" /> -->
+					<input type="text" class="input" placeholder="Username" name="username" />
+					<input type="password" class="input" placeholder="Password" name="password"/>
+					<button type="submit" class="submit-btn">Log in</button>
+				</form>
 			</div>
-			<button class="submit-btn">Log in</button>
+			
 		</div>
 	</div>
 </div>

@@ -91,7 +91,7 @@ function verifiedForm() {
     for (i in tabBooleans)
         if(tabBooleans[i])
             valid++;
-    if (valid == 9) {
+    if (valid == 10) {
         inscrire.removeAttribute("disabled");
     } else {
         inscrire.setAttribute("disabled", true);
@@ -141,7 +141,7 @@ passwordConf.addEventListener('input', function() {
     checkPass(8); 
     verifiedForm();
 });
-send.addEventListener('click', function(e) {
-    e.preventDefault();
-    alert("You've successfully registered!");
-})
+// send.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     alert("You've successfully registered!");
+// })
