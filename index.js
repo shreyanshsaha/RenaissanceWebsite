@@ -94,7 +94,7 @@ app.post("/login",passport.authenticate("local",
 );
 
 app.get("/logout", isLoggedIn, function(req, res){
-	console.log("Logout: ", req.currentUser.username);
+	// console.log("Logout: ", req.currentUser.username);
 	req.logout();
 	// res.send("Logged Out!");
 	res.redirect("/");

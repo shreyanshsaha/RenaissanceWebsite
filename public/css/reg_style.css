@@ -9,9 +9,12 @@ html,
 body {
     margin: 0 auto;
     min-height: 100%;
-    font-family: 'Yanone Kaffeesatz', Consolas;
+    max-height: 100vh;
 }
 
+h1, form, .details{
+    font-family: 'Yanone Kaffeesatz', Consolas;
+}
 h1 {
     text-align: center;
     margin: 40px auto;
@@ -42,6 +45,9 @@ form {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    /* margin-top:0px; */
+    position: relative;
+    top:-5vh;
 }
 
 .col {

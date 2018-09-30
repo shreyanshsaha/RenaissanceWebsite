@@ -2,21 +2,23 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Renaissance</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Renaissance</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	 crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/home.css" />
-  <script src="lib/jquery.min.js"></script>
-  <script src="js/bootstrap.js"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/scrollbar.css" />
+	<script src="lib/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
 </head>
 
 <body>
 	<!-- Navbar -->
-  <% include partials/navbar %>
-	
+	<% include partials/navbar %>
+
 	<!-- Home -->
 	<div class="home">
 		<div class="container">
@@ -26,11 +28,12 @@
 				<div class="row">
 					<div class="col-md-12">
 						<% if(!currentUser){ %>
-							<a href="/login" class="btn btn-sm btn-outline-primary">Login / Register</a>
+						<a href="/login" class="btn btn-sm btn-outline-primary">Login / Register</a>
 						<% } else { %>
-							<a href="/logout" class="btn btn-sm btn-outline-primary">Logout <%=currentUser.username%></a>
+						<a href="/logout" class="btn btn-sm btn-outline-primary">Logout
+							<%=currentUser.username%></a>
 						<% }; %>
-						
+
 					</div>
 					<!-- <div class="col-md-6">
 						<a href="/register" class="btn btn-sm btn-outline-primary">Register</a>
@@ -41,10 +44,54 @@
 	</div>
 
 	<div class="seperation"></div>
-	<!-- Features -->
-	<div class="features">
+	<!-- About -->
+	<div class="aboutClass" id="about">
+		<div class="container">
+			<div class="row">
+				<!-- About Renaissance -->
+				<div class="col-md-12 info-card">
+					<div class="row">
+						<div class="col-sm-3 card-logo">
+							<h1>About Renaissance</h1>
+						</div>
+						<div class="col-sm-9">
+							<p class="card-text">
+								Consectetur in commodo minim sunt non incididunt officia reprehenderit aliqua duis magna in consequat nostrud.
+								Nisi nulla esse eiusmod nulla anim commodo exercitation nulla tempor esse exercitation proident ad. Occaecat
+								ullamco reprehenderit est mollit duis voluptate excepteur qui fugiat. Sit sit ullamco culpa aliqua aliquip
+								tempor cillum esse esse. Lorem nisi excepteur laboris incididunt fugiat voluptate voluptate id quis ullamco
+								mollit sunt. Mollit amet id adipisicing ea est ipsum. Aute amet anim aliquip id fugiat dolor culpa ea veniam
+								proident incididunt.
+							</p>
+						</div>
+					</div>
+				</div>
 
+				<!-- Vision of Renaissance -->
+				<div class="col-md-12 info-card">
+					<div class="row">
+						<div class="col-sm-9">
+							<p class="card-text">
+								Consectetur in commodo minim sunt non incididunt officia reprehenderit aliqua duis magna in consequat nostrud.
+								Nisi nulla esse eiusmod nulla anim commodo exercitation nulla tempor esse exercitation proident ad. Occaecat
+								ullamco reprehenderit est mollit duis voluptate excepteur qui fugiat. Sit sit ullamco culpa aliqua aliquip
+								tempor cillum esse esse. Lorem nisi excepteur laboris incididunt fugiat voluptate voluptate id quis ullamco
+								mollit sunt. Mollit amet id adipisicing ea est ipsum. Aute amet anim aliquip id fugiat dolor culpa ea veniam
+								proident incididunt.
+							</p>
+						</div>
+						<div class="col-sm-3 card-logo">
+							<h1>Vision of Renaissance</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+
+	<div class="seperation"></div>
+
+	<div class="footer"></div>
 </body>
 
 </html>
