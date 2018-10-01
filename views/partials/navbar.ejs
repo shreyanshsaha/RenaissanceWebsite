@@ -14,18 +14,6 @@
 						<li class="nav-item">
 							<a class="nav-link" href="#">Contact Us</a>
 						</li> -->
-						<!-- <% if(!currentUser){ %>
-							<li class="nav-item">
-								<a href="/login" class="nav-link text-primary">Login</a>
-							</li>
-							<li class="nav-item">
-								<a href="/register" class="nav-link text-primary">Register</a>
-							</li>
-						<% }else{ %>
-							<li class="nav-item">
-								<a href="/logout" class="nav-link text-primary">Logout</a>
-							</li>
-						<% }; %> -->
 						<li class="nav-item">
 							<a href="#about" class="nav-link text-primary">About</a>
 						</li>
@@ -35,6 +23,19 @@
 						<li class="nav-item">
 							<a href="#" class="nav-link text-primary">Companies</a>
 						</li>
+						<% if(!currentUser){ %>
+							<li class="nav-item">
+								<a href="/login" class="nav-link text-primary">Login</a>
+							</li>
+							<li class="nav-item">
+								<a href="/register" class="nav-link text-primary">Register</a>
+							</li>
+						<% }else{ %>
+							<li class="nav-item">
+								<a href="/logout" class="nav-link text-primary">Logout <%=currentUser.username%></a>
+							</li>
+						<% }; %>
+
 					</ul>
 				</div>
 			
