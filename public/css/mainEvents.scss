@@ -1,0 +1,93 @@
+.event {
+  background-color: #33b5e5;
+  height: 11%;
+  filter: brightness(50%);
+}
+
+.allevents {
+  background-color: #2BBBAD;
+  height: 7%;
+  filter: brightness(99%);
+}
+.events{
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/images/aboutback.jpg");
+}
+// .events *{
+//   border:1px solid red;
+// }
+
+.names:hover {
+  border-style: solid;
+  border-top: none;
+  border-right: none;
+  border-left:none;
+  border-bottom-color: #33b5e5;
+  cursor: pointer;
+}
+
+#event1,
+#event2,
+#event3,
+#event4 {
+  display: none;
+}
+
+.sideBar {
+  height: 70%;
+  width: 15%;
+  padding-top: 14%;
+  float: left;
+
+  .eventPills {
+    list-style-type: none;
+    position: relative;
+    left:-10%;
+    &>li {
+      text-decoration: none;
+      padding: 3%;
+      background-color: rgba($color: #3399FF, $alpha: 0.4);
+
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      
+      margin-top:1vh;
+      margin-bottom: 1vh;
+    }
+  }
+}
+
+
+.eventDiv {
+  position: relative;
+  top:5vh;
+  height: 70%;
+  width: 80%;
+  padding-top: 2%;
+  padding-left: 5%;
+  background-color: rgba(255, 255, 255, 0.7);
+  // display: block;
+  .eventName {
+    font-size: 34px;
+    border-style: solid;
+    // border-color: white;
+    // border-color: white black red blue;
+    border-top: none;
+    border-right: none;
+    border-left:none;
+    border-bottom-color: #33b5e5;
+    
+  }
+
+  .eventDate {
+    font-size: 23px;
+  }
+
+  .eventCoordinators{
+    font-size:23px;padding-top:4%;border-style:solid;border-color:white;border-bottom-color:#33b5e5;
+  }
+}
