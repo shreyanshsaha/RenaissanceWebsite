@@ -115,6 +115,10 @@ app.get("/getAllStudent", function(req, res){
 	})
 });
 
+app.get("/events", function(req, res){
+	res.render("eventname");
+});
+
 app.listen(80, function(){
 	console.log("Server has started!");
 })

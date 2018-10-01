@@ -48,7 +48,7 @@ body, html {
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url("/images/featuresImage.jpg");
-  min-height: 70vh;
+  min-height: 90vh;
 }
 
 .aboutClass .info-card {
