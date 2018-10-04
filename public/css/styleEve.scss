@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 .preEvents {
+    h4{
+        color: white;
+    }
+    .row{
+        padding-bottom: 1%;
+        padding-top: 1%;
+    }
+    
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
@@ -35,13 +43,13 @@
             transition-timing-function: cubic-bezier(.175, .885, .32, 1.275);
             transition-duration: .5s;
             transition-property: transform, opacity;
-            color: white;
+            color: rgb(0, 0, 0);
             width: inherit;
             background-size: cover !important;
             background-position: center !important;
             height: 20vh;
             padding: 1em 2em;
-            background: #313131;
+            background:rgba($color: #dbcece, $alpha : 0.9);
             border-radius: 10px;
             p {
                 font-size: 0.9125rem;
@@ -67,6 +75,7 @@
         &:hover {
             >.front {
                 transform: rotateY(180deg);
+                opacity: 0;
             }
 
             >.back {

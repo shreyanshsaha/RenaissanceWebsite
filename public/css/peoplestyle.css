@@ -7,18 +7,100 @@
   padding: 5px;
 }
 
+.people .card-deck {
+  width: 50%;
+  height: 70vh;
+  margin: 0 auto;
+  /* Added */
+  float: none;
+  /* Added */
+  margin-bottom: 10px;
+}
+
 .people .wrapper {
-  padding: 100px;
+  padding: 80px;
 }
 
 .people .image--cover {
-  width: 150px;
-  height: 20px;
+  width: 20vh;
+  height: 20vh;
   border-radius: 50%;
   margin: 10px;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center right;
      object-position: center right;
+}
+
+.heading {
+  text-align: center;
+  color: #a8a8a8;
+  text-shadow: 1px 1px 0 #7e7e7e;
+}
+
+form {
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+  /* Added */
+  float: none;
+  /* Added */
+  margin-bottom: 10px;
+}
+
+form input, form textarea {
+  border: 0;
+  outline: 0;
+  padding: 1em;
+  border-radius: 8px;
+  display: block;
+  width: 100%;
+  margin-top: 1em;
+  font-family: sans-serif;
+  -webkit-box-shadow: 0;
+          box-shadow: 0;
+  resize: none;
+}
+
+form #input-submit {
+  color: white;
+  background: red;
+  cursor: pointer;
+}
+
+form #input-submit:hover {
+  -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+          box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+}
+
+form textarea {
+  height: 126px;
+}
+
+.half {
+  float: left;
+  width: 48%;
+  margin-bottom: 1em;
+}
+
+.right {
+  width: 50%;
+}
+
+.left {
+  margin-right: 2%;
+}
+
+/* Clearfix */
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.cf:after {
+  clear: both;
 }
 /*# sourceMappingURL=peoplestyle.css.map */
