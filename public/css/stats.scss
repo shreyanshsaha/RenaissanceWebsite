@@ -1,0 +1,42 @@
+
+
+.statsClass{
+  height: 20vh;
+  .row{
+    height: 20vh;
+    padding-left:10px;
+    padding-right:10px;
+    .section{
+      width: 33%;
+      text-align: center;
+      transform: skew(-9deg);
+      height: 20vh;
+      // position: relative;
+      .container{
+        position: relative;
+        top:50%;
+        transform: translateY(-50%);
+        p{
+          font-size: 20px;
+          font-weight: 700;
+          span{
+            font-size:16px;
+            font-weight: 400;
+            color:white;
+          }
+        }
+      }
+
+    }
+    .firstSection{
+      background-color: #4188ff;
+    }
+    .secondSection{
+      background-color: #78aaff;
+    }
+    .thirdSection{
+      background-color: #accbff;
+    }
+  }
+
+}
