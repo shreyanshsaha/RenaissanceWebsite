@@ -10,25 +10,20 @@
   filter: brightness(99%);
 }
 .events{
-  min-height: 100vh;
+  min-height: 120vh;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url("/images/aboutback.jpg");
-}
-// .events *{
-//   border:1px solid red;
-// }
 
-.names:hover {
-  border-style: solid;
-  border-top: none;
-  border-right: none;
-  border-left:none;
-  border-bottom-color: #33b5e5;
-  cursor: pointer;
+  h1{
+    color:white;
+  }
 }
+
+
+
 
 #event1,
 #event2,
@@ -39,24 +34,32 @@
 
 .sideBar {
   height: 70%;
-  width: 15%;
-  padding-top: 14%;
+  width: 20%;
+  padding-top: 5%;
   float: left;
 
   .eventPills {
     list-style-type: none;
     position: relative;
-    left:-10%;
-    &>li {
+    left:-20%;
+    &>.names {
       text-decoration: none;
       padding: 3%;
-      background-color: rgba($color: #3399FF, $alpha: 0.4);
-
+      background-color: rgba($color: rgb(43, 149, 255), $alpha: 0.4);
+      
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
       
       margin-top:1vh;
       margin-bottom: 1vh;
+      &:hover {
+        border-style: solid;
+        border-top: none;
+        border-right: none;
+        border-left:none;
+        border-bottom-color: white;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -65,11 +68,16 @@
 .eventDiv {
   position: relative;
   top:5vh;
-  height: 70%;
+  // You cannot change height with %
+  height: 90vh;
   width: 80%;
   padding-top: 2%;
   padding-left: 5%;
   background-color: rgba(255, 255, 255, 0.7);
+  .poster{
+    position: relative;
+    left:10%;
+  }
   // display: block;
   .eventName {
     font-size: 34px;

@@ -1,3 +1,13 @@
+.border-alter-round {
+  border-top-left-radius: 15%;
+  border-bottom-right-radius: 15%;
+}
+
+.border-alter-round-alt {
+  border-top-right-radius: 15%;
+  border-bottom-left-radius: 15%;
+}
+
 body, html {
   height: 100vh;
   overflow-x: hidden;
@@ -59,6 +69,7 @@ body, html {
 
 .aboutClass .info-card .card-logo {
   background: rgba(100, 100, 200, 0.7);
+  min-height: 15vh;
 }
 
 .aboutClass .info-card .card-logo h1 {

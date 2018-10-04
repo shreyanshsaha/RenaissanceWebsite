@@ -4,6 +4,17 @@
 // =========
 // Scrollbar
 // =========
+
+.border-alter-round{
+  border-top-left-radius: 15%;
+  border-bottom-right-radius: 15%;
+}
+
+.border-alter-round-alt{
+  border-top-right-radius: 15%;
+  border-bottom-left-radius: 15%;
+}
+
 body, html{
   height: 100vh;
   overflow-x:hidden;
@@ -55,12 +66,14 @@ body, html{
   background-repeat: no-repeat;
   background-image: url("/images/featuresImage.jpg");
   min-height: 90vh;
+  // color: rgba($color: #000000, $alpha: 1.0)
   .info-card{
     position: relative;
     top:5vh;
     margin-bottom: 5vh;
     .card-logo{
       background: rgba(100, 100, 200, 0.7);
+      min-height:15vh;
       // border-radius:50%;
       h1{
         position: relative;

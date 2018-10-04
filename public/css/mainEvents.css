@@ -13,7 +13,7 @@
 }
 
 .events {
-  min-height: 100vh;
+  min-height: 120vh;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -21,13 +21,8 @@
   background-image: url("/images/aboutback.jpg");
 }
 
-.names:hover {
-  border-style: solid;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom-color: #33b5e5;
-  cursor: pointer;
+.events h1 {
+  color: white;
 }
 
 #event1,
@@ -39,35 +34,49 @@
 
 .sideBar {
   height: 70%;
-  width: 15%;
-  padding-top: 14%;
+  width: 20%;
+  padding-top: 5%;
   float: left;
 }
 
 .sideBar .eventPills {
   list-style-type: none;
   position: relative;
-  left: -10%;
+  left: -20%;
 }
 
-.sideBar .eventPills > li {
+.sideBar .eventPills > .names {
   text-decoration: none;
   padding: 3%;
-  background-color: rgba(51, 153, 255, 0.4);
+  background-color: rgba(43, 149, 255, 0.4);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
 
+.sideBar .eventPills > .names:hover {
+  border-style: solid;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom-color: white;
+  cursor: pointer;
+}
+
 .eventDiv {
   position: relative;
   top: 5vh;
-  height: 70%;
+  height: 90vh;
   width: 80%;
   padding-top: 2%;
   padding-left: 5%;
   background-color: rgba(255, 255, 255, 0.7);
+}
+
+.eventDiv .poster {
+  position: relative;
+  left: 10%;
 }
 
 .eventDiv .eventName {
