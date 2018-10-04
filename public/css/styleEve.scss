@@ -14,11 +14,22 @@
 // }
 
 .preEvents {
+    .row{
+        padding-bottom: 1%;
+        padding-top: 1%;
+    }
+    
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+    // *{
+    // border: 1px solid red;
+    // }
     background-repeat: no-repeat;
     background-image: url("/images/preEventBack.jpg");
+    padding: 5px;
+    
+    height: 50vh;
     h1 {
         font-size: 2.2em;
     }
@@ -26,13 +37,30 @@
     // base
     .flip {
         position: relative;
-
+        position: relative;
+        display: inline-block;
+        // margin-right: 0px;
+        // margin-bottom: 1em;
+        // width: 20vw;
         >.front,
         >.back {
             display: block;
             transition-timing-function: cubic-bezier(.175, .885, .32, 1.275);
             transition-duration: .5s;
             transition-property: transform, opacity;
+            color: white;
+            width: inherit;
+            background-size: cover !important;
+            background-position: center !important;
+            height: 20vh;
+            padding: 1em 2em;
+            background: #313131;
+            border-radius: 10px;
+            p {
+                font-size: 0.9125rem;
+                line-height: 160%;
+                color: #999;
+            }
         }
 
         >.front {
@@ -74,34 +102,12 @@
         }
     }*/
     }
-
-    // custom
-    .flip {
-        position: relative;
-        display: inline-block;
-        margin-right: 2px;
-        margin-bottom: 1em;
-        width: 20vw;
-
-        >.front,
-        >.back {
-            display: block;
-            color: white;
-            width: inherit;
-            background-size: cover !important;
-            background-position: center !important;
-            height: 20vh;
-            padding: 1em 2em;
-            background: #313131;
-            border-radius: 10px;
-
-            p {
-                font-size: 0.9125rem;
-                line-height: 160%;
-                color: #999;
-            }
-        }
+    .col{
+        border: 1px solid red;
+        width: 1000px ;
     }
+    // custom
+    
 
     // TODO: change text shadow css
     // .text-shadow {

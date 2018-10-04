@@ -5,6 +5,13 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url("/images/preEventBack.jpg");
+  padding: 5px;
+  height: 50vh;
+}
+
+.preEvents .row {
+  padding-bottom: 1%;
+  padding-top: 1%;
 }
 
 .preEvents h1 {
@@ -13,6 +20,8 @@
 
 .preEvents .flip {
   position: relative;
+  position: relative;
+  display: inline-block;
   /* &.flip-vertical {
         >.back {
             transform: rotateX(-180deg);
@@ -39,6 +48,21 @@
   transition-property: opacity, -webkit-transform;
   transition-property: transform, opacity;
   transition-property: transform, opacity, -webkit-transform;
+  color: white;
+  width: inherit;
+  background-size: cover !important;
+  background-position: center !important;
+  height: 20vh;
+  padding: 1em 2em;
+  background: #313131;
+  border-radius: 10px;
+}
+
+.preEvents .flip > .front p,
+.preEvents .flip > .back p {
+  font-size: 0.9125rem;
+  line-height: 160%;
+  color: #999;
 }
 
 .preEvents .flip > .front {
@@ -68,31 +92,8 @@
           transform: rotateY(0deg);
 }
 
-.preEvents .flip {
-  position: relative;
-  display: inline-block;
-  margin-right: 2px;
-  margin-bottom: 1em;
-  width: 20vw;
-}
-
-.preEvents .flip > .front,
-.preEvents .flip > .back {
-  display: block;
-  color: white;
-  width: inherit;
-  background-size: cover !important;
-  background-position: center !important;
-  height: 20vh;
-  padding: 1em 2em;
-  background: #313131;
-  border-radius: 10px;
-}
-
-.preEvents .flip > .front p,
-.preEvents .flip > .back p {
-  font-size: 0.9125rem;
-  line-height: 160%;
-  color: #999;
+.preEvents .col {
+  border: 1px solid red;
+  width: 1000px;
 }
 /*# sourceMappingURL=styleEve.css.map */
