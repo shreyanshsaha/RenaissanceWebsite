@@ -1,0 +1,24 @@
+.people {
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/images/preEventBack.jpg");
+  padding: 5px;
+}
+
+.people .wrapper {
+  padding: 100px;
+}
+
+.people .image--cover {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 20px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center right;
+     object-position: center right;
+}
+/*# sourceMappingURL=peoplestyle.css.map */
