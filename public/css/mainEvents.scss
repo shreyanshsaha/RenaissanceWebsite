@@ -1,14 +1,25 @@
-.event {
-  background-color: #33b5e5;
-  height: 11%;
-  filter: brightness(50%);
-}
 
-.allevents {
-  background-color: #2BBBAD;
-  height: 7%;
-  filter: brightness(99%);
-}
+/*
+TODO:
+Increase icon opacity
+Dropdown Events on menu bar
+
+
+*/
+
+
+
+// .event {
+//   background-color: #33b5e5;
+//   height: 11%;
+//   filter: brightness(50%);
+// }
+
+// .allevents {
+//   background-color: #2BBBAD;
+//   height: 7%;
+//   filter: brightness(99%);
+// }
 .events{
   min-height: 120vh;
   background-attachment: fixed;
@@ -16,7 +27,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url("/images/aboutBack.jpg");
-
   h1{
     color:white;
   }
@@ -34,32 +44,41 @@
 
 .sideBar {
   height: 70%;
-  width: 30%;
+  width: 20%;
   padding-top: 5%;
   float: left;
 
   .eventPills {
     list-style-type: none;
     position: relative;
-    left:-30%;
+    left:-50%;
+    
     &>.names {
       text-decoration: none;
       padding: 3%;
-      background-color: rgba($color: rgb(43, 149, 255), $alpha: 0.4);
-      
+      // background-color: rgba($color: rgb(0, 223, 252), $alpha: 0.6);
+      background-image: linear-gradient(to right, rgb(124, 195, 252), white);
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
+    
+      border-bottom: 2px solid white;
+      border-left: 2px solid white;
+      border-top: 2px solid white;
       
       margin-top:1vh;
       margin-bottom: 1vh;
 
       min-height:15vh;
+
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       &:hover {
         border-style: solid;
-        border-top: none;
-        border-right: none;
-        border-left:none;
-        border-bottom-color: white;
+        // border-top: none;
+        // border-right: none;
+        // border-left:none;
+        transition: 100ms;
+        border-bottom: 5px solid white;
         cursor: pointer;
       }
     }
@@ -68,6 +87,30 @@
 
 
 .eventDiv {
+  // padding: 0px;
+  // border:2px solid blue;
+  *{
+    // border:2px solid green;
+  }
+  >.row{
+    position: relative;
+    overflow-y: hidden;
+    // left:-10%;
+    
+    // width:80%;
+    min-height: 100%;
+    // >*{
+    //   padding: 0px;
+    //   margin:0px;
+    // }
+    // transform: translateX(-50%;)
+    // .poster{
+    //   // position: relative;
+    //   left:10%;
+    //   // top:calc(50%);
+    //   top:50%;
+    // }
+  }
   position: relative;
   top:5vh;
   // You cannot change height with %
@@ -76,10 +119,7 @@
   padding-top: 2%;
   padding-left: 5%;
   background-color: rgba(255, 255, 255, 0.7);
-  .poster{
-    position: relative;
-    left:10%;
-  }
+
   // display: block;
   .eventName {
     font-size: 34px;

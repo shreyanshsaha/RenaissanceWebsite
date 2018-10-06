@@ -1,17 +1,10 @@
-.event {
-  background-color: #33b5e5;
-  height: 11%;
-  -webkit-filter: brightness(50%);
-          filter: brightness(50%);
-}
+/*
+TODO:
+Increase icon opacity
+Dropdown Events on menu bar
 
-.allevents {
-  background-color: #2BBBAD;
-  height: 7%;
-  -webkit-filter: brightness(99%);
-          filter: brightness(99%);
-}
 
+*/
 .events {
   min-height: 120vh;
   background-attachment: fixed;
@@ -34,7 +27,7 @@
 
 .sideBar {
   height: 70%;
-  width: 30%;
+  width: 20%;
   padding-top: 5%;
   float: left;
 }
@@ -42,26 +35,31 @@
 .sideBar .eventPills {
   list-style-type: none;
   position: relative;
-  left: -30%;
+  left: -50%;
 }
 
 .sideBar .eventPills > .names {
   text-decoration: none;
   padding: 3%;
-  background-color: rgba(43, 149, 255, 0.4);
+  background-image: -webkit-gradient(linear, left top, right top, from(#7cc3fc), to(white));
+  background-image: linear-gradient(to right, #7cc3fc, white);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  border-bottom: 2px solid white;
+  border-left: 2px solid white;
+  border-top: 2px solid white;
   margin-top: 1vh;
   margin-bottom: 1vh;
   min-height: 15vh;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .sideBar .eventPills > .names:hover {
   border-style: solid;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom-color: white;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  border-bottom: 5px solid white;
   cursor: pointer;
 }
 
@@ -75,9 +73,10 @@
   background-color: rgba(255, 255, 255, 0.7);
 }
 
-.eventDiv .poster {
+.eventDiv > .row {
   position: relative;
-  left: 10%;
+  overflow-y: hidden;
+  min-height: 100%;
 }
 
 .eventDiv .eventName {
