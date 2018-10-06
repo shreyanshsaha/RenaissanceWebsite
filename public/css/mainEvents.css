@@ -34,7 +34,7 @@
 
 .sideBar {
   height: 70%;
-  width: 20%;
+  width: 30%;
   padding-top: 5%;
   float: left;
 }
@@ -42,7 +42,7 @@
 .sideBar .eventPills {
   list-style-type: none;
   position: relative;
-  left: -20%;
+  left: -30%;
 }
 
 .sideBar .eventPills > .names {
@@ -53,7 +53,7 @@
   border-bottom-left-radius: 10px;
   margin-top: 1vh;
   margin-bottom: 1vh;
-  min-height: 20vh;
+  min-height: 15vh;
 }
 
 .sideBar .eventPills > .names:hover {

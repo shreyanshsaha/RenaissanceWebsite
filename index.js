@@ -56,26 +56,26 @@ seedDB();
 //! Debug only
 var eventDetails = [
 	{
-		eventName: "JAM",
-		eventLocation: "MBA Amphitheater",
-		eventTime: "5 pm",
-		eventDate: "MONDAY,1,JANUARY",
-		eventDesc: 'Just-A-Minute (or JAM) is an all round-fun event that is all about the control of the mind over the mouth. Can you make it through sixty seconds of non-stop talking without hesitation, repetition, or deviation? Or will the sheer pressure make you crumble and have your competitors pounce on you in an instant?',
+		eventName: "Presente Vous",
+		eventLocation: "Vellore Institute of Technology, Chennai",
+		// eventTime: "5 pm",
+		eventDate: "9th February, 2019",
+		eventDesc: 'Presen',
 		eventImgSrc:"/images/samplePoster.jpg"
 	},
 	{
-		eventName: "Anatomy &amp Physiology",
-		eventLocation: "MBA Amphitheater",
-		eventTime: "5 pm",
-		eventDate: "MONDAY,1,JANUARY",
+		eventName: "Business Carpet",
+		eventLocation: "Vellore Institute of Technology, Chennai",
+		// eventTime: "5 pm",
+		eventDate: "8th February, 2019",
 		eventDesc: 'This event encompasses the anatomy and physiology of selected body systems, this year limited to nervous and endocrine systems and sense organs.',
 		eventImgSrc:"/images/samplePoster.jpg"
 	},
 	{
-		eventName: "Hovercraft",
-		eventLocation: "MBA Amphitheater",
-		eventTime: "5 pm",
-		eventDate: "MONDAY,1,JANUARY",
+		eventName: "Campfire Conference",
+		eventLocation: "Vellore Institute of Technology, Chennai",
+		eventTime: "6 pm to 10 pm",
+		eventDate: "8th February",
 		eventDesc: 'Competitors may construct a self-propelled air-levitated vehicle with up to two battery-powered motors that turn one propeller each to levitate and move the vehicle down a track. Competitors must also be tested on their knowledge of classic mechanics and related topics.',
 		eventImgSrc:"/images/samplePoster.jpg"
 	},
@@ -87,6 +87,14 @@ var eventDetails = [
 		eventDesc: 'Competitors must design, build and test a mechanical device which uses the energy from a falling mass to transport an egg along a track as quickly as possible and stop as close to the center of a terminal barrier without breaking the egg.',
 		eventImgSrc:"/images/samplePoster.jpg"
 	},
+	{
+		eventName: "Event 5",
+		eventLocation: "MBA Amphitheater",
+		eventTime: "5 pm",
+		eventDate: "MONDAY,1,JANUARY",
+		eventDesc: 'Competitors must design, build and test a mechanical device which uses the energy from a falling mass to transport an egg along a track as quickly as possible and stop as close to the center of a terminal barrier without breaking the egg.',
+		eventImgSrc:"/images/samplePoster.jpg"
+	}
 
 ]
 

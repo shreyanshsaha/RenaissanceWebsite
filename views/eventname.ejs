@@ -7,11 +7,7 @@
 		<ul class="eventPills">
 		<% for(let i=0; i<events.length; i++){ %>
 			<li class="names" onclick="myFunction<%=i+1%>()" >
-				<% if((events[i].eventName).length>5){ %>
-					<%= String(events[i].eventName).substr(0, 5)+"..." %>
-				<% }else{ %>
 					<%= events[i].eventName %>
-				<% } %>
 			</li>
 		<% }; %>
 		</ul>
@@ -20,14 +16,14 @@
 
 
 
-
+<!-- Some events have time, Add them -->
 	<% for(let i=0; i<events.length; i++){ %>
 		<div class="container eventDiv" id="event<%=i+1%>">
 		<div class="row">
 			<div class="col-lg-5 col-md-4 col-6">
 				<p class="eventName"><%=events[i].eventName%></p>
 				<p class="eventDate"><%=events[i].eventDate%>
-					<br> <%=events[i].eventLocation%>, <%=events[i].eventTime%><br>
+					<br> <%=events[i].eventLocation%><br>
 				</p>
 				<p><%=events[i].eventDesc%></p>
 				<!-- TODO: Remove event coordinators -->
@@ -177,12 +173,14 @@
 	</div>-->
 	<script>
 	// TODO: Make this also change with no of events
+	// TODO: Make a function which hides every event
 		myFunction1();
 		function myFunction1() {
 			document.getElementById("event1").style.display = "block";
 			document.getElementById("event2").style.display = "none";
 			document.getElementById("event3").style.display = "none";
 			document.getElementById("event4").style.display = "none";
+			document.getElementById("event5").style.display = "none";
 		}
 
 		function myFunction2() {
@@ -190,6 +188,7 @@
 			document.getElementById("event2").style.display = "block";
 			document.getElementById("event3").style.display = "none";
 			document.getElementById("event4").style.display = "none";
+			document.getElementById("event5").style.display = "none";
 		}
 
 		function myFunction3() {
@@ -197,6 +196,7 @@
 			document.getElementById("event2").style.display = "none";
 			document.getElementById("event3").style.display = "block";
 			document.getElementById("event4").style.display = "none";
+			document.getElementById("event5").style.display = "none";
 		}
 
 		function myFunction4() {
@@ -204,5 +204,13 @@
 			document.getElementById("event2").style.display = "none";
 			document.getElementById("event3").style.display = "none";
 			document.getElementById("event4").style.display = "block";
+			document.getElementById("event5").style.display = "none";
+		}
+		function myFunction5(){
+			document.getElementById("event1").style.display = "none";
+			document.getElementById("event2").style.display = "none";
+			document.getElementById("event3").style.display = "none";
+			document.getElementById("event4").style.display = "none";
+			document.getElementById("event5").style.display = "block";
 		}
 	</script>
