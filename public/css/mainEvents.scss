@@ -77,9 +77,11 @@ Dropdown Events on menu bar
         // border-top: none;
         // border-right: none;
         // border-left:none;
-        transition: 100ms;
+        background-image: linear-gradient(to bottom right, rgb(124, 195, 252), white);
+        
         border-bottom: 5px solid white;
         cursor: pointer;
+        
       }
     }
   }
