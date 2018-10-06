@@ -26,23 +26,23 @@
 .statsClass .row .section .container p {
   font-size: 20px;
   font-weight: 700;
+  color: white;
 }
 
 .statsClass .row .section .container p span {
   font-size: 16px;
   font-weight: 400;
-  color: white;
 }
 
 .statsClass .row .firstSection {
-  background-color: #4188ff;
+  background-color: #005f6b;
 }
 
 .statsClass .row .secondSection {
-  background-color: #78aaff;
+  background-color: #008c9e;
 }
 
 .statsClass .row .thirdSection {
-  background-color: #accbff;
+  background-color: #00b4cc;
 }
 /*# sourceMappingURL=stats.css.map */

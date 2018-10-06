@@ -1,28 +1,29 @@
-.event {
-  background-color: #33b5e5;
-  height: 11%;
-  -webkit-filter: brightness(50%);
-          filter: brightness(50%);
-}
+/*
+TODO:
+Increase icon opacity
+Dropdown Events on menu bar
 
-.allevents {
-  background-color: #2BBBAD;
-  height: 7%;
-  -webkit-filter: brightness(99%);
-          filter: brightness(99%);
-}
 
+*/
 .events {
+  scroll-snap-align: start;
   min-height: 120vh;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("/images/aboutBack.jpg");
+  background-image: url("/images/bg5.png");
 }
 
 .events h1 {
   color: white;
+}
+
+.events > .container {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 #event1,
@@ -42,25 +43,37 @@
 .sideBar .eventPills {
   list-style-type: none;
   position: relative;
-  left: -20%;
+  left: -50%;
 }
 
 .sideBar .eventPills > .names {
+  position: relative;
   text-decoration: none;
   padding: 3%;
-  background-color: rgba(43, 149, 255, 0.4);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   margin-top: 1vh;
   margin-bottom: 1vh;
+  min-height: 15vh;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sideBar .eventPills > .names .eventName {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .sideBar .eventPills > .names:hover {
   border-style: solid;
-  border-top: none;
   border-right: none;
-  border-left: none;
-  border-bottom-color: white;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  background-color: rgba(0, 223, 252, 0.75);
   cursor: pointer;
 }
 
@@ -74,9 +87,10 @@
   background-color: rgba(255, 255, 255, 0.7);
 }
 
-.eventDiv .poster {
+.eventDiv > .row {
   position: relative;
-  left: 10%;
+  overflow-y: hidden;
+  min-height: 100%;
 }
 
 .eventDiv .eventName {

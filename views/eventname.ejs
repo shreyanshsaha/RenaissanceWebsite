@@ -6,183 +6,57 @@
 	<div class="container sideBar">
 		<ul class="eventPills">
 		<% for(let i=0; i<events.length; i++){ %>
-			<li class="names" onclick="myFunction<%=i+1%>()" >
-				<% if((events[i].eventName).length>5){ %>
-					<%= String(events[i].eventName).substr(0, 5)+"..." %>
-				<% }else{ %>
-					<%= events[i].eventName %>
-				<% } %>
+			<li class="names" onclick="myFunction<%=i+1%>()" style="background-color:rgb(0, <%= 95+20*i%> , <%=107+20*i%>)">
+					<div class="eventName"><%= events[i].eventName %></div>
 			</li>
 		<% }; %>
 		</ul>
 	</div>
 
+	<!--
+		Overview
+		Structure
+		Eligibility
+		Rules and Regulations
+		Prizes & Awards
+	-->
 
 
 
-
+<!-- Some events have time, Add them -->
 	<% for(let i=0; i<events.length; i++){ %>
 		<div class="container eventDiv" id="event<%=i+1%>">
-		<div class="row">
-			<div class="col-lg-5 col-md-4 col-6">
-				<p class="eventName"><%=events[i].eventName%></p>
-				<p class="eventDate"><%=events[i].eventDate%>
-					<br> <%=events[i].eventLocation%>, <%=events[i].eventTime%><br>
-				</p>
-				<p><%=events[i].eventDesc%></p>
-				<!-- TODO: Remove event coordinators -->
-				<p class="eventCoordinators">EVENT COORDINATORS</p>
+			<div class="container">
 				<div class="row">
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;padding-right:4px;">
+					<div class="col-lg-12">
+						<p class="eventName"><%=events[i].eventName%></p>
+						<p class="eventDate"><%=events[i].eventDate%>
+							<br> <%=events[i].eventLocation%><br>
+						</p>
+						<p><%=events[i].eventDesc%></p>
 					</div>
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;padding-right:4px;">
-					</div>
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;">
-					</div>
+					
+					<!-- <div class="col-lg-5 poster">
+						<img src="<%=events[i].eventImgSrc%>" class="img-thumbnail"/>
+					</div> -->
 				</div>
-				<div class="row">
-					<div class="col-sm-4">name1</div>
-					<div class="col-sm-4">name2</div>
-					<div class="col-sm-4">name3</div>
-				</div>
-			</div>
-			<!-- <div class="col-lg-2 col-md-4 col-6" style="padding-top:3px;">
-				<ul class="social">
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-twitter"></i></a></li>
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-facebook"></i></a></li>
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-instagram"></i></a></li>
-				</ul>
-			</div> -->
-			
-			<div class="col-lg-5 col-md-4 col-6 poster">
-				<img src="<%=events[i].eventImgSrc%>" class="img-thumbnail"/>
 			</div>
 		</div>
-	</div>
 	<% } %>
 	
 
 
 
-	
-	<!-- TODO: DELETE Everything down below -->
-	<!--
-	<div class="container" style="height:70%;width:80%;padding-top:7%;padding-left:14%;" id="event2">
-		<div class="row">
-			<div class="col-lg-5 col-md-4 col-6">
-				<p style="font-size:34px;border-style:solid;border-color:white;border-bottom-color:#33b5e5;">Anatomy &amp
-					Physiology</p>
-				<p style="font-size:23px;">MONDAY,1,JANUARY<br>
-					MBA AMPHI,11:00<br></p>
-				<p>This event encompasses the anatomy and physiology of selected body systems, this year limited to nervous and
-					endocrine systems and sense organs.</p>
-				<p style="font-size:23px;padding-top:4%;border-style:solid;border-color:white;border-bottom-color:#33b5e5;">EVENT
-					COORDINATORS</p>
-				<div class="row">
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;padding-right:4px;">
-					</div>
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;padding-right:4px;">
-					</div>
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">name1</div>
-					<div class="col-sm-4">name2</div>
-					<div class="col-sm-4">name3</div>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-4 col-6" style="padding-top:3px;">
-				<ul class="social">
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-twitter"></i></a></li>
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-facebook"></i></a></li>
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-instagram"></i></a></li>
-				</ul>
-			</div>
-			<div class="col-lg-5 col-md-4 col-6" style="background-image:url(event2.jpg);height:100%;background-repeat:no-repeat;background-size:cover;">
-			</div>
-		</div>
-	</div>
-	<div class="container" style="height:70%;width:80%;padding-top:7%;padding-left:14%;" id="event3">
-		<div class="row">
-			<div class="col-lg-5 col-md-4 col-6">
-				<p style="font-size:34px;border-style:solid;border-color:white;border-bottom-color:#33b5e5;">Hovercraft</p>
-				<p style="font-size:23px;">MONDAY,1,JANUARY<br>
-					MBA AMPHI,11:00<br></p>
-				<p>Competitors may construct a self-propelled air-levitated vehicle with up to two battery-powered motors that turn
-					one propeller each to levitate and move the vehicle down a track. Competitors must also be tested on their
-					knowledge of classic mechanics and related topics.</p>
-				<p style="font-size:23px;padding-top:4%;border-style:solid;border-color:white;border-bottom-color:#33b5e5;">EVENT
-					COORDINATORS</p>
-				<div class="row">
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;padding-right:4px;">
-					</div>
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;padding-right:4px;">
-					</div>
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">name1</div>
-					<div class="col-sm-4">name2</div>
-					<div class="col-sm-4">name3</div>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-4 col-6" style="padding-top:3px;">
-				<ul class="social">
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-twitter"></i></a></li>
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-facebook"></i></a></li>
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-instagram"></i></a></li>
-				</ul>
-			</div> 
-			<div class="col-lg-5 col-md-4 col-6" style="background-image:url(event3.jpg);height:100%;background-repeat:no-repeat;background-size:cover;">
-			</div>
-		</div>
-	</div>
-	<div class="container" style="height:70%;width:80%;padding-top:7%;padding-left:14%;" id="event4">
-		<div class="row">
-			<div class="col-lg-5 col-md-4 col-6">
-				<p style="font-size:34px;border-style:solid;border-color:white;border-bottom-color:#33b5e5;">Scrambler</p>
-				<p style="font-size:23px;">MONDAY,1,JANUARY<br>
-					MBA AMPHI,11:00<br></p>
-				<p>Competitors must design, build and test a mechanical device which uses the energy from a falling mass to
-					transport an egg along a track as quickly as possible and stop as close to the center of a terminal barrier
-					without breaking the egg.</p>
-				<p style="font-size:23px;padding-top:4%;border-style:solid;border-color:white;border-bottom-color:#33b5e5;">EVENT
-					COORDINATORS</p>
-				<div class="row">
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;padding-right:4px;">
-					</div>
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;padding-right:4px;">
-					</div>
-					<div class='col-sm-4' style="background-image:url(person.png);height:20%;background-repeat:no-repeat;background-size:contain;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">name1</div>
-					<div class="col-sm-4">name2</div>
-					<div class="col-sm-4">name3</div>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-4 col-6" style="padding-top:3px;">
-				<ul class="social">
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-twitter"></i></a></li>
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-facebook"></i></a></li>
-					<li style="display:inline;float:left;padding-right:7px;"><a href="#"><i class="fa fa-instagram"></i></a></li>
-				</ul>
-			</div>
-			<div class="col-lg-5 col-md-4 col-6" style="background-image:url(event4.png);height:100%;background-repeat:no-repeat;background-size:cover;">
-			</div>
-		</div>
-	</div>-->
 	<script>
 	// TODO: Make this also change with no of events
+	// TODO: Make a function which hides every event
 		myFunction1();
 		function myFunction1() {
 			document.getElementById("event1").style.display = "block";
 			document.getElementById("event2").style.display = "none";
 			document.getElementById("event3").style.display = "none";
 			document.getElementById("event4").style.display = "none";
+			document.getElementById("event5").style.display = "none";
 		}
 
 		function myFunction2() {
@@ -190,6 +64,7 @@
 			document.getElementById("event2").style.display = "block";
 			document.getElementById("event3").style.display = "none";
 			document.getElementById("event4").style.display = "none";
+			document.getElementById("event5").style.display = "none";
 		}
 
 		function myFunction3() {
@@ -197,6 +72,7 @@
 			document.getElementById("event2").style.display = "none";
 			document.getElementById("event3").style.display = "block";
 			document.getElementById("event4").style.display = "none";
+			document.getElementById("event5").style.display = "none";
 		}
 
 		function myFunction4() {
@@ -204,5 +80,13 @@
 			document.getElementById("event2").style.display = "none";
 			document.getElementById("event3").style.display = "none";
 			document.getElementById("event4").style.display = "block";
+			document.getElementById("event5").style.display = "none";
+		}
+		function myFunction5(){
+			document.getElementById("event1").style.display = "none";
+			document.getElementById("event2").style.display = "none";
+			document.getElementById("event3").style.display = "none";
+			document.getElementById("event4").style.display = "none";
+			document.getElementById("event5").style.display = "block";
 		}
 	</script>

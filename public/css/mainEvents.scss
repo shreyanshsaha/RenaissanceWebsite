@@ -1,24 +1,42 @@
-.event {
-  background-color: #33b5e5;
-  height: 11%;
-  filter: brightness(50%);
-}
 
-.allevents {
-  background-color: #2BBBAD;
-  height: 7%;
-  filter: brightness(99%);
-}
+/*
+TODO:
+Increase icon opacity
+Dropdown Events on menu bar
+
+
+*/
+
+
+
+// .event {
+//   background-color: #33b5e5;
+//   height: 11%;
+//   filter: brightness(50%);
+// }
+
+// .allevents {
+//   background-color: #2BBBAD;
+//   height: 7%;
+//   filter: brightness(99%);
+// }
 .events{
+  scroll-snap-align: start;
   min-height: 120vh;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("/images/aboutBack.jpg");
-
+  background-image: url("/images/bg5.png");
+  
+  
   h1{
     color:white;
+  }
+  >.container{
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -41,24 +59,48 @@
   .eventPills {
     list-style-type: none;
     position: relative;
-    left:-20%;
+    left:-50%;
+    
     &>.names {
+      position: relative;
+      .eventName{
+        position: absolute;
+        top:50%;
+        left:50%;
+        width:100%;
+        transform: translate(-50%, -50%);
+      }
       text-decoration: none;
       padding: 3%;
-      background-color: rgba($color: rgb(43, 149, 255), $alpha: 0.4);
-      
+      // background-color: rgba($color: rgb(0, 223, 252), $alpha: 0.6);
+      // background-image: linear-gradient(to right, rgb(124, 195, 252), white);
+      // background-color: rgba(255, 255, 255, 0.7);
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
+    
+      // border-bottom: 2px solid #00dffc;
+      // border-left: 2px solid #00dffc;
+      // border-top: 2px solid #00dffc;
       
       margin-top:1vh;
       margin-bottom: 1vh;
+
+      min-height:15vh;
+      // min-height: 80px;
+
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       &:hover {
         border-style: solid;
-        border-top: none;
+        // border-top: none;
         border-right: none;
-        border-left:none;
-        border-bottom-color: white;
+        // border-left:none;
+        // background-image: linear-gradient(to right, rgb(124, 195, 252), white);
+        transition: 100ms;
+        background-color: rgba($color: #00dffc, $alpha:0.75);
+        // border-bottom: 5px solid white;
         cursor: pointer;
+        
       }
     }
   }
@@ -66,6 +108,30 @@
 
 
 .eventDiv {
+  // padding: 0px;
+  // border:2px solid blue;
+  *{
+    // border:2px solid green;
+  }
+  >.row{
+    position: relative;
+    overflow-y: hidden;
+    // left:-10%;
+    
+    // width:80%;
+    min-height: 100%;
+    // >*{
+    //   padding: 0px;
+    //   margin:0px;
+    // }
+    // transform: translateX(-50%;)
+    // .poster{
+    //   // position: relative;
+    //   left:10%;
+    //   // top:calc(50%);
+    //   top:50%;
+    // }
+  }
   position: relative;
   top:5vh;
   // You cannot change height with %
@@ -74,10 +140,7 @@
   padding-top: 2%;
   padding-left: 5%;
   background-color: rgba(255, 255, 255, 0.7);
-  .poster{
-    position: relative;
-    left:10%;
-  }
+
   // display: block;
   .eventName {
     font-size: 34px;
