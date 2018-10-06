@@ -27,9 +27,15 @@
 body, html{
   height: 100vh;
   overflow-x:hidden;
+  overflow-y: scroll;
+  // scroll-snap-type: y mandatory;
 }
 
+.navbar{
+  scroll-snap-align: start;
+}
 .home{
+  // scroll-snap-align: start;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -78,6 +84,7 @@ body, html{
 }
 
 .aboutClass{
+  scroll-snap-align: start;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -122,6 +129,7 @@ body, html{
 
 
 .footer{
+  scroll-snap-align: start;
   background-color: rgba(200, 200, 200, 0.8);
   min-height: 20vh;
   width: 90vw;

@@ -21,6 +21,7 @@ Dropdown Events on menu bar
 //   filter: brightness(99%);
 // }
 .events{
+  scroll-snap-align: start;
   min-height: 120vh;
   background-attachment: fixed;
   background-position: center;

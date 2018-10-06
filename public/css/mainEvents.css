@@ -6,6 +6,7 @@ Dropdown Events on menu bar
 
 */
 .events {
+  scroll-snap-align: start;
   min-height: 120vh;
   background-attachment: fixed;
   background-position: center;
