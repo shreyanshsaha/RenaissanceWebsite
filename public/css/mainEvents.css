@@ -57,8 +57,8 @@ Dropdown Events on menu bar
 
 .sideBar .eventPills > .names:hover {
   border-style: solid;
-  -webkit-transition: 100ms;
-  transition: 100ms;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#7cc3fc), to(white));
+  background-image: linear-gradient(to bottom right, #7cc3fc, white);
   border-bottom: 5px solid white;
   cursor: pointer;
 }
