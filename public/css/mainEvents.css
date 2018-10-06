@@ -53,6 +53,7 @@
   border-bottom-left-radius: 10px;
   margin-top: 1vh;
   margin-bottom: 1vh;
+  min-height: 20vh;
 }
 
 .sideBar .eventPills > .names:hover {
