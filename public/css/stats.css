@@ -26,12 +26,12 @@
 .statsClass .row .section .container p {
   font-size: 20px;
   font-weight: 700;
+  color: white;
 }
 
 .statsClass .row .section .container p span {
   font-size: 16px;
   font-weight: 400;
-  color: white;
 }
 
 .statsClass .row .firstSection {
