@@ -133,7 +133,7 @@ app.post("/register", function (req, res) {
 
 // Login and Logout
 app.get("/login", function (req, res) {
-	res.render("front_page");
+	res.render("login");
 });
 
 app.post("/login", passport.authenticate("local", {
