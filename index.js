@@ -169,5 +169,5 @@ app.get("/events", function (req, res) {
 
 // app.listen(80, function () {
 // 	console.log("Server has started!");
-// })
+// });
 app.listen(process.env.PORT, process.env.IP);
