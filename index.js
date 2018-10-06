@@ -94,17 +94,9 @@ var eventDetails = [
 		eventDate: "8th February, 2019",
 		eventDesc: "Open your eyes, rise and shine, suit up quirky, quiet or fine. But let us remind, do not leave your cv behind.This edition of the Internship Drive comes with the promise to let you be the best while learning from the best. Theoretical knowledge is available in plenty but application is the real decider, to get yourself a rung up on the ladder. While you may be looking at some like minds, the startups may find in you their right choice. ",
 		eventImgSrc:"/images/samplePoster.jpg"
-	},
-	{
-		eventName: "Event 5",
-		eventLocation: "MBA Amphitheater",
-		eventTime: "5 pm",
-		eventDate: "MONDAY,1,JANUARY",
-		eventDesc: 'Competitors must design, build and test a mechanical device which uses the energy from a falling mass to transport an egg along a track as quickly as possible and stop as close to the center of a terminal barrier without breaking the egg.',
-		eventImgSrc:"/images/samplePoster.jpg"
 	}
 
-]
+];
 
 //! Debug end
 // Root
@@ -175,11 +167,7 @@ app.get("/events", function (req, res) {
 	res.render("eventname");
 });
 
-<<<<<<< HEAD
 app.listen(80, function () {
-=======
-app.listen(8081, function () {
->>>>>>> d896d3acfe24fafc17872d7cc00ff4cffbaf0b76
 	console.log("Server has started!");
 })
 // app.listen(process.env.PORT, process.env.IP);

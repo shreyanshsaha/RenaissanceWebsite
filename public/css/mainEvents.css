@@ -11,11 +11,18 @@ Dropdown Events on menu bar
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("/images/aboutBack.jpg");
+  background-image: url("/images/bg5.png");
 }
 
 .events h1 {
   color: white;
+}
+
+.events > .container {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 #event1,
@@ -39,15 +46,11 @@ Dropdown Events on menu bar
 }
 
 .sideBar .eventPills > .names {
+  position: relative;
   text-decoration: none;
   padding: 3%;
-  background-image: -webkit-gradient(linear, left top, right top, from(#7cc3fc), to(white));
-  background-image: linear-gradient(to right, #7cc3fc, white);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  border-bottom: 2px solid white;
-  border-left: 2px solid white;
-  border-top: 2px solid white;
   margin-top: 1vh;
   margin-bottom: 1vh;
   min-height: 15vh;
@@ -55,11 +58,21 @@ Dropdown Events on menu bar
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.sideBar .eventPills > .names .eventName {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
 .sideBar .eventPills > .names:hover {
   border-style: solid;
-  background-image: -webkit-gradient(linear, left top, right bottom, from(#7cc3fc), to(white));
-  background-image: linear-gradient(to bottom right, #7cc3fc, white);
-  border-bottom: 5px solid white;
+  border-right: none;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  background-color: rgba(0, 223, 252, 0.75);
   cursor: pointer;
 }
 

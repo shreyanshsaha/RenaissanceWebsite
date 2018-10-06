@@ -26,9 +26,16 @@ Dropdown Events on menu bar
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("/images/aboutBack.jpg");
+  background-image: url("/images/bg5.png");
+  
+  
   h1{
     color:white;
+  }
+  >.container{
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -54,32 +61,43 @@ Dropdown Events on menu bar
     left:-50%;
     
     &>.names {
+      position: relative;
+      .eventName{
+        position: absolute;
+        top:50%;
+        left:50%;
+        width:100%;
+        transform: translate(-50%, -50%);
+      }
       text-decoration: none;
       padding: 3%;
       // background-color: rgba($color: rgb(0, 223, 252), $alpha: 0.6);
-      background-image: linear-gradient(to right, rgb(124, 195, 252), white);
+      // background-image: linear-gradient(to right, rgb(124, 195, 252), white);
+      // background-color: rgba(255, 255, 255, 0.7);
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
     
-      border-bottom: 2px solid white;
-      border-left: 2px solid white;
-      border-top: 2px solid white;
+      // border-bottom: 2px solid #00dffc;
+      // border-left: 2px solid #00dffc;
+      // border-top: 2px solid #00dffc;
       
       margin-top:1vh;
       margin-bottom: 1vh;
 
       min-height:15vh;
+      // min-height: 80px;
 
       text-align: center;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       &:hover {
         border-style: solid;
         // border-top: none;
-        // border-right: none;
+        border-right: none;
         // border-left:none;
-        background-image: linear-gradient(to bottom right, rgb(124, 195, 252), white);
-        
-        border-bottom: 5px solid white;
+        // background-image: linear-gradient(to right, rgb(124, 195, 252), white);
+        transition: 100ms;
+        background-color: rgba($color: #00dffc, $alpha:0.75);
+        // border-bottom: 5px solid white;
         cursor: pointer;
         
       }
