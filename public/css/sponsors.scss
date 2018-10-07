@@ -1,19 +1,37 @@
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-.w3-main {
-    background-image: linear-gradient(rgba(255,255,255,.33), rgba(255,255,255,.33)), url("https://cdn.pixabay.com/photo/2015/12/08/00/50/aerial-view-1082087_960_720.jpg");
-    min-height: 500px;
-    height-100%;
-    background-attachment: fixed;
-    background-position: right top;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.w3-sidebar{
-    background-image: url("https://wallpaper-house.com/data/out/9/wallpaper2you_324867.jpg");
-    min-height: 500px;
-    height:100%
-    background-attachment: fixed;
-    background-position: right top ;
-    background-repeat: no-repeat;
-    background-size: cover;
+// body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+// .w3-main {
+//     background-image: linear-gradient(rgba(255,255,255,.33), rgba(255,255,255,.33)), url("https://cdn.pixabay.com/photo/2015/12/08/00/50/aerial-view-1082087_960_720.jpg");
+//     min-height: 500px;
+//     height-100%;
+//     background-attachment: fixed;
+//     background-position: right top;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+// }
+// .w3-sidebar{
+//     background-image: url("https://wallpaper-house.com/data/out/9/wallpaper2you_324867.jpg");
+//     min-height: 500px;
+//     height:100%
+//     background-attachment: fixed;
+//     background-position: right top ;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+// }
+
+.container {
+	.sponsor-type {
+		border-top-left-radius: 10px;
+		border-bottom-left-radius: 10px;
+		background-image: linear-gradient(to right, #00B4CC, white);
+	}
+
+	// .sponsor-img {
+	// 	// min-height: 20vh;
+	// 	// bordeR: 1px solid red;
+	// 	img {
+	// 		// height: 100%;
+	// 		width: auto;
+	// 	}
+	// }
+
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Sponsors</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/scrollbar.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/home.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/sponsors.css" />
+  <script src="/lib/jquery.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+</head>
+<body>
+  <% include partials/navbar %>
+  <div class="container mt-4">
+    <div class="row">
+      
+      <% sponsors.forEach(function(sponsor){ %>
+        <div class="col-lg-<%=sponsor.imageUrl.length*2%> mt-1">
+          <div class="row mb-1">
+            <div class="col-lg-12 sponsor-type">
+                <%= sponsor.type %>
+            </div>
+          </div>
+
+          <div class="row sponsor-img">
+            <%sponsor.imageUrl.forEach(function(imageUrl){%>
+              <div class="col-lg-<%=Math.round(12/sponsor.imageUrl.length)%>">
+                <img src="<%=imageUrl%>" class="img-thumbnail"/>
+              </div>
+            <%});%>
+
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+
+  <div class="seperation mt-4"></div>
+
+  <% include partials/footer %>
+</body>
+</html>

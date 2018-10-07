@@ -58,62 +58,62 @@ var sponsorDetails=[
 	{
 		type:"Startup Ecosystem Partners",
 		imageUrl:[
-			"/public/images/sponsors/ah! logo.jpg",
-			"/public/images/sponsors/Logo Presentation 2.png",
-			"/public/images/sponsors/Chatur-Ideas-Logo-png-file.png",
-			"/public/images/sponsors/unicorn-big-logo.jpg",
-			"/public/images/sponsors/unnamed.png",
-			"/public/images/sponsors/BA Logo.png"
+			"/images/sponsors/ah! logo.jpg",
+			"/images/sponsors/Logo Presentation 2.png",
+			"/images/sponsors/Chatur-Ideas-Logo-png-file.png",
+			"/images/sponsors/unicorn-big-logo.jpg",
+			"/images/sponsors/unnamed.png",
+			"/images/sponsors/BA Logo.png"
 		]
 	},
 	{
 		type:"Knowlege Partners",
 		imageUrl:[
-			"/public/images/sponsors/peopleist india.png",
-			"/public/images/sponsors/download.png",
-			"/public/images/sponsors/National_Entrepreneurship_Network(NEN)_Logo.png"
+			"/images/sponsors/peopleist india.png",
+			"/images/sponsors/download.png",
+			"/images/sponsors/National_Entrepreneurship_Network(NEN)_Logo.png"
 		]
 	},
 	{
 		type:"Technology Partners",
 		imageUrl:[
-			"/public/images/sponsors/gridle-logo-team-management-3b3bb6bbf80e4e87-512x512.png",
-			"/public/images/sponsors/mozilla_2017_logo.png"
+			"/images/sponsors/gridle-logo-team-management-3b3bb6bbf80e4e87-512x512.png",
+			"/images/sponsors/mozilla_2017_logo.png"
 		]
 	},
 	{
 		type:"Event Partners",
 		imageUrl:[
-			"/public/images/sponsors/unnamed.jpg",
-			"/public/images/sponsors/punjab-national-bank.png"
+			"/images/sponsors/unnamed.jpg",
+			"/images/sponsors/punjab-national-bank.png"
 		]
 	},
 	{
 		type:"Media Partners",
 		imageUrl:[
-			"/public/images/sponsors/1413842518-entrepreneur-logo.jpg",
-			"/public/images/sponsors/download (1).png",
-			"/public/images/sponsors/businessdigest-logo.png",
-			"/public/images/sponsors/blogadda_logo.png",
-			"/public/images/sponsors/download (2).png"
+			"/images/sponsors/1413842518-entrepreneur-logo.jpg",
+			"/images/sponsors/download (1).png",
+			"/images/sponsors/businessdigest-logo.png",
+			"/images/sponsors/blogadda_logo.png",
+			"/images/sponsors/download (2).png"
 		]
 	},
 	{
 		type:"Audio Partners",
 		imageUrl:[
-			"/public/images/sponsors/84c0680cda26471d041d29b64d33971d57b1c205.jpeg"
+			"/images/sponsors/84c0680cda26471d041d29b64d33971d57b1c205.jpeg"
 		]
 	},
-	{
-		type:"Media Partners",
-		imageUrl:[
-			"/public/images/sponsors/1413842518-entrepreneur-logo.jpg",
-			"/public/images/sponsors/download (1).png",
-			"/public/images/sponsors/businessdigest-logo.png",
-			"/public/images/sponsors/blogadda_logo.png",
-			"/public/images/sponsors/download (2).png"
-		]
-	}
+	// {
+	// 	type:"Media Partners",
+	// 	imageUrl:[
+	// 		"/public/images/sponsors/1413842518-entrepreneur-logo.jpg",
+	// 		"/public/images/sponsors/download (1).png",
+	// 		"/public/images/sponsors/businessdigest-logo.png",
+	// 		"/public/images/sponsors/blogadda_logo.png",
+	// 		"/public/images/sponsors/download (2).png"
+	// 	]
+	// }
 ];
 
 
@@ -169,7 +169,7 @@ app.get("/", function (req, res) {
 
 // Companies
 app.get("/sponsors", function(req, res){
-	res.render("company_index");
+	res.render("sponsors", {sponsors: sponsorDetails});
 });
 
 // Register
