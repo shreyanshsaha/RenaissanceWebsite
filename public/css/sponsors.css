@@ -1,0 +1,7 @@
+.container .sponsor-type {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-image: -webkit-gradient(linear, left top, right top, from(#00B4CC), to(white));
+  background-image: linear-gradient(to right, #00B4CC, white);
+}
+/*# sourceMappingURL=sponsors.css.map */

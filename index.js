@@ -16,7 +16,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({
 	extended: false
-}))
+}));
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
@@ -54,6 +54,69 @@ seedDB();
 // ======
 
 //! Debug only
+var sponsorDetails=[
+	{
+		type:"Startup Ecosystem Partners",
+		imageUrl:[
+			"/images/sponsors/ah! logo.jpg",
+			"/images/sponsors/Logo Presentation 2.png",
+			"/images/sponsors/Chatur-Ideas-Logo-png-file.png",
+			"/images/sponsors/unicorn-big-logo.jpg",
+			"/images/sponsors/unnamed.png",
+			"/images/sponsors/BA Logo.png"
+		]
+	},
+	{
+		type:"Knowlege Partners",
+		imageUrl:[
+			"/images/sponsors/peopleist india.png",
+			"/images/sponsors/download.png",
+			"/images/sponsors/National_Entrepreneurship_Network(NEN)_Logo.png"
+		]
+	},
+	{
+		type:"Technology Partners",
+		imageUrl:[
+			"/images/sponsors/gridle-logo-team-management-3b3bb6bbf80e4e87-512x512.png",
+			"/images/sponsors/mozilla_2017_logo.png"
+		]
+	},
+	{
+		type:"Event Partners",
+		imageUrl:[
+			"/images/sponsors/unnamed.jpg",
+			"/images/sponsors/punjab-national-bank.png"
+		]
+	},
+	{
+		type:"Media Partners",
+		imageUrl:[
+			"/images/sponsors/1413842518-entrepreneur-logo.jpg",
+			"/images/sponsors/download (1).png",
+			"/images/sponsors/businessdigest-logo.png",
+			"/images/sponsors/blogadda_logo.png",
+			"/images/sponsors/download (2).png"
+		]
+	},
+	{
+		type:"Audio Partners",
+		imageUrl:[
+			"/images/sponsors/84c0680cda26471d041d29b64d33971d57b1c205.jpeg"
+		]
+	},
+	// {
+	// 	type:"Media Partners",
+	// 	imageUrl:[
+	// 		"/public/images/sponsors/1413842518-entrepreneur-logo.jpg",
+	// 		"/public/images/sponsors/download (1).png",
+	// 		"/public/images/sponsors/businessdigest-logo.png",
+	// 		"/public/images/sponsors/blogadda_logo.png",
+	// 		"/public/images/sponsors/download (2).png"
+	// 	]
+	// }
+];
+
+
 var eventDetails = [
 	{
 		eventName: "Presente Vous",
@@ -104,6 +167,11 @@ app.get("/", function (req, res) {
 	res.render("home", { events: eventDetails });
 });
 
+// Companies
+app.get("/sponsors", function(req, res){
+	res.render("sponsors", {sponsors: sponsorDetails});
+});
+
 // Register
 app.get("/register", function (req, res) {
 	res.render("reg_page", {
@@ -138,7 +206,7 @@ app.get("/login", function (req, res) {
 
 app.post("/login", passport.authenticate("local", {
 	successRedirect: "/",
-	failureRedirect: "/register",
+	failureRedirect: "/register"
 }), function (req, res) {});
 
 app.get("/logout", isLoggedIn, function (req, res) {
@@ -150,7 +218,7 @@ app.get("/logout", isLoggedIn, function (req, res) {
 
 app.get("/profile", isLoggedIn, function (req, res) {
 	res.send("User logged in!" + JSON.stringify(req.user));
-})
+});
 
 
 //! Debug Routes Remove them in release
@@ -160,14 +228,14 @@ app.get("/getAllStudent", function (req, res) {
 			console.log(err);
 		else
 			res.send(users);
-	})
+	});
 });
 
 app.get("/events", function (req, res) {
 	res.render("eventname");
 });
 
-// app.listen(80, function () {
-// 	console.log("Server has started!");
-// });
-app.listen(process.env.PORT, process.env.IP);
+app.listen(80, function () {
+	console.log("Server has started!");
+});
+// app.listen(process.env.PORT, process.env.IP);
