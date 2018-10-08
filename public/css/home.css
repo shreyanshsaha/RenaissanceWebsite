@@ -11,38 +11,20 @@
 body, html {
   height: 100vh;
   overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 .navbar {
   scroll-snap-align: start;
 }
 
-.home {
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url("/images/bg7.jpg");
-  min-height: 100vh;
+.home .heading .carousel-item {
+  height: 45vw;
 }
 
-.home .container {
-  height: 100vh;
-}
-
-.home .container .heading {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  text-align: center;
-  width: 30%;
-  margin: auto;
-}
-
-.home .container .heading .mainLogo img {
-  width: 90%;
+.home .heading .carousel-item .mainLogo img {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  width: 20vw;
 }
 
 .seperation {
