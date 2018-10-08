@@ -235,7 +235,14 @@ app.get("/events", function (req, res) {
 	res.render("eventname");
 });
 
+<<<<<<< HEAD
 // app.listen(8081, function () {
 // 	console.log("Server has started!");
 // });
 app.listen(process.env.PORT, process.env.IP);
+=======
+app.listen(80, function () {
+	console.log("Server has started!");
+});
+// app.listen(process.env.PORT, process.env.IP);
+>>>>>>> frontCarousel
