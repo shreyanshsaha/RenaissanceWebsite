@@ -27,7 +27,7 @@
 body, html{
   height: 100vh;
   overflow-x:hidden;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   // scroll-snap-type: y mandatory;
 }
 
@@ -35,46 +35,22 @@ body, html{
   scroll-snap-align: start;
 }
 .home{
-  // scroll-snap-align: start;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url("/images/bg7.jpg");
-  min-height: 100vh;
-  .container{
-    height: 100vh;
-    // border:5px solid red;
     .heading{
-      // To get the div to center
-      position: relative;
-      top:50%;
-      transform: translateY(-50%);
-      text-align: center;
-      // border: 2px solid blue;
-      width:30%;
-      margin:auto;
-      .mainLogo{
-        // border:1px solid red;
-        img{
-          // border:1px solid blue;
-          width: 90%;
+      
+      .carousel-item{
+        height: 45vw;
+        .mainLogo{
+          // border:1px solid red;
+          img{
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            // border:1px solid blue;
+            width: 20vw;
+          }
         }
       }
-      p{
-        // border-top: 2px solid black;
-      }
-      // h1{
-      //   text-shadow:  0px 5px 5px rgba(0,0,255,0.2),
-      //                 10px 10px 15px rgba(0,0,255,0.1),
-      //                 10px 10px 20px rgba(0,0,255,0.1);
-      // }
-      // *{
-      //   padding: 3px;
-      //   margin:0px;
-      // }
     }
-  }
+  
 }
 
 .seperation{
