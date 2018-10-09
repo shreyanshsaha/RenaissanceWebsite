@@ -58,50 +58,50 @@ var sponsorDetails=[
 	{
 		type:"Startup Ecosystem Partners",
 		imageUrl:[
-			"/images/sponsors/ah! logo.jpg",
-			"/images/sponsors/Logo Presentation 2.png",
-			"/images/sponsors/Chatur-Ideas-Logo-png-file.png",
-			"/images/sponsors/unicorn-big-logo.jpg",
-			"/images/sponsors/unnamed.png",
-			"/images/sponsors/BA Logo.png"
+			"/images/sponsors/startup1.jpg",
+			"/images/sponsors/startup2.jpg",
+			"/images/sponsors/startup3.jpg",
+			"/images/sponsors/startup4.jpg",
+			"/images/sponsors/startup5.jpg",
+			"/images/sponsors/startup6.jpg"
 		]
 	},
 	{
 		type:"Knowlege Partners",
 		imageUrl:[
-			"/images/sponsors/peopleist india.png",
-			"/images/sponsors/download.png",
-			"/images/sponsors/National_Entrepreneurship_Network(NEN)_Logo.png"
+			"/images/sponsors/knowledge1.jpg",
+			"/images/sponsors/knowledge2.jpg",
+			"/images/sponsors/knowledge3.jpg"
 		]
 	},
 	{
 		type:"Technology Partners",
 		imageUrl:[
-			"/images/sponsors/gridle-logo-team-management-3b3bb6bbf80e4e87-512x512.png",
-			"/images/sponsors/mozilla_2017_logo.png"
+			"/images/sponsors/tech1.jpg",
+			"/images/sponsors/tech2.jpg"
 		]
 	},
 	{
 		type:"Event Partners",
 		imageUrl:[
-			"/images/sponsors/unnamed.jpg",
-			"/images/sponsors/punjab-national-bank.png"
+			"/images/sponsors/event1.jpg",
+			"/images/sponsors/event2.jpg"
 		]
 	},
 	{
 		type:"Media Partners",
 		imageUrl:[
-			"/images/sponsors/1413842518-entrepreneur-logo.jpg",
-			"/images/sponsors/download (1).png",
-			"/images/sponsors/businessdigest-logo.png",
-			"/images/sponsors/blogadda_logo.png",
-			"/images/sponsors/download (2).png"
+			"/images/sponsors/media1.jpg",
+			"/images/sponsors/media2.jpg",
+			"/images/sponsors/media3.jpg",
+			"/images/sponsors/media4.jpg",
+			"/images/sponsors/media5.jpg"
 		]
 	},
 	{
 		type:"Audio Partners",
 		imageUrl:[
-			"/images/sponsors/84c0680cda26471d041d29b64d33971d57b1c205.jpeg"
+			"/images/sponsors/audio1.jpg"
 		]
 	},
 	// {
@@ -235,7 +235,7 @@ app.get("/events", function (req, res) {
 	res.render("eventname");
 });
 
-// app.listen(80, function () {
-// 	console.log("Server has started!");
-// });
-app.listen(process.env.PORT, process.env.IP);
+app.listen(8081, function () {
+	console.log("Server has started!");
+});
+// app.listen(process.env.PORT, process.env.IP);
