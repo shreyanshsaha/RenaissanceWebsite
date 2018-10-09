@@ -23,38 +23,4 @@
     object-fit: cover;
     object-position: center right; }
 
-.feedbackClass {
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url("/images/bg1.jpg");
-  height: 60vh; }
-  .feedbackClass .heading-feedback {
-    text-align: center;
-    color: white;
-    text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 10px 10px 15px rgba(0, 0, 0, 0.1), 10px 10px 20px rgba(0, 0, 0, 0.1); }
-  .feedbackClass .container {
-    width: 50vw; }
-    .feedbackClass .container form {
-      display: block; }
-      .feedbackClass .container form input,
-      .feedbackClass .container form textarea {
-        border: 0;
-        outline: 0;
-        padding: 1em;
-        border-radius: 8px;
-        display: block;
-        width: 100%;
-        margin-top: 1em;
-        font-family: sans-serif;
-        box-shadow: 0;
-        resize: none; }
-      .feedbackClass .container form #input-submit {
-        color: white;
-        background: red;
-        cursor: pointer; }
-        .feedbackClass .container form #input-submit:hover {
-          box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6); }
-
 /*# sourceMappingURL=peoplestyle.css.map */
