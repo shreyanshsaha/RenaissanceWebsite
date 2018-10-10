@@ -9,7 +9,7 @@ var express = require('express'),
 var app = express();
 // mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp
 // mongoose.connect("mongodb://localhost/renaissance");
-mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp");
+// mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp");
 app.set("view engine", "ejs");
 // app.use(express.static(__dirname + "/public"));
 
@@ -47,7 +47,7 @@ function isLoggedIn(req, res, next) {
 }
 
 // Seed the database
-seedDB();
+// seedDB();
 
 // ======
 // Routes
@@ -236,7 +236,7 @@ app.get("/events", function (req, res) {
 	res.render("eventname");
 });
 
-// app.listen(8081, function () {
-// 	console.log("Server has started!");
-// });
-app.listen(process.env.PORT, process.env.IP);
+app.listen(8081, function () {
+	console.log("Server has started!");
+});
+// app.listen(process.env.PORT, process.env.IP);
