@@ -9,16 +9,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-	
+
 	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/home.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/scrollbar.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="css/profileStyle.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="css/stats.css" />
+
+	<link rel="stylesheet" type="text/css" media="screen" href="css/profilestyle.css" />
 
 	<link rel="stylesheet" type="text/css" media="screen" href="css/feedback.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/footer.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/about.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="css/stats.css" />
 
 	<link rel="stylesheet" href="/css/mainEvents.css" />
 	<link rel="stylesheet" href="/css/styleEve.css">
@@ -33,103 +34,39 @@
 	<% include partials/navbar %>
 
 	<!-- Home -->
-	<% include carousel %>
+	<% include frontPart/carousel %>
 
 	<!-- About -->
 	<div class="seperation"></div>
-	<% include about %>
-	
+	<% include frontPart/about %>
+
 	<!-- Stats -->
 	<div class="seperation"></div>
-	<% include stats %>
-	
+	<% include frontPart/stats %>
+
 	<!-- Main Events -->
 	<div class="seperation" id="events"></div>
-	<div class="events">
-		<div class="container">
-			<h1>Events</h1>
-			<% include eventname %>
-		</div>
-	</div>
+	<% include frontPart/eventname %>
+
 
 	<!-- Pre Events -->
-	<!-- <div class="seperation"></div>
-	<div class="preEvents">
-		<div class="container">
-			<% //include event %>
+	<!-- 
+		<div class="seperation"></div>
+		<div class="preEvents">
+			<div class="container">
+				<% //include event %>
+			</div>
 		</div>
-	</div>
+	-->
 
-	<div class="seperation"></div> -->
-	<!-- <div class = "people">
-	<div class = "margin-setter">
-	<div class="card-deck">
-		<div class="card">
-		  <img class="card-img-top" src="/images/p1.jpg" class="image--cover" alt="Card image cap">
-		  <div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-			<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-		  </div>
-		</div>
-		<div class="card">
-		  <img class="card-img-top" src="/images/p1.jpg" class="image--cover" alt="Card image cap">
-		  <div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-			<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-		  </div>
-		</div>
-		<div class="card">
-		  <img class="card-img-top" src="/images/p1.jpg" class="image--cover" alt="Card image cap">
-		  <div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </p>
-			<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-		  </div>
-		</div>
-	  </div>
-	</div> -->
-
-	</div>
-		
-	<div class = "seperation"></div>
-	<figure class="picture">
-		<img src="images/p1.jpg"  />
-		<figcaption>
-		  <h3>Andrew Garfield <b>Sponsorship</b></h3>
-		  <div class="icons"><a href="#"><i class="ion-social-facebook"></i></a>
-			<a href="#"> <i class="ion-social-twitter"></i></a>
-			<a href="#"> <i class="ion-social-instagram-outline"></i></a>
-		  </div>
-		</figcaption>
-	  </figure>
-	  <figure class="picture hover"><img src="images/p1.jpg" />
-		<figcaption>
-			<h3>Andrew Garfield <b>Sponsorship</b></h3>
-		  <div class="icons"><a href="#"><i class="ion-social-facebook"></i></a>
-			<a href="#"> <i class="ion-social-twitter"></i></a>
-			<a href="#"> <i class="ion-social-instagram-outline"></i></a>
-		  </div>
-		</figcaption>
-	  </figure>
-	  <figure class="picture"><img src="images/p1.jpg" />
-		<figcaption>
-			<h3>Andrew Garfield <b>Sponsorship</b></h3>
-		  <div class="icons"><a href="#"><i class="ion-social-facebook"></i></a>
-			<a href="#"> <i class="ion-social-twitter"></i></a>
-			<a href="#"> <i class="ion-social-instagram-outline"></i></a>
-		  </div>
-		</figcaption>
-	  </figure>
-
+	<div class="seperation"></div>
+	<% include frontPart/contact %>
 
 	<!-- Feedback form -->
 	<div class="seperation"></div>
-	<% include feedback %>
+	<% include frontPart/feedback %>
 
-
-	
+	<!-- Footer -->
 	<div class="seperation"></div>
 	<% include partials/footer %>
 
