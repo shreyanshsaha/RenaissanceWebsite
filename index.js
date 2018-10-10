@@ -10,7 +10,7 @@ var express = require('express'),
 var app = express();
 // mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp
 // mongoose.connect("mongodb://localhost/renaissance");
-// mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp");
+mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp");
 app.set("view engine", "ejs");
 // app.use(express.static(__dirname + "/public"));
 
@@ -255,17 +255,17 @@ app.get("/events", function (req, res) {
 });
 
 //! Debug Routes Remove them in release
-app.get("/getAllStudent", function (req, res) {
-	User.find({}, function (err, users) {
-		if (err)
-			console.log(err);
-		else
-			res.send(users);
-	});
-});
+// app.get("/getAllStudent", function (req, res) {
+// 	User.find({}, function (err, users) {
+// 		if (err)
+// 			console.log(err);
+// 		else
+// 			res.send(users);
+// 	});
+// });
 
 
-app.listen(8081, function () {
+app.listen(80, function () {
 	console.log("Server has started!");
 });
 // app.listen(process.env.PORT, process.env.IP);
