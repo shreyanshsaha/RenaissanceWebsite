@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAoBA,AACC,UADS,CACT,aAAa,CAAC;EACb,sBAAsB,EAAE,IAAI;EAC5B,yBAAyB,EAAE,IAAI;EAC/B,gBAAgB,EAAE,yCAAyC;CAC3D",
+    "mappings": "AAoBA,AACC,UADS,CACT,aAAa,CAAC;EACb,sBAAsB,EAAE,IAAI;EAC5B,yBAAyB,EAAE,IAAI;EAC/B,gBAAgB,EAAE,yCAAyC;CAC3D;;AAGF,AAAA,cAAc,CAAA;EACb,MAAM,EAAC,IAAI;CACX",
     "sources": [
         "sponsors.scss"
     ],
