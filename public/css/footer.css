@@ -5,22 +5,30 @@
   width: 90vw;
   margin: auto;
   padding-top: 10px;
-  padding-bottom: 10px; }
-  .footer > * {
-    margin: auto;
-    display: block;
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 2px;
-    margin-bottom: 2px; }
-  .footer .links > * {
-    display: inline-block;
-    font-size: 1.5rem;
-    color: black; }
-    .footer .links > *:hover {
-      color: rgba(0, 0, 0, 0.5); }
-  .footer p {
-    text-align: center;
-    font-size: 0.7rem; }
+  padding-bottom: 10px;
+}
 
+.footer > * {
+  margin: auto;
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.footer .links > * {
+  display: inline-block;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.footer .links > *:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.footer p {
+  text-align: center;
+  font-size: 0.7rem;
+}
 /*# sourceMappingURL=footer.css.map */
