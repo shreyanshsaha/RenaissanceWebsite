@@ -15,9 +15,33 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-12 text-center">
-						<input type="submit" value="Submit" id="input-submit">	
+						<input type="button" value="Submit" id="input-submit" onclick="submitFeedback()">	
 					</div>
 				</div>
 			</form> 
 		</div>
 	</div>
+
+	<script>
+		function submitFeedback(){
+			$.post("/feedback",
+				{
+					name: document.getElementById('input-name').value,
+					email: document.getElementById('input-email').value,
+					subject: document.getElementById('input-subject').value,
+					feedbackMsg: document.getElementById('input-message').value,
+				},
+				function(data, status){
+						if(/ERROR/.exec(data)){
+							alert(data);
+						}
+						else{
+							alert("Feedback submitted!")
+							document.getElementById('input-name').value='';
+							document.getElementById('input-email').value='';
+							document.getElementById('input-subject').value='';
+							document.getElementById('input-message').value='';
+						}
+				});
+		};
+	</script>

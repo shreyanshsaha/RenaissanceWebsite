@@ -2,6 +2,7 @@ var express = require('express'),
 	seedDB = require('./seed'),
 	bodyParser = require('body-parser'),
 	User = require('./models/userModel'),
+	Feedback = require('./models/feedbackModel'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local');
@@ -221,6 +222,37 @@ app.get("/profile", isLoggedIn, function (req, res) {
 	res.send("User logged in!" + JSON.stringify(req.user));
 });
 
+app.post("/feedback", function(req, res){
+	var name = req.body.name;
+	var email = req.body.email;
+	var message = req.body.feedbackMsg;
+	var subject = req.body.subject;
+	if(name=='' || email=='' ||message==''){
+		res.send("ERROR: Field is empty");
+		return;
+	}
+	var newfeedback = {
+		name: name,
+		email: email,
+		feedbackText: message
+	};
+
+	Feedback.create(newfeedback, function(err, feedback){
+		if(err){
+			console.log(err);
+			res.send("ERROR: Feedback could not be submitted");
+		}
+		else{
+			console.log(newfeedback);
+			res.send("SUCCESS");
+		}
+	});
+});
+
+
+app.get("/events", function (req, res) {
+	res.render("eventname");
+});
 
 //! Debug Routes Remove them in release
 app.get("/getAllStudent", function (req, res) {
@@ -232,9 +264,6 @@ app.get("/getAllStudent", function (req, res) {
 	});
 });
 
-app.get("/events", function (req, res) {
-	res.render("eventname");
-});
 
 app.listen(8081, function () {
 	console.log("Server has started!");
