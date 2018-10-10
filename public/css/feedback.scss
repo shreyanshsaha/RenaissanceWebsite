@@ -10,11 +10,12 @@
 	height: 60vh;
 	.heading-feedback {
 		text-align: center;
+		-webkit-text-stroke:1px black;
 		// background-color: rgba(255, 255, 255, 0.7);
 		// width:40vw;
 		// margin: auto;
 		color: white; //   color: #a8a8a8;
-		text-shadow:  0px 5px 5px     rgba(0,0,0,0.2),
+		text-shadow:  0px 15px 15px     rgba(0,0,0,0.2),
                       10px 10px 15px  rgba(0,0,0,0.1),
                       10px 10px 20px  rgba(0,0,0,0.1);
 		//   text-shadow: 1px 1px 0 rgb(126, 126, 126);

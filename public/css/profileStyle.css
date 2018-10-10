@@ -54,10 +54,11 @@
   color: #2980b9;
 }
 
-
-
-
-body {
+.contact{
   background-color: #212121;
   text-align: center;
+}
+
+.picture p{
+  font-size: 1rem;
 }

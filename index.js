@@ -89,6 +89,12 @@ var sponsorDetails=[
 		]
 	},
 	{
+		type:"Audio Partners",
+		imageUrl:[
+			"/images/sponsors/audio1.jpg"
+		]
+	},
+	{
 		type:"Media Partners",
 		imageUrl:[
 			"/images/sponsors/media1.jpg",
@@ -98,12 +104,7 @@ var sponsorDetails=[
 			"/images/sponsors/media5.jpg"
 		]
 	},
-	{
-		type:"Audio Partners",
-		imageUrl:[
-			"/images/sponsors/audio1.jpg"
-		]
-	},
+
 	// {
 	// 	type:"Media Partners",
 	// 	imageUrl:[
@@ -235,7 +236,7 @@ app.get("/events", function (req, res) {
 	res.render("eventname");
 });
 
-// app.listen(8081, function () {
-// 	console.log("Server has started!");
-// });
-app.listen(process.env.PORT, process.env.IP);
+app.listen(80, function () {
+	console.log("Server has started!");
+});
+// app.listen(process.env.PORT, process.env.IP);
