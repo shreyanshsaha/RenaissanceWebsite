@@ -13,13 +13,14 @@
   border-radius: 5px;
 }
 
+
+
 .picture img {
   max-width: 35%;
   margin-top: -15px;
   margin-left: 60%;
   margin-bottom: 15px;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   vertical-align: top;
   border-radius: 5px;
 }
@@ -51,12 +52,11 @@
   color: #2980b9;
 }
 
-.contact {
+.contact{
   background-color: #212121;
   text-align: center;
 }
 
-.picture p {
+.picture p{
   font-size: 1rem;
 }
-/*# sourceMappingURL=peoplestyle.css.map */
