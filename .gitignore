@@ -3,3 +3,4 @@ node_modules
 views/temp
 photoshop files
 website content renaissance
+public/css/*.css.map

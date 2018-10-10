@@ -1,0 +1,61 @@
+
+.feedbackClass {
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url("/images/bg1.jpg");
+	
+	
+	height: 60vh;
+	.heading-feedback {
+		text-align: center;
+		// background-color: rgba(255, 255, 255, 0.7);
+		// width:40vw;
+		// margin: auto;
+		color: white; //   color: #a8a8a8;
+		text-shadow:  0px 5px 5px     rgba(0,0,0,0.2),
+                      10px 10px 15px  rgba(0,0,0,0.1),
+                      10px 10px 20px  rgba(0,0,0,0.1);
+		//   text-shadow: 1px 1px 0 rgb(126, 126, 126);
+	}
+	.container{
+		
+		width:50vw;
+		form {
+			display:block;
+;
+			input,
+			textarea {
+				border: 0;
+				outline: 0;
+				padding: 1em;
+				border-radius: 8px;
+				display: block;
+				width: 100%;
+				margin-top: 1em;
+				font-family: sans-serif;
+				box-shadow: 0;
+				resize: none;
+			}
+	
+			#input-submit {
+				color: white;
+				background: red;
+				cursor: pointer;
+		
+				&:hover {
+		
+					box-shadow: 0 1px 1px 1px rgba($color: #aaa, $alpha: 0.6)
+				}
+			}
+
+	// textarea {
+	// 	height: 126px;
+	// 	// TODO: Change this to vh or %
+	// }
+		}
+	}
+
+}
+
