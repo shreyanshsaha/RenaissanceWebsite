@@ -1,0 +1,47 @@
+	
+	<div class="feedbackClass">
+		<h1 class = "heading-feedback">Send us a message</h1>
+		<div class="container">
+			<form>
+				<div class="row">
+				<div class="col-sm-6">
+					<input type="text" id="input-name" placeholder="Name">
+					<input type="email" id="input-email" placeholder="Email address">
+					<input type="text" id="input-subject" placeholder="Subject">
+				</div>
+				<div class="col-sm-6">
+					<textarea name="message" type="text" id="input-message" placeholder="Message" rows="7"></textarea>
+				</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<input type="button" value="Submit" id="input-submit" onclick="submitFeedback()">	
+					</div>
+				</div>
+			</form> 
+		</div>
+	</div>
+
+	<script>
+		function submitFeedback(){
+			$.post("/feedback",
+				{
+					name: document.getElementById('input-name').value,
+					email: document.getElementById('input-email').value,
+					subject: document.getElementById('input-subject').value,
+					feedbackMsg: document.getElementById('input-message').value,
+				},
+				function(data, status){
+						if(/ERROR/.exec(data)){
+							alert(data);
+						}
+						else{
+							alert("Feedback submitted!")
+							document.getElementById('input-name').value='';
+							document.getElementById('input-email').value='';
+							document.getElementById('input-subject').value='';
+							document.getElementById('input-message').value='';
+						}
+				});
+		};
+	</script>

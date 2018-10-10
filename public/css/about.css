@@ -1,0 +1,39 @@
+.aboutClass {
+  scroll-snap-align: start;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/images/bg3.jpg");
+  min-height: 90vh;
+}
+
+.aboutClass .info-card {
+  position: relative;
+  top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.aboutClass .info-card .card-logo {
+  background: #005f6b;
+  min-height: 15vh;
+}
+
+.aboutClass .info-card .card-logo h1 {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  display: block;
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 10px 10px 15px rgba(0, 0, 0, 0.1), 10px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.aboutClass .info-card .card-text {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.6);
+}
+/*# sourceMappingURL=about.css.map */

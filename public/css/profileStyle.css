@@ -1,0 +1,64 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:200);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+.picture {
+  font-family: 'Open Sans', Arial, sans-serif;
+  position: relative;
+  display: inline-block;
+  margin: 40px 8px;
+  min-width: 230px;
+  max-width: 315px;
+  width: 100%;
+  color: #000;
+  text-align: left;
+  font-size: 16px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+
+
+.picture img {
+  max-width: 35%;
+  margin-top: -15px;
+  margin-left: 60%;
+  margin-bottom: 15px;
+  backface-visibility: hidden;
+  vertical-align: top;
+  border-radius: 5px;
+}
+
+.picture figcaption {
+  position: absolute;
+  top: 0;
+  right: 40%;
+  left: 0;
+  bottom: 0;
+  padding: 15px;
+}
+
+.picture h3 {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: normal;
+}
+
+.picture .icons {
+  font-size: 1.6rem;
+}
+
+.picture .icons a {
+  color: #ccc;
+}
+
+.picture .icons a:hover {
+  color: #2980b9;
+}
+
+.contact{
+  background-color: #212121;
+  text-align: center;
+}
+
+.picture p{
+  font-size: 1rem;
+}
