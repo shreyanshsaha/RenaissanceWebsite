@@ -2,7 +2,7 @@ var fname = document.getElementById('fname'),
     lname = document.getElementById('lname'),
     age = document.getElementById('age'),
     sexe = document.getElementsByClassName('control-group')[0],
-    pays = document.getElementById('pays'),
+    pays = document.getElementById('phno'),
     pseudo = document.getElementById('pseudo'),
     email = document.getElementById('email'),
     password = document.getElementById('password'),
@@ -65,16 +65,16 @@ function checkSexe(sex1, sex2) {
 }
 
 function checkPays(id) {
-    var pays = document.getElementById(id);
-    if (pays.value != "") {
-        pays.style.borderColor = "#66CC99";
-        pays.style.color = "#66CC99";
+    // var pays = document.getElementById(id);
+    // if (pays.value != "") {
+    //     pays.style.borderColor = "#66CC99";
+    //     pays.style.color = "#66CC99";
         tabBooleans[4] = true;
-    } else {
-        pays.style.borderColor = "#CACACA";
-        pays.style.color = "#CACACA";
-        tabBooleans[4] = false;
-    }
+    // } else {
+    //     pays.style.borderColor = "#CACACA";
+    //     pays.style.color = "#CACACA";
+    //     tabBooleans[4] = false;
+    // }
 }
 
 function checkPass(label) {
@@ -96,7 +96,7 @@ function verifiedForm() {
     } else {
         inscrire.setAttribute("disabled", true);
     }
-    document.getElementById("valid").innerHTML="Valid fields : "+valid+"/10";
+    // document.getElementById("valid").innerHTML="Valid fields : "+valid+"/10";
 }
 /* Loading EventListener */
 fname.addEventListener('input', function() {
@@ -120,7 +120,7 @@ sexe.addEventListener('click', function() {
 });
 
 pays.addEventListener('change', function() {
-    checkPays("pays");
+    checkPays("phno");
     verifiedForm();
 });
 
@@ -134,7 +134,7 @@ email.addEventListener('input', function() {
 });
 
 password.addEventListener('input', function() {
-    checkTxt('password', 7, 6); 
+    checkTxt('password', 7, 4); 
     verifiedForm();
 });
 passwordConf.addEventListener('input', function() {
