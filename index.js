@@ -3,6 +3,7 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	User = require('./models/userModel'),
 	Feedback = require('./models/feedbackModel'),
+	Event = require("./models/eventModel"),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local');
@@ -104,18 +105,7 @@ var sponsorDetails=[
 			"/images/sponsors/media4.jpg",
 			"/images/sponsors/media5.jpg"
 		]
-	},
-
-	// {
-	// 	type:"Media Partners",
-	// 	imageUrl:[
-	// 		"/public/images/sponsors/1413842518-entrepreneur-logo.jpg",
-	// 		"/public/images/sponsors/download (1).png",
-	// 		"/public/images/sponsors/businessdigest-logo.png",
-	// 		"/public/images/sponsors/blogadda_logo.png",
-	// 		"/public/images/sponsors/download (2).png"
-	// 	]
-	// }
+	}
 ];
 
 
@@ -227,7 +217,7 @@ app.post("/feedback", function(req, res){
 	var email = req.body.email;
 	var message = req.body.feedbackMsg;
 	var subject = req.body.subject;
-	if(name=='' || email=='' ||message==''){
+	if(name==='' || email==='' ||message===''){
 		res.send("ERROR: Field is empty");
 		return;
 	}
@@ -254,18 +244,7 @@ app.get("/events", function (req, res) {
 	res.render("eventname");
 });
 
-//! Debug Routes Remove them in release
-// app.get("/getAllStudent", function (req, res) {
-// 	User.find({}, function (err, users) {
-// 		if (err)
-// 			console.log(err);
-// 		else
-// 			res.send(users);
-// 	});
-// });
-
-
-// app.listen(80, function () {
-// 	console.log("Server has started!");
-// });
-app.listen(process.env.PORT, process.env.IP);
+app.listen(80, function () {
+	console.log("Server has started!");
+});
+// app.listen(process.env.PORT, process.env.IP);
