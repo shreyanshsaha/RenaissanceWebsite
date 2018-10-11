@@ -4,7 +4,7 @@
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-image: url("/images/bg1.jpg");
+	background-image: url("/images/blue-feedback.jpg");
 	
 	
 	height: 70vh;
@@ -42,11 +42,11 @@
 	
 			#input-submit {
 				color: white;
-				background: red;
+				background: #005f6b;
 				cursor: pointer;
 		
 				&:hover {
-		
+					background: #008c9e;
 					box-shadow: 0 1px 1px 1px rgba($color: #aaa, $alpha: 0.6)
 				}
 			}
