@@ -10,8 +10,8 @@ var express = require('express'),
 
 var app = express();
 // mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp
-mongoose.connect("mongodb://localhost/renaissance");
-// mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp");
+// mongoose.connect("mongodb://localhost/renaissance");
+mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
 app.set("view engine", "ejs");
 // app.use(express.static(__dirname + "/public"));
 
@@ -176,7 +176,7 @@ app.post("/login", passport.authenticate("local", {
 }), function (req, res) {});
 
 app.get("/logout", isLoggedIn, function (req, res) {
-	console.log("Logout: ", req.currentUser.username);
+	console.log("Logout: ", req.user.username);
 	req.logout();
 	res.redirect("/");
 });
@@ -217,7 +217,7 @@ app.get("/events", function (req, res) {
 	res.render("eventname");
 });
 
-app.listen(80, function () {
-	console.log("Server has started!");
-});
-// app.listen(process.env.PORT, process.env.IP);
+// app.listen(80, function () {
+// 	console.log("Server has started!");
+// });
+app.listen(process.env.PORT, process.env.IP);
