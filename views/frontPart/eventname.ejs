@@ -47,13 +47,27 @@
 						<img src="<%=events[i].eventImgSrc%>" class="img-thumbnail"/>
 					</div> -->
 				</div>
+				<div class="row">
+					<button class="btn btn-success" onclick="applyEvent('<%=events[i]._id%>')">Apply</button>
+				</div>
 			</div>
 		</div>
 		<% } %>
 	</div>
 </div>
 
-
+<script>
+	function applyEvent(eventID){
+		$.post("/register/event/"+eventID,function(data){
+			if(/ERROR/.exec(data)){
+				alert(data);
+			}
+			else{
+				alert("User registered!");
+			}
+		});
+	}
+</script>
 
 <script>
 	// TODO: Make this also change with no of events

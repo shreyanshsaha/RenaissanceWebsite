@@ -11,7 +11,8 @@ var userSchema = new mongoose.Schema({
   contact: Number,
   password: String,
   dateRegistered: {type: Date, default: Date.now},
-  interestedFields: [{type: String}]
+  interestedFields: [{type: String}],
+  events:[{type: mongoose.Schema.ObjectId, ref:"event"}]
 });
 userSchema.plugin(passportLocalMongoose);
 
