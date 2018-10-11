@@ -10,8 +10,8 @@ var express = require('express'),
 
 var app = express();
 // mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp
-// mongoose.connect("mongodb://localhost/renaissance");
-mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp");
+mongoose.connect("mongodb://localhost/renaissance");
+// mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp");
 app.set("view engine", "ejs");
 // app.use(express.static(__dirname + "/public"));
 
@@ -151,6 +151,16 @@ app.post("/register/event/:id", function(req, res){
 	}
 	else{
 		console.log(req.params.id);
+		User.findOneAndUpdate(
+			{username: req.user.username}, 
+			{$addToSet: {events:req.params.id}},
+			function(err, res){
+				if(err)
+					console.log(err);
+				else
+					console.log(res);
+			}
+		);
 		res.send("SUCCESS");
 	}
 });
