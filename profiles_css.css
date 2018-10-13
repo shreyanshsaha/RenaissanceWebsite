@@ -1,0 +1,63 @@
+.big
+{
+	background-image: url('vit.jpg');
+	background-repeat:no-repeat;
+	background-size:cover;
+	height:100%;
+	width:100%;
+}
+.container
+{
+	padding-top:7%;
+	height:80%;
+	width:100%;
+}
+.col-md-3
+{
+	background-color:black;
+	height:91%;
+	display:inline-block;
+	float: left;
+	width:20%;
+	opacity:0.6;
+}
+.col-md-9
+{
+	background-color:black;
+	height:91%;
+	width:80%;
+	opacity:0.3;
+	font-size:28px;
+	font-weight:bold;
+	color:white;
+	padding-top:1%;
+}
+li
+{
+	color:white;
+	list-style-type: none;
+	padding-top:2%;
+	font-size:28px;
+	font-weight:bold;
+}
+.li1
+{
+	padding-top:15%;
+}
+.options:hover
+{
+	border-style:solid;
+	border-color:transparent;
+	border-bottom-color:black;
+
+}
+#profile,#events,#payments,#certificates,#ambassdor
+{
+	display:none;
+}
+img
+{
+	width:70%;
+	height:50%;
+
+}
