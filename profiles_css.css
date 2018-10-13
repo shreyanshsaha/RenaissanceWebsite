@@ -25,7 +25,7 @@
 {
 	background-color:black;
 	height:91%;
-	width:100%;
+	width:80%;
 	opacity:0.3;
 	font-size:28px;
 	font-weight:bold;
@@ -43,4 +43,21 @@ li
 .li1
 {
 	padding-top:15%;
+}
+.options:hover
+{
+	border-style:solid;
+	border-color:transparent;
+	border-bottom-color:black;
+
+}
+#profile,#events,#payments,#certificates,#ambassdor
+{
+	display:none;
+}
+img
+{
+	width:70%;
+	height:50%;
+
 }
