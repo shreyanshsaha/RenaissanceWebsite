@@ -1,6 +1,6 @@
 .big
 {
-	background-image: url('vit.jpg');
+	background-image: url('blank.jpg');
 	background-repeat:no-repeat;
 	background-size:cover;
 	height:100%;
@@ -20,17 +20,17 @@
 	float: left;
 	width:20%;
 	opacity:0.6;
+	font-family:American Typewriter;
 }
+
 .col-md-9
 {
 	background-color:black;
 	height:91%;
 	width:80%;
-	opacity:0.3;
-	font-size:28px;
-	font-weight:bold;
-	color:white;
+	opacity:0.9;
 	padding-top:1%;
+	color:white;
 }
 li
 {
@@ -44,20 +44,93 @@ li
 {
 	padding-top:15%;
 }
+img
+{
+	width:50%;
+	height:50%;
+}
 .options:hover
 {
 	border-style:solid;
 	border-color:transparent;
-	border-bottom-color:black;
-
+	border-bottom-color:#004d40;	
+	font-style: italic;
+	cursor:pointer;
 }
 #profile,#events,#payments,#certificates,#ambassdor
 {
 	display:none;
 }
-img
+.freeh
 {
-	width:70%;
-	height:50%;
+	color: #b30047;
+	font-weight:900;
+	font-family:American Typewriter;
+	font-size: 33px;
+}
+.free
+{
+	color:#ffea00;
+	font-weight:900;
+	font-family:American Typewriter;
+	font-size: 23px;
+}
+table
+{
+margin-top:7%; 
+border-color:#004d40;
+}
+/*.free:hover
+{
+	border-color:#004d40;
+	border-width:7px;
+	
+}*/
+.link_payment
+{
+	color:#b30047;
+	font-style:italic;
+}
+.link_payment:hover
+{
+	color:#00bfa5;	
 
+}
+.content
+{
+	color:#00695c;
+	font-weight:900;
+	font-family:American Typewriter;
+	font-size: 33px;
+	text-align:center;
+	padding-top: 7%;
+	font-weight:bold;
+}
+.link_profile_password
+{
+	display: inline-block;
+	float: left;
+	font-size:15px;
+	color:#e91e63;
+	font-weight: bold;
+	padding-left: 11%;
+}
+.link_profile_password:hover
+{
+	font-style: italic;
+	color:#004d40;
+}
+.link_profile_edit
+{
+	display: inline-block;
+	float: left;
+	font-size: 15px;
+	color:#e91e63;
+	font-weight: bold;
+	padding-left: 39%;
+}
+.link_profile_edit:hover
+{
+	font-style: italic;
+	color:#004d40;
 }
