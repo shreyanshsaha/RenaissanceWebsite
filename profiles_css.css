@@ -47,7 +47,7 @@ li
 img
 {
 	width:50%;
-	height:80%;
+	height:50%;
 }
 .options:hover
 {
@@ -101,19 +101,15 @@ border-color:#004d40;
 	color:#00695c;
 	font-weight:900;
 	font-family:American Typewriter;
-	font-size: 33px;
-	text-align:center;
-	padding-top: 7%;
+	font-size: 23px;
 	font-weight:bold;
 }
 .link_profile_password
 {
-	display: inline-block;
-	float: left;
+	padding-top:1000%;
 	font-size:15px;
 	color:#e91e63;
 	font-weight: bold;
-	padding-left: 11%;
 }
 .link_profile_password:hover
 {
@@ -122,15 +118,31 @@ border-color:#004d40;
 }
 .link_profile_edit
 {
-	display: inline-block;
-	float: left;
 	font-size: 15px;
+	padding-top: 70%;
 	color:#e91e63;
 	font-weight: bold;
-	padding-left: 39%;
+	padding-left:47px;
 }
 .link_profile_edit:hover
 {
 	font-style: italic;
 	color:#004d40;
+}
+.team
+{
+	margin-top:0%;
+}
+.teams
+{
+	color: #b30047;
+	font-weight:900;
+	font-family:American Typewriter;
+}
+.teammember
+{
+	font-style: italic;
+	color:#004d40;
+	font-weight:900;
+	font-family:American Typewriter;
 }
