@@ -48,6 +48,16 @@ function isLoggedIn(req, res, next) {
 	res.redirect("/login");
 }
 
+// TODO: Add a user type column in user model and check if user type is admin
+function isAdmin(req, res, next){
+	if(req.isAuthenticated() && req.user==='admin'){
+		return next();
+	}
+	console.log("Non admin requested admin page: ", req.user);
+	res.redirect("/");
+}
+
+
 // ======
 // Routes
 // ======
@@ -164,6 +174,28 @@ app.post("/register/event/:id", function(req, res){
 		res.send("SUCCESS");
 	}
 });
+
+// ===========
+// Admin pages
+// ===========
+
+// Show all registered users
+app.get("/admin/show", isAdmin, function(req, res){
+	User.find({}, function(err, allUsers){
+		if(err)
+			console.log(err);
+		else
+			res.send(allUsers);
+	});
+});
+
+// Show all registrations in events
+app.get("/admin/showRegistrations", isAdmin, function(req, res){
+	Event.find({}, function(err, allEvents){
+		
+	});
+});
+
 
 // Login and Logout
 app.get("/login", function (req, res) {
