@@ -9,8 +9,8 @@ loginBtn.addEventListener('click', (e) => {
 		if(element !== "slide-up") {
 			parent.classList.add('slide-up')
 		}else{
-			signupBtn.parentNode.classList.add('slide-up')
-			parent.classList.remove('slide-up')
+			signupBtn.parentNode.classList.add('slide-up');
+			parent.classList.remove('slide-up');
 		}
 	});
 });
