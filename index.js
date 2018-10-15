@@ -17,8 +17,8 @@ var express = require('express'),
 // Setting up express and database
 // ===============================
 var app = express();
-mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
-// mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
+mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({
@@ -173,7 +173,7 @@ app.post("/register/event/:id", async function(req, res){
 	else if(!event)
 		res.send("Error Wrong event ID!");
 	else if(event.teamRequired===true && req.user.teamMembers.length<=0)
-		res.send("Error Need a team to register!");
+		res.send("Error Need a team to register! Check profile");
 	else{
 		// Add event to user
 		await User.findOneAndUpdate( {username: req.user.username}, {$addToSet: {events:req.params.id}})
@@ -327,7 +327,7 @@ app.get("/events", function (req, res) {
 	res.render("eventname");
 });
 
-app.listen(80, function () {
-	console.log("Server has started!");
-});
-// app.listen(process.env.PORT, process.env.IP);
+// app.listen(80, function () {
+// 	console.log("Server has started!");
+// });
+app.listen(process.env.PORT, process.env.IP);
