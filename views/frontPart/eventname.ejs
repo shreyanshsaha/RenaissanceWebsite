@@ -48,12 +48,16 @@
 					</div> -->
 				</div>
 				<div class="row">
-					<div class="col-md-12">
-						<button class="btn btn-success" onclick="applyEvent('<%=events[i]._id%>')">Apply</button>	
-					</div>
-					<div class="col-md-12 mt-4" id="applyAlert<%=events[i]._id%>">
-						
-					</div>
+					<% if(events[i].registrationOpen){ %>
+						<div class="col-md-12">
+							<button class="btn btn-success" onclick="applyEvent('<%=events[i]._id%>')">Apply Now</button>	
+						</div>
+						<div class="col-md-12 mt-4" id="applyAlert<%=events[i]._id%>"></div>
+					<%} else {%>
+						<div class="col-md-12">
+							<button class="btn btn-success disabled">Comming Soon</button>	
+						</div>
+					<%}%>
 				</div>
 			</div>
 		</div>
@@ -65,12 +69,12 @@
 	function applyEvent(eventID){
 		var applyAlert = document.getElementById("applyAlert"+eventID);
 		$.post("/register/event/"+eventID,function(data){
-			if(/ERROR/.exec(data)){
+			if(/ERROR/i.exec(data)){
 				console.log(data);
-				
+				data = data.replace(/ERROR/i, '');
 				var htmlToInsert=`
 					<div class="alert alert-danger alert-dismissible fade show" role="alert">
-					  <strong>Error!</strong> You need to <a href='/login' class='alert-link'>log in</a>!
+					  <strong>Error!</strong>` + data + `!
 					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					    <span aria-hidden="true">&times;</span>
 					  </button>

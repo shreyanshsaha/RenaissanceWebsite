@@ -51,7 +51,9 @@ var eventSchema = new mongoose.Schema({
   eventDate: String,
   eventDesc: String,
   eventImgSrc: String,
-  users:[{type:mongoose.Schema.ObjectId, ref:"user"}]
+  users:[{type:mongoose.Schema.ObjectId, ref:"user"}],
+  registrationOpen: {type:Boolean, default:false},
+  teamRequired: Boolean
 });
 
 module.exports = mongoose.model("event", eventSchema);

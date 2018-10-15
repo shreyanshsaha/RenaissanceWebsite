@@ -1,3 +1,6 @@
+// =========
+// Includes
+// =========
 var express = require('express'),
 	seedDB = require('./seed'),
 	bodyParser = require('body-parser'),
@@ -8,19 +11,25 @@ var express = require('express'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local');
 
-var app = express();
-// mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp
-// mongoose.connect("mongodb://localhost/renaissance");
-mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
-app.set("view engine", "ejs");
-// app.use(express.static(__dirname + "/public"));
 
-app.use(express.static("public"));
+
+// ===============================
+// Setting up express and database
+// ===============================
+var app = express();
+mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
+// mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
 
+
+
+// ======================
 // PASSPORT CONFIGURATION
+// ======================
 app.use(require("express-session")({
 	secret: "Renaissance Website VIT!",
 	resave: false,
@@ -31,6 +40,8 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
 
 // ===========
 // Middlewares
@@ -48,12 +59,9 @@ function isLoggedIn(req, res, next) {
 	res.redirect("/login");
 }
 
-// TODO: Add a user type column in user model and check if user type is admin
 function isAdmin(req, res, next){
-	if(req.isAuthenticated() && req.user==='admin'){
-		return next();
-	}
-	console.log("Non admin requested admin page: ", req.user);
+	if(req.isAuthenticated() && req.user.isAdmin===true)
+			return next();
 	res.redirect("/");
 }
 
@@ -155,15 +163,17 @@ app.post("/register", function (req, res) {
 	});
 });
 
-app.post("/register/event/:id", function(req, res){
-	if(!req.isAuthenticated()){
-		res.send("ERROR: Need to login to register!");
-	}
+app.post("/register/event/:id", async function(req, res){
+	var event = await Event.findById(req.params.id);
+
+	if(!req.isAuthenticated())
+		res.send("Error You need to Log in!");
+	else if(!event)
+		res.send("Error Wrong event ID!");
+	else if(event.teamRequired===true && req.user.teamMembers.length<=0)
+		res.send("Error Need a team to register!");
 	else{
-		console.log(req.params.id);
-		User.findOneAndUpdate(
-			{username: req.user.username}, 
-			{$addToSet: {events:req.params.id}},
+		User.findOneAndUpdate( {username: req.user.username}, {$addToSet: {events:req.params.id}},
 			function(err, res){
 				if(err)
 					console.log(err);
@@ -171,6 +181,9 @@ app.post("/register/event/:id", function(req, res){
 					console.log(res);
 			}
 		);
+
+		await Event.findOneAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user.id}});
+		await Event.findOneAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user.teamMembers}});
 		res.send("SUCCESS");
 	}
 });
@@ -214,7 +227,41 @@ app.get("/logout", isLoggedIn, function (req, res) {
 });
 
 app.get("/profile", isLoggedIn, function (req, res) {
-	res.send("User logged in!" + JSON.stringify(req.user));
+	User.findOne({username: req.user.username}).populate("events").exec(function(err, userDetails){
+		if(err)
+			console.log(err);
+		else{
+			res.render("profile", {user: userDetails});
+		}
+	});
+});
+
+app.post("/addTeamMember", function(req, res){
+	var teamUsername = req.body.teamUsername;
+	console.log("Username", teamUsername);
+	if(teamUsername === req.user.username)
+		res.send("Error: Cannot add self");
+	else if(!teamUsername || teamUsername.length<=0)
+		res.send("Error: Username cannot be empty");
+	else
+		User.findOne({"username": teamUsername}, async function(err, user){
+			console.log(err);
+			console.log(user);
+			if(err)
+				res.send(err);
+			else if(user.teamMembers.length>0)
+				res.send("Error: User already in a team");
+			else
+				if(!user)
+					res.send("Error: User doesnt Exist");
+				else{
+					// Add users to each others teams
+					await User.findOneAndUpdate({"username": req.user.username}, {$addToSet: {"teamMembers": user._id}});
+					await User.findOneAndUpdate({"_id": user._id}, {$addToSet: {"teamMembers": req.user._id}});
+					res.send(user.username);
+				}
+					
+		});
 });
 
 app.post("/feedback", function(req, res){

@@ -1,0 +1,176 @@
+html, body{
+  overflow: hidden;
+  color:black;
+}
+
+.big {
+  background-image: url('/images/about.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  
+  >.container {
+    padding-top: 7%;
+    height: 90%;
+    width: 100%;
+    .sidebar {
+      background-color: white;
+      opacity: 0.6;
+      height: 91%;
+      display: inline-block;
+      float: left;
+      width: 20%;
+      padding-top: 2%;
+      font-family: American Typewriter;
+      .options {
+        color: black;
+        list-style-type: none;
+        padding-top: 2%;
+        font-size: 28px;
+        font-weight: bold;
+        // &:hover {
+        //   border-style: solid;
+        //   border-color: transparent;
+        //   border-bottom-color: #004d40;
+        //   font-style: italic;
+        //   cursor: pointer;
+        // }
+        &::after{
+          content: '';
+          display: block;
+          width: 0;
+          height: 2px;
+          background: #000;
+          transition: width .3s;
+        }
+        &:hover::after{
+          width: 100%;
+        }
+        &:hover{
+          cursor: pointer;
+        }
+      }
+    }
+  
+    .col-md-9 {
+      background-color: white;
+      opacity: 0.9;
+      height: 91%;
+      width: 80%;
+      
+      padding-top: 1%;
+      color: white;
+    }
+  
+    
+  
+    .li1 {
+      padding-top: 15%;
+    }
+  
+    img {
+      width: 50%;
+      height: 50%;
+    }
+  
+    
+  
+    #profile,
+    #events,
+    #payments,
+    #certificates,
+    #ambassdor {
+      display: none;
+    }
+  
+    .freeh {
+      color: #b30047;
+      font-weight: 900;
+      font-family: American Typewriter;
+      font-size: 33px;
+    }
+  
+    .free {
+      color: #ffea00;
+      font-weight: 900;
+      font-family: American Typewriter;
+      font-size: 23px;
+    }
+  
+    table {
+      // margin-top: 7%;
+      border-color: #004d40;
+    }
+  
+    /*.free:hover
+  {
+    border-color:#004d40;
+    border-width:7px;
+    
+  }*/
+    .link_payment {
+      color: #b30047;
+      font-style: italic;
+    }
+  
+    .link_payment:hover {
+      color: #00bfa5;
+  
+    }
+  
+    .content {
+      color: #00695c;
+      font-weight: 900;
+      font-family: American Typewriter;
+      font-size: 23px;
+      font-weight: bold;
+    }
+  
+    .link_profile_password {
+      padding-top: 1000%;
+      font-size: 15px;
+      color: #e91e63;
+      font-weight: bold;
+    }
+  
+    .link_profile_password:hover {
+      font-style: italic;
+      color: #004d40;
+    }
+  
+    .link_profile_edit {
+      font-size: 15px;
+      padding-top: 70%;
+      color: #e91e63;
+      font-weight: bold;
+      padding-left: 47px;
+    }
+  
+    .link_profile_edit:hover {
+      font-style: italic;
+      color: #004d40;
+    }
+  
+    .teamTable{
+      color: black;
+      .team {
+        margin-top: 0%;
+      }
+      .teams {
+        // color: #b30047;
+        font-weight: 900;
+        font-family: American Typewriter;
+      }
+      .teammember {
+        font-style: italic;
+        // color: #004d40;
+        font-weight: 900;
+        font-family: American Typewriter;
+      }
+    }
+
+  
+    
+  }  
+}
