@@ -1,6 +1,7 @@
 .footer {
   scroll-snap-align: start;
-  background-color: rgba(200, 200, 200, 0.8);
+  background-color: #323232;
+  color: white;
   min-height: 20vh;
   width: 90vw;
   margin: auto;
@@ -9,6 +10,7 @@
 }
 
 .footer > * {
+  color: white;
   margin: auto;
   display: block;
   text-align: center;
@@ -20,11 +22,11 @@
 .footer .links > * {
   display: inline-block;
   font-size: 1.5rem;
-  color: black;
+  color: white;
 }
 
 .footer .links > *:hover {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .footer p {

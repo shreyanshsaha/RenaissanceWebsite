@@ -1,0 +1,167 @@
+html, body {
+  overflow: hidden;
+  color: black;
+}
+
+.big {
+  background-image: url("/images/about.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.big > .container {
+  padding-top: 7%;
+  height: 90%;
+  width: 100%;
+  /*.free:hover
+  {
+    border-color:#004d40;
+    border-width:7px;
+    
+  }*/
+}
+
+.big > .container .sidebar {
+  background-color: white;
+  opacity: 0.6;
+  height: 91%;
+  display: inline-block;
+  float: left;
+  width: 20%;
+  padding-top: 2%;
+  font-family: American Typewriter;
+}
+
+.big > .container .sidebar .options {
+  color: black;
+  list-style-type: none;
+  padding-top: 2%;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.big > .container .sidebar .options::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  -webkit-transition: width .3s;
+  transition: width .3s;
+}
+
+.big > .container .sidebar .options:hover::after {
+  width: 100%;
+}
+
+.big > .container .sidebar .options:hover {
+  cursor: pointer;
+}
+
+.big > .container .col-md-9 {
+  background-color: white;
+  opacity: 0.9;
+  height: 91%;
+  width: 80%;
+  padding-top: 1%;
+  color: white;
+}
+
+.big > .container .li1 {
+  padding-top: 15%;
+}
+
+.big > .container img {
+  width: 50%;
+  height: 50%;
+}
+
+.big > .container #profile,
+.big > .container #events,
+.big > .container #payments,
+.big > .container #certificates,
+.big > .container #ambassdor {
+  display: none;
+}
+
+.big > .container .freeh {
+  color: #b30047;
+  font-weight: 900;
+  font-family: American Typewriter;
+  font-size: 33px;
+}
+
+.big > .container .free {
+  color: #ffea00;
+  font-weight: 900;
+  font-family: American Typewriter;
+  font-size: 23px;
+}
+
+.big > .container table {
+  border-color: #004d40;
+}
+
+.big > .container .link_payment {
+  color: #b30047;
+  font-style: italic;
+}
+
+.big > .container .link_payment:hover {
+  color: #00bfa5;
+}
+
+.big > .container .content {
+  color: #00695c;
+  font-weight: 900;
+  font-family: American Typewriter;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.big > .container .link_profile_password {
+  padding-top: 1000%;
+  font-size: 15px;
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.big > .container .link_profile_password:hover {
+  font-style: italic;
+  color: #004d40;
+}
+
+.big > .container .link_profile_edit {
+  font-size: 15px;
+  padding-top: 70%;
+  color: #e91e63;
+  font-weight: bold;
+  padding-left: 47px;
+}
+
+.big > .container .link_profile_edit:hover {
+  font-style: italic;
+  color: #004d40;
+}
+
+.big > .container .teamTable {
+  color: black;
+}
+
+.big > .container .teamTable .team {
+  margin-top: 0%;
+}
+
+.big > .container .teamTable .teams {
+  font-weight: 900;
+  font-family: American Typewriter;
+}
+
+.big > .container .teamTable .teammember {
+  font-style: italic;
+  font-weight: 900;
+  font-family: American Typewriter;
+}
+/*# sourceMappingURL=profile_style.css.map */
