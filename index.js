@@ -149,7 +149,9 @@ app.post("/register", function (req, res) {
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		email: req.body.email,
-		username: req.body.username
+		username: req.body.username,
+		contact: req.body.phone,
+		age: req.body.age
 	}), req.body.password, function (err, newUser) {
 		if (err) {
 			console.log(err);
@@ -217,7 +219,7 @@ app.get("/login", function (req, res) {
 
 app.post("/login", passport.authenticate("local", {
 	successRedirect: "/",
-	failureRedirect: "/register"
+	failureRedirect: "/login"
 }), function (req, res) {});
 
 app.get("/logout", isLoggedIn, function (req, res) {
@@ -260,8 +262,31 @@ app.post("/addTeamMember", function(req, res){
 					await User.findOneAndUpdate({"_id": user._id}, {$addToSet: {"teamMembers": req.user._id}});
 					res.send(user.username);
 				}
-					
 		});
+});
+
+app.post("/deleteAllMembers", isLoggedIn, async function(req, res){
+	// Remove user from everones team
+	await req.user.teamMembers.forEach(function(teamId){
+		User.findOneAndUpdate({_id: teamId}, {$pull: {teamMembers: req.user._id}}, function(err){
+			console.log(err);
+		});
+	});
+
+	// Clear the users team
+	User.findOneAndUpdate({_id: req.user._id}, {$set: {teamMembers: []}}, function(err, newUser){
+		if(err)
+			res.send(err);
+		else
+			res.send(newUser);
+	});
+});
+
+app.post("/deleteMember", function(req, res){
+	// Delete members from each others table
+	User.findOneAndUpdate({_id: req.body.teamMember}, {$pull: {teamMembers: req.user._id}});
+	User.findOneAndUpdate({_id: req.user._id}, {$pull: {teamMembers: req.body.teamMember}});
+	res.send("Success");
 });
 
 app.post("/feedback", function(req, res){

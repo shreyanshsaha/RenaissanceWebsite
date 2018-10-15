@@ -23,6 +23,12 @@ html, body {
   }*/
 }
 
+.big > .container .userProfileHeading {
+  font-size: 2em;
+  color: white;
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 10px 10px 15px rgba(0, 0, 0, 0.1), 10px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
 .big > .container .sidebar {
   background-color: white;
   opacity: 0.6;
@@ -152,6 +158,10 @@ html, body {
 
 .big > .container .teamTable {
   color: black;
+}
+
+.big > .container .teamTable tr {
+  text-align: center;
 }
 
 .big > .container .teamTable .team {
