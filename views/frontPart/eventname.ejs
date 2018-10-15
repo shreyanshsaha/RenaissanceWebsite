@@ -47,13 +47,55 @@
 						<img src="<%=events[i].eventImgSrc%>" class="img-thumbnail"/>
 					</div> -->
 				</div>
+				<div class="row">
+					<% if(events[i].registrationOpen){ %>
+						<div class="col-md-12">
+							<button class="btn btn-success" onclick="applyEvent('<%=events[i]._id%>')">Apply Now</button>	
+						</div>
+						<div class="col-md-12 mt-4" id="applyAlert<%=events[i]._id%>"></div>
+					<%} else {%>
+						<div class="col-md-12">
+							<button class="btn btn-success disabled">Comming Soon</button>	
+						</div>
+					<%}%>
+				</div>
 			</div>
 		</div>
 		<% } %>
 	</div>
 </div>
 
-
+<script>
+	function applyEvent(eventID){
+		var applyAlert = document.getElementById("applyAlert"+eventID);
+		$.post("/register/event/"+eventID,function(data){
+			if(/ERROR/i.exec(data)){
+				console.log(data);
+				data = data.replace(/ERROR/i, '');
+				var htmlToInsert=`
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					  <strong>Error!</strong>` + data + `!
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+				`;
+				applyAlert.innerHTML = htmlToInsert;
+			}
+			else{
+				var htmlToInsert=`
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+				  You have successfully registered for the event!
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				`;
+				applyAlert.innerHTML=htmlToInsert;
+			}
+		});
+	}
+</script>
 
 <script>
 	// TODO: Make this also change with no of events

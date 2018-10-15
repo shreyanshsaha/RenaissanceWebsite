@@ -35,7 +35,10 @@
 							</li>
 						<% }else{ %>
 							<li class="nav-item">
-								<a href="/logout" class="nav-link text-primary">Logout <%=currentUser.username%></a>
+								<a href="/profile" class="nav-link text-primary"><%=currentUser.username %></a>
+							</li>
+							<li class="nav-item">
+								<a href="/logout" class="nav-link text-primary">Logout</a>
 							</li>
 						<% }; %>
 

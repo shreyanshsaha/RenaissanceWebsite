@@ -13,15 +13,15 @@
 <body>
 
 <div class="form-structor">
-	<div class="signup">
+<!-- TODO: Change the classes to login -->
+	<form class="signup" method="POST" action="">
 		<h2 class="form-title" id="signup"><span>or</span>Log in</h2>
 		<div class="form-holder">
-			<input type="text" class="input" placeholder="Name" />
-			<input type="email" class="input" placeholder="Email" />
-			<input type="password" class="input" placeholder="Password" />
+			<input type="text" class="input" placeholder="Username" name="username"/>
+			<input type="password" class="input" placeholder="Password" name="password"/>
 		</div>
-		<button class="submit-btn">Log in</button>
-	</div>
+		<button class="submit-btn" type="submit">Log in</button>
+	</form>
 	<div class="login slide-up">
 		<div class="center">
 			<h2 class="form-title" id="login"><span>or</span>Register</h2>

@@ -11,6 +11,7 @@
 body, html {
   height: 100vh;
   overflow-x: hidden;
+  background-color: white;
 }
 
 .navbar {
@@ -30,6 +31,6 @@ body, html {
 .seperation {
   width: 100vw;
   height: 2vh;
-  background-color: #343838;
+  background-color: white;
 }
 /*# sourceMappingURL=home.css.map */

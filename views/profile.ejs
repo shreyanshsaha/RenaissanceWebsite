@@ -1,0 +1,215 @@
+<html>
+
+<head>
+	<title>profile page</title>
+	
+	
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/profile_style.css">
+	<script src="/lib/jquery.min.js"></script>
+</head>
+
+<body>
+	<% include partials/navbar %>
+	<div class="big">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 sidebar">
+					<ul>
+						<li class="li1 options" onclick="myFunction1()">Profile</li>
+						<li class="options" onclick="myFunction2()">Events</li>
+						<!-- <li class="options" onclick="myFunction3()">Payments</li> -->
+						<!-- <li class="options" onclick="myFunction4()">Certificates</li> -->
+						<!-- <li class="options" onclick="myFunction5()">Campus<br>Ambassador</li> -->
+					</ul>
+				</div>
+				<div class="col-md-9" id="default">
+					USERNAME
+				</div>
+				<div class="col-md-9" id="profile">
+					<div class="row">
+						<div class="col-md-6">
+							<p class="content">Name: <%= user.firstName %> <%= user.lastName %><br>
+								College: <%= user.college %><br>
+								No of events: <%= user.events.length %><br>
+								<!-- No:of workshops attended:XXXXX<br> -->
+								Phone No: <%= user.contact %></p>
+							<table class="table table-info teamTable">
+								<tr>
+									<td class="teams">Team Members
+								</tr>
+								<% user.teamMembers.forEach(function(member){ %>
+									<tr>
+										<td class="teammember"><%= member %> </td>
+									</tr>
+								<% }); %>
+								<tr id="addUserDiv" class="d-none">
+									<td>
+										<div class="input-group mb-3">
+												<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon2" id="teamUsername">
+												<div class="input-group-append">
+													<button class="btn btn-outline-primary" type="button" onclick="addUser()">Add User</button>
+												</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td id="addMember" class="btn btn-primary d-block">&plus; Add member</td>
+								</tr>
+								
+								<!-- <tr>
+									<td class="teammember">Member 2
+								</tr>
+								<tr>
+									<td class="teammember">Member 3
+								</tr>
+								<tr>
+									<td class="teammember">Member 4
+								</tr> -->
+							</table>
+						</div>
+						<!-- <div class="col-md-6">
+							<img src="profile.jpg"><br>
+							<a class="link_profile_password" href="****">Change Password</a>
+							<a class="link_profile_edit" href="****">Edit Profile</a>
+						</div> -->
+					</div>
+				</div>
+				<div class="col-md-9" id="events">
+					<h1 class="text-dark">Events Registered</h1>
+					<table class="table table-borderless table-hover table-info mt-4">
+						<thead>
+							<tr>
+								<td>Event Name</td>
+								<td>Event Location</td>
+								<td>Event Date</td>
+							</tr>
+						</thead>
+						<tbody>
+							<% user.events.forEach(function(event){ %>
+								<tr>
+									<td class="text-black"><%= event.eventName %></td>
+									<td class="text-black"><%= event.eventLocation %></td>
+									<td class="text-black"><%= event.eventDate %></td>
+								</tr>
+							<% }); %>
+						</tbody>
+					</table>
+				</div>
+				<!-- <div class="col-md-9" id="payments">
+					<table class="table table-responsive table-bordered">
+						<tr>
+							<td class="freeh" align=center>Event Name
+							<td class="freeh" align=center>Payment Status
+							<td class="freeh" align=center>Payment Receipt Link
+						</tr>
+						<tr>
+							<td class="free" align=center>Event One
+							<td class="free" align=center>Payment Status
+							<td class="free" align=center><a href="*****" class="link_payment">Click Here To Pay
+						</tr>
+						<tr>
+							<td class="free" align=center>Event Two
+							<td class="free" align=center>Payment Status
+							<td class="free" align=center><a href="*****" class="link_payment">Click Here To Pay
+						</tr>
+						<tr>
+							<td class="free" align=center>Event Three
+							<td class="free" align=center>Payment Status
+							<td class="free" align=center><a href="*****" class="link_payment">Click Here To Pay
+						</tr>
+					</table>
+				</div> -->
+				<!-- <div class="col-md-9" id="certificates">
+					certificates
+				</div> -->
+				<!-- <div class="col-md-9" id="ambassdor">
+					ambassdor
+				</div> -->
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+		document.querySelector("#addMember").addEventListener("click", function(){
+			console.log("Members:", document.querySelectorAll(".teamMember").length)
+			document.getElementById("addUserDiv").classList.toggle("d-none");
+			if(document.querySelectorAll(".teamMember").length>4)
+				document.querySelector("#addMember").classList.add("d-none");
+		});
+
+
+		function addUser(){
+			var username = document.getElementById("teamUsername").value;
+			console.log(username);
+			$.post("/addTeamMember", {
+				teamUsername: username
+			}, function(data){
+				// alert(data);
+				if(/ERROR/i.exec(data)){
+					alert(data);
+					document.getElementById("teamUsername").value='';
+				}
+				else{
+					alert("User added to team!");
+					document.getElementById("addUserDiv").classList.add("d-none");
+					var newUsername = data;
+
+				}
+			});
+		}
+	</script>
+
+	<script>
+		myFunction1();
+		function myFunction1() {
+			document.getElementById("default").style.display = "none";
+			document.getElementById("profile").style.display = "block";
+			document.getElementById("events").style.display = "none";
+			document.getElementById("payments").style.display = "none";
+			document.getElementById("certificates").style.display = "none";
+			document.getElementById("ambassdor").style.display = "none";
+		}
+
+		function myFunction2() {
+			document.getElementById("default").style.display = "none";
+			document.getElementById("profile").style.display = "none";
+			document.getElementById("events").style.display = "block";
+			document.getElementById("payments").style.display = "none";
+			document.getElementById("certificates").style.display = "none";
+			document.getElementById("ambassdor").style.display = "none";
+		}
+
+		function myFunction3() {
+			document.getElementById("default").style.display = "none";
+			document.getElementById("profile").style.display = "none";
+			document.getElementById("events").style.display = "none";
+			document.getElementById("payments").style.display = "block";
+			document.getElementById("certificates").style.display = "none";
+			document.getElementById("ambassdor").style.display = "none";
+		}
+
+		function myFunction4() {
+			document.getElementById("default").style.display = "none";
+			document.getElementById("profile").style.display = "none";
+			document.getElementById("events").style.display = "none";
+			document.getElementById("payments").style.display = "none";
+			document.getElementById("certificates").style.display = "block";
+			document.getElementById("ambassdor").style.display = "none";
+		}
+
+		function myFunction5() {
+			document.getElementById("default").style.display = "none";
+			document.getElementById("profile").style.display = "none";
+			document.getElementById("events").style.display = "none";
+			document.getElementById("payments").style.display = "none";
+			document.getElementById("certificates").style.display = "none";
+			document.getElementById("ambassdor").style.display = "block";
+		}
+	</script>
+</body>
+
+</html>

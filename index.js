@@ -1,25 +1,35 @@
+// =========
+// Includes
+// =========
 var express = require('express'),
 	seedDB = require('./seed'),
 	bodyParser = require('body-parser'),
 	User = require('./models/userModel'),
 	Feedback = require('./models/feedbackModel'),
+	Event = require("./models/eventModel"),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local');
 
-var app = express();
-// mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp
-// mongoose.connect("mongodb://localhost/renaissance");
-mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp");
-app.set("view engine", "ejs");
-// app.use(express.static(__dirname + "/public"));
 
-app.use(express.static("public"));
+
+// ===============================
+// Setting up express and database
+// ===============================
+var app = express();
+// mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
+mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
 
+
+
+// ======================
 // PASSPORT CONFIGURATION
+// ======================
 app.use(require("express-session")({
 	secret: "Renaissance Website VIT!",
 	resave: false,
@@ -30,6 +40,8 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
 
 // ===========
 // Middlewares
@@ -47,8 +59,12 @@ function isLoggedIn(req, res, next) {
 	res.redirect("/login");
 }
 
-// Seed the database
-// seedDB();
+function isAdmin(req, res, next){
+	if(req.isAuthenticated() && req.user.isAdmin===true)
+			return next();
+	res.redirect("/");
+}
+
 
 // ======
 // Routes
@@ -104,81 +120,28 @@ var sponsorDetails=[
 			"/images/sponsors/media4.jpg",
 			"/images/sponsors/media5.jpg"
 		]
-	},
-
-	// {
-	// 	type:"Media Partners",
-	// 	imageUrl:[
-	// 		"/public/images/sponsors/1413842518-entrepreneur-logo.jpg",
-	// 		"/public/images/sponsors/download (1).png",
-	// 		"/public/images/sponsors/businessdigest-logo.png",
-	// 		"/public/images/sponsors/blogadda_logo.png",
-	// 		"/public/images/sponsors/download (2).png"
-	// 	]
-	// }
-];
-
-
-var eventDetails = [
-	{
-		eventName: "Presente Vous",
-		eventLocation: "Vellore Institute of Technology, Chennai",
-		// eventTime: "5 pm",
-		eventDate: "9th February, 2019",
-		eventDesc: "Your pitch, your win. The stage is set, it awaits the ring of your inspiration and the voices of unique minds that aim to reach out and start out on their own. Presente Vous is the ultimate place to team up and get your start up the backing it needs. Don't fret, we also have the help you might need. Mentors to guide you through the process and shape up your ideas to perfection. Some areas of prime importance will be Technology- advances in sustainability, artificial intelligence and virtual reality to name a few, as well as Finances, Education, Health and Wellness. ",
-		eventImgSrc:"/images/samplePoster.jpg"
-	},
-	{
-		eventName: "Business Carpet",
-		eventLocation: "Vellore Institute of Technology, Chennai",
-		// eventTime: "5 pm",
-		eventDate: "8th February, 2019",
-		eventDesc: "If all the world's a stage then the world is coming to VIT Chennai. A world full of entrepreneurs and exciting ventures. There's a change in the winds, so put your sails high and let the journey begin. This StartUp Expo is the place you want to be if you want some company along. They'll be here to showcase their fruits of labour and love, we'll be here to witness such beauty in real time.",
-		eventImgSrc:"/images/samplePoster.jpg"
-	},
-	{
-		eventName: "Campfire Conference",
-		eventLocation: "Vellore Institute of Technology, Chennai",
-		eventTime: "6 pm to 10 pm",
-		eventDate: "8th February",
-		eventDesc: "Education is not filling of a pail, but the lighting of the fire”.Unlike the usual round table conferences, we believe in experiencing it the right way. Around the fire, midnight, a cup of coffee and life stories, just to light up your path. Sounds exciting!Campfire conference is all about it.Networking opportunities for the young minds and a chance to hit your mentors mind right! A lifetime of an experience where you can light a fire , they can never put out!",
-		eventImgSrc:"/images/samplePoster.jpg"
-	},
-	{
-		eventName: "Magnet Moulding",
-		eventLocation: "Amphitheater, Academic Block 1, Vellore Institute of Technology, Chennai",
-		eventTime: "5 pm",
-		eventDate: "7th and 8th February, 2019",
-		eventDesc: "“Speak so that you can influence the society”. Magnate moulding is an opportunity for the mentors to share the world what it takes to be an Entrepreneur. 90 minutes and you will sparkle with the fire of want to become like them in your eyes. Converting a startup in crises into a proper business plan will let you a jist of their journey. Enough to inspire you to work hard so that your dreams can come true. Come, listen, build and enjoy the feast for the soul.",
-		eventImgSrc:"/images/samplePoster.jpg"
-	},
-	{
-		eventName: "Intership Drive",
-		eventLocation: "Vellore Institute of Technology, Chennai",
-		// eventTime: "",
-		eventDate: "8th February, 2019",
-		eventDesc: "Open your eyes, rise and shine, suit up quirky, quiet or fine. But let us remind, do not leave your cv behind.This edition of the Internship Drive comes with the promise to let you be the best while learning from the best. Theoretical knowledge is available in plenty but application is the real decider, to get yourself a rung up on the ladder. While you may be looking at some like minds, the startups may find in you their right choice. ",
-		eventImgSrc:"/images/samplePoster.jpg"
 	}
-
 ];
-
 //! Debug end
+
 // Root
 app.get("/", function (req, res) {
-	res.render("home", { events: eventDetails });
+	Event.find({}, function(err, events){
+		if(err)
+			console.log(err);
+		else
+			res.render("home", { events: events });
+	});
 });
 
-// Companies
+// Past Sponsors
 app.get("/sponsors", function(req, res){
 	res.render("sponsors", {sponsors: sponsorDetails});
 });
 
 // Register
 app.get("/register", function (req, res) {
-	res.render("reg_page", {
-		messages: undefined
-	});
+	res.render("reg_page", {messages: undefined});
 });
 
 app.post("/register", function (req, res) {
@@ -200,6 +163,52 @@ app.post("/register", function (req, res) {
 	});
 });
 
+app.post("/register/event/:id", async function(req, res){
+	var event = await Event.findById(req.params.id);
+
+	if(!req.isAuthenticated())
+		res.send("Error You need to Log in!");
+	else if(!event)
+		res.send("Error Wrong event ID!");
+	else if(event.teamRequired===true && req.user.teamMembers.length<=0)
+		res.send("Error Need a team to register!");
+	else{
+		User.findOneAndUpdate( {username: req.user.username}, {$addToSet: {events:req.params.id}},
+			function(err, res){
+				if(err)
+					console.log(err);
+				else
+					console.log(res);
+			}
+		);
+
+		await Event.findOneAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user.id}});
+		await Event.findOneAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user.teamMembers}});
+		res.send("SUCCESS");
+	}
+});
+
+// ===========
+// Admin pages
+// ===========
+
+// Show all registered users
+app.get("/admin/show", isAdmin, function(req, res){
+	User.find({}, function(err, allUsers){
+		if(err)
+			console.log(err);
+		else
+			res.send(allUsers);
+	});
+});
+
+// Show all registrations in events
+app.get("/admin/showRegistrations", isAdmin, function(req, res){
+	Event.find({}, function(err, allEvents){
+		
+	});
+});
+
 
 // Login and Logout
 app.get("/login", function (req, res) {
@@ -212,14 +221,47 @@ app.post("/login", passport.authenticate("local", {
 }), function (req, res) {});
 
 app.get("/logout", isLoggedIn, function (req, res) {
-	// console.log("Logout: ", req.currentUser.username);
+	console.log("Logout: ", req.user.username);
 	req.logout();
-	// res.send("Logged Out!");
 	res.redirect("/");
 });
 
 app.get("/profile", isLoggedIn, function (req, res) {
-	res.send("User logged in!" + JSON.stringify(req.user));
+	User.findOne({username: req.user.username}).populate("events").exec(function(err, userDetails){
+		if(err)
+			console.log(err);
+		else{
+			res.render("profile", {user: userDetails});
+		}
+	});
+});
+
+app.post("/addTeamMember", function(req, res){
+	var teamUsername = req.body.teamUsername;
+	console.log("Username", teamUsername);
+	if(teamUsername === req.user.username)
+		res.send("Error: Cannot add self");
+	else if(!teamUsername || teamUsername.length<=0)
+		res.send("Error: Username cannot be empty");
+	else
+		User.findOne({"username": teamUsername}, async function(err, user){
+			console.log(err);
+			console.log(user);
+			if(err)
+				res.send(err);
+			else if(user.teamMembers.length>0)
+				res.send("Error: User already in a team");
+			else
+				if(!user)
+					res.send("Error: User doesnt Exist");
+				else{
+					// Add users to each others teams
+					await User.findOneAndUpdate({"username": req.user.username}, {$addToSet: {"teamMembers": user._id}});
+					await User.findOneAndUpdate({"_id": user._id}, {$addToSet: {"teamMembers": req.user._id}});
+					res.send(user.username);
+				}
+					
+		});
 });
 
 app.post("/feedback", function(req, res){
@@ -227,7 +269,7 @@ app.post("/feedback", function(req, res){
 	var email = req.body.email;
 	var message = req.body.feedbackMsg;
 	var subject = req.body.subject;
-	if(name=='' || email=='' ||message==''){
+	if(name==='' || email==='' ||message===''){
 		res.send("ERROR: Field is empty");
 		return;
 	}
@@ -253,17 +295,6 @@ app.post("/feedback", function(req, res){
 app.get("/events", function (req, res) {
 	res.render("eventname");
 });
-
-//! Debug Routes Remove them in release
-// app.get("/getAllStudent", function (req, res) {
-// 	User.find({}, function (err, users) {
-// 		if (err)
-// 			console.log(err);
-// 		else
-// 			res.send(users);
-// 	});
-// });
-
 
 // app.listen(80, function () {
 // 	console.log("Server has started!");

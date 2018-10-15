@@ -3,8 +3,8 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("/images/bg1.jpg");
-  height: 60vh;
+  background-image: url("/images/blue-feedback.jpg");
+  height: 70vh;
 }
 
 .feedbackClass .heading-feedback {
@@ -39,11 +39,12 @@
 
 .feedbackClass .container form #input-submit {
   color: white;
-  background: red;
+  background: #005f6b;
   cursor: pointer;
 }
 
 .feedbackClass .container form #input-submit:hover {
+  background: #008c9e;
   -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
           box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
 }

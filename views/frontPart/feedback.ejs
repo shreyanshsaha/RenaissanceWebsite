@@ -17,13 +17,18 @@
 					<div class="col-sm-12 text-center">
 						<input type="button" value="Submit" id="input-submit" onclick="submitFeedback()">	
 					</div>
+					<div class="col-sm-12 mt-4" id="feedbackAlert">
+						
+					</div>
 				</div>
 			</form> 
 		</div>
 	</div>
 
+
 	<script>
 		function submitFeedback(){
+			var feedbackAlert = document.getElementById("feedbackAlert");
 			$.post("/feedback",
 				{
 					name: document.getElementById('input-name').value,
@@ -33,10 +38,27 @@
 				},
 				function(data, status){
 						if(/ERROR/.exec(data)){
-							alert(data);
+							console.log(data);
+							var innerHtmlText = `
+							<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							  Error in submitting the feedback! Field empty?
+							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							    <span aria-hidden="true">&times;</span>
+							  </button>
+							</div>
+							`;
+							feedbackAlert.innerHTML=innerHtmlText;
+							
 						}
 						else{
-							alert("Feedback submitted!")
+							var innerHtmlText=`
+							<div class="alert alert-success alert-dismissible fade show" role="alert">
+							  Feedback submitted successfully!
+							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							    <span aria-hidden="true">&times;</span>
+							  </button>
+							</div>`;
+							feedbackAlert.innerHTML=innerHtmlText;
 							document.getElementById('input-name').value='';
 							document.getElementById('input-email').value='';
 							document.getElementById('input-subject').value='';
