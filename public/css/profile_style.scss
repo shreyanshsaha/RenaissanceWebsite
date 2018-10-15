@@ -105,10 +105,6 @@ html, body{
       font-size: 23px;
     }
   
-    table {
-      // margin-top: 7%;
-      border-color: #004d40;
-    }
   
     /*.free:hover
   {
@@ -176,9 +172,10 @@ html, body{
         font-family: American Typewriter;
       }
       .teammember {
-        font-style: italic;
+        // font-style: italic;
         // color: #004d40;
         font-weight: 900;
+        font-size: 1rem;
         font-family: American Typewriter;
       }
     }

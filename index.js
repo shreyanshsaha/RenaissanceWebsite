@@ -157,7 +157,7 @@ app.post("/register", function (req, res) {
 			console.log(err);
 			res.send(err);
 		} else {
-			console.log("[+] User Registered:", newUser);
+			console.log("[+] User Registered:");
 			passport.authenticate("local")(req, res, function () {
 				res.redirect("/");
 			});
@@ -175,17 +175,21 @@ app.post("/register/event/:id", async function(req, res){
 	else if(event.teamRequired===true && req.user.teamMembers.length<=0)
 		res.send("Error Need a team to register!");
 	else{
-		User.findOneAndUpdate( {username: req.user.username}, {$addToSet: {events:req.params.id}},
-			function(err, res){
-				if(err)
-					console.log(err);
-				else
-					console.log(res);
-			}
-		);
+		// Add event to user
+		await User.findOneAndUpdate( {username: req.user.username}, {$addToSet: {events:req.params.id}})
+		.catch((err)=>{console.log(err);});
 
+		// If event is team event, register everyone
+		if(event.teamRequired)
+			await req.user.teamMembers.forEach((memberID)=>{
+				User.findOneAndUpdate({_id: memberID}, {$addToSet: {events:req.params.id}});
+			});
+
+		// Add user to event
 		await Event.findOneAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user.id}});
-		await Event.findOneAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user.teamMembers}});
+		// If it is a team event, register everyone
+		if(event.teamRequired)
+			await Event.findOneAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user.teamMembers}});
 		res.send("SUCCESS");
 	}
 });
@@ -207,7 +211,7 @@ app.get("/admin/show", isAdmin, function(req, res){
 // Show all registrations in events
 app.get("/admin/showRegistrations", isAdmin, function(req, res){
 	Event.find({}, function(err, allEvents){
-		
+		res.send(allEvents);
 	});
 });
 
@@ -248,14 +252,15 @@ app.post("/addTeamMember", function(req, res){
 	else
 		User.findOne({"username": teamUsername}, async function(err, user){
 			console.log(err);
-			console.log(user);
 			if(err)
 				res.send(err);
 			else if(user.teamMembers.length>0)
-				res.send("Error: User already in a team");
+				res.send("Error: User already in a team!");
+			else if(req.user.teamMembers.length>=4)
+				res.send("Error: User limit reached!");
 			else
 				if(!user)
-					res.send("Error: User doesnt Exist");
+					res.send("Error: User doesnt Exist!");
 				else{
 					// Add users to each others teams
 					await User.findOneAndUpdate({"username": req.user.username}, {$addToSet: {"teamMembers": user._id}});
@@ -282,10 +287,11 @@ app.post("/deleteAllMembers", isLoggedIn, async function(req, res){
 	});
 });
 
-app.post("/deleteMember", function(req, res){
+app.post("/deleteMember", async function(req, res){
 	// Delete members from each others table
-	User.findOneAndUpdate({_id: req.body.teamMember}, {$pull: {teamMembers: req.user._id}});
-	User.findOneAndUpdate({_id: req.user._id}, {$pull: {teamMembers: req.body.teamMember}});
+	var user1 = await User.findOneAndUpdate({_id: req.body.teamMember}, {$pull: {teamMembers: req.user._id}});
+	console.log(user1);
+	await User.findOneAndUpdate({_id: req.user._id}, {$pull: {teamMembers: req.body.teamMember}});
 	res.send("Success");
 });
 

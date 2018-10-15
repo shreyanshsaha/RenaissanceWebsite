@@ -106,10 +106,6 @@ html, body {
   font-size: 23px;
 }
 
-.big > .container table {
-  border-color: #004d40;
-}
-
 .big > .container .link_payment {
   color: #b30047;
   font-style: italic;
@@ -174,8 +170,8 @@ html, body {
 }
 
 .big > .container .teamTable .teammember {
-  font-style: italic;
   font-weight: 900;
+  font-size: 1rem;
   font-family: American Typewriter;
 }
 /*# sourceMappingURL=profile_style.css.map */

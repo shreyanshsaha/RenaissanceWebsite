@@ -44,7 +44,7 @@
 								<span class="contentLabel">Phone:</span><%= user.contact %><br>
 								<span class="contentLabel">Email:</span> <%= user.email %><br>
 							</p>
-							<table class="table table-info teamTable">
+							<table class="table table-info teamTable table-bordered">
 								<thead class="table-primary">
 									<tr>
 										<td class="teams">Team Members</td>
@@ -73,7 +73,7 @@
 										</td>
 									</tr>
 									<tr id="addMemberButton">
-										<td id="addMember" colspan="2" class="btn btn-primary d-block">&plus; Add member</td>
+										<td  colspan="2"><div id="addMember" class="btn btn-primary d-block">&plus; Add member</div></td>
 									</tr>
 								</tbody>
 								
@@ -184,7 +184,7 @@
 				else{
 					alert("User added to team!");
 					document.getElementById("addUserDiv").classList.add("d-none");
-					var newUsername = data;
+					window.location.reload();
 				}
 			});
 		}
@@ -200,13 +200,21 @@
 					alert("User deleted!");
 					document.getElementById("addUserDiv").classList.add("d-none");
 					var newUsername = data;
+					window.location.reload();
 				}
 			});
 		}
 
 		function deleteAllMembers(){
 			$.post("/deleteAllMembers",function(data){
-				alert(data);
+				if(/ERROR/i.exec(data)){
+					alert(data);
+				}
+				else{
+					alert("All User deleted!");
+					window.location.reload();
+				}
+				window.location.reload();
 			});
 		}
 	</script>
