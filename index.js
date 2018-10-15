@@ -227,7 +227,7 @@ app.get("/logout", isLoggedIn, function (req, res) {
 });
 
 app.get("/profile", isLoggedIn, function (req, res) {
-	User.findOne({username: req.user.username}).populate("events").exec(function(err, userDetails){
+	User.findOne({username: req.user.username}).populate("events").populate("teamMembers").exec(function(err, userDetails){
 		if(err)
 			console.log(err);
 		else{

@@ -11,7 +11,7 @@ html, body{
   width: 100%;
   
   >.container {
-    padding-top: 7%;
+    padding-top: 2%;
     height: 90%;
     width: 100%;
     .sidebar {
@@ -120,7 +120,10 @@ html, body{
     }
   
     .content {
-      color: #00695c;
+      .contentLabel{
+        color: #005F6B;
+      }
+      color: #00B4CC;
       font-weight: 900;
       font-family: American Typewriter;
       font-size: 23px;

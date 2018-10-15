@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>profile page</title>
+	<title>Profile | <%= currentUser.username %></title>
 	
 	
 	
@@ -31,33 +31,40 @@
 				<div class="col-md-9" id="profile">
 					<div class="row">
 						<div class="col-md-6">
-							<p class="content">Name: <%= user.firstName %> <%= user.lastName %><br>
-								College: <%= user.college %><br>
-								No of events: <%= user.events.length %><br>
+							<p class="content">
+								<span class="contentLabel">Name:</span> <%= user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1) %> <%= user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1) %><br>
+								<span class="contentLabel">College:</span> <%= user.college %><br>
+								<span class="contentLabel">No of Events:</span> <%= user.events.length %><br>
 								<!-- No:of workshops attended:XXXXX<br> -->
-								Phone No: <%= user.contact %></p>
+								<span class="contentLabel">Phone:</span><%= user.contact %><br>
+								<span class="contentLabel">Email:</span> <%= user.email %><br>
+							</p>
 							<table class="table table-info teamTable">
-								<tr>
-									<td class="teams">Team Members
-								</tr>
-								<% user.teamMembers.forEach(function(member){ %>
+								<thead class="table-primary">
 									<tr>
-										<td class="teammember"><%= member %> </td>
+										<td class="teams">Team Members
 									</tr>
-								<% }); %>
-								<tr id="addUserDiv" class="d-none">
-									<td>
-										<div class="input-group mb-3">
-												<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon2" id="teamUsername">
-												<div class="input-group-append">
-													<button class="btn btn-outline-primary" type="button" onclick="addUser()">Add User</button>
-												</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td id="addMember" class="btn btn-primary d-block">&plus; Add member</td>
-								</tr>
+								</thead>
+								<tbody>
+									<% user.teamMembers.forEach(function(member){ %>
+										<tr>
+											<td class="teammember"><%= member.username %> </td>
+										</tr>
+									<% }); %>
+									<tr id="addUserDiv" class="d-none">
+										<td>
+											<div class="input-group mb-3">
+													<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon2" id="teamUsername">
+													<div class="input-group-append">
+														<button class="btn btn-outline-primary" type="button" onclick="addUser()">Add User</button>
+													</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td id="addMember" class="btn btn-primary d-block">&plus; Add member</td>
+									</tr>
+								</tbody>
 								
 								<!-- <tr>
 									<td class="teammember">Member 2
