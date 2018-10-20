@@ -19,11 +19,47 @@ Dropdown Events on menu bar
   color: white;
 }
 
-.events > .container {
+.events > .container .sideBarParent {
+  padding: 0px;
+}
+
+.events > .container .sideBarParent .sideBar .eventPills {
+  list-style-type: none;
+}
+
+.events > .container .sideBarParent .sideBar .eventPills .row > .names {
   position: relative;
+  width: 100%;
+  text-decoration: none;
+  padding: 3%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  min-height: 15vh;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.events > .container .sideBarParent .sideBar .eventPills .row > .names .eventName {
+  position: absolute;
+  top: 50%;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  width: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: white;
+  padding: 2%;
+  width: 100%;
+}
+
+.events > .container .sideBarParent .sideBar .eventPills .row > .names:hover {
+  border-style: solid;
+  border-right: none;
+  -webkit-transition: 100ms;
+  transition: 100ms;
+  background-color: rgba(0, 223, 252, 0.75);
+  cursor: pointer;
 }
 
 #event1,
@@ -33,69 +69,17 @@ Dropdown Events on menu bar
   display: none;
 }
 
-.sideBar {
-  height: 70%;
-  width: 20%;
-  padding-top: 5%;
-  float: left;
+.eventDivParent {
+  padding: 0px;
 }
 
-.sideBar .eventPills {
-  list-style-type: none;
-  position: relative;
-  left: -50%;
-}
-
-.sideBar .eventPills > .names {
-  position: relative;
-  text-decoration: none;
-  padding: 3%;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-  min-height: 15vh;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.sideBar .eventPills > .names .eventName {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  color: white;
-  padding: 2%;
-}
-
-.sideBar .eventPills > .names:hover {
-  border-style: solid;
-  border-right: none;
-  -webkit-transition: 100ms;
-  transition: 100ms;
-  background-color: rgba(0, 223, 252, 0.75);
-  cursor: pointer;
-}
-
-.eventDiv {
-  position: relative;
-  top: 5vh;
+.eventDivParent .eventDiv {
   height: 90vh;
-  width: 80%;
-  padding-top: 2%;
-  padding-left: 5%;
   background-color: rgba(255, 255, 255, 0.8);
+  padding: 25px;
 }
 
-.eventDiv > .row {
-  position: relative;
-  overflow-y: hidden;
-  min-height: 100%;
-}
-
-.eventDiv .eventName {
+.eventDivParent .eventDiv .eventName {
   font-size: 34px;
   border-style: solid;
   border-top: none;
@@ -104,15 +88,25 @@ Dropdown Events on menu bar
   border-bottom-color: #33b5e5;
 }
 
-.eventDiv .eventDate {
+.eventDivParent .eventDiv .eventDate {
   font-size: 23px;
 }
 
-.eventDiv .eventCoordinators {
-  font-size: 23px;
-  padding-top: 4%;
-  border-style: solid;
-  border-color: white;
-  border-bottom-color: #33b5e5;
+@media (min-width: 768px) {
+  .eventCollapse {
+    border: 10px solid red;
+    color: red;
+    display: none;
+    height: 100% !important;
+    visibility: visible;
+  }
+}
+
+@media (min-width: 768px) {
+  .collapse.dont-collapse-sm {
+    display: block;
+    height: auto !important;
+    visibility: visible;
+  }
 }
 /*# sourceMappingURL=mainEvents.css.map */

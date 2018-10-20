@@ -8,7 +8,8 @@
   border-bottom-left-radius: 15%;
 }
 
-body, html {
+body,
+html {
   height: 100vh;
   overflow-x: hidden;
   background-color: white;
@@ -18,11 +19,21 @@ body, html {
   scroll-snap-align: start;
 }
 
-.home .heading .carousel-item {
-  height: 45vw;
+.home {
+  height: 90vh;
 }
 
-.home .heading .carousel-item .mainLogo img {
+.home .heading .carousel-inner .carousel-item {
+  height: 90vh;
+  background-size: cover;
+}
+
+.home .heading .carousel-inner .carousel-item .carousel-img {
+  border: 5px solid red;
+  width: 20vw;
+}
+
+.home .heading .carousel-inner .carousel-item .mainLogo .logoImage {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   width: 20vw;
