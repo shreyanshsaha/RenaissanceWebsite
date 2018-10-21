@@ -139,12 +139,22 @@ app.get("/sponsors", function(req, res){
 	res.render("sponsors", {sponsors: sponsorDetails});
 });
 
-// Register
-app.get("/register", function (req, res) {
+// User route
+app.get("/user", isLoggedIn, function (req, res) {
+	User.findOne({username: req.user.username}).populate("events").populate("teamMembers").exec(function(err, userDetails){
+		if(err)
+			console.log(err);
+		else{
+			res.render("profile", {user: userDetails});
+		}
+	});
+});
+
+app.get("/user/register", function (req, res) {
 	res.render("reg_page", {messages: undefined});
 });
 
-app.post("/register", function (req, res) {
+app.post("/user/register", function (req, res) {
 	User.register(new User({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
@@ -164,6 +174,30 @@ app.post("/register", function (req, res) {
 		}
 	});
 });
+
+
+// Login and Logout
+app.get("/login", function (req, res) {
+	res.render("login");
+});
+
+app.post("/login", passport.authenticate("local", {
+	successRedirect: "/",
+	failureRedirect: "/login"
+}), function (req, res) {});
+
+app.get("/logout", isLoggedIn, function (req, res) {
+	console.log("Logout: ", req.user.username);
+	req.logout();
+	res.redirect("/");
+});
+
+
+
+
+
+
+
 
 app.post("/register/event/:id", async function(req, res){
 	var event = await Event.findById(req.params.id);
@@ -221,31 +255,7 @@ app.get("/admin/showRegistrations", isAdmin, function(req, res){
 });
 
 
-// Login and Logout
-app.get("/login", function (req, res) {
-	res.render("login");
-});
 
-app.post("/login", passport.authenticate("local", {
-	successRedirect: "/",
-	failureRedirect: "/login"
-}), function (req, res) {});
-
-app.get("/logout", isLoggedIn, function (req, res) {
-	console.log("Logout: ", req.user.username);
-	req.logout();
-	res.redirect("/");
-});
-
-app.get("/profile", isLoggedIn, function (req, res) {
-	User.findOne({username: req.user.username}).populate("events").populate("teamMembers").exec(function(err, userDetails){
-		if(err)
-			console.log(err);
-		else{
-			res.render("profile", {user: userDetails});
-		}
-	});
-});
 
 app.post("/addTeamMember", function(req, res){
 	var teamUsername = req.body.teamUsername;
