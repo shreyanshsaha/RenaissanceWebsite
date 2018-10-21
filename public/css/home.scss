@@ -14,36 +14,48 @@
 // Scrollbar
 // =========
 
-.border-alter-round{
+.border-alter-round {
   border-top-left-radius: 15%;
   border-bottom-right-radius: 15%;
 }
 
-.border-alter-round-alt{
+.border-alter-round-alt {
   border-top-right-radius: 15%;
   border-bottom-left-radius: 15%;
 }
 
-body, html{
+body,
+html {
   height: 100vh;
-  overflow-x:hidden;
+  overflow-x: hidden;
   background-color: white;
   // background: #343838;
   // overflow-y: scroll;
   // scroll-snap-type: y mandatory;
 }
 
-.navbar{
+.navbar {
   scroll-snap-align: start;
 }
-.home{
-    .heading{
-      
-      .carousel-item{
-        height: 45vw;
-        .mainLogo{
+
+.home {
+  height: 90vh;
+
+  .heading {
+    .carousel-inner {
+      .carousel-item {
+        height: 90vh;
+        background-size: cover;
+
+        .carousel-img {
+          border: 5px solid red;
+          width: 20vw;
+        }
+
+        .mainLogo {
+
           // border:1px solid red;
-          img{
+          .logoImage {
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             // border:1px solid blue;
@@ -52,10 +64,11 @@ body, html{
         }
       }
     }
-  
+  }
+
 }
 
-.seperation{
+.seperation {
   width: 100vw;
   height: 2vh;
   // background-color: #343838;

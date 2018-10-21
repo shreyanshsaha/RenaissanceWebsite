@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>profile page</title>
+	<title>Profile | <%= currentUser.username %></title>
 	
 	
 	
@@ -16,6 +16,9 @@
 	<div class="big">
 		<div class="container">
 			<div class="row">
+				<div class="col-md-12 userProfileHeading">
+					User Profile
+				</div>
 				<div class="col-md-3 sidebar">
 					<ul>
 						<li class="li1 options" onclick="myFunction1()">Profile</li>
@@ -28,48 +31,25 @@
 				<div class="col-md-9" id="default">
 					USERNAME
 				</div>
+
+
 				<div class="col-md-9" id="profile">
 					<div class="row">
 						<div class="col-md-6">
-							<p class="content">Name: <%= user.firstName %> <%= user.lastName %><br>
-								College: <%= user.college %><br>
-								No of events: <%= user.events.length %><br>
+							<p class="content">
+								<span class="contentLabel">Name:</span> <%= user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1) %> <%= user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1) %><br>
+								<!-- <span class="contentLabel">College:</span> <%= user.college %><br> -->
+								<span class="contentLabel">Events Registered:</span> <%= user.events.length %><br>
 								<!-- No:of workshops attended:XXXXX<br> -->
-								Phone No: <%= user.contact %></p>
-							<table class="table table-info teamTable">
-								<tr>
-									<td class="teams">Team Members
-								</tr>
-								<% user.teamMembers.forEach(function(member){ %>
-									<tr>
-										<td class="teammember"><%= member %> </td>
-									</tr>
-								<% }); %>
-								<tr id="addUserDiv" class="d-none">
-									<td>
-										<div class="input-group mb-3">
-												<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon2" id="teamUsername">
-												<div class="input-group-append">
-													<button class="btn btn-outline-primary" type="button" onclick="addUser()">Add User</button>
-												</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td id="addMember" class="btn btn-primary d-block">&plus; Add member</td>
-								</tr>
-								
-								<!-- <tr>
-									<td class="teammember">Member 2
-								</tr>
-								<tr>
-									<td class="teammember">Member 3
-								</tr>
-								<tr>
-									<td class="teammember">Member 4
-								</tr> -->
-							</table>
+								<span class="contentLabel">Phone: </span><%= user.contact %><br>
+								<span class="contentLabel">Email:</span> <%= user.email %><br>
+								<a class="btn btn-info mt-4" href="/executiveSummary">Presente Vous Executive Summary</a>
+							</p>
+							
 						</div>
+						
+
+						
 						<!-- <div class="col-md-6">
 							<img src="profile.jpg"><br>
 							<a class="link_profile_password" href="****">Change Password</a>
@@ -133,36 +113,7 @@
 	</div>
 
 
-	<script>
-		document.querySelector("#addMember").addEventListener("click", function(){
-			console.log("Members:", document.querySelectorAll(".teamMember").length)
-			document.getElementById("addUserDiv").classList.toggle("d-none");
-			if(document.querySelectorAll(".teamMember").length>4)
-				document.querySelector("#addMember").classList.add("d-none");
-		});
-
-
-		function addUser(){
-			var username = document.getElementById("teamUsername").value;
-			console.log(username);
-			$.post("/addTeamMember", {
-				teamUsername: username
-			}, function(data){
-				// alert(data);
-				if(/ERROR/i.exec(data)){
-					alert(data);
-					document.getElementById("teamUsername").value='';
-				}
-				else{
-					alert("User added to team!");
-					document.getElementById("addUserDiv").classList.add("d-none");
-					var newUsername = data;
-
-				}
-			});
-		}
-	</script>
-
+	
 	<script>
 		myFunction1();
 		function myFunction1() {

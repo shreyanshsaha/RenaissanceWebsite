@@ -10,19 +10,25 @@ body {
     margin: 0 auto;
     min-height: 100%;
     max-height: 100vh;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-image: url("/images/Registerpagebackground2].png");
+    background-size: cover;
+    background-repeat: repeat-y;
 }
 
+form{
+    background: rgba(255, 255, 255, 0.4)
+}
 h1, .details, form>*{
     font-family: 'Yanone Kaffeesatz', Consolas;
 }
 h1 {
+    background-color: rgba(220, 227, 235, 0.6);
     text-align: center;
     margin: 40px auto;
     padding: 10px;
     width: 260px;
-    border: 3px dashed #3399FF;/* #3FC380;*/
-    color: #34495E;
+    border: 3px dashed rgb(0, 90, 180); /*#3FC380; */
+    color: black;
     letter-spacing: 1px;
     word-spacing: 3px;
     font-size: 26px;
@@ -49,7 +55,7 @@ form {
     /* margin-top:0px; */
     position: relative;
     top:-5vh;
-    width:80vw;
+    width:60vw;
     margin: auto;
 }
 
@@ -73,11 +79,12 @@ form .minput {
     border: none;
     font-family: 'Yanone Kaffeesatz', sans-serif;
     letter-spacing: 1px;
-    color: #3E4651;
+    color: rgb(0, 0, 0);
+    background-color: rgba(220, 227, 235, 0.9);
     -webkit-border-radius: 2px 0 0 2px;
     -moz-border-radius: 2px 0 0 2px;
     border-radius: 2px 0 0 2px;
-    border-bottom: 1px solid #dadada;
+    /* border-bottom: 1px solid #dadada; */
 }
 
 .minput input[type="number"] {
@@ -98,7 +105,7 @@ input[type="number"] ~ label {
 }
 
 .minput label {
-    color: #afafaf;
+    color: #5c5c5c;
     font-size: 20px;
     font-weight: normal;
     position: absolute;
@@ -175,14 +182,14 @@ input:disabled {
     margin-bottom: 10px;
     cursor: pointer;
     font-size: 20px;
-    color: #afafaf;
+    color: #5c5c5c;
     margin: 6px 10px;
 }
 
 .sex {
     margin: 26px 10px;
     font-size: 20px;
-    color: #afafaf;
+    color: #5c5c5c;
     top: -7px;
 }
 
@@ -202,7 +209,7 @@ label.control--radio {
     left: 0;
     height: 20px;
     width: 20px;
-    background: #afafaf;
+    background: #504e4e;
 }
 
 .control--radio .control__indicator {

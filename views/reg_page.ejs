@@ -12,16 +12,18 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/scrollbar.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/reg_style.css" />
+	<script src = "/lib/jquery.min.js"></script>
+	<script src = "/js/bootstrap.js"></script>
 
 </head>
 
-
 <body>
 	<% include partials/navbar %>
-	<h1>Renessiance</h1>
-	<div class="details">Register Here</div>
+	<h1>Renaissance</h1>
+	<!-- <div class="details">Register Here</div> -->
 	<!-- <div class="details">Here</div> -->
-	<form method="POST" action="/register">
+	<!-- Chage action to '' ? -->
+	<form method="POST" action="/user/register">
 		<div class="col">
 			<div class="minput">
 				<input type="text" id="fname" dir="auto" name="firstName" required>

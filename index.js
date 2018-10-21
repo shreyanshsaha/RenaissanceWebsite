@@ -2,15 +2,18 @@
 // Includes
 // =========
 var express = require('express'),
-	seedDB = require('./seed'),
 	bodyParser = require('body-parser'),
 	User = require('./models/userModel'),
 	Feedback = require('./models/feedbackModel'),
 	Event = require("./models/eventModel"),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
-	LocalStrategy = require('passport-local');
+	LocalStrategy = require('passport-local'),
+	Team = require("./models/teamModel");
 
+var rootRoute = require("./root"),
+		userRoute = require("./user"),
+		adminRoute = require("./admin");
 
 
 // ===============================
@@ -43,125 +46,30 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-// ===========
-// Middlewares
-// ===========
-app.use(function (req, res, next) {
-	res.locals.currentUser = req.user;
-	next();
-});
-
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
 	}
-	console.log(req.user, " not logged in!");
+	console.log("Not logged in!");
 	res.redirect("/login");
 }
-
-function isAdmin(req, res, next){
-	if(req.isAuthenticated() && req.user.isAdmin===true)
-			return next();
-	res.redirect("/");
-}
-
 
 // ======
 // Routes
 // ======
+app.use(rootRoute);
+app.use(userRoute);
+app.use(adminRoute);
 
-//! Debug only
-var sponsorDetails=[
-	{
-		type:"Startup Ecosystem Partners",
-		imageUrl:[
-			"/images/sponsors/startup1.jpg",
-			"/images/sponsors/startup2.jpg",
-			"/images/sponsors/startup3.jpg",
-			"/images/sponsors/startup4.jpg",
-			"/images/sponsors/startup5.jpg",
-			"/images/sponsors/startup6.jpg"
-		]
-	},
-	{
-		type:"Knowlege Partners",
-		imageUrl:[
-			"/images/sponsors/knowledge1.jpg",
-			"/images/sponsors/knowledge2.jpg",
-			"/images/sponsors/knowledge3.jpg"
-		]
-	},
-	{
-		type:"Technology Partners",
-		imageUrl:[
-			"/images/sponsors/tech1.jpg",
-			"/images/sponsors/tech2.jpg"
-		]
-	},
-	{
-		type:"Event Partners",
-		imageUrl:[
-			"/images/sponsors/event1.jpg",
-			"/images/sponsors/event2.jpg"
-		]
-	},
-	{
-		type:"Audio Partners",
-		imageUrl:[
-			"/images/sponsors/audio1.jpg"
-		]
-	},
-	{
-		type:"Media Partners",
-		imageUrl:[
-			"/images/sponsors/media1.jpg",
-			"/images/sponsors/media2.jpg",
-			"/images/sponsors/media3.jpg",
-			"/images/sponsors/media4.jpg",
-			"/images/sponsors/media5.jpg"
-		]
-	}
-];
-//! Debug end
 
-// Root
-app.get("/", function (req, res) {
-	Event.find({}, function(err, events){
-		if(err)
-			console.log(err);
-		else
-			res.render("home", { events: events });
-	});
-});
 
-// Past Sponsors
-app.get("/sponsors", function(req, res){
-	res.render("sponsors", {sponsors: sponsorDetails});
-});
 
-// Register
-app.get("/register", function (req, res) {
-	res.render("reg_page", {messages: undefined});
-});
 
-app.post("/register", function (req, res) {
-	User.register(new User({
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		email: req.body.email,
-		username: req.body.username
-	}), req.body.password, function (err, newUser) {
-		if (err) {
-			console.log(err);
-			res.send(err);
-		} else {
-			console.log("[+] User Registered:", newUser);
-			passport.authenticate("local")(req, res, function () {
-				res.redirect("/");
-			});
-		}
-	});
-});
+
+
+
+
+
 
 app.post("/register/event/:id", async function(req, res){
 	var event = await Event.findById(req.params.id);
@@ -171,69 +79,109 @@ app.post("/register/event/:id", async function(req, res){
 	else if(!event)
 		res.send("Error Wrong event ID!");
 	else if(event.teamRequired===true && req.user.teamMembers.length<=0)
-		res.send("Error Need a team to register!");
+		res.send("Error Need a team to register! Check profile");
 	else{
-		User.findOneAndUpdate( {username: req.user.username}, {$addToSet: {events:req.params.id}},
-			function(err, res){
-				if(err)
-					console.log(err);
-				else
-					console.log(res);
-			}
-		);
+		// Add event to user
+		await User.findOneAndUpdate( {username: req.user.username}, {$addToSet: {events:req.params.id}})
+		.catch((err)=>{console.log(err);});
 
+		// If event is team event, register everyone
+		if(event.teamRequired)
+			await req.user.teamMembers.forEach((memberID)=>{
+				User.findOneAndUpdate({_id: memberID}, {$addToSet: {events:req.params.id}});
+			});
+
+		// Add user to event
 		await Event.findOneAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user.id}});
-		await Event.findOneAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user.teamMembers}});
+		// If it is a team event, register everyone
+		if(event.teamRequired)
+			await Event.findOneAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user.teamMembers}});
 		res.send("SUCCESS");
 	}
 });
 
-// ===========
-// Admin pages
-// ===========
 
-// Show all registered users
-app.get("/admin/show", isAdmin, function(req, res){
-	User.find({}, function(err, allUsers){
+
+
+
+
+
+app.post("/team/new", isLoggedIn, async function(req, res){
+	// Create a new team
+	// Logic: 
+	// Create a new team with the currentUser as team Leader
+	// Add the ID of the new team to the user
+	console.log(req.user);
+	if(!(req.user.teamId === null)){
+		res.send("Error: User already in a team");
+		return;
+	}
+	console.log(req.user.username, "created a new team!");
+	// Create new team
+	var newTeam = await Team.create({teamLeader: req.user._id, teamMembers: [req.user._id]});
+	console.log(newTeam._id);
+	// Update the teamId to user
+	User.findOneAndUpdate({_id: req.user._id}, {teamId: newTeam._id}, function(err, newUser){
 		if(err)
-			console.log(err);
+			res.send(err);
 		else
-			res.send(allUsers);
+			res.send(newUser);
 	});
 });
 
-// Show all registrations in events
-app.get("/admin/showRegistrations", isAdmin, function(req, res){
-	Event.find({}, function(err, allEvents){
-		
-	});
-});
-
-
-// Login and Logout
-app.get("/login", function (req, res) {
-	res.render("login");
-});
-
-app.post("/login", passport.authenticate("local", {
-	successRedirect: "/",
-	failureRedirect: "/register"
-}), function (req, res) {});
-
-app.get("/logout", isLoggedIn, function (req, res) {
-	console.log("Logout: ", req.user.username);
-	req.logout();
-	res.redirect("/");
-});
-
-app.get("/profile", isLoggedIn, function (req, res) {
-	User.findOne({username: req.user.username}).populate("events").exec(function(err, userDetails){
+// Add new user to team
+app.post("/team/add/:username", isLoggedIn, function(req, res){
+	// Logic:
+	// Check if user is already in a team
+	// Add this user to the same team as team ID
+	if(req.user.teamId===null)
+		return res.send("Error: Create team first!");
+	
+	User.findOne({username: req.params.username}, async function(err, teamUser){
 		if(err)
-			console.log(err);
-		else{
-			res.render("profile", {user: userDetails});
-		}
+			return res.send(err);
+		else if(!teamUser)
+			return res.send("Error: User doesnt Exist!");
+		else if(req.params.username == req.user.username)
+			return res.send("Error: Cannot add self!");
+		else if(!(teamUser.teamId==null))
+			return res.send("Error: User already in a team!");
+		// Add user to team list
+		await Team.updateOne({_id: req.user.teamId}, {$addToSet: {teamMembers: teamUser._id}});
+		teamUser.teamId = req.user.teamId;
+		teamUser.save();
+		return res.send("User Added!");
 	});
+});
+
+// Delete complete team, only team leader can delete the team
+app.post("/team/delete/:id", async function(req, res){
+	// logic:
+	// Remove teamId from all teamMembers
+
+	var team = await Team.findOne({_id: req.params.id});
+	console.log(team.teamLeader);
+	// Check is leader is deleting it
+	if(toString(team.teamLeader) == toString(req.user._id)){
+		// Delete teamID from all users
+		await team.teamMembers.forEach(function(member){
+			console.log("Member", member);
+			User.updateOne({_id: member}, {$set: {teamId: null}}, function(err){
+				console.log(err);
+			});
+		});
+
+		// Delete the team
+		Team.deleteOne({_id: req.params.id}, function(err, deletedTeam){
+			if(err)
+				res.send(err);
+			else
+				res.send("Deleted Team");
+		});
+	}
+	else{
+		res.send("Error: only team leader can delete a team!");
+	}
 });
 
 app.post("/addTeamMember", function(req, res){
@@ -246,57 +194,53 @@ app.post("/addTeamMember", function(req, res){
 	else
 		User.findOne({"username": teamUsername}, async function(err, user){
 			console.log(err);
-			console.log(user);
 			if(err)
 				res.send(err);
 			else if(user.teamMembers.length>0)
-				res.send("Error: User already in a team");
+				res.send("Error: User already in a team!");
+			else if(req.user.teamMembers.length>=4)
+				res.send("Error: User limit reached!");
 			else
 				if(!user)
-					res.send("Error: User doesnt Exist");
+					res.send("Error: User doesnt Exist!");
 				else{
 					// Add users to each others teams
 					await User.findOneAndUpdate({"username": req.user.username}, {$addToSet: {"teamMembers": user._id}});
 					await User.findOneAndUpdate({"_id": user._id}, {$addToSet: {"teamMembers": req.user._id}});
 					res.send(user.username);
 				}
-					
 		});
 });
 
-app.post("/feedback", function(req, res){
-	var name = req.body.name;
-	var email = req.body.email;
-	var message = req.body.feedbackMsg;
-	var subject = req.body.subject;
-	if(name==='' || email==='' ||message===''){
-		res.send("ERROR: Field is empty");
-		return;
-	}
-	var newfeedback = {
-		name: name,
-		email: email,
-		feedbackText: message
-	};
-
-	Feedback.create(newfeedback, function(err, feedback){
-		if(err){
+app.post("/deleteAllMembers", isLoggedIn, async function(req, res){
+	// Remove user from everones team
+	await req.user.teamMembers.forEach(function(teamId){
+		User.findOneAndUpdate({_id: teamId}, {$pull: {teamMembers: req.user._id}}, function(err){
 			console.log(err);
-			res.send("ERROR: Feedback could not be submitted");
-		}
-		else{
-			console.log(newfeedback);
-			res.send("SUCCESS");
-		}
+		});
+	});
+
+	// Clear the users team
+	User.findOneAndUpdate({_id: req.user._id}, {$set: {teamMembers: []}}, function(err, newUser){
+		if(err)
+			res.send(err);
+		else
+			res.send(newUser);
 	});
 });
 
-
-app.get("/events", function (req, res) {
-	res.render("eventname");
+app.post("/deleteMember", async function(req, res){
+	// Delete members from each others table
+	var user1 = await User.findOneAndUpdate({_id: req.body.teamMember}, {$pull: {teamMembers: req.user._id}});
+	console.log(user1);
+	await User.findOneAndUpdate({_id: req.user._id}, {$pull: {teamMembers: req.body.teamMember}});
+	res.send("Success");
 });
+
+
 
 // app.listen(80, function () {
 // 	console.log("Server has started!");
 // });
 app.listen(process.env.PORT, process.env.IP);
+

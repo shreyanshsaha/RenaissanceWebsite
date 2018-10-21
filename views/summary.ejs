@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Executive Summary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
+  <script src="/lib/jquery.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+</head>
+<!-- <style>
+  *{
+    border: 1px solid red;
+  }
+</style> -->
+
+<body>
+  <% include partials/navbar %>
+
+  <div class="container mt-4">
+    <form>
+      <!-- Description of User -->
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-12">
+            <h3>User Details</h3>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <label for="staticEmail" class="col-sm-3 col-form-label">Username</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" value="<%=currentUser.username%>">
+          </div>
+
+          <!-- </div> -->
+          <!-- <div class="form-group row"> -->
+
+
+          <label for="staticEmail" class="col-sm-3 col-form-label">Full Name</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%=currentUser.firstName%> <%=currentUser.lastName%>">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h3>Team Members</h3>
+          <hr>
+        </div>
+      </div>
+      <!-- Team Members -->
+      <div class="row">
+
+
+
+        <table class="col-sm-4 table teamTable table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <td class="teams">Team Members</td>
+              <td>
+                <% if(currentUser.teamId && (toString(currentUser._id) == toString(teamLeader))){ %>
+                <div class="btn btn-danger btn-sm" onclick="deleteAllMembers()">Delete Team</div>
+                <% } else if(currentUser.teamId==null){ %>
+                <div class="btn btn-success btn-sm" onclick="createNewTeam()">Create new team</div>
+                <% } else { %>
+                  <div class="btn btn-danger" onclick="exitTeam()">Exit Team</div>
+                <% } %>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% if(currentUser.teamId){ %>
+              <td class="teammember" colspan="2">
+                <%= currentUser.username %>
+              </td>
+              <% } %>
+
+              <!-- <td><div class="btn btn-danger btn-sm">Delete</div></td> -->
+            </tr>
+  
+            <% if(teamMembers) teamMembers.forEach(function(member){ %>
+              <% if(!(member.username==currentUser.username)){ %>
+              <tr>
+                <td class="teammember" colspan="2">
+                  <%= member.username %>
+                </td>
+                <!-- Only leader can delete members -->
+                <% if(toString(currentUser._id) == toString(teamLeader)){ %>
+                <td>
+                  <div class="btn btn-danger btn-sm" onclick='deleteMember("<%=member._id%>")'>Delete</div>
+                </td>
+                <% }; %>
+              </tr>
+            <% }}); %>
+            <tr id="addUserDiv" class="d-none">
+              <td colspan="2">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon2" id="teamUsername">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" onclick="addUser()">Add User</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr id="addMemberButton">
+              <td colspan="2">
+                <div id="addMember" class="btn btn-primary d-block">&plus; Add member</div>
+              </td>
+            </tr>
+          </tbody>
+
+          <!-- <tr>
+            <td class="teammember">Member 2
+          </tr>
+          <tr>
+            <td class="teammember">Member 3
+          </tr>
+          <tr>
+            <td class="teammember">Member 4
+          </tr> -->
+        </table>
+      </div>
+
+
+
+      <!-- Ideation or Operation Radio-->
+      <div class="form-group row">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="method" id="ideationRadio" value="ideation" checked>
+          <label class="form-check-label" for="inlineRadio1">Ideation</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="method" id="operationsRadio" value="operations">
+          <label class="form-check-label" for="inlineRadio2">Operations</label>
+        </div>
+      </div>
+
+      <!-- Information -->
+      <div class="row">
+        <ul class="nav nav-tabs col-sm-12" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#eligibilityTabContent" role="tab"
+              aria-selected="true">Eligibility</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#rulesTabContent" role="tab" aria-controls="profile"
+              aria-selected="false">Rules &amp; Regulations</a>
+          </li>
+        </ul>
+        <div class="tab-content col-sm-12" id="myTabContent">
+          <div class="tab-pane fade show active" id="eligibilityTabContent" role="tabpanel" aria-labelledby="home-tab">
+
+            <!-- Ideation Eligibility -->
+            <ul id="ideationEli" class="">
+              <li>There are no restrictions on any individual to participate. Anyone from students to professionals
+                can
+                participate.</li>
+              <li>Participant age must not cross 30 years as of 7th February, 2019.</li>
+              <li>Participant teams should have a visual model of the idea (prototype would be preferable).</li>
+            </ul>
+
+            <!-- Operations Eligibility -->
+            <ul id="operationsEli" class="d-none">
+              <li>The startup shouldn’t be functional for more than 3 years.</li>
+              <li>Participant teams should be in the revenue generating phase to register under the Operational
+                section
+                of Presente Vous. </li>
+              <li>The annual revenue should be less than 1 crore.</li>
+              <li>Participant age must not cross 30 years as of 7th February, 2019.</li>
+              <li>Participant teams should have a Minimum Viable Product.</li>
+              <li>Startups older than 3 years from the date of registration (of Presente Vous) will not be accepted.</li>
+            </ul>
+          </div>
+
+          <div class="tab-pane fade" id="rulesTabContent" role="operationRules" aria-labelledby="profile-tab">
+            <!-- Rules and Regulations are same for both -->
+            <ul>
+              <li>Each team should consist of 1-4 members, with one member as the Team Leader.</li>
+              <li>There can be multiple teams from the same college.</li>
+              <li>A participant cannot be a member of more than one team. In case of such a discrepancy, both the
+                teams
+                will be disqualified.</li>
+              <li>Ideas submitted as part of a team’s business venture must represent the original work of the team
+                members.</li>
+              <li>Teams must answer each question in the questionnaire in detail in order to be considered for
+                evaluation.</li>
+              <li>Entries submitted after the deadline will not be considered. The name given to the idea/entry
+                cannot
+                be changed post submission.</li>
+              <li>The team members are required to carry some form of Identification.</li>
+              <li>The e-mail id and phone number used for registration will be used as the medium of contact
+                throughout
+                the competition.</li>
+              <li>Teams must comply with the judging criteria, and the final decision of the Judges.</li>
+              <li>Rights to all the final decisions related to the competition remains with VIT Chennai.</li>
+              <li>Any misconduct during the course of the competition would lead to disqualification of the team.</li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accept Check Box -->
+      <!-- <div class="row mt-4">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">
+            Accept
+          </label>
+        </div>
+      </div> -->
+
+      <div class="row mt-4">
+        <div class="form-group col">
+          <label for="exampleFormControlTextarea1">Executive Summary</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <div class="col-sm-1">
+          <button class="btn btn-success" type="button">Save</button>
+        </div>
+        <div class="col-sm-1">
+          <button class="btn btn-danger" type="button">Submit</button>
+        </div>
+
+      </div>
+    </form>
+
+
+  </div>
+  <script>
+    $('input[type=radio][name=method]').change(function () {
+      if (this.value == 'ideation') {
+        $("#ideationEli").removeClass("d-none");
+        $("#operationsEli").addClass("d-none");
+      } else if (this.value == 'operations') {
+        $("#operationsEli").removeClass("d-none");
+        $("#ideationEli").addClass("d-none");
+      }
+    });
+  </script>
+  <script>
+    if (document.getElementsByClassName(".teamMember").length >= 4) {
+      console.log("HIDE");
+      document.querySelector("#addMemberButton").classList.add("d-none");
+      document.getElementById("addUserDiv").classList.add("d-none");
+    }
+    document.querySelector("#addMember").addEventListener("click", function () {
+      console.log("Members:", document.querySelectorAll(".teamMember").length)
+      document.getElementById("addUserDiv").classList.toggle("d-none");
+      if (document.getElementsByClassName(".teamMember").length >= 4) {
+        console.log("HIDE");
+        document.querySelector("#addMemberButton").classList.add("d-none");
+        document.getElementById("addUserDiv").classList.add("d-none");
+      }
+    });
+
+
+    function addUser() {
+      var username = document.getElementById("teamUsername").value;
+      $.post("/team/add/" + username, function (data) {
+        if (/ERROR/i.exec(data)) {
+          alert(data);
+        } else {
+          console.log(data);
+          // window.location.reload();
+        }
+      });
+
+      // $.post("/addTeamMember", {
+      //   teamUsername: username
+      // }, function (data) {
+      //   // alert(data);
+      //   if (/ERROR/i.exec(data)) {
+      //     alert(data);
+      //     document.getElementById("teamUsername").value = '';
+      //   } else {
+      //     alert("User added to team!");
+      //     document.getElementById("addUserDiv").classList.add("d-none");
+      //     window.location.reload();
+      //   }
+      // });
+    }
+
+    function deleteMember(memID) {
+      $.post("/deleteMember", {
+        teamMember: memID
+      }, function (data) {
+        if (/ERROR/i.exec(data)) {
+          alert(data);
+        } else {
+          alert("User deleted!");
+          document.getElementById("addUserDiv").classList.add("d-none");
+          var newUsername = data;
+          window.location.reload();
+        }
+      });
+    }
+
+    function deleteAllMembers() {
+      $.post("/team/delete/<%= currentUser.teamId %>", function (data) {
+        if (/ERROR/i.exec(data)) {
+          alert(data);
+        } else {
+          window.location.reload();
+        }
+      });
+
+      // $.post("/deleteAllMembers", function (data) {
+      //   if (/ERROR/i.exec(data)) {
+      //     alert(data);
+      //   } else {
+      //     alert("All User deleted!");
+      //     window.location.reload();
+      //   }
+      //   window.location.reload();
+      // });
+    }
+
+    function createNewTeam() {
+      $.post("/team/new", function (data) {
+        if (/ERROR/i.exec(data)) {
+          alert(data);
+        } else {
+          window.location.reload();
+
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>

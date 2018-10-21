@@ -20,12 +20,16 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="css/footer.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/about.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/stats.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="css/countdown_style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="css/presente_style.css" />
 
 	<link rel="stylesheet" href="/css/mainEvents.css" />
 	<link rel="stylesheet" href="/css/styleEve.css">
 
-	<script src="lib/jquery.min.js"></script>
-	<script src="js/bootstrap.js"></script>
+
+	<script src="/lib/jquery.min.js"></script>
+	<script src="/js/bootstrap.js"></script>
+
 
 </head>
 
@@ -35,7 +39,15 @@
 
 	<!-- Home -->
 	<% include frontPart/carousel %>
-
+	<!-- Countdown -->
+	<div class="separation"></div>
+	<section class="landing">
+		<div class="landing-inner">
+			<p class="landing-text">A platform for budding enterpreuners</p>
+			<h1 class="landing-inner-text">Coming Soon</h1>
+			<div class="countdown"></div>
+		</div>
+	</section>
 	<!-- About -->
 	<div class="seperation"></div>
 	<% include frontPart/about %>
@@ -45,11 +57,22 @@
 	<% include frontPart/stats %>
 
 	<!-- Main Events -->
-	<div class="seperation" id="events"></div>
-	<% include frontPart/eventname %>
+	<!-- <div class="seperation" id="events"></div>
+
+	<main>
+		<div class='card'>
+			<div class='info'>
+				<h1 class='title'>Presente Vous</h1>
+				<p class='description'>Your pitch, your win. The stage is set, it awaits the ring of your inspiration and the voices of unique minds that aim to reach out and start out on their own. Presente Vous is the ultimate place to team up and get your start up the backing it needs. Don't fret, we also have the help you might need. Mentors to guide you through the process and shape up your ideas to perfection. Some areas of prime importance will be Technology- advances in sustainability, artificial intelligence and virtual reality to name a few, as well as Finances, Education, Health and Wellness.</p>
+			</div>
+		</div>
+	</main> -->
+
 
 
 	<!-- Pre Events -->
+	<div class="seperation" id="events"></div>
+	<% include frontPart/eventname %>
 	<!-- 
 		<div class="seperation"></div>
 		<div class="preEvents">
@@ -59,7 +82,7 @@
 		</div>
 	-->
 
-	<div class="seperation"></div>
+	<div class="seperation" id="contact"></div>
 	<% include frontPart/contact %>
 
 	<!-- Feedback form -->
@@ -71,7 +94,7 @@
 	<% include partials/footer %>
 
 </body>
-
+<script src="js/count_script.js"></script>
 
 </html>
 
