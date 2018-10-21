@@ -26,7 +26,7 @@
   
   .landing {
     position: relative;
-    background-image: url('./images/showcase.jpg');
+    background-image: url('/images/showcase.jpg');
     background-size: cover;
     background-position: center;
     height: 40vh;
