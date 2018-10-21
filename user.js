@@ -1,5 +1,8 @@
 var express=require("express");
 var router = express.Router();
+var User = require("./models/userModel");
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
