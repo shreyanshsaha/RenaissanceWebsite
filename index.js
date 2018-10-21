@@ -194,6 +194,11 @@ app.post("/register/event/:id", async function(req, res){
 	}
 });
 
+// Executive Summary
+app.get("/executiveSummary", function(req, res){
+	res.render("summary");
+});
+
 // ===========
 // Admin pages
 // ===========
