@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>profile page</title>
+	<title>Profile | <%= currentUser.username %></title>
 	
 	
 	
@@ -16,6 +16,9 @@
 	<div class="big">
 		<div class="container">
 			<div class="row">
+				<div class="col-md-12 userProfileHeading">
+					User Profile
+				</div>
 				<div class="col-md-3 sidebar">
 					<ul>
 						<li class="li1 options" onclick="myFunction1()">Profile</li>
@@ -28,36 +31,51 @@
 				<div class="col-md-9" id="default">
 					USERNAME
 				</div>
+
+
 				<div class="col-md-9" id="profile">
 					<div class="row">
 						<div class="col-md-6">
-							<p class="content">Name: <%= user.firstName %> <%= user.lastName %><br>
-								College: <%= user.college %><br>
-								No of events: <%= user.events.length %><br>
+							<p class="content">
+								<span class="contentLabel">Name:</span> <%= user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1) %> <%= user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1) %><br>
+								<span class="contentLabel">College:</span> <%= user.college %><br>
+								<span class="contentLabel">No of Events:</span> <%= user.events.length %><br>
 								<!-- No:of workshops attended:XXXXX<br> -->
-								Phone No: <%= user.contact %></p>
-							<table class="table table-info teamTable">
-								<tr>
-									<td class="teams">Team Members
-								</tr>
-								<% user.teamMembers.forEach(function(member){ %>
+								<span class="contentLabel">Phone:</span><%= user.contact %><br>
+								<span class="contentLabel">Email:</span> <%= user.email %><br>
+							</p>
+							<table class="table table-info teamTable table-bordered">
+								<thead class="table-primary">
 									<tr>
-										<td class="teammember"><%= member %> </td>
+										<td class="teams">Team Members</td>
+										<td><div class="btn btn-danger btn-sm" onclick="deleteAllMembers()">Delete All</div></td>
 									</tr>
-								<% }); %>
-								<tr id="addUserDiv" class="d-none">
-									<td>
-										<div class="input-group mb-3">
-												<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon2" id="teamUsername">
-												<div class="input-group-append">
-													<button class="btn btn-outline-primary" type="button" onclick="addUser()">Add User</button>
-												</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td id="addMember" class="btn btn-primary d-block">&plus; Add member</td>
-								</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="teammember"><%= currentUser.username %></td>
+										<!-- <td><div class="btn btn-danger btn-sm">Delete</div></td> -->
+									</tr>
+									<% user.teamMembers.forEach(function(member){ %>
+										<tr>
+											<td class="teammember"><%= member.username %> </td>
+											<td><div class="btn btn-danger btn-sm" onclick='deleteMember("<%=member._id%>")'>Delete</div></td>
+										</tr>
+									<% }); %>
+									<tr id="addUserDiv" class="d-none">
+										<td colspan="2" >
+											<div class="input-group mb-3">
+													<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon2" id="teamUsername">
+													<div class="input-group-append">
+														<button class="btn btn-outline-primary" type="button" onclick="addUser()">Add User</button>
+													</div>
+											</div>
+										</td>
+									</tr>
+									<tr id="addMemberButton">
+										<td  colspan="2"><div id="addMember" class="btn btn-primary d-block">&plus; Add member</div></td>
+									</tr>
+								</tbody>
 								
 								<!-- <tr>
 									<td class="teammember">Member 2
@@ -70,6 +88,9 @@
 								</tr> -->
 							</table>
 						</div>
+
+
+						
 						<!-- <div class="col-md-6">
 							<img src="profile.jpg"><br>
 							<a class="link_profile_password" href="****">Change Password</a>
@@ -134,17 +155,24 @@
 
 
 	<script>
+		if(document.getElementsByClassName(".teamMember").length>=4){
+			console.log("HIDE");
+			document.querySelector("#addMemberButton").classList.add("d-none");
+			document.getElementById("addUserDiv").classList.add("d-none");
+		}
 		document.querySelector("#addMember").addEventListener("click", function(){
 			console.log("Members:", document.querySelectorAll(".teamMember").length)
 			document.getElementById("addUserDiv").classList.toggle("d-none");
-			if(document.querySelectorAll(".teamMember").length>4)
-				document.querySelector("#addMember").classList.add("d-none");
+			if(document.getElementsByClassName(".teamMember").length>=4){
+				console.log("HIDE");
+				document.querySelector("#addMemberButton").classList.add("d-none");
+				document.getElementById("addUserDiv").classList.add("d-none");
+			}
 		});
 
 
 		function addUser(){
 			var username = document.getElementById("teamUsername").value;
-			console.log(username);
 			$.post("/addTeamMember", {
 				teamUsername: username
 			}, function(data){
@@ -156,9 +184,37 @@
 				else{
 					alert("User added to team!");
 					document.getElementById("addUserDiv").classList.add("d-none");
-					var newUsername = data;
-
+					window.location.reload();
 				}
+			});
+		}
+
+		function deleteMember(memID){
+			$.post("/deleteMember",{
+				teamMember: memID
+			}, function(data){
+				if(/ERROR/i.exec(data)){
+					alert(data);
+				}
+				else{
+					alert("User deleted!");
+					document.getElementById("addUserDiv").classList.add("d-none");
+					var newUsername = data;
+					window.location.reload();
+				}
+			});
+		}
+
+		function deleteAllMembers(){
+			$.post("/deleteAllMembers",function(data){
+				if(/ERROR/i.exec(data)){
+					alert(data);
+				}
+				else{
+					alert("All User deleted!");
+					window.location.reload();
+				}
+				window.location.reload();
 			});
 		}
 	</script>

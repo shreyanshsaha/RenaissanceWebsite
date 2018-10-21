@@ -1,89 +1,122 @@
-<div class="events">
-	<div class="container">
-		<h1>Events</h1>
-
-		<div class="container sideBar">
-			<ul class="eventPills">
-				<% for(let i=0; i<events.length; i++){ %>
-				<li class="names" onclick="myFunction<%=i+1%>()" style="background-color:rgb(0, <%= 95+20*i%> , <%=107+20*i%>)">
-					<div class="eventName">
-						<%= events[i].eventName %>
-					</div>
-				</li>
-				<% }; %>
-			</ul>
-		</div>
-
-		<!--
-		Overview
-		Structure
-		Eligibility
-		Rules and Regulations
-		Prizes & Awards
+<!--
+	Overview
+	Structure
+	Eligibility
+	Rules and Regulations
+	Prizes & Awards
 	-->
 
 
 
-		<!-- Some events have time, Add them -->
-		<% for(let i=0; i<events.length; i++){ %>
-		<div class="container eventDiv" id="event<%=i+1%>">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<p class="eventName">
-							<%=events[i].eventName%>
-						</p>
-						<p class="eventDate">
-							<%=events[i].eventDate%>
-							<br>
-							<%=events[i].eventLocation%><br>
-						</p>
-						<p>
-							<%=events[i].eventDesc%>
-						</p>
-					</div>
-
-					<!-- <div class="col-lg-5 poster">
-						<img src="<%=events[i].eventImgSrc%>" class="img-thumbnail"/>
-					</div> -->
-				</div>
-				<div class="row">
-					<% if(events[i].registrationOpen){ %>
-						<div class="col-md-12">
-							<button class="btn btn-success" onclick="applyEvent('<%=events[i]._id%>')">Apply Now</button>	
-						</div>
-						<div class="col-md-12 mt-4" id="applyAlert<%=events[i]._id%>"></div>
-					<%} else {%>
-						<div class="col-md-12">
-							<button class="btn btn-success disabled">Comming Soon</button>	
-						</div>
-					<%}%>
-				</div>
+<div class="events">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Events</h1>
 			</div>
 		</div>
-		<% } %>
+
+
+		<div class="row">
+			<button class="btn btn-primary hidden eventCollapse col-sm-12" type="button" data-toggle="collapse" data-target="#eventCollapseDiv"
+			 aria-expanded="false" aria-controls="eventCollapseDiv">
+				Show Events
+			</button>
+			<div class="col-md-2 col-sm-12 sideBarParent">
+
+				<div class="collapse dont-collapse-sm" id="eventCollapseDiv">
+					<div class="container sideBar">
+						<div class="eventPills">
+							<% for(let i=0; i<events.length; i++){ %>
+							<div class="row">
+								<div class="names" onclick="myFunction<%=i+1%>()" style="background-color:rgb(0, <%= 95+20*i%> , <%=107+20*i%>)">
+									<div class="eventName">
+										<%= events[i].eventName %>
+									</div>
+								</div>
+							</div>
+							<% }; %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-12 eventDivParent">
+				<!-- Some events have time, Add them -->
+				<% for(let i=0; i<events.length; i++){ %>
+				<div class="container eventDiv" id="event<%=i+1%>">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<p class="eventName">
+									<%=events[i].eventName%>
+								</p>
+								<p class="eventDate">
+									<%=events[i].eventDate%>
+									<br>
+									<%=events[i].eventLocation%><br>
+								</p>
+								<p>
+									<%=events[i].eventDesc%>
+								</p>
+							</div>
+
+							<!-- <div class="col-lg-5 poster">
+								<img src="<%=events[i].eventImgSrc%>" class="img-thumbnail"/>
+							</div> -->
+						</div>
+						<div class="row">
+							<% if(events[i].registrationOpen){ %>
+							<div class="col-md-12">
+								<button class="btn btn-success" onclick="applyEvent('<%=events[i]._id%>')">Apply Now</button>
+							</div>
+							<div class="col-md-12 mt-4" id="applyAlert<%=events[i]._id%>"></div>
+							<%} else {%>
+							<div class="col-md-12">
+								<button class="btn btn-success disabled">Comming Soon</button>
+							</div>
+							<%}%>
+						</div>
+					</div>
+				</div>
+				<% } %>
+			</div>
+
+		</div>
+
+
 	</div>
+
 </div>
 
+
+
+
+
+
+
+
 <script>
-	function applyEvent(eventID){
-		var applyAlert = document.getElementById("applyAlert"+eventID);
-		$.post("/register/event/"+eventID,function(data){
-			if(/ERROR/i.exec(data)){
+	function applyEvent(eventID) {
+		var applyAlert = document.getElementById("applyAlert" + eventID);
+		$.post("/register/event/" + eventID, function (data) {
+			if (/ERROR/i.exec(data)) {
 				console.log(data);
 				data = data.replace(/ERROR/i, '');
-				var htmlToInsert=`
+				var htmlToInsert =
+					`
 					<div class="alert alert-danger alert-dismissible fade show" role="alert">
-					  <strong>Error!</strong>` + data + `!
+					  <strong>Error!</strong>` +
+					data +
+					`!
 					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					    <span aria-hidden="true">&times;</span>
 					  </button>
 					</div>
 				`;
 				applyAlert.innerHTML = htmlToInsert;
-			}
-			else{
-				var htmlToInsert=`
+			} else {
+				var htmlToInsert =
+					`
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
 				  You have successfully registered for the event!
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -91,7 +124,7 @@
 				  </button>
 				</div>
 				`;
-				applyAlert.innerHTML=htmlToInsert;
+				applyAlert.innerHTML = htmlToInsert;
 			}
 		});
 	}
@@ -103,6 +136,7 @@
 	myFunction1();
 
 	function myFunction1() {
+		$("#eventCollapseDiv").collapse('hide');
 		document.getElementById("event1").style.display = "block";
 		document.getElementById("event2").style.display = "none";
 		document.getElementById("event3").style.display = "none";
@@ -111,6 +145,7 @@
 	}
 
 	function myFunction2() {
+		$("#eventCollapseDiv").collapse('hide');
 		document.getElementById("event1").style.display = "none";
 		document.getElementById("event2").style.display = "block";
 		document.getElementById("event3").style.display = "none";
@@ -119,6 +154,7 @@
 	}
 
 	function myFunction3() {
+		$("#eventCollapseDiv").collapse('hide');
 		document.getElementById("event1").style.display = "none";
 		document.getElementById("event2").style.display = "none";
 		document.getElementById("event3").style.display = "block";
@@ -127,6 +163,7 @@
 	}
 
 	function myFunction4() {
+		$("#eventCollapseDiv").collapse('hide');
 		document.getElementById("event1").style.display = "none";
 		document.getElementById("event2").style.display = "none";
 		document.getElementById("event3").style.display = "none";
@@ -135,6 +172,7 @@
 	}
 
 	function myFunction5() {
+		$("#eventCollapseDiv").collapse('hide');
 		document.getElementById("event1").style.display = "none";
 		document.getElementById("event2").style.display = "none";
 		document.getElementById("event3").style.display = "none";
