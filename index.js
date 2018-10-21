@@ -2,7 +2,6 @@
 // Includes
 // =========
 var express = require('express'),
-	seedDB = require('./seed'),
 	bodyParser = require('body-parser'),
 	User = require('./models/userModel'),
 	Feedback = require('./models/feedbackModel'),
@@ -124,20 +123,6 @@ var sponsorDetails=[
 ];
 //! Debug end
 
-// Root
-app.get("/", function (req, res) {
-	Event.find({}, function(err, events){
-		if(err)
-			console.log(err);
-		else
-			res.render("home", { events: events });
-	});
-});
-
-// Past Sponsors
-app.get("/sponsors", function(req, res){
-	res.render("sponsors", {sponsors: sponsorDetails});
-});
 
 // User route
 app.get("/user", isLoggedIn, function (req, res) {
@@ -335,11 +320,6 @@ app.post("/feedback", function(req, res){
 			res.send("SUCCESS");
 		}
 	});
-});
-
-
-app.get("/events", function (req, res) {
-	res.render("eventname");
 });
 
 app.listen(80, function () {
