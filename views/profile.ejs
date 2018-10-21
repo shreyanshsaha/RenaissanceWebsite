@@ -38,15 +38,16 @@
 						<div class="col-md-6">
 							<p class="content">
 								<span class="contentLabel">Name:</span> <%= user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1) %> <%= user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1) %><br>
-								<span class="contentLabel">College:</span> <%= user.college %><br>
-								<span class="contentLabel">No of Events:</span> <%= user.events.length %><br>
+								<!-- <span class="contentLabel">College:</span> <%= user.college %><br> -->
+								<span class="contentLabel">Events Registered:</span> <%= user.events.length %><br>
 								<!-- No:of workshops attended:XXXXX<br> -->
 								<span class="contentLabel">Phone:</span><%= user.contact %><br>
 								<span class="contentLabel">Email:</span> <%= user.email %><br>
+								<a class="btn btn-info mt-4" href="/executiveSummary">Presente Vous Executive Summary</a>
 							</p>
 							
 						</div>
-
+						
 
 						
 						<!-- <div class="col-md-6">

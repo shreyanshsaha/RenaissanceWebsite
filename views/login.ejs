@@ -14,7 +14,7 @@
 <% include partials/navbar %>
 <div class="form-structor mt-4">
 <!-- TODO: Change the classes to login -->
-	<form class="signup" method="POST" action="">
+	<form class="signup" method="POST" action="/login">
 		<h2 class="form-title" id="signup"><span>or</span>Log in</h2>
 		<div class="form-holder">
 			<input type="text" class="input" placeholder="Username" name="username"/>
@@ -26,7 +26,7 @@
 		<div class="center">
 			<h2 class="form-title" id="login"><span>or</span>Register</h2>
 			<div class="form-holder">
-				<form action="/login" method="POST">
+				<form action="/user/register" method="GET">
 					<!-- <input type="email" class="input" placeholder="Email" /> -->
 					<!-- <input type="text" class="input" placeholder="Username" name="username" />
 					<input type="password" class="input" placeholder="Password" name="password"/> -->

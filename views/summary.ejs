@@ -25,25 +25,25 @@
       <div class="form-group">
         <div class="row">
           <div class="col-sm-12">
-          <h3>User Details</h3>
-          <hr>
-        </div>
+            <h3>User Details</h3>
+            <hr>
+          </div>
         </div>
         <div class="row">
           <label for="staticEmail" class="col-sm-3 col-form-label">Username</label>
           <div class="col-sm-9">
             <input type="text" readonly class="form-control-plaintext" value="<%=currentUser.username%>">
           </div>
-        
-        <!-- </div> -->
-        <!-- <div class="form-group row"> -->
+
+          <!-- </div> -->
+          <!-- <div class="form-group row"> -->
 
 
-        <label for="staticEmail" class="col-sm-3 col-form-label">Full Name</label>
-        <div class="col-sm-9">
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%=currentUser.firstName%> <%=currentUser.lastName%>">
+          <label for="staticEmail" class="col-sm-3 col-form-label">Full Name</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%=currentUser.firstName%> <%=currentUser.lastName%>">
+          </div>
         </div>
-      </div>
 
       </div>
 
@@ -63,27 +63,41 @@
             <tr>
               <td class="teams">Team Members</td>
               <td>
-                <div class="btn btn-danger btn-sm" onclick="deleteAllMembers()">Delete All</div>
+                <% if(currentUser.teamId && (toString(currentUser._id) == toString(teamLeader))){ %>
+                <div class="btn btn-danger btn-sm" onclick="deleteAllMembers()">Delete Team</div>
+                <% } else if(currentUser.teamId==null){ %>
+                <div class="btn btn-success btn-sm" onclick="createNewTeam()">Create new team</div>
+                <% } else { %>
+                  <div class="btn btn-danger" onclick="exitTeam()">Exit Team</div>
+                <% } %>
               </td>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <% if(currentUser.teamId){ %>
               <td class="teammember" colspan="2">
                 <%= currentUser.username %>
               </td>
+              <% } %>
+
               <!-- <td><div class="btn btn-danger btn-sm">Delete</div></td> -->
             </tr>
-            <% currentUser.teamMembers.forEach(function(member){ %>
-            <tr>
-              <td class="teammember" colspan="2">
-                <%= member.username %>
-              </td>
-              <td>
-                <div class="btn btn-danger btn-sm" onclick='deleteMember("<%=member._id%>")'>Delete</div>
-              </td>
-            </tr>
-            <% }); %>
+  
+            <% if(teamMembers) teamMembers.forEach(function(member){ %>
+              <% if(!(member.username==currentUser.username)){ %>
+              <tr>
+                <td class="teammember" colspan="2">
+                  <%= member.username %>
+                </td>
+                <!-- Only leader can delete members -->
+                <% if(toString(currentUser._id) == toString(teamLeader)){ %>
+                <td>
+                  <div class="btn btn-danger btn-sm" onclick='deleteMember("<%=member._id%>")'>Delete</div>
+                </td>
+                <% }; %>
+              </tr>
+            <% }}); %>
             <tr id="addUserDiv" class="d-none">
               <td colspan="2">
                 <div class="input-group mb-3">
@@ -253,19 +267,28 @@
 
     function addUser() {
       var username = document.getElementById("teamUsername").value;
-      $.post("/addTeamMember", {
-        teamUsername: username
-      }, function (data) {
-        // alert(data);
+      $.post("/team/add/" + username, function (data) {
         if (/ERROR/i.exec(data)) {
           alert(data);
-          document.getElementById("teamUsername").value = '';
         } else {
-          alert("User added to team!");
-          document.getElementById("addUserDiv").classList.add("d-none");
-          window.location.reload();
+          console.log(data);
+          // window.location.reload();
         }
       });
+
+      // $.post("/addTeamMember", {
+      //   teamUsername: username
+      // }, function (data) {
+      //   // alert(data);
+      //   if (/ERROR/i.exec(data)) {
+      //     alert(data);
+      //     document.getElementById("teamUsername").value = '';
+      //   } else {
+      //     alert("User added to team!");
+      //     document.getElementById("addUserDiv").classList.add("d-none");
+      //     window.location.reload();
+      //   }
+      // });
     }
 
     function deleteMember(memID) {
@@ -284,14 +307,33 @@
     }
 
     function deleteAllMembers() {
-      $.post("/deleteAllMembers", function (data) {
+      $.post("/team/delete/<%= currentUser.teamId %>", function (data) {
         if (/ERROR/i.exec(data)) {
           alert(data);
         } else {
-          alert("All User deleted!");
           window.location.reload();
         }
-        window.location.reload();
+      });
+
+      // $.post("/deleteAllMembers", function (data) {
+      //   if (/ERROR/i.exec(data)) {
+      //     alert(data);
+      //   } else {
+      //     alert("All User deleted!");
+      //     window.location.reload();
+      //   }
+      //   window.location.reload();
+      // });
+    }
+
+    function createNewTeam() {
+      $.post("/team/new", function (data) {
+        if (/ERROR/i.exec(data)) {
+          alert(data);
+        } else {
+          window.location.reload();
+
+        }
       });
     }
   </script>
