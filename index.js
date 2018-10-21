@@ -8,7 +8,8 @@ var express = require('express'),
 	Event = require("./models/eventModel"),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
-	LocalStrategy = require('passport-local');
+	LocalStrategy = require('passport-local'),
+	Team = require("./models/teamModel");
 
 var rootRoute = require("./root"),
 		userRoute = require("./user"),
@@ -105,7 +106,58 @@ app.post("/register/event/:id", async function(req, res){
 
 
 
+app.post("/team/new", isLoggedIn, async function(req, res){
+	// Create a new team
+	// Logic: 
+	// Create a new team with the currentUser as team Leader
+	// Add the ID of the new team to the user
+	console.log(req.user);
+	if(!(req.user.teamId === null)){
+		res.send("Error: User already in a team");
+		return;
+	}
+	console.log(req.user.username, "created a new team!");
+	// Create new team
+	var newTeam = await Team.create({teamLeader: req.user._id, teamMember: [req.user._id]});
+	console.log(newTeam._id);
+	// Update the teamId to user
+	User.findOneAndUpdate({_id: req.user._id}, {$set: {teamId: newTeam._id}}, function(err, newUser){
+		if(err)
+			res.send(err);
+		else
+			res.send(newUser);
+	});
+});
 
+// Delete complete team, only team leader can delete the team
+app.post("/team/delete/:id", async function(req, res){
+	// logic:
+	// Remove teamId from all teamMembers
+
+	var team = await Team.findOne({_id: req.params.id});
+	console.log(team);
+	// Check is leader is deleting it
+	if(toString(team.teamLeader) == toString(req.user._id)){
+		// Delete teamID from all users
+		await team.teamMembers.forEach(function(member){
+			User.findOneAndUpdate({_id: member}, {$set: {teamId: null}});
+		});
+
+		// Delete the team
+		Team.findOneAndDelete({_id: req.params._id}, function(err, res){
+			if(err)
+				res.send(err);
+			else
+				res.send("Deleted Team");
+		});
+	}
+	else{
+		res.send("Error: only team leader can delete a team!");
+		console.log(team.teamLeader);
+		console.log(req.user._id);
+		console.log(toString(team.teamLeader) == toString(req.user._id));
+	}
+});
 
 app.post("/addTeamMember", function(req, res){
 	var teamUsername = req.body.teamUsername;
