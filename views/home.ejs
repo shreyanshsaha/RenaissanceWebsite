@@ -20,12 +20,19 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="css/footer.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/about.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/stats.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="css/countdown_style.css" />
 
 	<link rel="stylesheet" href="/css/mainEvents.css" />
 	<link rel="stylesheet" href="/css/styleEve.css">
 
+<<<<<<< HEAD
 	<script src="/lib/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
+=======
+	<script src="lib/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	
+>>>>>>> iterOne
 
 </head>
 
@@ -35,7 +42,15 @@
 
 	<!-- Home -->
 	<% include frontPart/carousel %>
-
+	<!-- Countdown -->
+	<div class="separation"></div>
+	<section class="landing">
+		<div class="landing-inner">
+		  <p class="landing-text">A platform for budding enterpreuners</p>
+		  <h1 class ="landing-inner-text">Coming Soon</h1>
+		  <div class="countdown"></div>
+		</div>
+	  </section>
 	<!-- About -->
 	<div class="seperation"></div>
 	<% include frontPart/about %>
@@ -71,7 +86,7 @@
 	<% include partials/footer %>
 
 </body>
-
+<script src="js/count_script.js"></script>
 
 </html>
 
