@@ -4,6 +4,7 @@ var router = express.Router();
 var Event = require("./models/eventModel");
 var passport = require('passport');
 
+var Team = require("./models/teamModel");
 
 //! Debug only
 var sponsorDetails=[
@@ -100,7 +101,13 @@ router.get("/sponsors", function(req, res){
 
 // Executive Summary
 router.get("/executiveSummary", isLoggedIn, function(req, res){
-	res.render("summary");
+	Team.findOne({_id: req.user.teamId}).populate("teamMembers").exec(function(err, team){
+		if(err)
+			return res.send(err);
+		console.log("team", team);
+		console.log("teamMembers", team.teamMembers);
+		res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader});
+	});
 });
 
 // Feedback
