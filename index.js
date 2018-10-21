@@ -10,6 +10,9 @@ var express = require('express'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local');
 
+var rootRoute = require("./root"),
+		userRoute = require("./user"),
+		adminRoute = require("./admin");
 
 
 // ===============================
@@ -42,14 +45,6 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-// ===========
-// Middlewares
-// ===========
-app.use(function (req, res, next) {
-	res.locals.currentUser = req.user;
-	next();
-});
-
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
@@ -58,124 +53,15 @@ function isLoggedIn(req, res, next) {
 	res.redirect("/login");
 }
 
-function isAdmin(req, res, next){
-	if(req.isAuthenticated() && req.user.isAdmin===true)
-			return next();
-	res.redirect("/");
-}
-
-
 // ======
 // Routes
 // ======
-
-//! Debug only
-var sponsorDetails=[
-	{
-		type:"Startup Ecosystem Partners",
-		imageUrl:[
-			"/images/sponsors/startup1.jpg",
-			"/images/sponsors/startup2.jpg",
-			"/images/sponsors/startup3.jpg",
-			"/images/sponsors/startup4.jpg",
-			"/images/sponsors/startup5.jpg",
-			"/images/sponsors/startup6.jpg"
-		]
-	},
-	{
-		type:"Knowlege Partners",
-		imageUrl:[
-			"/images/sponsors/knowledge1.jpg",
-			"/images/sponsors/knowledge2.jpg",
-			"/images/sponsors/knowledge3.jpg"
-		]
-	},
-	{
-		type:"Technology Partners",
-		imageUrl:[
-			"/images/sponsors/tech1.jpg",
-			"/images/sponsors/tech2.jpg"
-		]
-	},
-	{
-		type:"Event Partners",
-		imageUrl:[
-			"/images/sponsors/event1.jpg",
-			"/images/sponsors/event2.jpg"
-		]
-	},
-	{
-		type:"Audio Partners",
-		imageUrl:[
-			"/images/sponsors/audio1.jpg"
-		]
-	},
-	{
-		type:"Media Partners",
-		imageUrl:[
-			"/images/sponsors/media1.jpg",
-			"/images/sponsors/media2.jpg",
-			"/images/sponsors/media3.jpg",
-			"/images/sponsors/media4.jpg",
-			"/images/sponsors/media5.jpg"
-		]
-	}
-];
-//! Debug end
+app.use(rootRoute);
+app.use(userRoute);
+app.use(adminRoute);
 
 
-// User route
-app.get("/user", isLoggedIn, function (req, res) {
-	User.findOne({username: req.user.username}).populate("events").populate("teamMembers").exec(function(err, userDetails){
-		if(err)
-			console.log(err);
-		else{
-			res.render("profile", {user: userDetails});
-		}
-	});
-});
 
-app.get("/user/register", function (req, res) {
-	res.render("reg_page", {messages: undefined});
-});
-
-app.post("/user/register", function (req, res) {
-	User.register(new User({
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		email: req.body.email,
-		username: req.body.username,
-		contact: req.body.phone,
-		age: req.body.age
-	}), req.body.password, function (err, newUser) {
-		if (err) {
-			console.log(err);
-			res.send(err);
-		} else {
-			console.log("[+] User Registered:");
-			passport.authenticate("local")(req, res, function () {
-				res.redirect("/");
-			});
-		}
-	});
-});
-
-
-// Login and Logout
-app.get("/login", function (req, res) {
-	res.render("login");
-});
-
-app.post("/login", passport.authenticate("local", {
-	successRedirect: "/",
-	failureRedirect: "/login"
-}), function (req, res) {});
-
-app.get("/logout", isLoggedIn, function (req, res) {
-	console.log("Logout: ", req.user.username);
-	req.logout();
-	res.redirect("/");
-});
 
 
 
@@ -213,31 +99,10 @@ app.post("/register/event/:id", async function(req, res){
 	}
 });
 
-// Executive Summary
-app.get("/executiveSummary", isLoggedIn, function(req, res){
-	res.render("summary");
-});
 
-// ===========
-// Admin pages
-// ===========
 
-// Show all registered users
-app.get("/admin/show", isAdmin, function(req, res){
-	User.find({}, function(err, allUsers){
-		if(err)
-			console.log(err);
-		else
-			res.send(allUsers);
-	});
-});
 
-// Show all registrations in events
-app.get("/admin/showRegistrations", isAdmin, function(req, res){
-	Event.find({}, function(err, allEvents){
-		res.send(allEvents);
-	});
-});
+
 
 
 
@@ -295,32 +160,6 @@ app.post("/deleteMember", async function(req, res){
 	res.send("Success");
 });
 
-app.post("/feedback", function(req, res){
-	var name = req.body.name;
-	var email = req.body.email;
-	var message = req.body.feedbackMsg;
-	var subject = req.body.subject;
-	if(name==='' || email==='' ||message===''){
-		res.send("ERROR: Field is empty");
-		return;
-	}
-	var newfeedback = {
-		name: name,
-		email: email,
-		feedbackText: message
-	};
-
-	Feedback.create(newfeedback, function(err, feedback){
-		if(err){
-			console.log(err);
-			res.send("ERROR: Feedback could not be submitted");
-		}
-		else{
-			console.log(newfeedback);
-			res.send("SUCCESS");
-		}
-	});
-});
 
 app.listen(80, function () {
 	console.log("Server has started!");
