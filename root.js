@@ -104,8 +104,6 @@ router.get("/executiveSummary", isLoggedIn, function(req, res){
 	Team.findOne({_id: req.user.teamId}).populate("teamMembers").exec(function(err, team){
 		if(err)
 			return res.send(err);
-		console.log("team", team);
-		console.log("teamMembers", team.teamMembers);
 		res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader});
 	});
 });
