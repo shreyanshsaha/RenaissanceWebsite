@@ -195,13 +195,13 @@ app.post("/deleteMember", function(req, res){
 		console.log("team: ", team);
 		// Check if user is team leader
 		if(err)
-			return res.send(err);
+			return res.send("Error: " + toString(err));
 
-		if(toString(req.user._id) == toString(team.teamLeader)){
+		// Doesnt work in same browser
+		if(toString(req.user._id) === toString(team.teamLeader)){
 			// Delete the teamId from the user
 			
 			await User.findOneAndUpdate({_id: req.body.teamMember}, {$set: {teamId: null}});
-			console.log(req.body.teamMember);
 			await Team.findOneAndUpdate({_id: team._id}, {$pull:{teamMembers: req.body.teamMember}});
 			// Pull the member from the team
 
