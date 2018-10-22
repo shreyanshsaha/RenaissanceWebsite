@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var teamSchema = new mongoose.Schema({
   teamLeader: {type: mongoose.Schema.ObjectId, ref:"user"},
   teamMembers:[
-    {type: mongoose.Schema.ObjectId, ref:"user"}
+    {type: mongoose.Schema.Types.ObjectId, ref:"user"}
   ]
 });
 

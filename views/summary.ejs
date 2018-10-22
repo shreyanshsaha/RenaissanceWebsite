@@ -272,7 +272,7 @@
           alert(data);
         } else {
           console.log(data);
-          // window.location.reload();
+          window.location.reload();
         }
       });
 
@@ -298,10 +298,9 @@
         if (/ERROR/i.exec(data)) {
           alert(data);
         } else {
-          alert("User deleted!");
-          document.getElementById("addUserDiv").classList.add("d-none");
-          var newUsername = data;
-          window.location.reload();
+          // alert("User deleted!");
+          console.log(data);
+          // window.location.reload();
         }
       });
     }
