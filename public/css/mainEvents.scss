@@ -1,4 +1,3 @@
-
 /*
 TODO:
 Increase icon opacity
@@ -20,7 +19,8 @@ Dropdown Events on menu bar
 //   height: 7%;
 //   filter: brightness(99%);
 // }
-.events{
+.events {
+
   scroll-snap-align: start;
   min-height: 120vh;
   background-attachment: fixed;
@@ -29,15 +29,89 @@ Dropdown Events on menu bar
   background-repeat: no-repeat;
   background-image: url("/images/blue-suit.jpg");
   // background: rgba(0,0,0,0.9);
-  
-  h1{
-    color:white;
-    
+
+  h1 {
+    color: white;
   }
-  >.container{
-    position: relative;
-    left:50%;
-    transform: translateX(-50%);
+
+  >.container {
+
+    // position: relative;
+    // left:50%;
+    // transform: translateX(-50%);
+    .sideBarParent {
+      padding: 0px;
+      .sideBar {
+        // height: 70%;
+        // width: 20%;
+        // padding-top: 5%;
+        // float: left;
+
+        .eventPills {
+          list-style-type: none;
+
+          // position: relative;
+          // left:-50%;
+          .row {
+            &>.names {
+              position: relative;
+
+              .eventName {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 100%;
+                transform: translate(-50%, -50%);
+                color: white;
+                padding: 2%;
+                width: 100%;
+              }
+
+              width: 100%;
+              text-decoration: none;
+              padding: 3%;
+              // background-color: rgba($color: rgb(0, 223, 252), $alpha: 0.6);
+              // background-image: linear-gradient(to right, rgb(124, 195, 252), white);
+              // background-color: rgba(255, 255, 255, 0.7);
+              border-top-left-radius: 10px;
+              border-bottom-left-radius: 10px;
+
+              // border-bottom: 2px solid #00dffc;
+              // border-left: 2px solid #00dffc;
+              // border-top: 2px solid #00dffc;
+
+              margin-top:1vh;
+              margin-bottom: 1vh;
+
+              min-height:15vh;
+              // min-height: 80px;
+
+              text-align: center;
+              font-family: 'Segoe UI',
+              Tahoma,
+              Geneva,
+              Verdana,
+              sans-serif;
+
+              &:hover {
+                border-style: solid;
+                // border-top: none;
+                border-right: none;
+                // border-left:none;
+                // background-image: linear-gradient(to right, rgb(124, 195, 252), white);
+                transition: 100ms;
+                background-color: rgba($color: #00dffc, $alpha:0.75);
+                // border-bottom: 5px solid white;
+                cursor: pointer;
+
+              }
+            }
+          }
+        }
+      }
+    }
+
+
   }
 }
 
@@ -51,117 +125,71 @@ Dropdown Events on menu bar
   display: none;
 }
 
-.sideBar {
-  height: 70%;
-  width: 20%;
-  padding-top: 5%;
-  float: left;
+.eventDivParent{
+  padding:0px;
+  .eventDiv {
 
-  .eventPills {
-    list-style-type: none;
-    position: relative;
-    left:-50%;
-    
-    &>.names {
-      position: relative;
-      .eventName{
-        position: absolute;
-        top:50%;
-        left:50%;
-        width:100%;
-        transform: translate(-50%, -50%);
-        color:white;
-        padding:2%;
-      }
-      text-decoration: none;
-      padding: 3%;
-      // background-color: rgba($color: rgb(0, 223, 252), $alpha: 0.6);
-      // background-image: linear-gradient(to right, rgb(124, 195, 252), white);
-      // background-color: rgba(255, 255, 255, 0.7);
-      border-top-left-radius: 10px;
-      border-bottom-left-radius: 10px;
-    
-      // border-bottom: 2px solid #00dffc;
-      // border-left: 2px solid #00dffc;
-      // border-top: 2px solid #00dffc;
-      
-      margin-top:1vh;
-      margin-bottom: 1vh;
+    height: 90vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 25px;
+    // display: block;
+    .eventName {
+      font-size: 34px;
+      border-style: solid;
+      // border-color: white;
+      // border-color: white black red blue;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-bottom-color: #33b5e5;
 
-      min-height:15vh;
-      // min-height: 80px;
+    }
 
-      text-align: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      &:hover {
-        border-style: solid;
-        // border-top: none;
-        border-right: none;
-        // border-left:none;
-        // background-image: linear-gradient(to right, rgb(124, 195, 252), white);
-        transition: 100ms;
-        background-color: rgba($color: #00dffc, $alpha:0.75);
-        // border-bottom: 5px solid white;
-        cursor: pointer;
-        
+    .container {
+      >.row {
+        // position: relative;
+        // overflow-y: hidden;
+        // left:-10%;
+
+        // width:80%;
+        // min-height: 100%;
+        // >*{
+        //   padding: 0px;
+        //   margin:0px;
+        // }
+        // transform: translateX(-50%;)
+        // .poster{
+        //   // position: relative;
+        //   left:10%;
+        //   // top:calc(50%);
+        //   top:50%;
+        // }
       }
     }
+
+    .eventDate {
+      font-size: 23px;
+    }
+
+    // .eventCoordinators{
+    //   font-size:23px;padding-top:4%;border-style:solid;border-color:white;border-bottom-color:#33b5e5;
+    // }
   }
 }
 
-
-.eventDiv {
-  // padding: 0px;
-  // border:2px solid blue;
-  *{
-    // border:2px solid green;
+@media(min-width: 768px){
+  .eventCollapse{
+    border:10px solid red;
+    color:red;
+    display: none;
+    height: 100% !important;
+    visibility: visible;
   }
-  >.row{
-    position: relative;
-    overflow-y: hidden;
-    // left:-10%;
-    
-    // width:80%;
-    min-height: 100%;
-    // >*{
-    //   padding: 0px;
-    //   margin:0px;
-    // }
-    // transform: translateX(-50%;)
-    // .poster{
-    //   // position: relative;
-    //   left:10%;
-    //   // top:calc(50%);
-    //   top:50%;
-    // }
-  }
-  position: relative;
-  top:5vh;
-  // You cannot change height with %
-  height: 90vh;
-  width: 80%;
-  padding-top: 2%;
-  padding-left: 5%;
-  background-color: rgba(255, 255, 255, 0.7);
-
-  // display: block;
-  .eventName {
-    font-size: 34px;
-    border-style: solid;
-    // border-color: white;
-    // border-color: white black red blue;
-    border-top: none;
-    border-right: none;
-    border-left:none;
-    border-bottom-color: #33b5e5;
-    
-  }
-
-  .eventDate {
-    font-size: 23px;
-  }
-
-  .eventCoordinators{
-    font-size:23px;padding-top:4%;border-style:solid;border-color:white;border-bottom-color:#33b5e5;
+}
+@media (min-width: 768px) {
+  .collapse.dont-collapse-sm {
+    display: block;
+    height: auto !important;
+    visibility: visible;
   }
 }

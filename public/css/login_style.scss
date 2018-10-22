@@ -2,25 +2,34 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
 
 html,body {
-	position: relative;
-	min-height: 100vh;
+	// position: relative;
+	// min-height: 100vh;
+	// background-color: #E1E8EE;
+	// display: flex;
+	// align-items: center;
+	// justify-content: center;
+	// font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
+}
+
+.form-structor {
+
 	background-color: #E1E8EE;
-	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.form-structor {
 	background-color: #222;
 	border-radius: 15px;
 	height: 550px;
 	width: 350px;
+	
 	position: relative;
 	overflow: hidden;
-	
+	left:50%;
+	transform: translateX(-50%);
 	&::after {
 		content: '';
 		opacity: .8;
@@ -71,9 +80,11 @@ html,body {
 			font-size: 1.7em;
 			text-align: center;
 			
+			
 			span {
 				color: rgba(0,0,0,0.4);
 				opacity: 0;
+				display: none;
 				visibility: hidden;
 				-webkit-transition: all .3s ease;
 			}
@@ -93,12 +104,12 @@ html,body {
 				outline: none;
 				box-shadow: none;
 				display: block;
-				height: 30px;
-				line-height: 30px;
+				// height: 30px;
+				// line-height: 30px;
 				padding: 8px 15px;
 				border-bottom: 1px solid #eee;
 				width: 100%;
-				font-size: 12px;
+				// font-size: 12px;
 				
 				&:last-child {
 					border-bottom: 0;

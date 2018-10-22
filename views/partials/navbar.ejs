@@ -15,14 +15,18 @@
 							<a class="nav-link" href="#">Contact Us</a>
 						</li> -->
 						<li class="nav-item">
-							<a href="#about" class="nav-link text-light">About</a>
+							<a href="/#about" class="nav-link text-light">About</a>
 						</li>
 						<li class="nav-item">
-							<a href="#events" class="nav-link text-light">Events</a>
+							<a href="/#events" class="nav-link text-light">Events</a>
+						</li>
+						<li class="nav-item">
+							<a href="/#contact" class="nav-link text-light">Contact</a>
 						</li>
 						<li class="nav-item">
 							<a href="/sponsors" class="nav-link text-light">Sponsors</a>
 						</li>
+						
 						<li class="nav-item">
 							<div class="nav-link text-muted">|</div>
 						</li>
@@ -31,11 +35,14 @@
 								<a href="/login" class="nav-link text-light">Login</a>
 							</li>
 							<li class="nav-item">
-								<a href="/register" class="nav-link text-light">Register</a>
+								<a href="/user/register" class="nav-link text-light">Register</a>
 							</li>
 						<% }else{ %>
 							<li class="nav-item">
-								<a href="/logout" class="nav-link text-primary">Logout <%=currentUser.username%></a>
+								<a href="/user" class="nav-link text-primary"><%=currentUser.username %></a>
+							</li>
+							<li class="nav-item">
+								<a href="/logout" class="nav-link text-primary">Logout</a>
 							</li>
 						<% }; %>
 

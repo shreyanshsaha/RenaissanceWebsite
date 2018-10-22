@@ -1,11 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
-html, body {
-  position: relative;
-  min-height: 100vh;
+.form-structor {
   background-color: #E1E8EE;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -15,15 +10,15 @@ html, body {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.form-structor {
   background-color: #222;
   border-radius: 15px;
   height: 550px;
   width: 350px;
   position: relative;
   overflow: hidden;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .form-structor::after {
@@ -83,6 +78,7 @@ html, body {
 .form-structor .signup .form-title span {
   color: rgba(0, 0, 0, 0.4);
   opacity: 0;
+  display: none;
   visibility: hidden;
   -webkit-transition: all .3s ease;
 }
@@ -103,12 +99,9 @@ html, body {
   -webkit-box-shadow: none;
           box-shadow: none;
   display: block;
-  height: 30px;
-  line-height: 30px;
   padding: 8px 15px;
   border-bottom: 1px solid #eee;
   width: 100%;
-  font-size: 12px;
 }
 
 .form-structor .signup .form-holder .input:last-child {

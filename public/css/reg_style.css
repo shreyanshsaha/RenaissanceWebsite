@@ -15,10 +15,14 @@ body {
     background-repeat: repeat-y;
 }
 
+form{
+    background: rgba(255, 255, 255, 0.4)
+}
 h1, .details, form>*{
     font-family: 'Yanone Kaffeesatz', Consolas;
 }
 h1 {
+    background-color: rgba(220, 227, 235, 0.6);
     text-align: center;
     margin: 40px auto;
     padding: 10px;
