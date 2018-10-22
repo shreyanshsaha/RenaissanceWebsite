@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Karla:700");
 .feedbackClass {
   background-attachment: fixed;
   background-position: center;
@@ -9,9 +10,9 @@
 
 .feedbackClass .heading-feedback {
   text-align: center;
+  font-family: 'Karla','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   -webkit-text-stroke: 1px black;
   color: white;
-  text-shadow: 0px 15px 15px rgba(0, 0, 0, 0.2), 10px 10px 15px rgba(0, 0, 0, 0.1), 10px 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .feedbackClass .container {
