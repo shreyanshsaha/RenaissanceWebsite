@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css?family=Karla:700');
 .feedbackClass {
 	background-attachment: fixed;
 	background-position: center;
@@ -10,14 +10,15 @@
 	height: 70vh;
 	.heading-feedback {
 		text-align: center;
+		font-family: 'Karla','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 		-webkit-text-stroke:1px black;
 		// background-color: rgba(255, 255, 255, 0.7);
 		// width:40vw;
 		// margin: auto;
 		color: white; //   color: #a8a8a8;
-		text-shadow:  0px 15px 15px     rgba(0,0,0,0.2),
-                      10px 10px 15px  rgba(0,0,0,0.1),
-                      10px 10px 20px  rgba(0,0,0,0.1);
+		// text-shadow:  0px 15px 15px     rgba(0,0,0,0.2),
+        //               10px 10px 15px  rgba(0,0,0,0.1),
+        //               10px 10px 20px  rgba(0,0,0,0.1);
 		//   text-shadow: 1px 1px 0 rgb(126, 126, 126);
 	}
 	.container{

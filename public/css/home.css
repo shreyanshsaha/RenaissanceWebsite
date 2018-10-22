@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Karla");
 .border-alter-round {
   border-top-left-radius: 15%;
   border-bottom-right-radius: 15%;
@@ -13,6 +14,7 @@ html {
   height: 100vh;
   overflow-x: hidden;
   background-color: white;
+  font-family: 'Karla','Courier New', Courier, monospace;
 }
 
 .navbar {

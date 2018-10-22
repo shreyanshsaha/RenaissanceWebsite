@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Karla:700");
 .picture {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: 'Karla','Open Sans', Arial, sans-serif;
   position: relative;
   display: inline-block;
   margin: 40px 8px;
