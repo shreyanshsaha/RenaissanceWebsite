@@ -4,7 +4,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url("/images/blue-feedback.jpg");
-  height: 70vh;
 }
 
 .feedbackClass .heading-feedback {
@@ -14,8 +13,10 @@
   text-shadow: 0px 15px 15px rgba(0, 0, 0, 0.2), 10px 10px 15px rgba(0, 0, 0, 0.1), 10px 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.feedbackClass .container {
-  width: 50vw;
+@media screen and (min-width: 768px) {
+  .feedbackClass .container {
+    width: 50vw;
+  }
 }
 
 .feedbackClass .container form {
