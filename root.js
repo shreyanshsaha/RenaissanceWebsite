@@ -74,7 +74,7 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
 	}
-	console.log(req.user, " not logged in!");
+	console.log("Not logged in!");
 	res.redirect("/login");
 }
 
@@ -105,7 +105,7 @@ router.get("/executiveSummary", isLoggedIn, function(req, res){
 		if(err)
 			return res.send(err);
 		if(team)
-			res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader});
+			res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString()});
 		else
 		res.render("summary", {teamMembers: null, teamLeader: null});
 	});

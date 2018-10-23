@@ -9,7 +9,8 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local'),
-	Team = require("./models/teamModel");
+	Team = require("./models/teamModel"),
+	methodOverride = require('method-override');
 
 var rootRoute = require("./root"),
 		userRoute = require("./user"),
@@ -28,7 +29,7 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 
-
+app.use(methodOverride("_method"));
 
 // ======================
 // PASSPORT CONFIGURATION
@@ -148,21 +149,21 @@ app.post("/team/add/:username", isLoggedIn, function(req, res){
 			return res.send("Error: User already in a team!");
 		// Add user to team list
 		await Team.updateOne({_id: req.user.teamId}, {$addToSet: {teamMembers: teamUser._id}});
-		teamUser.teamId = req.user.teamId;
-		teamUser.save();
+		await User.findOneAndUpdate({_id: teamUser._id}, {$set: {teamId: req.user.teamId}});
 		return res.send("User Added!");
 	});
 });
 
 // Delete complete team, only team leader can delete the team
-app.post("/team/delete/:id", async function(req, res){
+app.delete("/team/:id", async function(req, res){
 	// logic:
 	// Remove teamId from all teamMembers
 
 	var team = await Team.findOne({_id: req.params.id});
 	console.log(team.teamLeader);
-	// Check is leader is deleting it
-	if(toString(team.teamLeader) == toString(req.user._id)){
+	// Check is leader is deleting it 
+	//! Not working
+	if(team.teamLeader.equals(req.user._id)){
 		// Delete teamID from all users
 		await team.teamMembers.forEach(function(member){
 			console.log("Member", member);
@@ -198,14 +199,17 @@ app.post("/deleteMember", function(req, res){
 			return res.send("Error: " + toString(err));
 
 		// Doesnt work in same browser
-		if(toString(req.user._id) === toString(team.teamLeader)){
+		if(req.user._id.equals(team.teamLeader)){
 			// Delete the teamId from the user
-			
-			await User.findOneAndUpdate({_id: req.body.teamMember}, {$set: {teamId: null}});
-			await Team.findOneAndUpdate({_id: team._id}, {$pull:{teamMembers: req.body.teamMember}});
-			// Pull the member from the team
+			console.log(req.user.username, req.user._id, team.teamLeader);
+			console.log(mongoose.Schema.Types.ObjectId(req.user._id) === mongoose.Schema.Types.ObjectId(team.teamLeader));
+			res.send("OK");
 
-			return res.send("Success");
+			// await User.findOneAndUpdate({_id: req.body.teamMember}, {$set: {teamId: null}});
+			// await Team.findOneAndUpdate({_id: team._id}, {$pull:{teamMembers: req.body.teamMember}});
+			// // Pull the member from the team
+
+			// return res.send("Success");
 		}
 		else{
 			return res.send("Error: Only team leader can delete members!");
