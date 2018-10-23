@@ -130,6 +130,25 @@ app.post("/team/new", isLoggedIn, async function(req, res){
 	});
 });
 
+app.put("/team/exit", isLoggedIn, function(req, res){
+	Team.findOneAndUpdate({_id:req.user.teamId}, async function(err, team){
+		if(err)
+			return res.send("Error"+toString(err))
+		
+		if(!team)
+			return res.send("Error: Cannot exit a team when not in a team!");
+
+		if(req.user._id.equals(team.teamLeader))
+			return res.send("Error: Team leader cannot exit team!");
+
+		// Pull member from the team
+		// Clear the teamID for the member
+		await User.findOneAndUpdate({_id: req.user._id}, {$set: {teamId: null}});
+		await Team.findByIdAndUpdate({_id: team._id}, {$pull: {teamMembers: req.user._id}});
+		// ! Didnt Test this function yet
+	});
+});
+
 // Add new user to team
 app.post("/team/add/:username", isLoggedIn, function(req, res){
 	// Logic:
@@ -188,7 +207,7 @@ app.delete("/team/:id", async function(req, res){
 
 
 
-app.post("/deleteMember", function(req, res){
+app.post("/team/delete/user", function(req, res){
 	// Delete members from each others table
 	if(!req.user.teamId)
 		return res.send("Error: User not in a team!");

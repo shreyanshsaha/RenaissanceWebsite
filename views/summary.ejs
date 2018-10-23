@@ -63,9 +63,6 @@
             <tr>
               <td class="teams">Team Members</td>
               <td>
-                <%= currentUser._id %>
-                <%= teamLeader %>
-                <%= String(currentUser._id) === String(teamLeader) %>
                 <% if(currentUser.teamId && (String(currentUser._id) == String(teamLeader))){ %>
                 <div class="btn btn-danger btn-sm" onclick="deleteAllMembers()">Delete Team</div>
                 <% } else if(currentUser.teamId==null){ %>
@@ -94,7 +91,7 @@
                   <%= member.username %>
                 </td>
                 <!-- Only leader can delete members -->
-                <% if(toString(currentUser._id) == toString(teamLeader)){ %>
+                <% if(String(currentUser._id) == String(teamLeader)){ %>
                 <td>
                   <div class="btn btn-danger btn-sm" onclick='deleteMember("<%=member._id%>")'>Delete</div>
                 </td>
@@ -295,7 +292,7 @@
     }
 
     function deleteMember(memID) {
-      $.post("/deleteMember", {
+      $.post("/team/delete/user", {
         teamMember: memID
       }, function (data) {
         if (/ERROR/i.exec(data)) {
@@ -321,6 +318,18 @@
         }
       });
 
+      function exitTeam(){
+        $.ajax({
+          type:"POST",
+          success: function(){
+            if (/ERROR/i.exec(data)) {
+            alert(data);
+            } else {
+              window.location.reload();
+            }
+          }
+        })
+      }
       // $.post("/deleteAllMembers", function (data) {
       //   if (/ERROR/i.exec(data)) {
       //     alert(data);
