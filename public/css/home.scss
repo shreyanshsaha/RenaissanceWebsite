@@ -13,7 +13,7 @@
 // =========
 // Scrollbar
 // =========
-
+@import url('https://fonts.googleapis.com/css?family=Karla');
 .border-alter-round {
   border-top-left-radius: 15%;
   border-bottom-right-radius: 15%;
@@ -29,7 +29,7 @@ html {
   height: 100vh;
   overflow-x: hidden;
   background-color: white;
-  // background: #343838;
+  font-family: 'Karla','Courier New', Courier, monospace;  // background: #343838;
   // overflow-y: scroll;
   // scroll-snap-type: y mandatory;
 }
