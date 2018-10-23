@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Karla');
 .footer{
   scroll-snap-align: start;
   background-color: rgb(50, 50, 50);
@@ -7,6 +8,7 @@
   margin: auto;
   padding-top:10px;
   padding-bottom: 10px;
+  font-family: 'Karla','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   &>*{
     color:white;
     margin:auto;

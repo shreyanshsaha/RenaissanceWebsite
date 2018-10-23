@@ -16,6 +16,7 @@ function up(label, str) {
     s.classList.add('up');
     document.getElementsByTagName('label')[label].style.color = "#66CC99";
     tabBooleans[label] = true;
+    
 }
 
 function down(label, str) {
@@ -36,6 +37,7 @@ function checkEmail(label) {
             email.classList.add('up');
         }
     } else down(label,"email");
+    
 }
 
 function checkTxt(id, label, n) {
