@@ -7,6 +7,7 @@
   <title>Executive Summary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/footer.css" />
   <script src="/lib/jquery.min.js"></script>
   <script src="/js/bootstrap.js"></script>
 </head>
@@ -21,53 +22,60 @@
 
   <div class="container mt-4">
     <form>
+
       <!-- Description of User -->
-      <div class="form-group">
-        <div class="row">
-          <div class="col-sm-12">
-            <h3>User Details</h3>
-            <hr>
-          </div>
-        </div>
-        <div class="row">
-          <label for="staticEmail" class="col-xs-3 col-form-label">Username:</label>
-          <div class="col-xs-9">
-            <input type="text" readonly class="form-control-plaintext" value=" <%=currentUser.username%>">
-          </div>
-
-          <!-- </div> -->
-          <!-- <div class="form-group row"> -->
-
-        </div>
-        <div class="row">
-          <label for="staticEmail" class="col-xs-3 col-form-label">Full Name:</label>
-          <div class="col-xs-9">
-            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value=" <%=currentUser.firstName%> <%=currentUser.lastName%>">
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Ideation or Operation Radio-->
-      <div class="form-group row">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="method" id="ideationRadio" value="ideation" checked>
-          <label class="form-check-label" for="inlineRadio1">Ideation</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="method" id="operationsRadio" value="operations">
-          <label class="form-check-label" for="inlineRadio2">Operations</label>
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-md-6 col-sm-12">
-          <input type="text" name="startupName" id="startupName" placeholder="Startup Name" class="form-control">
-        </div>
-      </div>
-
-
-      <!-- Information -->
       <div class="row">
+        <div class="col-sm-12">
+          <h3>User Details</h3>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+            <p for="staticEmail" class="col-xs-12">Username: <%=currentUser.username%></p>
+          </div>
+
+          <div class="row">
+            <p for="staticEmail" class="col-xs-12">Full Name:  <%=currentUser.firstName%> <%=currentUser.lastName%></p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Startup Type-->
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <h3>Startup Type</h3>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="input-group row">
+
+            <h3 id="startupType" class="col-sm-4 text-info">Ideation: </h3>
+            <!-- <div id="startupType" class="col-sm-8">Ideation: </div> -->
+            <select class="custom-select col-sm-6 ml-1" id="form-startup-type" onclick = "startUpTypeChange(this)">
+              <optgroup label="Ideation">
+                <option value="ideation-bussiness">Bussiness</option>
+                <option value="ideation-social">Social</option>
+              </optgroup>
+              <optgroup label="Operational">
+                <option value="operational-bussiness">Bussiness</option>
+                <option value="operational-social">Social</option>
+              </optgroup>
+            </select>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Eligibilty and Rules & Regulations -->
+      <div class="row mt-4">
         <ul class="nav nav-tabs col-sm-12" id="myTab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#eligibilityTabContent" role="tab"
@@ -131,16 +139,18 @@
         </div>
       </div>
 
-      <div class="row">
+
+      <!-- Team Members -->
+      <div class="row mt-4">
         <div class="col">
           <h3>Team Members</h3>
           <hr>
         </div>
       </div>
-      <!-- Team Members -->
+      
       <div class="row">
-        <table class="col-sm-12 col-md-4 table teamTable table-hover">
-          <thead class="thead-dark">
+        <table class="col-sm-12 col-md-4 table teamTable table-hover table-stripped">
+          <thead class="bg-dark text-white">
             <tr>
               <td class="teams" colspan="2">Team Members</td>
             </tr>
@@ -181,35 +191,26 @@
               </td>
             </tr>
             <tr id="addMemberButton">
-                <td>
-                    <% if(currentUser.teamId && (String(currentUser._id) == String(teamLeader))){ %>
-                    <div class="btn btn-danger" onclick="deleteAllMembers()">Delete Team</div>
-                    <% } else if(currentUser.teamId==null){ %>
-                    <div class="btn btn-success" onclick="createNewTeam()">Create new team</div>
-                    <% } else { %>
-                    <div class="btn btn-danger" onclick="exitTeam()">Exit Team</div>
-                    <% } %>
-                  </td>
               <td>
-                <div id="addMember" class="btn btn-primary">&plus; Add member</div>
+                <% if(currentUser.teamId && (String(currentUser._id) == String(teamLeader))){ %>
+                  <div class="btn btn-danger" onclick="deleteAllMembers()">Delete Team</div>
+                <% } else if(currentUser.teamId==null){ %>
+                  <div class="btn btn-success" onclick="createNewTeam()">Create new team</div>
+                <% } else { %>
+                 <div class="btn btn-danger" onclick="exitTeam()">Exit Team</div>
+                <% } %>
+              </td>
+              <td>
+                <% if(currentUser.teamId){ %>
+                  <div id="addMember" class="btn btn-primary">&plus; Add member</div>
+                <% } else { %>
+                  <div id="addMember" class="btn btn-primary disabled">&plus; Add member</div>
+                <% } %>
               </td>
             </tr>
           </tbody>
-
-          <!-- <tr>
-            <td class="teammember">Member 2
-          </tr>
-          <tr>
-            <td class="teammember">Member 3
-          </tr>
-          <tr>
-            <td class="teammember">Member 4
-          </tr> -->
         </table>
       </div>
-
-
-
 
 
       <!-- Accept Check Box -->
@@ -222,37 +223,99 @@
         </div>
       </div> -->
 
+
+
+      <!-- Startup Details -->
+      <% if(!currentUser.teamId){ %>
+        <div class="row">
+          <div class="alert alert-danger col-sm-12" role="alert">
+              <strong>Create a team</strong> to register your startup!
+          </div>
+        </div>
+      <% } %>
+
+      <div class="row mt-4">
+        <div class="form-group  col-md-6 col-sm-12">
+          <label for="exampleFormControlTextarea1">Startup Name</label>
+          <% if(currentUser.teamId){ %>
+          <input type="text" name="startupName" id="form-startup-name" placeholder="Startup Name" class="form-control" value="<%if(summary){%><%= summary.startupName%><%}%>">
+          <%} else { %>
+          <input readonly placeholder="Startup Name" class="form-control">
+          <%}%> 
+        </div>
+      </div>
+ 
       <div class="row mt-4">
         <div class="form-group col">
-          <label for="exampleFormControlTextarea1">Executive Summary</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+          <label for="form-startup-executivesummary">Executive Summary</label>
+          <% if(currentUser.teamId){ %>
+            <textarea class="form-control" id="form-startup-executivesummary" rows="10" ><%if(summary){%><%= summary.executiveSummary%><%}%></textarea>
+          <%} else { %>
+            <textarea class="form-control" rows="10" readonly></textarea>
+          <%}%> 
+          
         </div>
       </div>
 
 
       <div class="form-group row">
         <div class="col-sm-1">
-          <button class="btn btn-success" type="button">Save</button>
+          <button class="btn btn-success" type="button" onclick="saveExecutiveSummary()">Save</button>
         </div>
         <div class="col-sm-1">
           <button class="btn btn-danger disabled" type="button">Submit</button>
         </div>
-
       </div>
     </form>
 
 
   </div>
+
+  <div class="seperation"></div>
+  <% include partials/footer %>
   <script>
-    $('input[type=radio][name=method]').change(function () {
-      if (this.value == 'ideation') {
+    <% if(summary){ %>
+      $("#form-startup-type option[value=<%=summary.startupType%>]").attr('selected', 'selected');
+      startUpTypeChange(document.getElementById("form-startup-type"));
+    <%}%>
+
+    function startUpTypeChange(sel){
+      var startUpTypeLabel = document.getElementById("startupType");
+      console.log(sel.value);
+      if(/ideation/i.exec(sel.value)){
+        startUpTypeLabel.innerText = "Ideation: ";
         $("#ideationEli").removeClass("d-none");
         $("#operationsEli").addClass("d-none");
-      } else if (this.value == 'operations') {
+      }
+      else{
+        startUpTypeLabel.innerText = "Operational: ";
         $("#operationsEli").removeClass("d-none");
         $("#ideationEli").addClass("d-none");
       }
-    });
+    }
+
+    function saveExecutiveSummary() {
+
+      $.ajax({
+        url:"/executiveSummary",
+        type:"PUT",
+        data: {
+          <% if(currentUser.teamId){ %>
+            teamId: "<%= currentUser.teamId %>",
+          <% } else { %>
+            teamId: null,
+          <% } %>
+          
+          startupName: document.getElementById("form-startup-name").value,
+          executiveSummary: document.getElementById("form-startup-executivesummary").value,
+          startupType: document.getElementById("form-startup-type").value
+        },
+        success: function(data){
+          console.log(data);
+        }
+      })
+    }
+    
   </script>
   <script>
     if (document.getElementsByClassName(".teamMember").length >= 4) {
@@ -271,9 +334,7 @@
     });
 
 
-    function saveExecutiveSummary() {
-
-    }
+    
 
     function addUser() {
       var username = document.getElementById("teamUsername").value;
@@ -359,6 +420,7 @@
       });
     }
   </script>
+
 
 </body>
 
