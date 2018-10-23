@@ -22,7 +22,10 @@ Dropdown Events on menu bar
 .events {
 
   scroll-snap-align: start;
-  min-height: 120vh;
+  // min-height: 120vh;
+  padding-bottom: 10vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
