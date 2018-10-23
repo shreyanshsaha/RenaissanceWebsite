@@ -29,7 +29,9 @@
 				<input type="text" id="fname" dir="auto" name="firstName" required>
 				<span class="bar"></span>
 				<label>First Name</label>
-				<div id = "error-fname"></div>
+				<div class = "error-messages" style="display:none;"></div>
+				<script>$(".error-messages").text("Some error").fadeIn();
+				$(".error-messages").empty().fadeOut();</script>
 			</div>
 
 			<div class="minput">
