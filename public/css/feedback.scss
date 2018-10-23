@@ -7,7 +7,7 @@
 	background-image: url("/images/blue-feedback.jpg");
 	
 	
-	height: 70vh;
+	// height: 70vh;
 	.heading-feedback {
 		text-align: center;
 		font-family: 'Karla','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -22,8 +22,10 @@
 		//   text-shadow: 1px 1px 0 rgb(126, 126, 126);
 	}
 	.container{
+		@media screen and (min-width:768px){
+			width:50vw;			
+		}
 		
-		width:50vw;
 		form {
 			display:block;
 ;
