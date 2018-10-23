@@ -131,9 +131,10 @@ app.post("/team/new", isLoggedIn, async function(req, res){
 });
 
 app.put("/team/exit", isLoggedIn, function(req, res){
-	Team.findOneAndUpdate({_id:req.user.teamId}, async function(err, team){
+	console.log(req.user.username, " exited team!");
+	Team.findOne({_id:req.user.teamId}, async function(err, team){
 		if(err)
-			return res.send("Error"+toString(err))
+			return res.send("Error: "+toString(err));
 		
 		if(!team)
 			return res.send("Error: Cannot exit a team when not in a team!");
@@ -145,7 +146,7 @@ app.put("/team/exit", isLoggedIn, function(req, res){
 		// Clear the teamID for the member
 		await User.findOneAndUpdate({_id: req.user._id}, {$set: {teamId: null}});
 		await Team.findByIdAndUpdate({_id: team._id}, {$pull: {teamMembers: req.user._id}});
-		// ! Didnt Test this function yet
+		res.send("Success");
 	});
 });
 

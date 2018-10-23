@@ -317,29 +317,26 @@
           }
         }
       });
+    }
 
-      function exitTeam(){
+    function exitTeam(){
+      console.log("Called function!");
         $.ajax({
-          type:"POST",
-          success: function(){
+          type:"PUT",
+          url:"/team/exit",
+          success: function(data){
+            console.log("Success", data);
             if (/ERROR/i.exec(data)) {
             alert(data);
             } else {
               window.location.reload();
             }
+          },
+          fail: function(data){
+            alert(data);
           }
         })
       }
-      // $.post("/deleteAllMembers", function (data) {
-      //   if (/ERROR/i.exec(data)) {
-      //     alert(data);
-      //   } else {
-      //     alert("All User deleted!");
-      //     window.location.reload();
-      //   }
-      //   window.location.reload();
-      // });
-    }
 
     function createNewTeam() {
       $.post("/team/new", function (data) {
