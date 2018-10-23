@@ -10,19 +10,20 @@ body {
     margin: 0 auto;
     min-height: 100%;
     max-height: 100vh;
-    background-image: url("/images/Registerpagebackground2].png");
+    /* background-image: url("/images/Registerpagebackground2].png"); */
+    background-color: #ccc;
     background-size: cover;
     background-repeat: repeat-y;
 }
 
 form{
-    background: rgba(255, 255, 255, 0.4)
+    /* background: rgba(255, 255, 255, 0.4) */
 }
 h1, .details, form>*{
     font-family: 'Yanone Kaffeesatz', Consolas;
 }
 h1 {
-    background-color: rgba(220, 227, 235, 0.6);
+    /* background-color: rgba(220, 227, 235, 0.6); */
     text-align: center;
     margin: 40px auto;
     padding: 10px;
