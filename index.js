@@ -9,7 +9,8 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local'),
-	Team = require("./models/teamModel");
+	Team = require("./models/teamModel"),
+	methodOverride = require('method-override');
 
 var rootRoute = require("./root"),
 		userRoute = require("./user"),
@@ -20,15 +21,15 @@ var rootRoute = require("./root"),
 // Setting up express and database
 // ===============================
 var app = express();
-// mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
-mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
+// mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
 
-
+app.use(methodOverride("_method"));
 
 // ======================
 // PASSPORT CONFIGURATION
@@ -129,6 +130,26 @@ app.post("/team/new", isLoggedIn, async function(req, res){
 	});
 });
 
+app.put("/team/exit", isLoggedIn, function(req, res){
+	console.log(req.user.username, " exited team!");
+	Team.findOne({_id:req.user.teamId}, async function(err, team){
+		if(err)
+			return res.send("Error: "+toString(err));
+		
+		if(!team)
+			return res.send("Error: Cannot exit a team when not in a team!");
+
+		if(req.user._id.equals(team.teamLeader))
+			return res.send("Error: Team leader cannot exit team!");
+
+		// Pull member from the team
+		// Clear the teamID for the member
+		await User.findOneAndUpdate({_id: req.user._id}, {$set: {teamId: null}});
+		await Team.findByIdAndUpdate({_id: team._id}, {$pull: {teamMembers: req.user._id}});
+		res.send("Success");
+	});
+});
+
 // Add new user to team
 app.post("/team/add/:username", isLoggedIn, function(req, res){
 	// Logic:
@@ -148,21 +169,21 @@ app.post("/team/add/:username", isLoggedIn, function(req, res){
 			return res.send("Error: User already in a team!");
 		// Add user to team list
 		await Team.updateOne({_id: req.user.teamId}, {$addToSet: {teamMembers: teamUser._id}});
-		teamUser.teamId = req.user.teamId;
-		teamUser.save();
+		await User.findOneAndUpdate({_id: teamUser._id}, {$set: {teamId: req.user.teamId}});
 		return res.send("User Added!");
 	});
 });
 
 // Delete complete team, only team leader can delete the team
-app.post("/team/delete/:id", async function(req, res){
+app.delete("/team/:id", async function(req, res){
 	// logic:
 	// Remove teamId from all teamMembers
 
 	var team = await Team.findOne({_id: req.params.id});
 	console.log(team.teamLeader);
-	// Check is leader is deleting it
-	if(toString(team.teamLeader) == toString(req.user._id)){
+	// Check is leader is deleting it 
+	//! Not working
+	if(team.teamLeader.equals(req.user._id)){
 		// Delete teamID from all users
 		await team.teamMembers.forEach(function(member){
 			console.log("Member", member);
@@ -184,62 +205,86 @@ app.post("/team/delete/:id", async function(req, res){
 	}
 });
 
-app.post("/addTeamMember", function(req, res){
-	var teamUsername = req.body.teamUsername;
-	console.log("Username", teamUsername);
-	if(teamUsername === req.user.username)
-		res.send("Error: Cannot add self");
-	else if(!teamUsername || teamUsername.length<=0)
-		res.send("Error: Username cannot be empty");
-	else
-		User.findOne({"username": teamUsername}, async function(err, user){
-			console.log(err);
-			if(err)
-				res.send(err);
-			else if(user.teamMembers.length>0)
-				res.send("Error: User already in a team!");
-			else if(req.user.teamMembers.length>=4)
-				res.send("Error: User limit reached!");
-			else
-				if(!user)
-					res.send("Error: User doesnt Exist!");
-				else{
-					// Add users to each others teams
-					await User.findOneAndUpdate({"username": req.user.username}, {$addToSet: {"teamMembers": user._id}});
-					await User.findOneAndUpdate({"_id": user._id}, {$addToSet: {"teamMembers": req.user._id}});
-					res.send(user.username);
-				}
-		});
-});
 
-app.post("/deleteAllMembers", isLoggedIn, async function(req, res){
-	// Remove user from everones team
-	await req.user.teamMembers.forEach(function(teamId){
-		User.findOneAndUpdate({_id: teamId}, {$pull: {teamMembers: req.user._id}}, function(err){
-			console.log(err);
-		});
-	});
 
-	// Clear the users team
-	User.findOneAndUpdate({_id: req.user._id}, {$set: {teamMembers: []}}, function(err, newUser){
-		if(err)
-			res.send(err);
-		else
-			res.send(newUser);
-	});
-});
 
-app.post("/deleteMember", async function(req, res){
+app.post("/team/delete/user", function(req, res){
 	// Delete members from each others table
-	var user1 = await User.findOneAndUpdate({_id: req.body.teamMember}, {$pull: {teamMembers: req.user._id}});
-	console.log(user1);
-	await User.findOneAndUpdate({_id: req.user._id}, {$pull: {teamMembers: req.body.teamMember}});
-	res.send("Success");
+	if(!req.user.teamId)
+		return res.send("Error: User not in a team!");
+	Team.findOne({"_id": req.user.teamId}, async function(err, team){
+		console.log("team: ", team);
+		// Check if user is team leader
+		if(err)
+			return res.send("Error: " + toString(err));
+
+		// Doesnt work in same browser
+		if(req.user._id.equals(team.teamLeader)){
+			// Delete the teamId from the user
+			console.log(req.user.username, req.user._id, team.teamLeader);
+			console.log(mongoose.Schema.Types.ObjectId(req.user._id) === mongoose.Schema.Types.ObjectId(team.teamLeader));
+			res.send("OK");
+
+			// await User.findOneAndUpdate({_id: req.body.teamMember}, {$set: {teamId: null}});
+			// await Team.findOneAndUpdate({_id: team._id}, {$pull:{teamMembers: req.body.teamMember}});
+			// // Pull the member from the team
+
+			// return res.send("Success");
+		}
+		else{
+			return res.send("Error: Only team leader can delete members!");
+		}
+	});
 });
 
 
 
-app.listen(8081, function () {
+// app.post("/deleteAllMembers", isLoggedIn, async function(req, res){
+// 	// Remove user from everones team
+// 	await req.user.teamMembers.forEach(function(teamId){
+// 		User.findOneAndUpdate({_id: teamId}, {$pull: {teamMembers: req.user._id}}, function(err){
+// 			console.log(err);
+// 		});
+// 	});
+
+// 	// Clear the users team
+// 	User.findOneAndUpdate({_id: req.user._id}, {$set: {teamMembers: []}}, function(err, newUser){
+// 		if(err)
+// 			res.send(err);
+// 		else
+// 			res.send(newUser);
+// 	});
+// });
+
+// app.post("/addTeamMember", function(req, res){
+// 	var teamUsername = req.body.teamUsername;
+// 	console.log("Username", teamUsername);
+// 	if(teamUsername === req.user.username)
+// 		res.send("Error: Cannot add self");
+// 	else if(!teamUsername || teamUsername.length<=0)
+// 		res.send("Error: Username cannot be empty");
+// 	else
+// 		User.findOne({"username": teamUsername}, async function(err, user){
+// 			console.log(err);
+// 			if(err)
+// 				res.send(err);
+// 			else if(user.teamMembers.length>0)
+// 				res.send("Error: User already in a team!");
+// 			else if(req.user.teamMembers.length>=4)
+// 				res.send("Error: User limit reached!");
+// 			else
+// 				if(!user)
+// 					res.send("Error: User doesnt Exist!");
+// 				else{
+// 					// Add users to each others teams
+// 					await User.findOneAndUpdate({"username": req.user.username}, {$addToSet: {"teamMembers": user._id}});
+// 					await User.findOneAndUpdate({"_id": user._id}, {$addToSet: {"teamMembers": req.user._id}});
+// 					res.send(user.username);
+// 				}
+// 		});
+// });
+
+app.listen(80, function () {
 	console.log("Server has started!");
 });
 // app.listen(process.env.PORT, process.env.IP);
