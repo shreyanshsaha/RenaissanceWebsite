@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:700');
 body {
     display:flex;
     flex-direction:column;
@@ -14,7 +15,7 @@ body {
        color:transparent;
        
        font-size:32px;
-       font-family: 'Montserrat', sans-serif;
+       font-family: 'Karla','Montserrat', sans-serif;
        
        
        &.-small {

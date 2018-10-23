@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Karla:700");
 body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -21,7 +22,7 @@ body .draw {
   margin: 2px 0;
   color: transparent;
   font-size: 32px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Karla','Montserrat', sans-serif;
 }
 
 body .draw.-small {

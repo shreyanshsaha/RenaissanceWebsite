@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Karla:700");
 .aboutClass {
   scroll-snap-align: start;
   background-attachment: fixed;
@@ -30,6 +31,7 @@
   font-size: 2rem;
   text-align: center;
   display: block;
+  font-family: 'Karla','Times New Roman', Times, serif;
   text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 10px 10px 15px rgba(0, 0, 0, 0.1), 10px 10px 20px rgba(0, 0, 0, 0.1);
 }
 

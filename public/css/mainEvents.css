@@ -5,6 +5,7 @@ Dropdown Events on menu bar
 
 
 */
+@import url("https://fonts.googleapis.com/css?family=Karla:700");
 .events {
   scroll-snap-align: start;
   min-height: 120vh;
@@ -17,6 +18,7 @@ Dropdown Events on menu bar
 
 .events h1 {
   color: white;
+  font-family: 'Karla','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .events > .container .sideBarParent {
