@@ -31,12 +31,17 @@ function checkEmail(label) {
     var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (email.value.length > 0) {
         email.classList.add('up');
-        if (reg.test(email.value)) up(label, "email");
+        if (reg.test(email.value)){ up(label, "email");
+        document.getElementById("error-email").innerHTML = "";
+        }
         else {
             down(label, 'email');
             email.classList.add('up');
+            document.getElementById("error-email").innerHTML = "Enter a correct email";
         }
-    } else down(label,"email");
+    } else {down(label,"email");
+        document.getElementById("error-email").innerHTML = "Enter an email";
+    }
     
 }
 
@@ -44,17 +49,29 @@ function checkTxt(id, label, n) {
     var str = document.getElementById(id);
     if (str.value.length >= n) {
         up(label, id);
+        document.getElementById("error-fname").innerHTML = "";
+        document.getElementById("error-lname").innerHTML = "";
+        document.getElementById("error-pseudo").innerHTML = "";
+        document.getElementById("error-pass").innerHTML = "";
         if (label == 7) checkPass(8);
     } else {
         if (label == 7) checkPass(8);
         down(label, id);
+        if(label == 0) document.getElementById("error-fname").innerHTML = "Name should be at least 2 letters";
+        if(label == 1) document.getElementById("error-lname").innerHTML = "Name should be at least 2 letters";
+        if(label == 5) document.getElementById("error-pseudo").innerHTML = "Username should be at least 4 letters";
+        if(label == 7) document.getElementById("error-pass").innerHTML = "Password should be at least 6 characters";
     }
 }
 
 function checkAge(id, label) {
     var Age = parseInt(age.value);
-    if (Age > 4 && Age < 141) up(label, id);
-    else down(label, id);
+    if (Age > 4 && Age < 141){ up(label, id);
+        document.getElementById("error-age").innerHTML= "";
+    }
+    else {down(label, id);
+        document.getElementById("error-age").innerHTML= "Age should be greater than 5";
+    }
 }
 
 function checkSexe(sex1, sex2) {
@@ -67,23 +84,29 @@ function checkSexe(sex1, sex2) {
 }
 
 function checkPays(id) {
-    // var pays = document.getElementById(id);
-    // if (pays.value != "") {
-    //     pays.style.borderColor = "#66CC99";
-    //     pays.style.color = "#66CC99";
+    var pays = document.getElementById(id);
+    if (pays.value.length == 10) {
+        pays.style.borderColor = "#66CC99";
+        pays.style.color = "#66CC99";
         tabBooleans[4] = true;
-    // } else {
-    //     pays.style.borderColor = "#CACACA";
-    //     pays.style.color = "#CACACA";
-    //     tabBooleans[4] = false;
-    // }
+        document.getElementById("error-phno").innerHTML = "";
+    } else {
+        pays.style.borderColor = "#B22222";
+        pays.style.color = "#B22222";
+        tabBooleans[4] = false;
+        document.getElementById("error-phno").innerHTML = "Phone number should be 10 digits";
+    }
 }
 
 function checkPass(label) {
-    if (password.value.length > 0 && password.value == passwordConf.value)
+    if (password.value.length > 0 && password.value == passwordConf.value){
         up(label, 'passwordConf');
-    else
+        document.getElementById("error-conf").innerHTML = "";
+    }
+    else{
         down(label, 'passwordConf');
+        document.getElementById("error-conf").innerHTML = "Passwords don't match";
+    }
 }
 
 function verifiedForm() {
@@ -136,7 +159,7 @@ email.addEventListener('input', function() {
 });
 
 password.addEventListener('input', function() {
-    checkTxt('password', 7, 4); 
+    checkTxt('password', 7, 6); 
     verifiedForm();
 });
 passwordConf.addEventListener('input', function() {
