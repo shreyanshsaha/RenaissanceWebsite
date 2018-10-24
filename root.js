@@ -3,6 +3,7 @@ var express = require("express");
 var router = express.Router();
 var Event = require("./models/eventModel");
 var passport = require('passport');
+var Summary = require("./models/presenteSummary");
 
 var Team = require("./models/teamModel");
 
@@ -101,14 +102,52 @@ router.get("/sponsors", function(req, res){
 
 // Executive Summary
 router.get("/executiveSummary", isLoggedIn, function(req, res){
-	Team.findOne({_id: req.user.teamId}).populate("teamMembers").exec(function(err, team){
+	Team.findOne({_id: req.user.teamId}).populate("teamMembers").exec(async function(err, team){
 		if(err)
 			return res.send(err);
-		if(team)
-			res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString()});
+
+		if(team){
+			var summary = await Summary.findOne({teamId: req.user.teamId});
+			console.log(summary);
+			if(summary)
+				res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString(), summary: summary});
+			else
+			res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString(), summary: null});
+		}
 		else
-		res.render("summary", {teamMembers: null, teamLeader: null});
+		res.render("summary", {teamMembers: null, teamLeader: null, summary: null});
 	});
+});
+
+router.put("/executiveSummary", function(req, res){
+	if( (req.body.teamId=='') || (req.body.startupName=='') || (req.body.startupType=='')){
+		return res.send("Error: Empty Fields not allowed!");
+	};
+	if(!req.body.teamId)
+		return res.send("Error: Need to be in a team!");
+	
+	var details = {
+		teamId: req.body.teamId,
+		startupName: req.body.startupName,
+		startupType: req.body.startupType,
+		isSubmitted: false,
+		executiveSummary: req.body.executiveSummary
+	};
+	Summary.findOne({teamId: req.body.teamId}, async function(err, summary){
+		if(err)
+			return res.send("Error: " +err);
+		// create a new sumary
+		if(summary == null)
+			await Summary.create(details)
+			.catch(err=>{
+				return res.send("Error: " +err);
+			});
+		// update existing summary
+		else
+			await Summary.findOneAndUpdate({teamId: req.user.teamId}, {$set: details});
+	});
+	res.send("OK");
+	// Check if the startUp type is in the given
 });
 
 // Feedback
