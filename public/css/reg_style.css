@@ -211,6 +211,7 @@ label.control--radio {
     height: 20px;
     width: 20px;
     background: #504e4e;
+    border: 1px solid #6C7A89;
 }
 
 .control--radio .control__indicator {
@@ -252,7 +253,7 @@ label.control--radio {
     top: 4px;
     width: 3px;
     height: 8px;
-    border: solid #fff;
+    border: solid #5c5c5c;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
