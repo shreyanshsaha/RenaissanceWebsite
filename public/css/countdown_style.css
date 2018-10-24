@@ -9,7 +9,7 @@
     
     overflow: hidden;
   } */
-  
+  @import url('https://fonts.googleapis.com/css?family=Karla');
   .landing-inner {
     width: 100%;
     height: 100%;
@@ -31,6 +31,7 @@
   
   .landing landing-inner-text {
     font-size: 50px;
+    font-family: 'Karla','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
   
   .landing landing-text {
