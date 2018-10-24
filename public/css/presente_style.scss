@@ -5,7 +5,7 @@ main {
   .card {
     border-radius: 16px;
     margin: 0 auto;
-    width: 1200px;
+    width: 1400px;
     max-width: 100%;
     min-height: 500px;
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
@@ -101,12 +101,13 @@ main {
   @media (min-width:800px) {
    .title {
       font-size: 4.236em;
-      font-weight: 300
+      font-weight: 300;
+      // padding: 0;
     }
   }
   @media (min-width:800px) {
     .description {
-      font-size: 1.3em
+      font-size: 1.3em;
     }
   }
 }

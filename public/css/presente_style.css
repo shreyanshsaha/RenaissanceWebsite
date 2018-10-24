@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400");
+main {
+  padding: 20px 64px 64px;
+}
+
+.card {
+  border-radius: 16px;
+  margin: 0 auto;
+  width: 1400px;
+  max-width: 100%;
+  min-height: 500px;
+  -webkit-box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  background-image: url("/images/pic.jpg");
+  background-size: cover;
+}
+
+.info {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-color: #fff;
+  -webkit-transform: translateY(100%) translateY(-88px) translateZ(0);
+          transform: translateY(100%) translateY(-88px) translateZ(0);
+  -webkit-transition: -webkit-transform 0.5s ease-out;
+  transition: -webkit-transform 0.5s ease-out;
+  transition: transform 0.5s ease-out;
+  transition: transform 0.5s ease-out, -webkit-transform 0.5s ease-out;
+}
+
+.info:before {
+  z-index: -1;
+  display: block;
+  position: absolute;
+  content: ' ';
+  width: 100%;
+  height: 90%;
+  overflow: hidden;
+  background-image: url("/images/pic.jpg");
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+  background-size: cover;
+  opacity: 0.25;
+  -webkit-transform: translateY(-100%) translateY(88px) translateZ(0);
+          transform: translateY(-100%) translateY(88px) translateZ(0);
+  -webkit-transition: -webkit-transform 0.5s ease-out;
+  transition: -webkit-transform 0.5s ease-out;
+  transition: transform 0.5s ease-out;
+  transition: transform 0.5s ease-out, -webkit-transform 0.5s ease-out;
+}
+
+.card:hover .info,
+.card:hover .info:before {
+  -webkit-transform: translateY(0) translateZ(0);
+          transform: translateY(0) translateZ(0);
+}
+
+.title {
+  margin: 0;
+  padding: 24x;
+  font-size: 40px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.date {
+  margin: 0;
+  padding: 24px;
+  font-size: 30px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.button {
+  width: 200px;
+  -ms-flex-item-align: auto;
+      -ms-grid-row-align: auto;
+      align-self: auto;
+  line-height: 1;
+}
+
+.description {
+  margin: 0;
+  padding: 0 24px 24px;
+  font-size: 1px;
+  line-height: 1.5;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+header {
+  background: #fafafa;
+}
+
+header {
+  padding: 20px;
+  min-height: 200px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+header > * {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header > :last-child {
+  margin-bottom: 0;
+}
+
+.title {
+  margin-bottom: 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+  color: #1c5b72;
+  font-size: 2.618em;
+}
+
+.date {
+  margin-bottom: 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+  color: #1c5b72;
+  font-size: 1.618em;
+}
+
+.description {
+  font-size: 0.618em;
+}
+
+.button {
+  -ms-flex-item-align: auto;
+      -ms-grid-row-align: auto;
+      align-self: auto;
+  line-height: 1;
+}
+
+@media (min-width: 800px) {
+  .title {
+    font-size: 4.236em;
+    font-weight: 300;
+  }
+}
+
+.description {
+  margin-bottom: 1.3em;
+}
+
+@media (min-width: 800px) {
+  .description {
+    font-size: 1.3em;
+  }
+}
+/*# sourceMappingURL=presente_style.css.map */
