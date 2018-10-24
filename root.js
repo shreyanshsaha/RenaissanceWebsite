@@ -105,6 +105,7 @@ router.get("/executiveSummary", isLoggedIn, function(req, res){
 	Team.findOne({_id: req.user.teamId}).populate("teamMembers").exec(async function(err, team){
 		if(err)
 			return res.send(err);
+
 		if(team){
 			var summary = await Summary.findOne({teamId: req.user.teamId});
 			console.log(summary);
