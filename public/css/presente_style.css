@@ -50,12 +50,19 @@ main .card:hover .info:before {
 
 main .title {
   margin: 0;
+<<<<<<< HEAD
   padding: 24px;
   margin-bottom: 0.5em;
   font-weight: inherit;
   line-height: 1.2;
   color: #1c5b72;
   font-size: 2.618em;
+=======
+  padding: 24x;
+  font-size: 40px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.87);
+>>>>>>> Fixed few bugs in countdown
 }
 
 main .date {
@@ -90,6 +97,57 @@ main * {
   transition: all .3s ease;
 }
 
+<<<<<<< HEAD
+=======
+header {
+  background: #fafafa;
+}
+
+header {
+  padding: 20px;
+  min-height: 200px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+header > * {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header > :last-child {
+  margin-bottom: 0;
+}
+
+.title {
+  margin-bottom: 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+  color: #1c5b72;
+  font-size: 2.618em;
+}
+
+.date {
+  margin-bottom: 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+  color: #1c5b72;
+  font-size: 1.618em;
+}
+
+.description {
+  font-size: 0.618em;
+}
+
+.button {
+  -ms-flex-item-align: auto;
+      -ms-grid-row-align: auto;
+      align-self: auto;
+  line-height: 1;
+}
+
+>>>>>>> Fixed few bugs in countdown
 @media (min-width: 800px) {
   main .title {
     font-size: 4.236em;

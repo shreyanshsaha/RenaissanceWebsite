@@ -59,15 +59,25 @@
       width: 70%;
     }
   
+<<<<<<< HEAD
     .landing .landing-inner-text {
+=======
+    .landing landing-inner-text {
+>>>>>>> Fixed few bugs in countdown
       font-size: 30px;
     }
   
     .countdown {
       font-size: 20px;
+<<<<<<< HEAD
       /* flex-direction: column;
       display: grid;
       padding: 0; */
+=======
+      flex-direction: column;
+      display: grid;
+      padding: 0;
+>>>>>>> Fixed few bugs in countdown
     }
     
     .countdown div {
@@ -79,11 +89,18 @@
       font-size: 15px;
     }  
     .countdown div:first-child {
+<<<<<<< HEAD
       /* display: inline-table; */
       /* width: 100%; */
       /* padding: 10px; */
     } 
    
+=======
+      display: block;
+      width: 100%;
+      /* padding: 10px; */
+    }
+>>>>>>> Fixed few bugs in countdown
     
   }
   
