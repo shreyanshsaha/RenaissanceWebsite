@@ -64,29 +64,36 @@
     font-size: 25px;
   }
   
-  /* @media (max-width: 650px) {
+  @media (max-width: 650px) {
     .landing img {
       width: 70%;
     }
   
     .landing landing-inner-text {
-      font-size: 40px;
+      font-size: 30px;
     }
   
     .countdown {
-      font-size: 30px;
+      font-size: 20px;
       flex-direction: column;
+      display: grid;
+      padding: 0;
     }
-  
+    
     .countdown div {
-      display: none;
+      /* padding: 5px; */
+      margin: 0px;
+
     }
-  
+    .countdown span{
+      font-size: 15px;
+    }  
     .countdown div:first-child {
       display: block;
-      width: 80%;
-      padding: 10px;
+      width: 100%;
+      /* padding: 10px; */
     }
+    
   }
   
   
@@ -94,10 +101,10 @@
     img {
       width: 20%;
     }
-  
+/*   
     landing-text {
       display: none;
-    }
+    } */
   }
   
   @media (max-height: 400px) {
@@ -105,7 +112,7 @@
       padding-bottom: 30px;
     }
     
-    landing-inner-text {
+    /* landing-inner-text {
       display: none;
-    }
-  } */
+    } */
+  }

@@ -5,7 +5,7 @@ main {
   .card {
     border-radius: 16px;
     margin: 0 auto;
-    width: 1200px;
+    width: 1400px;
     max-width: 100%;
     min-height: 500px;
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
@@ -52,7 +52,7 @@ main {
   
   .title {
     margin: 0;
-    padding: 24px;
+    padding: 24x;
     font-size: 40px;
     line-height: 1;
     color: rgba(0, 0, 0, 0.87);
@@ -93,7 +93,7 @@ main {
   }
   
   header {
-    padding: 40px;
+    padding: 20px;
     min-height: 200px;
     text-align: center;
     color: rgba(0, 0, 0, .87)
@@ -121,7 +121,7 @@ main {
     font-weight: inherit;
     line-height: 1.2;
     color: #1c5b72;
-    font-size: 1.618em
+    font-size: 1.618em;
   }
   .description{
     font-size: 0.618em ;
@@ -134,7 +134,8 @@ main {
   @media (min-width:800px) {
    .title {
       font-size: 4.236em;
-      font-weight: 300
+      font-weight: 300;
+      // padding: 0;
     }
   }
   
@@ -145,7 +146,7 @@ main {
   
   @media (min-width:800px) {
     .description {
-      font-size: 1.3em
+      font-size: 1.3em;
     }
   }
  
