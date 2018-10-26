@@ -19,12 +19,14 @@ main {
   .info {
     position: relative;
     width: 100%;
-    height: 500px;
+    // height: 550px;
+    margin-top:-30px;
     background-color: #fff;
     transform: translateY(100%)
       translateY(-88px)
       translateZ(0);
     transition: transform 0.5s ease-out;
+    padding-bottom: 50px;
   }
   
   .info:before {
@@ -64,10 +66,12 @@ main {
     line-height: 1;
     color: rgba(0, 0, 0, 0.87);
   }
-  .button{
-    width: 200px;
-    align-self: auto;
-    line-height: 1;
+  .btn{
+    // width: 200px;
+    // align-self: auto;
+    margin:auto;
+    left:2%;
+    // line-height: 1;
   }
   .description {
     margin: 0;
