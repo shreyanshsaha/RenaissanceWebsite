@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+@import url('https://fonts.googleapis.com/css?family=Karla');
 
 * {
     box-sizing: border-box;
@@ -11,7 +11,7 @@ body {
     min-height: 100%;
     max-height: 100vh;
     /* background-image: url("/images/Registerpagebackground2].png"); */
-    background-color: #ccc;
+    background-color: white;
     background-size: cover;
     background-repeat: repeat-y;
 }
@@ -20,7 +20,7 @@ form{
     /* background: rgba(255, 255, 255, 0.4) */
 }
 h1, .details, form>*{
-    font-family: 'Yanone Kaffeesatz', Consolas;
+    font-family: 'Karla', Consolas;
 }
 h1 {
     /* background-color: rgba(220, 227, 235, 0.6); */
@@ -78,14 +78,14 @@ form .minput {
     display: block;
     width: 100%;
     border: none;
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-family: 'Karla', sans-serif;
     letter-spacing: 1px;
     color: rgb(0, 0, 0);
-    background-color: rgba(220, 227, 235, 0.9);
+    background-color: white;
     -webkit-border-radius: 2px 0 0 2px;
     -moz-border-radius: 2px 0 0 2px;
     border-radius: 2px 0 0 2px;
-    /* border-bottom: 1px solid #dadada; */
+    border-bottom: 1px solid #dadada;
 }
 
 .minput input[type="number"] {

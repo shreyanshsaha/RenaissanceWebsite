@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Page Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- <script src="bootstrap.js"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="bootstrap.css" /> -->
+	<script src="admin_script.js"></script>
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<script src="/lib/jquery.min.js"></script>
+	<script src="/js/bootstrap.js"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/home.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/profile_style_new.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/summary_style.css" />
+</head>
+
+<body>
+	<!-- Navbar -->
+	<% include partials/navbar %>
+	<div class="emp-profile">
+		<form method="post">
+
+			<div class="contianer">
+
+				<div class="row">
+
+
+					<!-- Left Column -->
+					<div class="col-md-4">
+						<!-- Profile Photo -->
+						<div class="row">
+							<div class="profile-img mx-auto">
+								<img src="/images/p1.jpg"  />
+								<div class="file btn btn-lg ">
+									
+									<input type="file" name="file" />
+								</div>
+							</div>
+						</div>
+						<!-- User Details -->
+						<div class="row">
+							<div class="profile-work col-sm-12">
+								<div class = "text-center">
+
+								<p>Work</p>
+								<a href="">Website Link</a><br />
+								<a href="">Website Link</a><br />
+								<a href="">Website Link</a><br />
+								<p> Skills</p>
+								<a href="">Website Link</a><br />
+								<a href="">Website Link</a><br />
+								<a href="">Website Link</a><br />
+							</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Right Column -->
+
+					<div class="col-md-8">
+						<!-- User Details -->
+						<div class="row">
+							<div class="col-md-6">
+								<div class="profile-head">
+									<h5>
+										<%= currentUser.firstName.charAt(0).toUpperCase() + currentUser.firstName.slice(1) %>
+										<%= currentUser.lastName.charAt(0).toUpperCase() + currentUser.lastName.slice(1) %>
+									</h5>
+									<h6>
+										Dummy
+									</h6>
+									<p class="profile-rating">Long text <span>maybe bio</span></p>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+							</div>
+						</div>
+
+						<!-- Tabs -->
+						<div class="row">
+							<div class="col-md-12">
+
+									<ul class="nav nav-tabs" id="myTab" role="tablist">
+											<li class="nav-item">
+												<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+											</li>
+											
+										</ul>
+										<!-- Tab Content -->
+										<div class="tab-content" id="myTabContent">
+											<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+													<table class="table">
+															<thead>
+																<tr>
+																	<td>Name</td>
+																	<td>Date</td>
+																	<td>Status</td>
+																</tr>
+															</thead>
+															<tr>
+																<td>
+																	Lean Six Sigma
+																</td>
+																<td>
+																	7th February 2019
+																</td>
+																<td>
+																	Not Registered
+																</td>
+															</tr>
+															
+														</table>
+											</div>
+											<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+													<% include summary%>
+											</div>
+											
+										</div>
+
+								<!-- Tab Links -->
+								<!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+										 aria-selected="true">Profile</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+										 aria-selected="false">Presente Vous</a>
+									</li>
+								</ul>
+								
+								<div>
+									<div class="tab-content profile-tab" id="myTabContent">
+										<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+											
+										</div>
+										<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+											
+										</div>
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+
+
+			</div>
+
+
+		</form>
+	</div>
+</body>
+
+</html>
