@@ -19,7 +19,7 @@ main {
 .info {
   position: relative;
   width: 100%;
-  height: 500px;
+  margin-top: -30px;
   background-color: #fff;
   -webkit-transform: translateY(100%) translateY(-88px) translateZ(0);
           transform: translateY(100%) translateY(-88px) translateZ(0);
@@ -27,6 +27,7 @@ main {
   transition: -webkit-transform 0.5s ease-out;
   transition: transform 0.5s ease-out;
   transition: transform 0.5s ease-out, -webkit-transform 0.5s ease-out;
+  padding-bottom: 50px;
 }
 
 .info:before {
@@ -72,12 +73,9 @@ main {
   color: rgba(0, 0, 0, 0.87);
 }
 
-.button {
-  width: 200px;
-  -ms-flex-item-align: auto;
-      -ms-grid-row-align: auto;
-      align-self: auto;
-  line-height: 1;
+.btn {
+  margin: auto;
+  left: 2%;
 }
 
 .description {
