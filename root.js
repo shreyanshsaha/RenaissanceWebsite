@@ -76,7 +76,7 @@ function isLoggedIn(req, res, next) {
 		return next();
 	}
 	console.log("Not logged in!");
-	res.redirect("/login");
+	res.redirect("/login?ref="+req.originalUrl);
 }
 
 
@@ -180,13 +180,20 @@ router.post("/feedback", function(req, res){
 
 // Login and Logout
 router.get("/login", function (req, res) {
-	res.render("login");
+	console.log(req.query.ref);
+	res.render("login", {reference:req.query.ref});
 });
 
-router.post("/login", passport.authenticate("local", {
-	successRedirect: "/",
-	failureRedirect: "/login"
-}), function (req, res) {});
+router.post("/login", passport.authenticate("local", 
+	{
+		failureRedirect: "/login?ref="
+	}), function (req, res) {
+		console.log(req.user.username, " logged in!");
+		if(req.body.reference)
+			res.redirect(req.body.reference);
+		else
+			res.redirect("/");
+});
 
 router.get("/logout", isLoggedIn, function (req, res) {
 	console.log("Logout: ", req.user.username);

@@ -9,7 +9,7 @@ function isLoggedIn(req, res, next) {
 		return next();
 	}
 	console.log(req.user, " not logged in!");
-	res.redirect("/login");
+	res.redirect("/login/?ref="+req.originalUrl);
 }
 
 // User route
