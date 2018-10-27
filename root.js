@@ -5,8 +5,6 @@ var Event = require("./models/eventModel");
 var passport = require('passport');
 var Summary = require("./models/presenteSummary");
 
-var Team = require("./models/teamModel");
-
 //! Debug only
 var sponsorDetails=[
 	{
@@ -76,7 +74,7 @@ function isLoggedIn(req, res, next) {
 		return next();
 	}
 	console.log("Not logged in!");
-	res.redirect("/login");
+	res.redirect("/login?ref="+req.originalUrl);
 }
 
 
@@ -100,55 +98,26 @@ router.get("/sponsors", function(req, res){
 	res.render("sponsors", {sponsors: sponsorDetails});
 });
 
-// Executive Summary
-router.get("/executiveSummary", isLoggedIn, function(req, res){
-	Team.findOne({_id: req.user.teamId}).populate("teamMembers").exec(async function(err, team){
-		if(err)
-			return res.send(err);
+// ! Executive Summary - TO BE DELETED
+// router.get("/executiveSummary", isLoggedIn, function(req, res){
+// 	Team.findOne({_id: req.user.teamId}).populate("teamMembers").exec(async function(err, team){
+// 		if(err)
+// 			return res.send(err);
 
-		if(team){
-			var summary = await Summary.findOne({teamId: req.user.teamId});
-			console.log(summary);
-			if(summary)
-				res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString(), summary: summary});
-			else
-			res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString(), summary: null});
-		}
-		else
-		res.render("summary", {teamMembers: null, teamLeader: null, summary: null});
-	});
-});
+// 		if(team){
+// 			var summary = await Summary.findOne({teamId: req.user.teamId});
+// 			console.log(summary);
+// 			if(summary)
+// 				res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString(), summary: summary});
+// 			else
+// 			res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString(), summary: null});
+// 		}
+// 		else
+// 		res.render("summary", {teamMembers: null, teamLeader: null, summary: null});
+// 	});
+// });
 
-router.put("/executiveSummary", function(req, res){
-	if( (req.body.teamId=='') || (req.body.startupName=='') || (req.body.startupType=='')){
-		return res.send("Error: Empty Fields not allowed!");
-	};
-	if(!req.body.teamId)
-		return res.send("Error: Need to be in a team!");
-	
-	var details = {
-		teamId: req.body.teamId,
-		startupName: req.body.startupName,
-		startupType: req.body.startupType,
-		isSubmitted: false,
-		executiveSummary: req.body.executiveSummary
-	};
-	Summary.findOne({teamId: req.body.teamId}, async function(err, summary){
-		if(err)
-			return res.send("Error: " +err);
-		// create a new sumary
-		if(summary == null)
-			await Summary.create(details)
-			.catch(err=>{
-				return res.send("Error: " +err);
-			});
-		// update existing summary
-		else
-			await Summary.findOneAndUpdate({teamId: req.user.teamId}, {$set: details});
-	});
-	res.send("OK");
-	// Check if the startUp type is in the given
-});
+
 
 // Feedback
 router.post("/feedback", function(req, res){
@@ -163,7 +132,8 @@ router.post("/feedback", function(req, res){
 	var newfeedback = {
 		name: name,
 		email: email,
-		feedbackText: message
+		feedbackText: message,
+		subject:subject
 	};
 
 	Feedback.create(newfeedback, function(err, feedback){
@@ -180,13 +150,20 @@ router.post("/feedback", function(req, res){
 
 // Login and Logout
 router.get("/login", function (req, res) {
-	res.render("login");
+	console.log(req.query.ref);
+	res.render("login", {reference:req.query.ref});
 });
 
-router.post("/login", passport.authenticate("local", {
-	successRedirect: "/",
-	failureRedirect: "/login"
-}), function (req, res) {});
+router.post("/login", passport.authenticate("local", 
+	{
+		failureRedirect: "/login?ref="
+	}), function (req, res) {
+		console.log(req.user.username, " logged in!");
+		if(req.body.reference)
+			res.redirect(req.body.reference);
+		else
+			res.redirect("/user");
+});
 
 router.get("/logout", isLoggedIn, function (req, res) {
 	console.log("Logout: ", req.user.username);

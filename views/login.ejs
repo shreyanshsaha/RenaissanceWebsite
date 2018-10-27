@@ -6,16 +6,20 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Renessiance Login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/login_style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/scrollbar.css" />
 
 <body>
 <% include partials/navbar %>
-<div class="form-structor mt-4">
+<div class="form-structor">
 <!-- TODO: Change the classes to login -->
 	<form class="signup" method="POST" action="/login">
-		<h2 class="form-title" id="signup"><span>or</span>Log in</h2>
+		<% if(reference){ %>
+			<input type="hidden" name="reference" value="<%=reference%>">
+		<% } %>
+ 		<h2 class="form-title" id="signup"><span>or</span>Log in</h2>
 		<div class="form-holder">
 			<input type="text" class="input" placeholder="Username" name="username"/>
 			<input type="password" class="input" placeholder="Password" name="password"/>

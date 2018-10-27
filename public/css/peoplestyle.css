@@ -1,4 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Karla:700");
+.contact {
+  color: whitesmoke;
+  font-family: 'Karla','Courier New', Courier, monospace;
+  text-align: left;
+  font-style: bold;
+}
+
 .picture {
   font-family: 'Karla','Open Sans', Arial, sans-serif;
   position: relative;

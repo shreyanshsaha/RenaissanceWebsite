@@ -1,20 +1,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Karla');
 
-html,body {
-	// position: relative;
-	// min-height: 100vh;
-	// background-color: #E1E8EE;
-	// display: flex;
-	// align-items: center;
-	// justify-content: center;
-	// font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
-}
 
 .form-structor {
-
 	background-color: #E1E8EE;
 	align-items: center;
 	justify-content: center;
@@ -30,6 +18,8 @@ html,body {
 	overflow: hidden;
 	left:50%;
 	transform: translateX(-50%);
+	
+	top: 100px;
 	&::after {
 		content: '';
 		opacity: .8;

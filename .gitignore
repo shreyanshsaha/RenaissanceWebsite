@@ -1,7 +1,3 @@
-.vscode
-node_modules
-views/temp
-photoshop files
-website content renaissance
-public/css/*.css.map
-public/images/RegisterPage.psd
+/.vscode
+/node_modules
+public/views/temp

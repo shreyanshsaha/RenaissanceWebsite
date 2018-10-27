@@ -1,3 +1,4 @@
+
 var fname = document.getElementById('fname'),
     lname = document.getElementById('lname'),
     age = document.getElementById('age'),
@@ -9,14 +10,26 @@ var fname = document.getElementById('fname'),
     passwordConf = document.getElementById('passwordConf'),
     send = document.getElementById('send'),
     tabBooleans = [false, false, false, false, false, false, false, false, false];
-
+function clearAll(){
+    fname.value ="";
+    lname.value ="";
+    age.value ="";
+    sexe.value ="";
+    pays.value ="";
+    pseudo.value ="";
+    email.value="";
+    password.value="";
+    passwordConf.value="";
+    send.value="";
+}
 function up(label, str) {
     var s = document.getElementById(str);
     s.style.borderColor = "#66CC99";
     s.classList.add('up');
-    document.getElementsByTagName('label')[label].style.color = "#66CC99";
+    // document.getElementsByTagName('label')[label].style.color = "#66CC99";
+    document.getElementById(str).style.color ="#66CC99";
     tabBooleans[label] = true;
-    
+    console.log(document.getElementsByTagName('label'));
 }
 
 function down(label, str) {
@@ -25,6 +38,7 @@ function down(label, str) {
     s.classList.remove('up');
     tabBooleans[label] = false;
     document.getElementsByTagName('label')[label].style.color = "#CACACA";
+    console.log(label);
 }
 
 function checkEmail(label) {
@@ -45,14 +59,15 @@ function checkEmail(label) {
     
 }
 
-function checkTxt(id, label, n) {
+function checkTxt(id, label, n, errorID) {
     var str = document.getElementById(id);
     if (str.value.length >= n) {
         up(label, id);
-        document.getElementById("error-fname").innerHTML = "";
-        document.getElementById("error-lname").innerHTML = "";
-        document.getElementById("error-pseudo").innerHTML = "";
-        document.getElementById("error-pass").innerHTML = "";
+        document.getElementById(errorID).innerHTML = "";
+        // document.getElementById("error-fname").innerHTML = "";
+        // document.getElementById("error-lname").innerHTML = "";
+        // document.getElementById("error-pseudo").innerHTML = "";
+        // document.getElementById("error-pass").innerHTML = "";
         if (label == 7) checkPass(8);
     } else {
         if (label == 7) checkPass(8);
@@ -125,12 +140,12 @@ function verifiedForm() {
 }
 /* Loading EventListener */
 fname.addEventListener('input', function() {
-    checkTxt('fname', 0, 2); //min 2 letter hone cahiye
+    checkTxt('fname', 0, 2,"error-fname"); //min 2 letter hone cahiye
     verifiedForm();
 });
 
 lname.addEventListener('input', function() {
-    checkTxt('lname', 1, 2); //min 2 letter hone cahiye
+    checkTxt('lname', 1, 2,'error-lname'); //min 2 letter hone cahiye
     verifiedForm();
 });
 
@@ -150,7 +165,7 @@ pays.addEventListener('change', function() {
 });
 
 pseudo.addEventListener('input', function() {
-    checkTxt('pseudo', 5, 4); 
+    checkTxt('pseudo', 5, 4,'error-pseudo'); 
     verifiedForm();
 });
 email.addEventListener('input', function() {
@@ -159,7 +174,7 @@ email.addEventListener('input', function() {
 });
 
 password.addEventListener('input', function() {
-    checkTxt('password', 7, 6); 
+    checkTxt('password', 7, 6,"error-pass"); 
     verifiedForm();
 });
 passwordConf.addEventListener('input', function() {

@@ -1,5 +1,3 @@
-<!-- TODO: remove style tags! -->
-<!-- TODO: Add age and gender to database -->
 <!DOCTYPE html>
 <html>
 <title>Registration</title>
@@ -12,8 +10,8 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/scrollbar.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/reg_style.css" />
-	<script src = "/lib/jquery.min.js"></script>
-	<script src = "/js/bootstrap.js"></script>
+	<script src="/lib/jquery.min.js"></script>
+	<script src="/js/bootstrap.js"></script>
 
 </head>
 
@@ -29,14 +27,14 @@
 				<input type="text" id="fname" dir="auto" name="firstName" required>
 				<span class="bar"></span>
 				<label>First Name</label>
-				<div id = "error-fname"></div>
+				<div id="error-fname"></div>
 			</div>
 
 			<div class="minput">
 				<input type="text" id="lname" dir="auto" name="lastName" required>
 				<span class="bar"></span>
 				<label>Last Name</label>
-				<div id = "error-lname"></div>
+				<div id="error-lname"></div>
 			</div>
 
 			<!-- We are not storing age into database yet -->
@@ -44,7 +42,7 @@
 				<input type="number" id="age" dir="auto" required>
 				<span class="bar"></span>
 				<label>Age</label>
-				<div id = "error-age"></div>
+				<div id="error-age"></div>
 			</div>
 			<!-- We are not storing gender into database yet -->
 			<div class="control-group">
@@ -62,7 +60,7 @@
 				<input type="text" id="phno" dir="auto" name="phone" required>
 				<span class="bar"></span>
 				<label>Phone number</label>
-				<div id = "error-phno"></div>
+				<div id="error-phno"></div>
 			</div>
 			<!-- <div class="minput">
 				<div class="select">
@@ -83,28 +81,28 @@
 
 				<span class="bar"></span>
 				<label>Username</label>
-				<div id = "error-pseudo"></div>
+				<div id="error-pseudo"></div>
 			</div>
 
 			<div class="minput">
 				<input type="email" id="email" dir="ltr" class="" name="email" required>
 				<span class="bar"></span>
 				<label>Email</label>
-				<div id = "error-email"></div>
+				<div id="error-email"></div>
 			</div>
 
 			<div class="minput">
 				<input type="password" id="password" dir="auto" required>
 				<span class="bar"></span>
 				<label>Password</label>
-				<div id = "error-pass"></div>
+				<div id="error-pass"></div>
 			</div>
 
 			<div class="minput">
 				<input type="password" id="passwordConf" name="password" required>
 				<span class="bar"></span>
 				<label>Retype Password</label>
-				<div id = "error-conf"></div>
+				<div id="error-conf"></div>
 			</div>
 			<div class="control-group">
 
@@ -120,7 +118,16 @@
 				<input type="submit" id="send" value="Submit" disabled="true" style="padding:5px;padding-top:7px;">
 			</div>
 		</div>
+		<% if(messages) {%>
+		<div class="container">
+			<div class="alert alert-danger" role="alert">
+				<strong>Error: </strong>
+				<%=messages%>
+			</div>
+		</div>
+		<%}%>
 	</form>
+
 	<script src="/js/reg_script.js"></script>
 </body>
 
