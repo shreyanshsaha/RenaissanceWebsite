@@ -63,5 +63,35 @@ router.post("/user/register", function (req, res) {
 	});
 });
 
+router.put("/user/summary", function(req, res){
+	if( (req.body.teamId=='') || (req.body.startupName=='') || (req.body.startupType=='')){
+		return res.send("Error: Empty Fields not allowed!");
+	};
+	if(!req.body.teamId)
+		return res.send("Error: Need to be in a team!");
+	
+	var details = {
+		teamId: req.body.teamId,
+		startupName: req.body.startupName,
+		startupType: req.body.startupType,
+		isSubmitted: false,
+		executiveSummary: req.body.executiveSummary
+	};
+	Summary.findOne({teamId: req.body.teamId}, async function(err, summary){
+		if(err)
+			return res.send("Error: " +err);
+		// create a new sumary
+		if(summary == null)
+			await Summary.create(details)
+			.catch(err=>{
+				return res.send("Error: " +err);
+			});
+		// update existing summary
+		else
+			await Summary.findOneAndUpdate({teamId: req.user.teamId}, {$set: details});
+	});
+	res.send("OK");
+	// Check if the startUp type is in the given
+});
 
 module.exports = router;
