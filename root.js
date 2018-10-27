@@ -5,8 +5,6 @@ var Event = require("./models/eventModel");
 var passport = require('passport');
 var Summary = require("./models/presenteSummary");
 
-var Team = require("./models/teamModel");
-
 //! Debug only
 var sponsorDetails=[
 	{
@@ -134,7 +132,8 @@ router.post("/feedback", function(req, res){
 	var newfeedback = {
 		name: name,
 		email: email,
-		feedbackText: message
+		feedbackText: message,
+		subject:subject
 	};
 
 	Feedback.create(newfeedback, function(err, feedback){
