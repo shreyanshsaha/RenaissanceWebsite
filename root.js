@@ -162,7 +162,7 @@ router.post("/login", passport.authenticate("local",
 		if(req.body.reference)
 			res.redirect(req.body.reference);
 		else
-			res.redirect("/");
+			res.redirect("/user");
 });
 
 router.get("/logout", isLoggedIn, function (req, res) {
