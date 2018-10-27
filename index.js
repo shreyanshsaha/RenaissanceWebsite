@@ -285,7 +285,7 @@ app.post("/team/delete/user", function(req, res){
 // });
 
 
-app.listen(80, function () {
+app.listen(8081, function () {
 	console.log("Server has started!");
 });
 // app.listen(process.env.PORT, process.env.IP);
