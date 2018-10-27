@@ -12,7 +12,11 @@
 body,
 html {
   padding-top: 30px;
+<<<<<<< HEAD
   max-width: 100%;
+=======
+  height: 100vh;
+>>>>>>> eb4a79579c5444d95b6c33cb2df3ca1ccadaf287
   overflow-x: hidden;
   font-family: 'Karla','Courier New', Courier, monospace;
 }

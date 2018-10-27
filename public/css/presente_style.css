@@ -50,25 +50,19 @@ main .card:hover .info:before {
 
 main .title {
   margin: 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> fixed registeration and others which i did not commit
+
   padding: 24px;
   margin-bottom: 0.5em;
   font-weight: inherit;
   line-height: 1.2;
   color: #1c5b72;
   font-size: 2.618em;
-<<<<<<< HEAD
-=======
+
   padding: 24x;
   font-size: 40px;
   line-height: 1;
   color: rgba(0, 0, 0, 0.87);
->>>>>>> Fixed few bugs in countdown
-=======
->>>>>>> fixed registeration and others which i did not commit
+
 }
 
 main .date {
@@ -103,30 +97,6 @@ main * {
   transition: all .3s ease;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-header {
-  background: #fafafa;
-}
-
-header {
-  padding: 20px;
-  min-height: 200px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.87);
-}
-
-header > * {
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-header > :last-child {
-  margin-bottom: 0;
-}
-
 .title {
   margin-bottom: 0.5em;
   font-weight: inherit;
@@ -154,9 +124,6 @@ header > :last-child {
   line-height: 1;
 }
 
->>>>>>> Fixed few bugs in countdown
-=======
->>>>>>> fixed registeration and others which i did not commit
 @media (min-width: 800px) {
   main .title {
     font-size: 4.236em;
