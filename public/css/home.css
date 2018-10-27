@@ -12,9 +12,8 @@
 body,
 html {
   padding-top: 30px;
-  height: 100vh;
+  max-width: 100%;
   overflow-x: hidden;
-  background-color: white;
   font-family: 'Karla','Courier New', Courier, monospace;
 }
 
