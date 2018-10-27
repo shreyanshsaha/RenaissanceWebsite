@@ -12,6 +12,7 @@ var userSchema = new mongoose.Schema({
   contact: Number,
   password: String,
   age:Number,
+  gender:String,
   dateRegistered: {type: Date, default: Date.now},
   isAdmin: {type: Boolean, default:false},
 

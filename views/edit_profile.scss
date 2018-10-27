@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand');
+body {
+  font-family: "Roboto";
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  vertical-align: middle;
+  background-image: url("");
+  .hidden{
+    display: none;
+  }
+  .abs-hidden-l-t{
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: shown;
+  }
+  .content-wrapper {
+    
+    .content {
+      display: flex;
+      flex-direction: row;
+      margin: 4% auto;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      @media screen and (max-width: 959px){
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        & .content-form{
+          max-width: 400px;
+          margin: 0 24px;
+        }
+      }
+      .form {
+        padding: 24px;
+        padding-bottom: 70px;
+        margin-right: 16px;
+        min-width:400px;
+        .form-title {
+          font-size: 42px;
+          margin-bottom: 16px;
+        }
+        input {
+          padding: 4px 0 0 0;
+          background: transparent;
+          min-height: 40px;
+          width: 100%;
+          max-width: 350px;
+          outline: none;
+          font-size: 16px;
+          margin: 4px 0;
+          border: 0;
+          border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+          transition: 0.2s ease-in-out;
+           &:focus{
+            border-bottom: 2px solid rgba(24, 124, 190, 0.9);
+            transform: scale(1.02);
+          }
+        }
+      }
+      .content-profile {
+        max-width: 350px;
+        min-height:450px;
+        width: 100%;
+        box-shadow: 0 0 4px #b1b1b1;
+        background: #1D77AB;
+        border-radius: 4px;
+        .profile-head {
+          max-height: 40%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 8% 0 4% 0;
+        background: #fff;
+          .profile-pic {
+            margin-bottom: 8px;
+            img {
+              height: 140px;
+              width: 140px;
+              border-radius: 5em;
+              box-shadow: 0 2px 4px #b1b1b1;
+              object-fit: cover;
+            }
+          }
+          .profile-name {
+            font-size: 24px;
+          }
+          .profile-club {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+          }
+        }
+        .profile-info {
+          
+          padding: 16px;
+          padding-bottom: 0;
+          color: #fff;
+          .profile-skills {
+            text-align: center;
+            margin: 0 auto 4% auto;
+          }
+          .profile-about {
+            height: 150px;
+            margin: auto;
+            border: 1px dashed rgba(255,255,255,0.4);
+            padding: 8px;
+            margin: 16px 0;
+            line-height: 24px;
+            text-align: center;
+          }
+          .profile-info-sub{
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+        .profile-footer{
+          text-align: center;
+    font-size: 14px;
+          opacity: 0.4;
+          font-family: 'Patrick Hand', cursive;
+          font-weight: bold;
+          padding: 14px;
+          i{
+            position: relative;
+            bottom: -3px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

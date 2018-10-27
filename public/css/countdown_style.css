@@ -1,14 +1,3 @@
-/* * {
-    box-sizing: border-box;
-  }
-   */
-  /* html,
-  body {
-    margin: 0;
-    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-    
-    overflow: hidden;
-  } */
   @import url('https://fonts.googleapis.com/css?family=Karla');
   .landing-inner {
     width: 100%;
@@ -25,16 +14,16 @@
     background-image: url('./images/showcase.jpg');
     background-size: cover;
     background-position: center;
-    height: 40vh;
+    /* height: 40vh; */
 
   }
   
-  .landing landing-inner-text {
+  .landing .landing-inner-text {
     font-size: 50px;
     font-family: 'Karla','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
   
-  .landing landing-text {
+  .landing .landing-text {
     font-size: 20px;
   }
   
@@ -44,6 +33,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding-bottom: 10px;
   }
   
   .countdown div {
@@ -64,29 +54,37 @@
     font-size: 25px;
   }
   
-  /* @media (max-width: 650px) {
+  @media (max-width: 650px) {
     .landing img {
       width: 70%;
     }
   
-    .landing landing-inner-text {
-      font-size: 40px;
+    .landing .landing-inner-text {
+      font-size: 30px;
     }
   
     .countdown {
-      font-size: 30px;
-      flex-direction: column;
+      font-size: 20px;
+      /* flex-direction: column;
+      display: grid;
+      padding: 0; */
     }
-  
+    
     .countdown div {
-      display: none;
+      /* padding: 5px; */
+      margin: 0px;
+
     }
-  
+    .countdown span{
+      font-size: 15px;
+    }  
     .countdown div:first-child {
-      display: block;
-      width: 80%;
-      padding: 10px;
-    }
+      /* display: inline-table; */
+      /* width: 100%; */
+      /* padding: 10px; */
+    } 
+   
+    
   }
   
   
@@ -94,10 +92,10 @@
     img {
       width: 20%;
     }
-  
+/*   
     landing-text {
       display: none;
-    }
+    } */
   }
   
   @media (max-height: 400px) {
@@ -105,7 +103,7 @@
       padding-bottom: 30px;
     }
     
-    landing-inner-text {
+    /* landing-inner-text {
       display: none;
-    }
-  } */
+    } */
+  }

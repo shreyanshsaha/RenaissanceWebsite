@@ -1,0 +1,67 @@
+<html>
+<head>
+    <link href="edit_profile.css" rel="stylesheet">
+    
+</head>
+<body>
+<%include partials/navbar%>
+<script src="vue.js"></script>
+<h2 align="center">Renaissance</h2>
+<div class="content-wrapper" id="form-create">
+  <div class="content">
+    <div class="content-form">
+      <div class="form">
+        <div class="form-title">
+          Fill in the form, <br>
+          for club registration 
+        </div>
+        <div class="form-body">
+          <div class="input-pic">
+            <input type="text" placeholder="Profile Picture Link" v-model="image" />
+          </div>
+          <div class="input-name">
+            <input type="text" placeholder="Name" v-model="name" />
+          </div>
+          <div class="input-club">
+            <input type="text" placeholder="Club" v-model="club" />
+          </div>
+          <div class="input-mail">
+            <input type="text" placeholder="Email address" v-model="email" />
+          </div>
+          <div class="input-number">
+            <input type="text" placeholder="Contact Number" v-model="contact" />
+          </div>
+          <div class="input-about">
+            <input type="textarea" placeholder="About You" v-model="about" />
+          </div>
+          <div class="input-skills">
+            <input type="text" placeholder="Your skills" v-model="skills" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-profile">
+      <div class="profile-head">
+        <div class="profile-pic">
+          <img v-bind:src='image' alt="Paste URL in image field" onerror = " this.src='https://vignette.wikia.nocookie.net/oproleplaying/images/b/b9/Monkey_D._Luffy_-_Grinning.png/revision/latest?cb=20160906201402'"/>
+        </div>
+        <div class="profile-name">{{ name }}</div>
+        <div class="profile-club">
+          <div><i class="material-icons"></i></div>
+          <div>{{ club }}</div>
+        </div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-skills">{{ skills }}</div>
+        <div class="profile-about">{{ about }}</div>
+        <div class="profile-info-sub">
+          <div class="profile-mail">{{ email }}</div>
+          <div class="profile-contact">{{ contact }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="edit_profile.js"></script>
+</body>
+</html>

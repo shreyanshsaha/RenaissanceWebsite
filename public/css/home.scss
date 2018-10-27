@@ -26,12 +26,10 @@
 
 body,
 html {
-  height: 100vh;
+  padding-top:30px;
+  max-width: 100%;
   overflow-x: hidden;
-  background-color: white;
   font-family: 'Karla','Courier New', Courier, monospace;  // background: #343838;
-  // overflow-y: scroll;
-  // scroll-snap-type: y mandatory;
 }
 
 .navbar {
