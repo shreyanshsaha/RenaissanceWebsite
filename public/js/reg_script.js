@@ -26,7 +26,8 @@ function up(label, str) {
     var s = document.getElementById(str);
     s.style.borderColor = "#66CC99";
     s.classList.add('up');
-    document.getElementsByTagName('label')[label].style.color = "#66CC99";
+    // document.getElementsByTagName('label')[label].style.color = "#66CC99";
+    document.getElementById(str).style.color ="#66CC99";
     tabBooleans[label] = true;
     console.log(document.getElementsByTagName('label'));
 }

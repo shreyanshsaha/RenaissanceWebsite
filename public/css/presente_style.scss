@@ -1,6 +1,6 @@
 main {
-    padding: 20px 64px 64px;
-  }
+  padding: 20px 64px 64px;
+  background-image: url("/images/featuresImage.jpg");
   
   .card {
     border-radius: 16px;
@@ -12,19 +12,21 @@ main {
       0px 5px 8px 0px rgba(0, 0, 0, 0.14),
       0px 1px 14px 0px rgba(0, 0, 0, 0.12);
     overflow: hidden;
-    background-image: url("/images/pic.jpg");
+    background-image: url('/images/presente-fore.jpg');
     background-size: cover;
   }
   
   .info {
     position: relative;
     width: 100%;
-    height: 500px;
-    background-color: #fff;
-    transform: translateY(100%)
-      translateY(-88px)
-      translateZ(0);
+    // height: 550px;
+    // margin-top:-100px;
+    // background-color: #fff;
+    // transform: translateY(100%)
+    //   translateY(-88px)
+    //   translateZ(0);
     transition: transform 0.5s ease-out;
+    padding-bottom: 50px;
   }
   
   .info:before {
@@ -35,13 +37,10 @@ main {
     width: 100%;
     height: 90%;
     overflow: hidden;
-    background-image: url("/images/pic.jpg");
-    filter: blur(10px);
+    // background-image: url(https://source.unsplash.com/collection/905011/1000x1000);
+    // filter: blur(10px);
     background-size: cover;
-    opacity: 0.25;
-    transform: translateY(-100%)
-      translateY(88px)
-      translateZ(0);
+    // opacity: 0.25;
     transition: transform 0.5s ease-out;
   }
   
@@ -52,28 +51,36 @@ main {
   
   .title {
     margin: 0;
-    padding: 24x;
-    font-size: 40px;
-    line-height: 1;
-    color: rgba(0, 0, 0, 0.87);
+    padding: 24px;
+    margin-bottom: 0.5em;
+    font-weight: inherit;
+    line-height: 1.2;
+    color: #1c5b72;
+    font-size: 2.618em
   }
   .date {
     margin: 0;
     padding: 24px;
-    font-size: 30px;
     line-height: 1;
-    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 0.5em;
+    font-weight: inherit;
+    line-height: 1.2;
+    color: #1c5b72;
+    font-size: 1.618em
   }
-  .button{
-    width: 200px;
-    align-self: auto;
-    line-height: 1;
+  .btn{
+    // width: 200px;
+    // align-self: auto;
+    margin:auto;
+    left:2%;
+    // line-height: 1;
   }
   .description {
     margin: 0;
     padding: 0 24px 24px;
-    font-size: 1px;
+    font-size: 0.618em ;
     line-height: 1.5;
+    margin-bottom: 1.3em;
   }
   
  
@@ -88,48 +95,8 @@ main {
   
   
   
-  header {
-    background: #fafafa
-  }
-  
-  header {
-    padding: 20px;
-    min-height: 200px;
-    text-align: center;
-    color: rgba(0, 0, 0, .87)
-  }
-  
-  header > * {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto
-  }
-  
-  header>:last-child {
-    margin-bottom: 0
-  }
-  
-  .title {
-    margin-bottom: 0.5em;
-    font-weight: inherit;
-    line-height: 1.2;
-    color: #1c5b72;
-    font-size: 2.618em
-  }
-  .date {
-    margin-bottom: 0.5em;
-    font-weight: inherit;
-    line-height: 1.2;
-    color: #1c5b72;
-    font-size: 1.618em;
-  }
-  .description{
-    font-size: 0.618em ;
-  }
-  .button{
-    align-self: auto;
-    line-height: 1;
-  }
+ 
+
   
   @media (min-width:800px) {
    .title {
@@ -138,15 +105,9 @@ main {
       // padding: 0;
     }
   }
-  
-  .description {
-    margin-bottom: 1.3em;
-    // line-height: 1.618
-  }
-  
   @media (min-width:800px) {
     .description {
       font-size: 1.3em;
     }
   }
- 
+}
