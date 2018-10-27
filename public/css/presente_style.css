@@ -50,19 +50,12 @@ main .card:hover .info:before {
 
 main .title {
   margin: 0;
-
   padding: 24px;
   margin-bottom: 0.5em;
   font-weight: inherit;
   line-height: 1.2;
   color: #1c5b72;
   font-size: 2.618em;
-
-  padding: 24x;
-  font-size: 40px;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.87);
-
 }
 
 main .date {
@@ -95,33 +88,6 @@ main * {
   position: relative;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
-}
-
-.title {
-  margin-bottom: 0.5em;
-  font-weight: inherit;
-  line-height: 1.2;
-  color: #1c5b72;
-  font-size: 2.618em;
-}
-
-.date {
-  margin-bottom: 0.5em;
-  font-weight: inherit;
-  line-height: 1.2;
-  color: #1c5b72;
-  font-size: 1.618em;
-}
-
-.description {
-  font-size: 0.618em;
-}
-
-.button {
-  -ms-flex-item-align: auto;
-      -ms-grid-row-align: auto;
-      align-self: auto;
-  line-height: 1;
 }
 
 @media (min-width: 800px) {

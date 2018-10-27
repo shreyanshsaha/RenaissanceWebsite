@@ -21,11 +21,11 @@ const intvl = setInterval(() => {
 
   // Display result
   countdown.innerHTML = `
-  <div class = "row justify-content-md-center">
-  <div class = "col " >${days}<span>Days</span></div> 
-  <div class = "col ">${hours}<span>Hours</span></div>
-  <div class = "col ">${mins}<span>Minutes</span></div>
-  <div class = "col ">${seconds}<span>Seconds</span></div>
+  <div class = "row justify-content-md-center mb-4">
+  <div class = "col">${days}<span>Days</span></div> 
+  <div class = "col">${hours}<span>Hours</span></div>
+  <div class = "col">${mins}<span>Minutes</span></div>
+  <div class = "col">${seconds}<span>Seconds</span></div>
   </div>
   `;
 

@@ -59,34 +59,25 @@
       width: 70%;
     }
   
-<<<<<<< HEAD
+
     .landing .landing-inner-text {
-=======
-    .landing landing-inner-text {
-<<<<<<< HEAD
->>>>>>> Fixed few bugs in countdown
-=======
->>>>>>> eb4a79579c5444d95b6c33cb2df3ca1ccadaf287
       font-size: 30px;
     }
   
     .countdown {
       font-size: 20px;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
       /* flex-direction: column;
       display: grid;
       padding: 0; */
-=======
+
       flex-direction: column;
       display: grid;
       padding: 0;
->>>>>>> Fixed few bugs in countdown
-=======
+
       flex-direction: column;
       display: grid;
       padding: 0;
->>>>>>> eb4a79579c5444d95b6c33cb2df3ca1ccadaf287
     }
     
     .countdown div {
@@ -98,21 +89,17 @@
       font-size: 15px;
     }  
     .countdown div:first-child {
-<<<<<<< HEAD
+
       /* display: inline-table; */
       /* width: 100%; */
       /* padding: 10px; */
     } 
    
-=======
       display: block;
       width: 100%;
       /* padding: 10px; */
     }
-<<<<<<< HEAD
->>>>>>> Fixed few bugs in countdown
-=======
->>>>>>> eb4a79579c5444d95b6c33cb2df3ca1ccadaf287
+
     
   }
   
