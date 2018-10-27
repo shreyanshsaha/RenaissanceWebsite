@@ -30,11 +30,11 @@ router.get("/user", isLoggedIn, async function (req, res) {
 		});
 		var summary = await Summary.findOne({_id: req.user.teamId});
 		if(summary)
-			return res.render("profile_page", { team: team, summary:summary, teamLeader: team.teamLeader, events:events})
-		return res.render("profile_page", { team: team, summary:null, teamLeader: team.teamLeader, events:events})
+			return res.render("profile_page", { team: team, summary:summary, teamLeader: team.teamLeader, events:events});
+		return res.render("profile_page", { team: team, summary:null, teamLeader: team.teamLeader, events:events});
 	}
 	else
-		return res.render("profile_page", { team: null, summary:null, teamLeader: null, events:events})
+		return res.render("profile_page", { team: null, summary:null, teamLeader: null, events:events});
 	
 });
 
