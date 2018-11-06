@@ -59,15 +59,25 @@
       width: 70%;
     }
   
+
     .landing .landing-inner-text {
       font-size: 30px;
     }
   
     .countdown {
       font-size: 20px;
+
       /* flex-direction: column;
       display: grid;
       padding: 0; */
+
+      flex-direction: column;
+      display: grid;
+      padding: 0;
+
+      flex-direction: column;
+      display: grid;
+      padding: 0;
     }
     
     .countdown div {
@@ -79,11 +89,17 @@
       font-size: 15px;
     }  
     .countdown div:first-child {
+
       /* display: inline-table; */
       /* width: 100%; */
       /* padding: 10px; */
     } 
    
+      display: block;
+      width: 100%;
+      /* padding: 10px; */
+    }
+
     
   }
   
