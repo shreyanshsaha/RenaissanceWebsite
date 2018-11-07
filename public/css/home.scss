@@ -28,7 +28,8 @@ body,
 html {
   padding-top:30px;
   max-width: 100%;
-  overflow-x: hidden;
+  height: 100%;
+  // overflow-x: hidden;
   font-family: 'Karla','Courier New', Courier, monospace;  // background: #343838;
 }
 
@@ -41,17 +42,19 @@ html {
 
   .heading {
     .carousel-inner {
+      // height: 100%;
       .carousel-item {
         height: 90vh;
-        background-size: cover;
 
         .carousel-img {
-          border: 5px solid red;
+          // border: 5px solid red;
           width: 20vw;
+          height: 100%;
+          object-fit: cover;
         }
 
         .mainLogo {
-
+          
           // border:1px solid red;
           .logoImage {
             background-color: rgba(255, 255, 255, 0.2);
@@ -72,3 +75,30 @@ html {
   // background-color: #343838;
   background-color: white;
 }
+
+@media screen and (max-width: 992px) {
+  
+  .home .heading .carousel-inner .carousel-item .mainLogo{
+    height: 30vh;
+  }
+  .home .heading .carousel-inner .carousel-item .mainLogo .logoImage{
+    max-width: 700px;
+    // background-color: rgba(0, 255, 255, 1);
+  }
+
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .home .heading .carousel-inner .carousel-item .mainLogo{
+    height: 30vh;
+  }
+  .home .heading .carousel-inner .carousel-item .mainLogo .logoImage{
+    max-width: 700px;
+    // background-color: rgba(0, 255, 255, 1);
+  }
+}
+
+// *{
+//   border: 1px solid red;
+// }
