@@ -147,7 +147,10 @@
 				type: "put",
 				url: "/register/competition/" + id,
 				success: function (data) {
-					console.log(data);
+					if(/error/i.exec(data))
+						alert(data);
+					else
+						window.location.reload();
 				}
 			});
 		}
