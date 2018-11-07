@@ -1,8 +1,9 @@
 var express = require("express");
 var router = express.Router();
-var User = require("./models/userModel");
 var passport = require('passport');
-var LocalStrategy = require('passport-local');
+
+// Databases
+var User = require("./models/userModel");
 var Team = require("./models/teamModel");
 var Summary = require("./models/presenteSummary");
 var Event = require("./models/eventModel");
@@ -16,7 +17,11 @@ function isLoggedIn(req, res, next) {
 	res.redirect("/login/?ref=" + req.originalUrl);
 }
 
+// ==========
 // User route
+// ==========
+
+// Profile page
 router.get("/user", isLoggedIn, async function (req, res) {
 	var events = await Event.find({});
 	var competition = await Competition.findOne({});	
@@ -28,10 +33,7 @@ router.get("/user", isLoggedIn, async function (req, res) {
 			return;
 	});
 
-	
-	console.log(req.currentUser);
-
-	if(req.user.teamId!=null){
+	if(req.user.teamId!==null){
 		var team = await Team.findOne({_id: req.user.teamId}).populate("teamMembers")
 		.catch(err=>{
 			console.log(err);
@@ -45,15 +47,18 @@ router.get("/user", isLoggedIn, async function (req, res) {
 		return res.render("profile_page", { team: null, summary:null, teamLeader: null, events:events, competition:{name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound}});
 });
 
+
+// Register page
 router.get("/user/register", function (req, res) {
 	res.render("reg_page", {
 		messages: req.query.error
 	});
 });
 
+// Register new user
 router.post("/user/register", function (req, res) {
 	if (!req.body.username || !req.body.password || !req.body.email)
-	res.redirect("/register?error="+"Username, password and email are required fields!");
+		res.redirect("/register?error="+"Username, password and email are required fields!");
 
 	// Add gender too
 	var user = new User({
@@ -65,7 +70,8 @@ router.post("/user/register", function (req, res) {
 		age: req.body.age
 	});
 
-	User.register(user, req.body.password, function (err, newUser) {
+
+	User.register(user, req.body.password, function (err) {
 		if (err) {
 			console.log("User register error", err);
 			res.redirect("/user/register?error="+err.message);
@@ -79,10 +85,13 @@ router.post("/user/register", function (req, res) {
 
 });
 
+
+// Update User Summary
 router.put("/user/summary", function (req, res) {
 	if ((req.body.teamId == '') || (req.body.startupName == '') || (req.body.startupType == '')) {
 		return res.send("Error: Empty Fields not allowed!");
-	};
+	}
+
 	if (!req.body.teamId)
 		return res.send("Error: Need to be in a team!");
 
@@ -105,6 +114,8 @@ router.put("/user/summary", function (req, res) {
 			.catch(err => {
 				return res.send("Error: " + err);
 			});
+		else if(summary.isSubmitted)
+			return res.send("Error: Cannot update a submitted summary! Contact Admin!");
 		// update existing summary
 		else
 			await Summary.findOneAndUpdate({
