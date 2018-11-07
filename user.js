@@ -19,10 +19,9 @@ function isLoggedIn(req, res, next) {
 // User route
 router.get("/user", isLoggedIn, async function (req, res) {
 	var events = await Event.find({});
-	var competition = await Competition.findOne({});
-	console.log(String(req.user._id), competition.users[0]);
-	
+	var competition = await Competition.findOne({});	
 	var userFound=false;
+	
 	competition.users.forEach(function(user){
 		if(String(user)===String(req.user._id))
 			userFound=true;
