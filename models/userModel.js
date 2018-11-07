@@ -17,6 +17,7 @@ var userSchema = new mongoose.Schema({
   isAdmin: {type: Boolean, default:false},
 
   events:[{type: mongoose.Schema.ObjectId, ref:"event"}],
+  // registeredForCompetition: {type: Boolean, default: false},
   teamId: {type: mongoose.Schema.ObjectId, ref:"team", default: null}
 
 });
