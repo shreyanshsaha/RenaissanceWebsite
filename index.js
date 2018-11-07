@@ -174,12 +174,22 @@ app.post("/team/add/:username", isLoggedIn, function(req, res){
 			return res.send(err);
 		else if(!teamUser)
 			return res.send("Error: User doesnt Exist!");
-		else if(req.params.username === currentUser.username)
+		else if(req.params.username === req.user.username)
 			return res.send("Error: Cannot add self!");
 		else if(!(teamUser.teamId === null))
 			return res.send("Error: User already in a team!");
 		// Check if user has registered for presente vous or not
-		if(teamUser.competitions.length<=0)
+		var competition = await Competition.findOne({});
+		console.log(competition);
+		var userFound=false;
+		competition.users.forEach(function(user){
+			if(String(user)===String(teamUser._id)){
+				userFound=true;
+				return;
+			}
+		});
+
+		if(!userFound)
 			return res.send("Error: Member needs to register for Presente vous!");
 		// Add user to team list
 		await Team.updateOne({_id: req.user.teamId}, {$addToSet: {teamMembers: teamUser._id}});

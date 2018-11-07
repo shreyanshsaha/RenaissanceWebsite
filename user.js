@@ -26,6 +26,7 @@ router.get("/user", isLoggedIn, async function (req, res) {
 	competition.users.forEach(function(user){
 		if(String(user)===String(req.user._id))
 			userFound=true;
+			return;
 	});
 
 	
