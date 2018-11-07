@@ -46,6 +46,7 @@
 							<div class="profile-work col-sm-12">
 								<div class = "text-center">
 
+<<<<<<< HEAD
 								<p>Work</p>
 								<a href="">Website Link</a><br />
 								<a href="">Website Link</a><br />
@@ -54,6 +55,19 @@
 								<a href="">Website Link</a><br />
 								<a href="">Website Link</a><br />
 								<a href="">Website Link</a><br />
+=======
+								<p>asd</p>
+								<a href="">Phone: <%= currentUser.contact %></a><br />
+								<a href="">Email: <%= currentUser.email %></a><br />
+								<a href="">Website Link</a><br />
+								<p> Registered Events</p>
+								<% currentUser.events.forEach(function(event){ %>	
+									<a ><%= event.eventName %></a><br />
+								<% }); %>
+								<!-- <a href="">Website Link</a><br />
+								<a href="">Website Link</a><br />
+								<a href="">Website Link</a><br /> -->
+>>>>>>> 199ff822a6a0583b4e108efe7f42b2caaa062c2c
 							</div>
 							</div>
 						</div>
@@ -71,13 +85,23 @@
 										<%= currentUser.lastName.charAt(0).toUpperCase() + currentUser.lastName.slice(1) %>
 									</h5>
 									<h6>
+<<<<<<< HEAD
 										Dummy
+=======
+										
+>>>>>>> 199ff822a6a0583b4e108efe7f42b2caaa062c2c
 									</h6>
 									<p class="profile-rating">Long text <span>maybe bio</span></p>
 								</div>
 							</div>
 							<div class="col-md-4">
+<<<<<<< HEAD
 								<input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+=======
+								<form action="/edit_profile" method="GET">
+								<input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"  />
+								</form>
+>>>>>>> 199ff822a6a0583b4e108efe7f42b2caaa062c2c
 							</div>
 						</div>
 

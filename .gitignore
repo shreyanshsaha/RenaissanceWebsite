@@ -1,3 +1,12 @@
+<<<<<<< HEAD
 /.vscode
 /node_modules
 public/views/temp
+=======
+.vscode
+node_modules
+views/temp
+photoshop files
+website content renaissance
+public/images/RegisterPage.psd
+>>>>>>> 199ff822a6a0583b4e108efe7f42b2caaa062c2c
