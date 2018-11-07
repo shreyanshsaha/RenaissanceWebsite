@@ -34,9 +34,9 @@
 						<!-- Profile Photo -->
 						<div class="row">
 							<div class="profile-img mx-auto">
-								<img src="/images/p1.jpg"  />
+								<img src="/images/p1.jpg" />
 								<div class="file btn btn-lg ">
-									
+
 									<input type="file" name="file" />
 								</div>
 							</div>
@@ -44,31 +44,25 @@
 						<!-- User Details -->
 						<div class="row">
 							<div class="profile-work col-sm-12">
-								<div class = "text-center">
+								<div class="text-center">
 
-<<<<<<< HEAD
-								<p>Work</p>
-								<a href="">Website Link</a><br />
-								<a href="">Website Link</a><br />
-								<a href="">Website Link</a><br />
-								<p> Skills</p>
-								<a href="">Website Link</a><br />
-								<a href="">Website Link</a><br />
-								<a href="">Website Link</a><br />
-=======
-								<p>asd</p>
-								<a href="">Phone: <%= currentUser.contact %></a><br />
-								<a href="">Email: <%= currentUser.email %></a><br />
-								<a href="">Website Link</a><br />
-								<p> Registered Events</p>
-								<% currentUser.events.forEach(function(event){ %>	
-									<a ><%= event.eventName %></a><br />
-								<% }); %>
-								<!-- <a href="">Website Link</a><br />
+									<p>
+										<%= currentUser.username %>
+									</p>
+									<a href="">Phone:
+										<%= currentUser.contact %></a><br />
+									<a href="">Email:
+										<%= currentUser.email %></a><br />
+									<!-- <a href="">Website Link</a><br /> -->
+									<p> Registered Events</p>
+									<% currentUser.events.forEach(function(event){ %>
+									<a>
+										<%= event.eventName %></a><br />
+									<% }); %>
+									<!-- <a href="">Website Link</a><br />
 								<a href="">Website Link</a><br />
 								<a href="">Website Link</a><br /> -->
->>>>>>> 199ff822a6a0583b4e108efe7f42b2caaa062c2c
-							</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -85,23 +79,15 @@
 										<%= currentUser.lastName.charAt(0).toUpperCase() + currentUser.lastName.slice(1) %>
 									</h5>
 									<h6>
-<<<<<<< HEAD
-										Dummy
-=======
-										
->>>>>>> 199ff822a6a0583b4e108efe7f42b2caaa062c2c
+
 									</h6>
-									<p class="profile-rating">Long text <span>maybe bio</span></p>
+									<!-- <p class="profile-rating">Long text <span>maybe bio</span></p> -->
 								</div>
 							</div>
 							<div class="col-md-4">
-<<<<<<< HEAD
-								<input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
-=======
 								<form action="/edit_profile" method="GET">
-								<input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"  />
+									<input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
 								</form>
->>>>>>> 199ff822a6a0583b4e108efe7f42b2caaa062c2c
 							</div>
 						</div>
 
@@ -109,68 +95,59 @@
 						<div class="row">
 							<div class="col-md-12">
 
-									<ul class="nav nav-tabs" id="myTab" role="tablist">
-											<li class="nav-item">
-												<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-											</li>
-											
-										</ul>
-										<!-- Tab Content -->
-										<div class="tab-content" id="myTabContent">
-											<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-													<table class="table">
-															<thead>
-																<tr>
-																	<td>Name</td>
-																	<td>Date</td>
-																	<td>Status</td>
-																</tr>
-															</thead>
-															<tr>
-																<td>
-																	Lean Six Sigma
-																</td>
-																<td>
-																	7th February 2019
-																</td>
-																<td>
-																	Not Registered
-																</td>
-															</tr>
-															
-														</table>
-											</div>
-											<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-													<% include summary%>
-											</div>
-											
-										</div>
-
-								<!-- Tab Links -->
-								<!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+								<ul class="nav nav-tabs" id="myTab" role="tablist">
 									<li class="nav-item">
 										<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-										 aria-selected="true">Profile</a>
+										 aria-selected="true">Home</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-										 aria-selected="false">Presente Vous</a>
+										 aria-selected="false">Competition</a>
 									</li>
+
 								</ul>
-								
-								<div>
-									<div class="tab-content profile-tab" id="myTabContent">
-										<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-											
-										</div>
-										<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-											
-										</div>
+								<!-- Tab Content -->
+								<div class="tab-content" id="myTabContent">
+									<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+										<table class="table">
+											<thead>
+												<tr>
+													<td>Name</td>
+													<td>Date</td>
+													<td>Status</td>
+												</tr>
+											</thead>
+											<tr>
+												<td>
+													Lean Six Sigma
+												</td>
+												<td>
+													7th February 2019
+												</td>
+												<td>
+													Not Registered
+												</td>
+											</tr>
+
+										</table>
 									</div>
-								</div> -->
+									<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+										<!-- Description of Competition -->
+										<h3><%= competition.name %></h3>
+										<p>
+											<%= competition.description %>
+										</p>
+
+										<% if(!competition.userRegistered){ %>
+											<h3>
+												<button type="button" class="btn btn-primary btn-lg" onclick="registerForCompetition('<%=competition._id%>')">Register</button> your Startup!
+											</h3>
+										<% }else{ %>
+											<% include summary%>
+										<% }; %>
+
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -185,6 +162,18 @@
 
 		</form>
 	</div>
+
+	<script>
+		function registerForCompetition(id) {
+			$.ajax({
+				type: "put",
+				url: "/register/competition/" + id,
+				success: function(data){
+					console.log(data);
+				}
+			});
+		}
+	</script>
 </body>
 
 </html>
