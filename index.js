@@ -10,7 +10,8 @@ var express = require('express'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local'),
 	Team = require("./models/teamModel"),
-	methodOverride = require('method-override');
+	methodOverride = require('method-override'),
+	Competition = require("./models/competition");
 
 var rootRoute = require("./root"),
 		userRoute = require("./user"),
@@ -21,8 +22,8 @@ var rootRoute = require("./root"),
 // Setting up express and database
 // ===============================
 var app = express();
-// mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
-mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
+// mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({
@@ -65,13 +66,6 @@ app.use(adminRoute);
 
 
 
-
-
-
-
-
-
-
 app.post("/register/event/:id", async function(req, res){
 	var event = await Event.findById(req.params.id);
 
@@ -101,7 +95,24 @@ app.post("/register/event/:id", async function(req, res){
 	}
 });
 
+app.put("/register/competition/:id", async function(req, res){
+	if(!req.isAuthenticated())
+		return res.send("Error: Need to login to register!");
+	
+	var competition = await Competition.findOne({_id: req.params.id});
+	if(!competition)
+		return res.send("Error: Competition doesnt exist!");
 
+	// Register user for competition
+	await User.findOneAndUpdate( {username: req.user.username}, {$set: {registeredForCompetition: true}})
+		.catch((err)=>{console.log(err);});
+
+	// Add user to competition
+	await Competition.findByIdAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user._id}})
+	.catch((err)=>{console.log(err);});
+
+	return res.send("Success!");
+});
 
 
 
@@ -163,10 +174,23 @@ app.post("/team/add/:username", isLoggedIn, function(req, res){
 			return res.send(err);
 		else if(!teamUser)
 			return res.send("Error: User doesnt Exist!");
-		else if(req.params.username == req.user.username)
+		else if(req.params.username === req.user.username)
 			return res.send("Error: Cannot add self!");
-		else if(!(teamUser.teamId==null))
+		else if(!(teamUser.teamId === null))
 			return res.send("Error: User already in a team!");
+		// Check if user has registered for presente vous or not
+		var competition = await Competition.findOne({});
+		console.log(competition);
+		var userFound=false;
+		competition.users.forEach(function(user){
+			if(String(user)===String(teamUser._id)){
+				userFound=true;
+				return;
+			}
+		});
+
+		if(!userFound)
+			return res.send("Error: Member needs to register for Presente vous!");
 		// Add user to team list
 		await Team.updateOne({_id: req.user.teamId}, {$addToSet: {teamMembers: teamUser._id}});
 		await User.findOneAndUpdate({_id: teamUser._id}, {$set: {teamId: req.user.teamId}});
@@ -285,8 +309,10 @@ app.post("/team/delete/user", function(req, res){
 // });
 
 
-// app.listen(80, function () {
-// 	console.log("Server has started!");
-// });
-app.listen(process.env.PORT, process.env.IP);
+
+app.listen(80, function () {
+	console.log("Server has started!");
+});
+// app.listen(process.env.PORT, process.env.IP);
+
 

@@ -6,6 +6,7 @@ var LocalStrategy = require('passport-local');
 var Team = require("./models/teamModel");
 var Summary = require("./models/presenteSummary");
 var Event = require("./models/eventModel");
+var Competition = require("./models/competition");
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
@@ -17,12 +18,19 @@ function isLoggedIn(req, res, next) {
 
 // User route
 router.get("/user", isLoggedIn, async function (req, res) {
-	
-	var user = await User.findOne({_id: req.user.username}).populate("events").populate("teamMembers")
-	.catch(err=>{
-		return err;
-	});
 	var events = await Event.find({});
+	var competition = await Competition.findOne({});	
+	var userFound=false;
+	
+	competition.users.forEach(function(user){
+		if(String(user)===String(req.user._id))
+			userFound=true;
+			return;
+	});
+
+	
+	console.log(req.currentUser);
+
 	if(req.user.teamId!=null){
 		var team = await Team.findOne({_id: req.user.teamId}).populate("teamMembers")
 		.catch(err=>{
@@ -30,12 +38,11 @@ router.get("/user", isLoggedIn, async function (req, res) {
 		});
 		var summary = await Summary.findOne({_id: req.user.teamId});
 		if(summary)
-			return res.render("profile_page", { team: team, summary:summary, teamLeader: team.teamLeader, events:events})
-		return res.render("profile_page", { team: team, summary:null, teamLeader: team.teamLeader, events:events})
+			return res.render("profile_page", { team: team, summary:summary, teamLeader: team.teamLeader, events:events, competition:{name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound}});
+		return res.render("profile_page", { team: team, summary:null, teamLeader: team.teamLeader, events:events, competition:{name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound}});
 	}
 	else
-		return res.render("profile_page", { team: null, summary:null, teamLeader: null, events:events})
-	
+		return res.render("profile_page", { team: null, summary:null, teamLeader: null, events:events, competition:{name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound}});
 });
 
 router.get("/user/register", function (req, res) {
@@ -86,13 +93,14 @@ router.put("/user/summary", function (req, res) {
 		isSubmitted: false,
 		executiveSummary: req.body.executiveSummary
 	};
+
 	Summary.findOne({
 		teamId: req.body.teamId
 	}, async function (err, summary) {
 		if (err)
 			return res.send("Error: " + err);
 		// create a new sumary
-		if (summary == null)
+		if (summary === null)
 			await Summary.create(details)
 			.catch(err => {
 				return res.send("Error: " + err);
