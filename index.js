@@ -4,13 +4,10 @@
 var express = require('express'),
 	bodyParser = require('body-parser'),
 	User = require('./models/userModel'),
-	Event = require("./models/eventModel"),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local'),
-	Team = require("./models/teamModel"),
-	methodOverride = require('method-override'),
-	Competition = require("./models/competition");
+	methodOverride = require('method-override');
 
 var rootRoute = require("./root"),
 		userRoute = require("./user"),
@@ -57,7 +54,6 @@ app.use(userRoute);
 app.use(adminRoute);
 app.use(registerRoute);
 app.use(teamRoute);
-
 
 
 app.listen(80, function () {

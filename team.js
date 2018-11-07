@@ -1,4 +1,5 @@
 var Team = require("./models/teamModel");
+var User = require("./models/userModel");
 var router = require('express').Router();
 
 function isLoggedIn(req, res, next) {
