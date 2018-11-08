@@ -3,7 +3,6 @@ var express = require("express");
 var router = express.Router();
 var Event = require("./models/eventModel");
 var passport = require('passport');
-var Summary = require("./models/presenteSummary");
 
 //! Debug only
 var sponsorDetails=[
