@@ -9,9 +9,18 @@ var Summary = require("./models/presenteSummary");
 var Event = require("./models/eventModel");
 var Competition = require("./models/competition");
 
+function isAdmin(req, res, next) {
+	if (req.isAuthenticated() && req.user.isAdmin === true)
+		return next();
+	res.redirect("/login?ref=/admin");
+}
+
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
-		return next();
+		if(req.user.isAdmin===true)
+			return res.redirect("/admin");
+		else
+			return next();
 	}
 	console.log(req.user, " not logged in!");
 	res.redirect("/login/?ref=" + req.originalUrl);

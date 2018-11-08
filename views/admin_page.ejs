@@ -1,202 +1,87 @@
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="admin_style.css" />
-    <!-- <script src="bootstrap.js"></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/admin_style.css" />
+  <!-- <script src="bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="bootstrap.css" /> -->
-    <script src="admin_script.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="admin_script.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <script src="/lib/jquery.min.js"></script>
+  <script src="/js/bootstrap.css"></script>
 </head>
+
 <body>
-    
-<div id="demo">
-    <h1>Admin Page</h1>
 
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home">User</a></li>
-        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+  <% include partials/navbar %>
+  <div id="demo">
+    <div class="container">
+      <h1>Admin Page</h1>
+
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+            aria-selected="false">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+            aria-selected="false">Contact</a>
+        </li>
       </ul>
-    <!-- <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-          <h3>HOME</h3>
-          <p>Some content.</p>
-        </div>
-        <div id="menu1" class="tab-pane fade">
-          <h3>Menu 1</h3>
-          <p>Some content in menu 1.</p>
-        </div>
-        <div id="menu2" class="tab-pane fade">
-          <h3>Menu 2</h3>
-          <p>Some content in menu 2.</p>
-        </div>
-      </div> -->
-    <!-- Responsive table starts here -->
-    <!-- For correct display on small screes you must add 'data-title' to each 'td' in your table -->
-    <div class="table-responsive-vertical shadow-z-1">
-    <!-- Table starts here -->
-    
-    <table id="table" class="table table-hover table-mc-light-blue">
-        
-        <thead>
-          <tr>
-            <th>Sno.</th>
-            <th>Name</th>
-            <th>Username</th>
-            
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-          </tr>
-        </thead>
-        <tbody id = "home" class = "tab-pane fade in active vis">
-            <% var k=0;%>
-<% for(let i of events1){ %>
-  <% k=k+1;%>
-          <tr>
-            <td data-title="ID"><%= k %></td>
-            <td data-title="Name"> <%= i.firstName %> <%= i.lastName  %></td>
-            
-            <td data-title="Status"><%= i.username %></td>
-          </tr>
-          <% }; %>
-          <%  k=0;%>
-        </tbody>
+          <table id="table" class="table table-hover table-mc-light-blue">
 
-        <tbody id = "menu1" class = "tab-pane fade vis1">
-            <tr>
-              <td data-title="ID">1</td>
-              <td data-title="Name">1</td>
-              
-              <td data-title="Status">Completed</td>
-            </tr>
-            <tr>
-              <td data-title="ID">2</td>
-              <td data-title="Name">2</td>
-             
-              <td data-title="Status">Completed</td>
-            </tr>
-            <tr>
-              <td data-title="ID">3</td>
-              <td data-title="Name">3</td>
-              
-              <td data-title="Status">Completed</td>
-            </tr>
-            <tr>
-              <td data-title="ID">4</td>
-              <td data-title="Name">4</td>
-             
-              <td data-title="Status">Completed</td>
-            </tr>
-            <tr>
-              <td data-title="ID">5</td>
-              <td data-title="Name">5</td>
-              
-              <td data-title="Status">Completed</td>
-            </tr>
-            <tr>
-              <td data-title="ID">6</td>
-              <td data-title="Name">6</td>
-              
-              <td data-title="Status">Completed</td>
-            </tr>
-            <tr>
-              <td data-title="ID">7</td>
-              <td data-title="Name">7</td>
-              
-              <td data-title="Status">In progress</td>
-            </tr>
-            <tr>
-              <td data-title="ID">8</td>
-              <td data-title="Name">8</td>
-              
-              <td data-title="Status">Completed</td>
-            </tr>
-            <tr>
-              <td data-title="ID">9</td>
-              <td data-title="Name">9</td>
-              
-              <td data-title="Status">Completed</td>
-            </tr>
-            <tr>
-              <td data-title="ID">10</td>
-              <td data-title="Name">10</td>
-              
-              <td data-title="Status">Completed</td>
-            </tr>
-          </tbody>
-          <tbody id = "menu2" class = "tab-pane fade vis2">
+            <thead>
               <tr>
-                <td data-title="ID">1</td>
-                <td data-title="Name">1</td>
-                
-                <td data-title="Status">Completed</td>
+                <th>Sno.</th>
+                <th>Name</th>
+                <th>Username</th>
+
+
               </tr>
+            </thead>
+            <tbody>
+              <% var k=0;%>
+              <% for(let i of events1){ %>
+              <% k=k+1;%>
               <tr>
-                <td data-title="ID">2</td>
-                <td data-title="Name">2</td>
-               
-                <td data-title="Status">Completed</td>
+                <td data-title="ID">
+                  <%= k %>
+                </td>
+                <td data-title="Name">
+                  <%= i.firstName %>
+                  <%= i.lastName  %>
+                </td>
+
+                <td data-title="Status">
+                  <%= i.username %>
+                </td>
               </tr>
-              <tr>
-                <td data-title="ID">3</td>
-                <td data-title="Name">3</td>
-                
-                <td data-title="Status">Completed</td>
-              </tr>
-              <tr>
-                <td data-title="ID">4</td>
-                <td data-title="Name">4</td>
-               
-                <td data-title="Status">Completed</td>
-              </tr>
-              <tr>
-                <td data-title="ID">5</td>
-                <td data-title="Name">5</td>
-                
-                <td data-title="Status">Completed</td>
-              </tr>
-              <tr>
-                <td data-title="ID">6</td>
-                <td data-title="Name">6</td>
-                
-                <td data-title="Status">Completed</td>
-              </tr>
-              <tr>
-                <td data-title="ID">7</td>
-                <td data-title="Name">7</td>
-                
-                <td data-title="Status">In progress</td>
-              </tr>
-              <tr>
-                <td data-title="ID">8</td>
-                <td data-title="Name">8</td>
-                
-                <td data-title="Status">Completed</td>
-              </tr>
-              <tr>
-                <td data-title="ID">9</td>
-                <td data-title="Name">9</td>
-                
-                <td data-title="Status">Completed</td>
-              </tr>
-              <tr>
-                <td data-title="ID">10</td>
-                <td data-title="Name">10</td>
-                
-                <td data-title="Status">Completed</td>
-              </tr>
+              <% }; %>
+              <%  k=0;%>
             </tbody>
-      </table>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+      </div>
+
+
+
+
     </div>
-    
-    
-    
   </div>
-  </body>
-  </html>
+</body>
+
+</html>

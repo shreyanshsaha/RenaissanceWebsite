@@ -1,6 +1,3 @@
-
-
-
 var express = require("express");
 var router = express.Router();
 var User = require("./models/userModel");
@@ -13,18 +10,17 @@ var Event = require("./models/eventModel");
 // Admin pages
 // ===========
 
-//function isAdmin(req, res, next){
-//	if(req.isAuthenticated() && req.user.isAdmin===true)
-//			return next();
-//	res.redirect("/admin_page");
-//}
+function isAdmin(req, res, next) {
+	if (req.isAuthenticated() && req.user.isAdmin === true)
+		return next();
+	res.redirect("/login?ref=/admin");
+}
 
 
 // Show all registered users
-router.get("/admin/admin_page", async function(req, res){
-	var events1 =await User.find({});
-		return	res.render("admin_page",{events1:events1});
-
+router.get("/admin", isAdmin, async function (req, res) {
+	var events1 = await User.find();
+	return res.render("admin_page", {events1: events1});
 });
 
 // Show all registrations in events
