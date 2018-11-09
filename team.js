@@ -1,6 +1,8 @@
 var Team = require("./models/teamModel");
 var User = require("./models/userModel");
+var Summary = require("./models/presenteSummary");
 var router = require('express').Router();
+
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
@@ -110,12 +112,21 @@ router.delete("/team/:id", async function(req, res){
 		});
 
 		// Delete the team
-		Team.deleteOne({_id: req.params.id}, function(err, deletedTeam){
+		Team.deleteOne({_id: req.params.id}, async function(err, deletedTeam){
+			// Delete its executive summary
+			await Summary.deleteOne({teamId: req.params.id})
+			.catch((err)=>{
+				return res.send(err);
+			});
+
 			if(err)
 				res.send(err);
 			else
 				res.send("Deleted Team");
 		});
+
+		
+
 	}
 	else{
 		res.send("Error: only team leader can delete a team!");
