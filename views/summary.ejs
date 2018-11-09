@@ -8,7 +8,7 @@
           <!-- Category -->
           <div class="col-md-6 col-sm-12">
             <div class="col-md-12">
-              <h3>Startup Type</h3>
+              <h3>Startup Category</h3>
               <hr>
             </div>
             <!-- <div class="row mt-4"> -->
@@ -61,7 +61,7 @@
                 <% if(!(member.username==currentUser.username)){ %>
                 <tr>
                   <td class="teammember" colspan="2">
-                    <%= member.username %>
+                    <%= member.username %><% if(String(member._id)===String(teamLeader)){ %> <span class="text-muted text-monospace">| Leader</span> <% }; %>
                   </td>
                   <!-- Only leader can delete members -->
                   <% if(String(currentUser._id) == String(teamLeader)){ %>
@@ -363,8 +363,8 @@
         alert(data);
       } else {
         // alert("User deleted!");
-        console.log(data);
-        // window.location.reload();
+        // console.log(data);
+        window.location.reload();
       }
     });
   }

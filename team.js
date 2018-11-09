@@ -1,6 +1,9 @@
 var Team = require("./models/teamModel");
 var User = require("./models/userModel");
+var Summary = require("./models/presenteSummary");
 var router = require('express').Router();
+var Competition = require("./models/competition");
+var mongoose = require("mongoose");
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
@@ -110,12 +113,21 @@ router.delete("/team/:id", async function(req, res){
 		});
 
 		// Delete the team
-		Team.deleteOne({_id: req.params.id}, function(err, deletedTeam){
+		Team.deleteOne({_id: req.params.id}, async function(err, deletedTeam){
+			// Delete its executive summary
+			await Summary.deleteOne({teamId: req.params.id})
+			.catch((err)=>{
+				return res.send(err);
+			});
+
 			if(err)
 				res.send(err);
 			else
 				res.send("Deleted Team");
 		});
+
+		
+
 	}
 	else{
 		res.send("Error: only team leader can delete a team!");
@@ -140,13 +152,13 @@ router.post("/team/delete/user", function(req, res){
 			// Delete the teamId from the user
 			console.log(req.user.username, req.user._id, team.teamLeader);
 			console.log(mongoose.Schema.Types.ObjectId(req.user._id) === mongoose.Schema.Types.ObjectId(team.teamLeader));
-			res.send("OK");
+			// res.send("OK");
 
-			// await User.findOneAndUpdate({_id: req.body.teamMember}, {$set: {teamId: null}});
-			// await Team.findOneAndUpdate({_id: team._id}, {$pull:{teamMembers: req.body.teamMember}});
+			await User.findOneAndUpdate({_id: req.body.teamMember}, {$set: {teamId: null}});
+			await Team.findOneAndUpdate({_id: team._id}, {$pull:{teamMembers: req.body.teamMember}});
 			// // Pull the member from the team
 
-			// return res.send("Success");
+			return res.send("Success");
 		}
 		else{
 			return res.send("Error: Only team leader can delete members!");
