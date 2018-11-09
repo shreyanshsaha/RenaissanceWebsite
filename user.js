@@ -1,52 +1,73 @@
 var express = require("express");
 var router = express.Router();
-var User = require("./models/userModel");
 var passport = require('passport');
-var LocalStrategy = require('passport-local');
+
+// Databases
+var User = require("./models/userModel");
 var Team = require("./models/teamModel");
 var Summary = require("./models/presenteSummary");
 var Event = require("./models/eventModel");
+var Competition = require("./models/competition");
+
+function isAdmin(req, res, next) {
+	if (req.isAuthenticated() && req.user.isAdmin === true)
+		return next();
+	res.redirect("/login?ref=/admin");
+}
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
-		return next();
+		if(req.user.isAdmin===true)
+			return res.redirect("/admin");
+		else
+			return next();
 	}
 	console.log(req.user, " not logged in!");
 	res.redirect("/login/?ref=" + req.originalUrl);
 }
 
+// ==========
 // User route
+// ==========
+
+// Profile page
 router.get("/user", isLoggedIn, async function (req, res) {
-	
-	var user = await User.findOne({_id: req.user.username}).populate("events").populate("teamMembers")
-	.catch(err=>{
-		return err;
-	});
 	var events = await Event.find({});
-	if(req.user.teamId!=null){
+	var competition = await Competition.findOne({});	
+	var userFound=false;
+	
+	competition.users.forEach(function(user){
+		if(String(user)===String(req.user._id))
+			userFound=true;
+			return;
+	});
+
+	if(req.user.teamId!==null){
 		var team = await Team.findOne({_id: req.user.teamId}).populate("teamMembers")
 		.catch(err=>{
 			console.log(err);
 		});
 		var summary = await Summary.findOne({_id: req.user.teamId});
 		if(summary)
-			return res.render("profile_page", { team: team, summary:summary, teamLeader: team.teamLeader, events:events})
-		return res.render("profile_page", { team: team, summary:null, teamLeader: team.teamLeader, events:events})
+			return res.render("profile_page", { team: team, summary:summary, teamLeader: team.teamLeader, events:events, competition:{name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound}});
+		return res.render("profile_page", { team: team, summary:null, teamLeader: team.teamLeader, events:events, competition:{name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound}});
 	}
 	else
-		return res.render("profile_page", { team: null, summary:null, teamLeader: null, events:events})
-	
+		return res.render("profile_page", { team: null, summary:null, teamLeader: null, events:events, competition:{name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound}});
 });
 
+
+// Register page
 router.get("/user/register", function (req, res) {
 	res.render("reg_page", {
 		messages: req.query.error
 	});
 });
 
+// Register new user
 router.post("/user/register", function (req, res) {
 	if (!req.body.username || !req.body.password || !req.body.email)
-	res.redirect("/register?error="+"Username, password and email are required fields!");
+		res.redirect("/register?error="+"Username, password and email are required fields!");
 
 	// Add gender too
 	var user = new User({
@@ -58,7 +79,8 @@ router.post("/user/register", function (req, res) {
 		age: req.body.age
 	});
 
-	User.register(user, req.body.password, function (err, newUser) {
+
+	User.register(user, req.body.password, function (err) {
 		if (err) {
 			console.log("User register error", err);
 			res.redirect("/user/register?error="+err.message);
@@ -72,10 +94,13 @@ router.post("/user/register", function (req, res) {
 
 });
 
+
+// Update User Summary
 router.put("/user/summary", function (req, res) {
 	if ((req.body.teamId == '') || (req.body.startupName == '') || (req.body.startupType == '')) {
 		return res.send("Error: Empty Fields not allowed!");
-	};
+	}
+
 	if (!req.body.teamId)
 		return res.send("Error: Need to be in a team!");
 
@@ -86,17 +111,20 @@ router.put("/user/summary", function (req, res) {
 		isSubmitted: false,
 		executiveSummary: req.body.executiveSummary
 	};
+
 	Summary.findOne({
 		teamId: req.body.teamId
 	}, async function (err, summary) {
 		if (err)
 			return res.send("Error: " + err);
 		// create a new sumary
-		if (summary == null)
+		if (summary === null)
 			await Summary.create(details)
 			.catch(err => {
 				return res.send("Error: " + err);
 			});
+		else if(summary.isSubmitted)
+			return res.send("Error: Cannot update a submitted summary! Contact Admin!");
 		// update existing summary
 		else
 			await Summary.findOneAndUpdate({

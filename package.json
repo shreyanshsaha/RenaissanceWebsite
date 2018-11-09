@@ -19,9 +19,11 @@
   "homepage": "https://github.com/erixerns/IEEE_website#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cjs-module": "^1.4.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "foreach": "^2.0.5",
     "method-override": "^3.0.0",
     "mongoose": "^5.2.15",
     "passport": "^0.4.0",

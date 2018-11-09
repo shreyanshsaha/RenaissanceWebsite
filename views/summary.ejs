@@ -1,30 +1,8 @@
-
-
 <div class="con col-md-12 mt-0">
   <form>
-    <!-- Description of User -->
-    <!-- <div class="row">
-        <div class="col-sm-12">
-          <h3>User Details</h3>
-          <hr>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="row">
-            <p for="staticEmail" class="col-xs-12">Username: <%=currentUser.username%></p>
-          </div>
-
-          <div class="row">
-            <p for="staticEmail" class="col-xs-12">Full Name:  <%=currentUser.firstName%> <%=currentUser.lastName%></p>
-          </div>
-        </div>
-      </div> -->
-
-
     <!-- Startup Type-->
-    <div class="row">
+
+    <div class="row mt-4">
       <div class="col-sm-12">
         <div class="row mt-4">
           <!-- Category -->
@@ -78,7 +56,7 @@
 
                   <!-- <td><div class="btn btn-danger btn-sm">Delete</div></td> -->
                 </tr>
-                
+
                 <% if(team) team.teamMembers.forEach(function(member){ %>
                 <% if(!(member.username==currentUser.username)){ %>
                 <tr>
@@ -154,7 +132,7 @@
     </div>
     <!-- Eligibilty and Rules & Regulations -->
     <!-- <div row mt-4> -->
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="row mt-4">
         <ul class="nav nav-tabs col-sm-12" id="myTab" role="tablist">
           <li class="nav-item">
@@ -242,8 +220,8 @@
       <% if(!currentUser.teamId){ %>
       <div class="col-sm-12">
         <!-- <div > -->
-          <div class="alert alert-danger" role="alert">
-            <strong>Create a team</strong> to register your startup!
+        <div class="alert alert-danger" role="alert">
+          <strong>Create a team</strong> to save your executive summary!
           <!-- </div> -->
         </div>
       </div>
@@ -291,25 +269,24 @@
 
 
 <script>
-    <% if (summary) { %>
-    $("#form-startup-type option[value=<%=summary.startupType%>]").attr('selected', 'selected');
-    startUpTypeChange(document.getElementById("form-startup-type"));
-    <%}%>
+  <% if (summary) { %>
+  $("#form-startup-type option[value=<%=summary.startupType%>]").attr('selected', 'selected');
+  startUpTypeChange(document.getElementById("form-startup-type"));
+  <%}%>
 
-    function startUpTypeChange(sel) {
-      var startUpTypeLabel = document.getElementById("startupType");
-      console.log(sel.value);
-      if (/ideation/i.exec(sel.value)) {
-        startUpTypeLabel.innerText = "Ideation: ";
-        $("#ideationEli").removeClass("d-none");
-        $("#operationsEli").addClass("d-none");
-      }
-      else {
-        startUpTypeLabel.innerText = "Operational: ";
-        $("#operationsEli").removeClass("d-none");
-        $("#ideationEli").addClass("d-none");
-      }
+  function startUpTypeChange(sel) {
+    var startUpTypeLabel = document.getElementById("startupType");
+    console.log(sel.value);
+    if (/ideation/i.exec(sel.value)) {
+      startUpTypeLabel.innerText = "Ideation: ";
+      $("#ideationEli").removeClass("d-none");
+      $("#operationsEli").addClass("d-none");
+    } else {
+      startUpTypeLabel.innerText = "Operational: ";
+      $("#operationsEli").removeClass("d-none");
+      $("#ideationEli").addClass("d-none");
     }
+  }
 
   function saveExecutiveSummary() {
 
@@ -317,22 +294,21 @@
       url: "/user/summary",
       type: "PUT",
       data: {
-          <% if(currentUser.teamId) { %>
+        <% if(currentUser.teamId) { %>
         teamId: "<%= currentUser.teamId %>",
-          <% } else { %>
+        <% } else { %>
         teamId: null,
-          <% } %>
+        <% } %>
 
-    startupName: document.getElementById("form-startup-name").value,
-      executiveSummary: document.getElementById("form-startup-executivesummary").value,
+        startupName: document.getElementById("form-startup-name").value,
+        executiveSummary: document.getElementById("form-startup-executivesummary").value,
         startupType: document.getElementById("form-startup-type").value
-        },
-  success: function(data) {
-    console.log(data);
+      },
+      success: function (data) {
+        console.log(data);
+      }
+    })
   }
-      })
-    }
-
 </script>
 <script>
   if (document.getElementsByClassName(".teamMember").length >= 4) {
@@ -437,4 +413,3 @@
     });
   }
 </script>
-
