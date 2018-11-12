@@ -7,9 +7,9 @@
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="/css/admin_style.css" />
-  <!-- <script src="bootstrap.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="bootstrap.css" /> -->
-  <script src="admin_script.js"></script>
+
+
+
   <link rel="stylesheet" href="/css/bootstrap.css">
   <script src="/lib/jquery.min.js"></script>
   <script src="/js/bootstrap.css"></script>
@@ -47,7 +47,9 @@
                 <th>Sno.</th>
                 <th>Name</th>
                 <th>Username</th>
-
+                <th>Email</th>
+                <th>Contact</th>
+<th>#</th>
 
               </tr>
             </thead>
@@ -60,18 +62,31 @@
                   <%= k %>
                 </td>
                 <td data-title="Name">
-                  <%= i.firstName %>
+                  <%= i.firstname %>
                   <%= i.lastName  %>
                 </td>
+                <td data-title="Name">
+                  <%= i.email %>
 
-                <td data-title="Status">
+                </td>
+                <td data-title="Name">
+                  <%= i.contact %>
+
+                </td>
+
+                <td data-title="Status" class="username">
                   <%= i.username %>
                 </td>
+
+                  <td><a href="/admin/delete/<%= i._id %>">Delete</td>
+
+
               </tr>
               <% }; %>
               <%  k=0;%>
             </tbody>
           </table>
+
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
@@ -82,6 +97,24 @@
 
     </div>
   </div>
+  <script>
+ $('body').delegate('.remove','click',function()
+{
+
+$(this).parent().parent().remove();
+/*$.ajax({
+            url: 'admin.js',
+            type: 'GET',
+            data: {var1: ok},
+            success: function(data) {
+                console.log("success");
+            }});*/
+
+});
+
+
+
+  </script>
 </body>
 
 </html>
