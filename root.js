@@ -97,26 +97,6 @@ router.get("/sponsors", function(req, res){
 	res.render("sponsors", {sponsors: sponsorDetails});
 });
 
-// ! Executive Summary - TO BE DELETED
-// router.get("/executiveSummary", isLoggedIn, function(req, res){
-// 	Team.findOne({_id: req.user.teamId}).populate("teamMembers").exec(async function(err, team){
-// 		if(err)
-// 			return res.send(err);
-
-// 		if(team){
-// 			var summary = await Summary.findOne({teamId: req.user.teamId});
-// 			console.log(summary);
-// 			if(summary)
-// 				res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString(), summary: summary});
-// 			else
-// 			res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString(), summary: null});
-// 		}
-// 		else
-// 		res.render("summary", {teamMembers: null, teamLeader: null, summary: null});
-// 	});
-// });
-
-
 
 // Feedback
 router.post("/feedback", function(req, res){
@@ -149,7 +129,7 @@ router.post("/feedback", function(req, res){
 
 // Login and Logout
 router.get("/login", function (req, res) {
-	console.log(req.query.ref);
+	console.log("/login, ref:", req.query.ref);
 	var error=null;
 	if(req.query.error)
 		error=req.query.error;

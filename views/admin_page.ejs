@@ -4,15 +4,15 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Page Title</title>
+  <title>Renaissance | Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="/css/admin_style.css" />
-
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/reg_style.css" />
 
 
   <link rel="stylesheet" href="/css/bootstrap.css">
   <script src="/lib/jquery.min.js"></script>
-  <script src="/js/bootstrap.css"></script>
+  <script src="/js/bootstrap.js"></script>
 </head>
 
 <body>
@@ -25,12 +25,12 @@
 
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-            aria-selected="true">Home</a>
+          <a class="nav-link active" id="user-tab" data-toggle="tab" href="#user-table" role="tab" aria-controls="user-table"
+            aria-selected="true">Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-            aria-selected="false">Profile</a>
+          <a class="nav-link" id="add-user-table" data-toggle="tab" href="#addUser" role="tab" aria-controls="addUser"
+            aria-selected="false">Add User</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
@@ -38,7 +38,7 @@
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade show active" id="user-table" role="tabpanel" aria-labelledby="user-tab">
 
           <table id="table" class="table table-hover table-mc-light-blue">
 
@@ -49,7 +49,7 @@
                 <th>Username</th>
                 <th>Email</th>
                 <th>Contact</th>
-<th>#</th>
+                <th>#</th>
 
               </tr>
             </thead>
@@ -57,28 +57,30 @@
               <% var k=0;%>
               <% for(let i of events1){ %>
               <% k=k+1;%>
+
               <tr>
                 <td data-title="ID">
                   <%= k %>
                 </td>
+
                 <td data-title="Name">
-                  <%= i.firstname %>
+                  <%= i.firstName %>
                   <%= i.lastName  %>
+                </td>
+                <td data-title="Name">
+                  <%= i.username %>
+
                 </td>
                 <td data-title="Name">
                   <%= i.email %>
 
                 </td>
-                <td data-title="Name">
-                  <%= i.contact %>
-
-                </td>
 
                 <td data-title="Status" class="username">
-                  <%= i.username %>
+                  <%= i.contact %>
                 </td>
 
-                  <td><a href="/admin/delete/<%= i._id %>">Delete</td>
+                <td><a href="/admin/delete/<%= i._id %>">Delete</td>
 
 
               </tr>
@@ -88,7 +90,111 @@
           </table>
 
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        <div class="tab-pane fade" id="addUser" role="tabpanel" aria-labelledby="add-user-table">
+          <form method="POST" class="mt-4" action="/user/register">
+            <div class="col">
+              <div class="minput">
+                <input type="text" id="fname" dir="auto" name="firstName" required>
+                <span class="bar"></span>
+                <label>First Name</label>
+                <div id="error-fname"></div>
+              </div>
+
+              <div class="minput">
+                <input type="text" id="lname" dir="auto" name="lastName" required>
+                <span class="bar"></span>
+                <label>Last Name</label>
+                <div id="error-lname"></div>
+              </div>
+
+              <!-- We are not storing age into database yet -->
+              <div class="minput">
+                <input type="number" id="age" dir="auto" required>
+                <span class="bar"></span>
+                <label>Age</label>
+                <div id="error-age"></div>
+              </div>
+              <!-- We are not storing gender into database yet -->
+              <div class="control-group">
+                <span class="sex">Sex :</span>
+                <label class="control control--radio">Male
+                  <input type="radio" name="radio" id="male" />
+                  <div class="control__indicator"></div>
+                </label>
+                <label class="control control--radio">Female
+                  <input type="radio" name="radio" id="femelle" />
+                  <div class="control__indicator"></div>
+                </label>
+              </div>
+              <div class="minput">
+                <input type="text" id="phno" dir="auto" name="phone" required>
+                <span class="bar"></span>
+                <label>Phone number</label>
+                <div id="error-phno"></div>
+              </div>
+              <!-- <div class="minput">
+                  <div class="select">
+                    <select id="pays">
+                      <option value="">-- Department --</option>
+                      <option value="finance">Finance</option>
+                      <option value="webdev">WebDev</option>
+                      <option value="sponsorship">Sponsorship</option>
+                    </select>
+                    <div class="select__arrow"></div>
+                  </div>
+                </div> -->
+            </div>
+
+            <div class="col">
+              <div class="minput">
+                <input type="text" id="pseudo" dir="auto" name="username" required>
+
+                <span class="bar"></span>
+                <label>Username</label>
+                <div id="error-pseudo"></div>
+              </div>
+
+              <div class="minput">
+                <input type="email" id="email" dir="ltr" class="" name="email" required>
+                <span class="bar"></span>
+                <label>Email</label>
+                <div id="error-email"></div>
+              </div>
+
+              <div class="minput">
+                <input type="text" id="password" dir="auto" value="" onclick="regenPass()" required readonly>
+                <span class="bar"></span>
+                <label>Password (Click to Regenerate)</label>
+                <div id="error-pass"></div>
+              </div>
+
+              <div class="minput">
+                <input type="text" id="passwordConf" name="password" required>
+                <span class="bar"></span>
+                <label>Retype Password</label>
+                <div id="error-conf"></div>
+              </div>
+              <div class="control-group">
+
+                <label class="control control--checkbox">I agree to all terms and conditions
+                  <input type="checkbox" checked />
+                  <div class="control__indicator"></div>
+                </label>
+              </div>
+
+              <div class="minput">
+                <!-- <span id="valid" style="margin-bottom: 5px;"></span> -->
+
+                <input type="submit" id="send" value="Submit" disabled="true" style="padding:5px;padding-top:7px;">
+              </div>
+            </div>
+            
+          </form>
+
+          <script src="/js/reg_script.js"></script>
+        </div>
+
+
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
       </div>
 
@@ -98,21 +204,27 @@
     </div>
   </div>
   <script>
- $('body').delegate('.remove','click',function()
-{
+    $('body').delegate('.remove', 'click', function () {
 
-$(this).parent().parent().remove();
-/*$.ajax({
-            url: 'admin.js',
-            type: 'GET',
-            data: {var1: ok},
-            success: function(data) {
-                console.log("success");
-            }});*/
+      $(this).parent().parent().remove();
+      /*$.ajax({
+                  url: 'admin.js',
+                  type: 'GET',
+                  data: {var1: ok},
+                  success: function(data) {
+                      console.log("success");
+                  }});*/
 
-});
+    });
+    // Genderate a random password
+    function regenPass(){
+      document.getElementById('password').value=Math.random().toString(36).substring(2, 6) + Math.random().toString(36).substring(2, 6);
+    }
 
-
+    
+    regenPass();
+    up(1, 'password');
+    tabBooleans[7]=true;
 
   </script>
 </body>
