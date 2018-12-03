@@ -138,3 +138,18 @@ body{
 #registerButton{
     font-size:1.2rem;
 }
+
+.competition-name{
+    color:#343838;
+    border-bottom: 1px solid #00b4cc;
+    width: 40%;
+}
+
+@media(max-width: 575.98px){
+    .competition-name{
+        width: 80%;
+    }
+    .tab-content{
+        padding: 5%;
+    }
+}

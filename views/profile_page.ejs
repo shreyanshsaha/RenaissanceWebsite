@@ -91,7 +91,7 @@
 
 									<div class="tab-pane fade active show" id="competition" role="tabpanel" aria-labelledby="competition-tab">
 										<!-- Description of Competition -->
-										<h3>
+										<h3 class="competition-name">
 											<%= competition.name %>
 										</h3>
 										<p>
@@ -110,22 +110,26 @@
 									</div>
 
 									<div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
-										<table class="table">
-											<thead>
-												<tr>
-													<td>Name</td>
-													<td>Date</td>
-													<td>Payment Status</td>
-												</tr>
-											</thead>
-											<% currentUser.events.forEach(function(event){ %>
-											<tr>
-												<td>event</td>
-												<td>event</td>
-												<td>event</td>
-											</tr>
-											<% }); %>
-										</table>
+										<% if(currentUser.events.length>0){ %>
+											<table class="table">
+												<thead>
+													<tr>
+														<td>Name</td>
+														<td>Date</td>
+														<td>Payment Status</td>
+													</tr>
+												</thead>
+													<% currentUser.events.forEach(function(event){ %>
+													<tr>
+														<td>event</td>
+														<td>event</td>
+														<td>event</td>
+													</tr>
+													<% }); %>
+											</table>
+										<% } else { %>
+											<h4 class="text-center text-muted">You haven't registered for any events yet!</h4>
+										<% }; %>
 									</div>
 								</div>
 							</div>
