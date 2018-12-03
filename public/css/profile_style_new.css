@@ -6,11 +6,12 @@ body{
 
     width: 90vw;
     margin:auto;
-    margin-top: 3%;
+    margin-top: 4%;
     margin-bottom: 3%;
     border-radius: 0.5rem;
     background: #fff;
 }
+
 
 .profile-img{
     text-align: center;
@@ -55,6 +56,15 @@ body{
     font-weight: 600;
     color: #6c757d;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.profile-edit-btn:hover{
+    opacity: 0.9;
+    background-color: #005f6b;
+    color: white;
+    transition: 0.2s;
+    
 }
 
 .profile-rating{
@@ -115,4 +125,16 @@ body{
 .profile-tab p{
     font-weight: 600;
     color: #0062cc;
+}
+
+#myTab .nav-item{
+    font-size:1.2rem;
+}
+
+.tab-content{
+    margin-top: 2%;
+}
+
+#registerButton{
+    font-size:1.2rem;
 }

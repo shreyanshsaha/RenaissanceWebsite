@@ -4,7 +4,9 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Profile | <%= currentUser.username %></title>
+	<title>Profile |
+		<%= currentUser.username %>
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- <script src="bootstrap.js"></script>
@@ -27,8 +29,6 @@
 			<div class="contianer">
 
 				<div class="row">
-
-
 					<!-- Left Column -->
 					<div class="col-md-4">
 						<!-- Profile Photo -->
@@ -58,7 +58,7 @@
 										<%= currentUser.contact %></a><br />
 									<a href="">Email:
 										<%= currentUser.email %></a><br />
-									<button type="submit" class="profile-edit-btn" name="btnAddMore">Edit Profile</button>
+									<button type="submit" class="profile-edit-btn mt-3" name="btnAddMore">Edit Profile</button>
 								</div>
 							</div>
 						</div>
@@ -84,6 +84,8 @@
 									</li>
 
 								</ul>
+
+
 								<!-- Tab Content -->
 								<div class="tab-content" id="myTabContent">
 
@@ -98,33 +100,33 @@
 
 										<% if(!competition.userRegistered){ %>
 										<h3>
-											<button type="button" class="btn btn-primary btn-lg" onclick="registerForCompetition('<%=competition._id%>')">Register</button>
+											<button type="button" class="btn btn-primary btn" onclick="registerForCompetition('<%=competition._id%>')" id="registerButton">Register</button>
 											your Startup!
 										</h3>
 										<% }else{ %>
-											<% include summary%>
+										<% include summary%>
 										<% }; %>
 
 									</div>
 
 									<div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
-											<table class="table">
-												<thead>
-													<tr>
-														<td>Name</td>
-														<td>Date</td>
-														<td>Payment Status</td>
-													</tr>
-												</thead>
-												<% currentUser.events.forEach(function(event){ %>
-													<tr>
-														<td>event</td>
-														<td>event</td>
-														<td>event</td>
-													</tr>
-												<% }); %>
-											</table>
-										</div>
+										<table class="table">
+											<thead>
+												<tr>
+													<td>Name</td>
+													<td>Date</td>
+													<td>Payment Status</td>
+												</tr>
+											</thead>
+											<% currentUser.events.forEach(function(event){ %>
+											<tr>
+												<td>event</td>
+												<td>event</td>
+												<td>event</td>
+											</tr>
+											<% }); %>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -141,13 +143,14 @@
 		</form>
 	</div>
 
+	<!-- TODO: Move script to a file -->
 	<script>
 		function registerForCompetition(id) {
 			$.ajax({
 				type: "put",
 				url: "/register/competition/" + id,
 				success: function (data) {
-					if(/error/i.exec(data))
+					if (/error/i.exec(data))
 						alert(data);
 					else
 						window.location.reload();
