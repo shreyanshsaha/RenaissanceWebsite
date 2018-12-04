@@ -1,8 +1,14 @@
-
+// =======
+// Imports
+// =======
 var express = require("express");
 var router = express.Router();
-var Event = require("./models/eventModel");
 var passport = require('passport');
+
+// ========
+// Database
+// ========
+var Event = require("./models/eventModel");
 
 //! Debug only
 var sponsorDetails=[

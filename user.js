@@ -1,5 +1,6 @@
+// Imports
+
 var express = require("express");
-var router = express.Router();
 var passport = require('passport');
 
 // Databases
@@ -9,12 +10,14 @@ var Summary = require("./models/presenteSummary");
 var Event = require("./models/eventModel");
 var Competition = require("./models/competition");
 
-function isAdmin(req, res, next) {
-	if (req.isAuthenticated() && req.user.isAdmin === true)
-		return next();
-	res.redirect("/login?ref=/admin");
-}
+// Router
+var router = express.Router();
 
+
+// ===========
+// Middlewares
+// ===========
+// Check if a user is logged in
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		if(req.user.isAdmin===true)
@@ -26,6 +29,7 @@ function isLoggedIn(req, res, next) {
 	res.redirect("/login/?ref=" + req.originalUrl);
 }
 
+// Check if a user is logged out
 function isNotLoggedIn(req, res, next){
 	if(!req.isAuthenticated())
 		return next();
@@ -44,18 +48,23 @@ router.get("/user", isLoggedIn, async function (req, res) {
 	var competition = await Competition.findOne({});	
 	var userFound=false;
 	
+	// Check if user registered for Presente Vous
 	competition.users.forEach(function(user){
 		if(String(user)===String(req.user._id))
 			userFound=true;
 			return;
 	});
 
+	// Check is user is in a team
 	if(req.user.teamId!==null){
+
 		var team = await Team.findOne({_id: req.user.teamId}).populate("teamMembers")
 		.catch(err=>{
 			console.log(err);
 		});
+
 		var summary = await Summary.findOne({_id: req.user.teamId});
+
 		if(summary)
 			return res.render("profile_page", { team: team, summary:summary, teamLeader: team.teamLeader, events:events, competition:{name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound}});
 		return res.render("profile_page", { team: team, summary:null, teamLeader: team.teamLeader, events:events, competition:{name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound}});
@@ -67,18 +76,19 @@ router.get("/user", isLoggedIn, async function (req, res) {
 
 // Register page
 router.get("/user/register", isNotLoggedIn, function (req, res) {
-	res.render("reg_page", {
-		messages: req.query.error
-	});
+	res.render("reg_page", {messages: req.query.error});
 });
 
 // Register new user
 router.post("/user/register", isNotLoggedIn, function (req, res) {
-	if (!req.body.username || !req.body.password || !req.body.email)
+	
 	console.log('Path: ', req.path);
+	// Check main fields
+	if (!req.body.username || !req.body.password || !req.body.email){
 		res.redirect(req.path+"?error="+"Username, password and email are required fields!");
+	}
 
-	// Add gender too
+	// TODO: Add gender too
 	var user = new User({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
@@ -88,13 +98,15 @@ router.post("/user/register", isNotLoggedIn, function (req, res) {
 		age: req.body.age
 	});
 
-
+	// Register user
 	User.register(user, req.body.password, function (err) {
 		if (err) {
-			console.log("User register error", err);
+			console.log("User register error: ", err);
 			res.redirect(req.path+"?error="+err.message);
 		} else {
-			console.log("[+] User Registered:");
+			console.log("[+] User Registered:", req.user.username);
+
+			// If admin has registered a user, then DO NOT go to user profile
 			if(!req.isAuthenticated() && req.user.isAdmin === false){
 				passport.authenticate("local")(req, res, function () {
 					res.redirect("/user");
@@ -110,10 +122,12 @@ router.post("/user/register", isNotLoggedIn, function (req, res) {
 
 // Update User Summary
 router.put("/user/summary", function (req, res) {
+	// Check important fields
 	if ((req.body.teamId == '') || (req.body.startupName == '') || (req.body.startupType == '')) {
 		return res.send("Error: Empty Fields not allowed!");
 	}
 
+	// Check team status
 	if (!req.body.teamId)
 		return res.send("Error: Need to be in a team!");
 
@@ -125,6 +139,7 @@ router.put("/user/summary", function (req, res) {
 		executiveSummary: req.body.executiveSummary
 	};
 
+	// Find and update summary, if summary doesnt exist, it will be made automatically
 	Summary.findOne({
 		teamId: req.body.teamId
 	}, async function (err, summary) {
@@ -147,7 +162,8 @@ router.put("/user/summary", function (req, res) {
 			});
 	});
 	res.send("OK");
-	// Check if the startUp type is in the given
+	// Check if the startUp type is in the given options
 });
+
 
 module.exports = router;

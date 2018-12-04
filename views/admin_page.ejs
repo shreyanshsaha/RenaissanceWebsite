@@ -79,11 +79,11 @@
                 <td data-title="Status" class="username">
                   <%= i.contact %>
                 </td>
-<% if(i.isAdmin==false) { %>
+                <% if(i.isAdmin==false) { %>
                   <td><a href="/admin/delete/<%= i._id %>">Delete</td>
-                    <% } else { %>
-                      <td>Admin</td>
-                        <% } %>
+                <% } else { %>
+                  <td>Admin</td>
+                <% } %>
               </tr>
               <% }; %>
               <%  k=0;%>

@@ -1,13 +1,21 @@
+// =======
+// Imports
+// =======
 var express = require("express");
 var router = express.Router();
-var User = require("./models/userModel");
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
-var Team = require("./models/teamModel");
+
+// ========
+// Database
+// ========
+var User = require("./models/userModel");
 var Summary = require("./models/presenteSummary");
 var Event = require("./models/eventModel");
+var Team = require("./models/teamModel");
+
 // ===========
-// Admin pages
+// Middlewares
 // ===========
 
 function isAdmin(req, res, next) {
@@ -16,20 +24,23 @@ function isAdmin(req, res, next) {
 	res.redirect("/login?ref=/admin");
 }
 
+router.use(isAdmin);
 
-// Show all registered users
-router.get("/admin", isAdmin,async function (req, res) {
+// ===========
+// Admin pages
+// ===========
+
+// Main Admin Page
+router.get("/admin", async function (req, res) {
 	var events1 = await User.find();
-	return res.render("admin_page", {events1: events1});
+	return res.render("admin_page", { events1: events1 });
 });
 
 // Delete any user
-
-router.get('/admin/delete/:id',isAdmin,async function(req,res){
-
-User.remove({_id:req.params.id,isAdmin:false},function(err,deledata){
-res.redirect("/admin");
+router.get('/admin/delete/:id', async function (req, res) {
+	User.remove({ _id: req.params.id, isAdmin: false }, function (err, deledata) {
+		res.redirect("/admin");
+	});
 });
 
-});
 module.exports = router;
