@@ -1,0 +1,17 @@
+html>
+<head>
+	<title>Client Side Hashing</title>
+    <script src="http://polycrypt.net/common/util.js"></script>
+	<script src="http://polycrypt.net/front/polycrypt.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
+	<script src="https://raw.github.com/bitwiseshiftleft/sjcl/master/sjcl.js"></script>
+</head>
+<body>
+<script>
+var password = 'monkey123';
+var cryptohash = CryptoJS.SHA256(password);
+document.getElementById("cryptopassword").innerHTML=password;
+document.getElementById("cryptohash").innerHTML=cryptohash;
+</script>
+</body>
+</html>

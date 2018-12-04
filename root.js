@@ -150,12 +150,16 @@ router.post("/feedback", function(req, res){
 // Login and Logout
 router.get("/login", function (req, res) {
 	console.log(req.query.ref);
-	res.render("login", {reference:req.query.ref});
+	var error=null;
+	if(req.query.error)
+		error=req.query.error;
+
+	res.render("login", {reference:req.query.ref, error: error});
 });
 
 router.post("/login", passport.authenticate("local", 
 	{
-		failureRedirect: "/login?ref="
+		failureRedirect: "/login?ref=&error="+'Error: User doesnt exist!'
 	}), function (req, res) {
 		console.log(req.user.username, " logged in!");
 		if(req.body.reference)
