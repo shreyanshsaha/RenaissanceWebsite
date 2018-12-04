@@ -1,10 +1,20 @@
+// =======
+// Imports
+// =======
+var router = require('express').Router();
+var mongoose = require("mongoose");
+
+// ========
+// Database
+// ========
 var Team = require("./models/teamModel");
 var User = require("./models/userModel");
 var Summary = require("./models/presenteSummary");
-var router = require('express').Router();
 var Competition = require("./models/competition");
-var mongoose = require("mongoose");
 
+// ==========
+// Middleware
+// ==========
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
@@ -13,7 +23,11 @@ function isLoggedIn(req, res, next) {
 	res.redirect("/login");
 }
 
+// ===========
+// TEAM Routes
+// ===========
 
+// Create a new Team
 router.post("/team/new", isLoggedIn, async function(req, res){
 	// Create a new team
 	// Logic: 
@@ -37,6 +51,7 @@ router.post("/team/new", isLoggedIn, async function(req, res){
 	});
 });
 
+// Exit a team
 router.put("/team/exit", isLoggedIn, function(req, res){
 	console.log(req.user.username, " exited team!");
 	Team.findOne({_id:req.user.teamId}, async function(err, team){
@@ -136,7 +151,7 @@ router.delete("/team/:id", async function(req, res){
 
 
 
-
+// Delete user from team
 router.post("/team/delete/user", function(req, res){
 	// Delete members from each others table
 	if(!req.user.teamId)
