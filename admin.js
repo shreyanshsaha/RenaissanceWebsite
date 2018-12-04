@@ -3,13 +3,16 @@
 // =======
 var express = require("express");
 var router = express.Router();
-var User = require("./models/userModel");
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
-var Team = require("./models/teamModel");
+
+// ========
+// Database
+// ========
+var User = require("./models/userModel");
 var Summary = require("./models/presenteSummary");
 var Event = require("./models/eventModel");
-
+var Team = require("./models/teamModel");
 
 // ===========
 // Middlewares

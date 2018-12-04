@@ -1,11 +1,19 @@
+// =======
+// Imports
+// =======
+var express = require("express");
 
+// ========
+// Database
+// ========
 var Event = require("./models/eventModel");
 var User = require("./models/userModel");
 var Competition = require("./models/competition");
-var express = require("express");
 
+// Router
 var router = express.Router();
 
+// Register user to event
 router.post("/register/event/:id", async function(req, res){
 	var event = await Event.findById(req.params.id);
 
@@ -35,6 +43,7 @@ router.post("/register/event/:id", async function(req, res){
 	}
 });
 
+// Register user to presente vouss
 router.put("/register/competition/:id", async function(req, res){
 	if(!req.isAuthenticated())
 		return res.send("Error: Need to login to register!");
