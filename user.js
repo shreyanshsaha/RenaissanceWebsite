@@ -26,6 +26,14 @@ function isLoggedIn(req, res, next) {
 	res.redirect("/login/?ref=" + req.originalUrl);
 }
 
+function isNotLoggedIn(req, res, next){
+	if(!req.isAuthenticated())
+		return next();
+	else
+		return res.redirect("/");
+}
+
+
 // ==========
 // User route
 // ==========
@@ -58,16 +66,17 @@ router.get("/user", isLoggedIn, async function (req, res) {
 
 
 // Register page
-router.get("/user/register", function (req, res) {
+router.get("/user/register", isNotLoggedIn, function (req, res) {
 	res.render("reg_page", {
 		messages: req.query.error
 	});
 });
 
 // Register new user
-router.post("/user/register", function (req, res) {
+router.post("/user/register", isNotLoggedIn, function (req, res) {
 	if (!req.body.username || !req.body.password || !req.body.email)
-		res.redirect("/register?error="+"Username, password and email are required fields!");
+	console.log('Path: ', req.path);
+		res.redirect(req.path+"?error="+"Username, password and email are required fields!");
 
 	// Add gender too
 	var user = new User({
@@ -83,12 +92,16 @@ router.post("/user/register", function (req, res) {
 	User.register(user, req.body.password, function (err) {
 		if (err) {
 			console.log("User register error", err);
-			res.redirect("/user/register?error="+err.message);
+			res.redirect(req.path+"?error="+err.message);
 		} else {
 			console.log("[+] User Registered:");
-			passport.authenticate("local")(req, res, function () {
-				res.redirect("/user");
-			});
+			if(!req.isAuthenticated() && req.user.isAdmin === false){
+				passport.authenticate("local")(req, res, function () {
+					res.redirect("/user");
+				});
+			} else if(req.user.isAdmin === true) {
+				res.redirect("/admin");
+			}
 		}
 	});
 

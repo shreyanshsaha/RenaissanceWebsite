@@ -114,6 +114,7 @@ function checkPays(id) {
 }
 
 function checkPass(label) {
+    password=document.getElementById('password');
     if (password.value.length > 0 && password.value == passwordConf.value){
         up(label, 'passwordConf');
         document.getElementById("error-conf").innerHTML = "";
