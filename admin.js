@@ -18,7 +18,7 @@ function isAdmin(req, res, next) {
 
 
 // Show all registered users
-router.get("/admin",isAdmin, async function (req, res) {
+router.get("/admin", isAdmin,async function (req, res) {
 	var events1 = await User.find();
 	return res.render("admin_page", {events1: events1});
 });
@@ -27,7 +27,7 @@ router.get("/admin",isAdmin, async function (req, res) {
 
 router.get('/admin/delete/:id',isAdmin,async function(req,res){
 
-User.remove({_id:req.params.id},function(err,deledata){
+User.remove({_id:req.params.id,isAdmin:false},function(err,deledata){
 res.redirect("/admin");
 });
 

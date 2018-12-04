@@ -62,25 +62,26 @@
                   <%= k %>
                 </td>
                 <td data-title="Name">
-                  <%= i.firstname %>
+                  <%= i.firstName %>
                   <%= i.lastName  %>
+                </td>
+                <td data-title="Name">
+                  <%= i.username %>
+
                 </td>
                 <td data-title="Name">
                   <%= i.email %>
 
                 </td>
-                <td data-title="Name">
-                  <%= i.contact %>
-
-                </td>
 
                 <td data-title="Status" class="username">
-                  <%= i.username %>
+                  <%= i.contact %>
                 </td>
-
+<% if(i.isAdmin==false) { %>
                   <td><a href="/admin/delete/<%= i._id %>">Delete</td>
-
-
+                    <% } else { %>
+                      <td>Admin</td>
+                        <% } %>
               </tr>
               <% }; %>
               <%  k=0;%>
