@@ -1,6 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Karla');
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
 
+html,
+    body {
+
+    margin: 0 auto;
+    margin-top: 30px;
+
+    /* background-image: url("/images/Registerpagebackground2].png"); */
+    background-color: #eeeeee;
+    background-size: cover;
+    background-repeat: repeat - y;
+}
+
+.reg-form{
+    padding:10px;
+    /* border:1px solid red; */
+    display: block;
+    margin-top: 5%;
+    background-color: white;
+    box-shadow: 5px 5px 50px #dddddd;
+}
 
 form{
     /* background: rgba(255, 255, 255, 0.4) */
