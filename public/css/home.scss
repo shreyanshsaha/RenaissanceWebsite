@@ -26,29 +26,46 @@
 
 body,
 html {
-  padding-top:30px;
+  // padding-top:30px;
   max-width: 100%;
-<<<<<<< HEAD
   overflow-x: hidden;
-=======
   height: 100%;
   // overflow-x: hidden;
->>>>>>> 199ff822a6a0583b4e108efe7f42b2caaa062c2c
   font-family: 'Karla','Courier New', Courier, monospace;  // background: #343838;
 }
 
+
+
+// Transparent Navbar
 .navbar {
-  scroll-snap-align: start;
+  border-width: 0px;
+  -webkit-box-shadow: 0px 0px;
+  box-shadow: 0px 0px;
+  background-color: rgba(255, 0, 0, 0);
+  background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
+  background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+  background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+  & *{
+    color: #fff !important;
+  }
+}
+
+.navbar-fixed-top.scrolled {
+  background-color: #fff !important;
+  & *{
+    color:#000!important;
+  }
+  transition: background-color 200ms linear;
 }
 
 .home {
-  height: 90vh;
+  height: 100vh;
 
   .heading {
     .carousel-inner {
       // height: 100%;
       .carousel-item {
-        height: 90vh;
+        height: 100vh;
 
         .carousel-img {
           // border: 5px solid red;
