@@ -14,6 +14,8 @@
 // Scrollbar
 // =========
 @import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
 .border-alter-round {
   border-top-left-radius: 15%;
   border-bottom-right-radius: 15%;
@@ -42,11 +44,18 @@ html {
   -webkit-box-shadow: 0px 0px;
   box-shadow: 0px 0px;
   background-color: rgba(255, 0, 0, 0);
-  background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
-  background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
-  background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
-  & *{
+  background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.1)),color-stop( 100% , rgba(0,0,0,0.00)));
+  background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.00) 100%);
+  background-image: linear-gradient(180deg,rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.00) 100%);
+  .nav-link{
     color: #fff !important;
+    font-family: 'Roboto Condensed';
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+  .navbar-brand span{
+    font-family:'Kaushan Script';
+    font-size:1.5rem;
   }
 }
 
