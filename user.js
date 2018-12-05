@@ -37,6 +37,20 @@ function isNotLoggedIn(req, res, next){
 		return res.redirect("/");
 }
 
+function pathExtractor(req) {
+  // Escaping user input to be treated as a literal 
+  // string within a regular expression accomplished by 
+  // simple replacement
+  function escapeRegExp(str) {
+   return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1');
+  }
+  // Replace utility function
+  function replaceAll(str, find, replace) {
+   return str.replace(new RegExp(escapeRegExp(find), 'g'), replace); 
+  }
+  return replaceAll(req.get('referer'), req.get('origin'), '');
+}
+
 
 // ==========
 // User route
@@ -80,12 +94,13 @@ router.get("/user/register", isNotLoggedIn, function (req, res) {
 });
 
 // Register new user
-router.post("/user/register", isNotLoggedIn, function (req, res) {
+router.post("/user/register", function (req, res) {
 	
-	console.log('Path: ', req.path);
+	var ref = pathExtractor(req)
+	console.log('User reg Ref:', ref);
 	// Check main fields
 	if (!req.body.username || !req.body.password || !req.body.email){
-		res.redirect(req.path+"?error="+"Username, password and email are required fields!");
+		res.redirect(ref+"?error="+"Username, password and email are required fields!");
 	}
 
 	// TODO: Add gender too
@@ -102,7 +117,7 @@ router.post("/user/register", isNotLoggedIn, function (req, res) {
 	User.register(user, req.body.password, function (err) {
 		if (err) {
 			console.log("User register error: ", err);
-			res.redirect(req.path+"?error="+err.message);
+			res.redirect(ref+"?error="+err.message);
 		} else {
 			console.log("[+] User Registered:", req.user.username);
 

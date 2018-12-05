@@ -20,6 +20,18 @@
   <% include partials/navbar %>
   <div id="demo">
     <div class="container">
+      <% if(messages) {%>
+      <div class="container">
+        <div class="alert alert-danger" role="alert">
+          <strong>Error: </strong>
+          <%=messages%>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+      </div>
+      <%}%>
       <h1>Admin Page</h1>
 
 
@@ -80,9 +92,9 @@
                   <%= i.contact %>
                 </td>
                 <% if(i.isAdmin==false) { %>
-                  <td><a href="/admin/delete/<%= i._id %>">Delete</td>
+                <td><a href="/admin/delete/<%= i._id %>">Delete</td>
                 <% } else { %>
-                  <td>Admin</td>
+                <td>Admin</td>
                 <% } %>
               </tr>
               <% }; %>
@@ -189,7 +201,7 @@
                 <input type="submit" id="send" value="Submit" disabled="true" style="padding:5px;padding-top:7px;">
               </div>
             </div>
-            
+
           </form>
 
           <script src="/js/reg_script.js"></script>
@@ -218,14 +230,14 @@
 
     });
     // Genderate a random password
-    function regenPass(){
-      document.getElementById('password').value=Math.random().toString(36).substring(2, 6) + Math.random().toString(36).substring(2, 6);
+    function regenPass() {
+      document.getElementById('password').value = Math.random().toString(36).substring(2, 6) + Math.random().toString(36).substring(2, 6);
     }
 
-    
+
     regenPass();
     up(1, 'password');
-    tabBooleans[7]=true;
+    tabBooleans[7] = true;
 
   </script>
 </body>
