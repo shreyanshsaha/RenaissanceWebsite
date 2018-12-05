@@ -51,7 +51,7 @@
 	</section>
 
 	<!-- About -->
-	<div class="seperation"></div>
+	<div class="seperation" id="about"></div>
 	<% include frontPart/about %>
 
 	<!-- Stats -->
@@ -59,7 +59,7 @@
 	<% include frontPart/stats %>
 
 	<!-- Main Events -->
-	<div class="seperation" id="events"></div>
+	<div class="seperation" id="competition"></div>
 
 	<main>
 		<div class='card'>
@@ -105,13 +105,28 @@
 	<% include partials/footer %>
 
 	<script>
-		// $(function () {
+		
 		$('body').scroll(function () {
-			console.log("scroll");
 			var $nav = $(".navbar-fixed-top");
 			$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
 		});
-			// });
+
+
+			$(document).ready(function () {
+				$('a[href^="#"]').on('click', function (e) {
+					e.preventDefault();
+
+					var target = this.hash,
+						$target = $(target);
+						console.log($target.offset().top, $('body').scrollTop());
+					$('html, body').stop().animate({
+						'scrollTop': $target.offset().top + $('body').scrollTop() - 45
+					}, 900, 'swing', function () {
+						window.location.hash = target;
+					});
+				});
+			});
+			
 	</script>
 	<script src="js/count_script.js"></script>
 </body>
