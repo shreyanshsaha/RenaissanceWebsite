@@ -33,7 +33,7 @@ router.use(isAdmin);
 // Main Admin Page
 router.get("/admin", async function (req, res) {
 	var events1 = await User.find();
-	return res.render("admin_page", { events1: events1 });
+	return res.render("admin_page", { events1: events1, messages:req.query.error });
 });
 
 // Delete any user
