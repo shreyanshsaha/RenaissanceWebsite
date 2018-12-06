@@ -14,6 +14,17 @@
 // Scrollbar
 // =========
 @import url('https://fonts.googleapis.com/css?family=Karla');
+
+.navbar{
+  border-width: 0px;
+  -webkit-box-shadow: 0px 0px;
+  box-shadow: 0px 0px;
+  background-color: rgba(255, 0, 0, 0);
+  background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.1)),color-stop( 100% , rgba(0,0,0,0.00)));
+  background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.00) 100%);
+  background-image: linear-gradient(180deg,rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.00) 100%);
+}
+
 .border-alter-round {
   border-top-left-radius: 15%;
   border-bottom-right-radius: 15%;
@@ -24,29 +35,9 @@
   border-bottom-left-radius: 15%;
 }
 
-body,
-html {
-  // padding-top:30px;
-  max-width: 100%;
-  overflow-x: hidden;
-  height: 100%;
-  // overflow-x: hidden;
-  font-family: 'Karla','Courier New', Courier, monospace;  // background: #343838;
-}
-
-
-
-// Transparent Navbar
-.navbar {
-  border-width: 0px;
-  -webkit-box-shadow: 0px 0px;
-  box-shadow: 0px 0px;
-  background-color: rgba(255, 0, 0, 0);
-  background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
-  background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
-  background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
-  & *{
-    color: #fff !important;
+.navbar{
+  .nav-link, .navbar-brand{
+    color:#fff!important;
   }
 }
 
@@ -56,6 +47,16 @@ html {
     color:#000!important;
   }
   transition: background-color 200ms linear;
+}
+
+
+body,
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+  height: 100%;
+  // overflow-x: hidden;
+  font-family: 'Karla','Courier New', Courier, monospace;  // background: #343838;
 }
 
 .home {
