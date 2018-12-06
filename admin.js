@@ -17,7 +17,7 @@ var Team = require("./models/teamModel");
 // ===========
 // Middlewares
 // ===========
-
+/*
 function isAdmin(req, res, next) {
 	if (req.isAuthenticated() && req.user.isAdmin === true)
 		return next();
@@ -25,22 +25,29 @@ function isAdmin(req, res, next) {
 }
 
 router.use(isAdmin);
-
+*/
 // ===========
 // Admin pages
 // ===========
 
 // Main Admin Page
 router.get("/admin", async function (req, res) {
-	var events1 = await User.find();
-	return res.render("admin_page", { events1: events1 });
+	var user = await User.find().populate(" teamId");
+	return res.render("admin_page", { user: user });
 });
 
 // Delete any user
-router.get('/admin/delete/:id', async function (req, res) {
+router.get('/admin/delete/:id',async function (req, res) {
 	User.remove({ _id: req.params.id, isAdmin: false }, function (err, deledata) {
 		res.redirect("/admin");
 	});
 });
+//team deletion module by admin
+router.get("/admin", async function (req, res) {
+	var team = await Team.find().populate("teamMembers");
+
+	return res.render("admin_page", { team: team });
+});
+
 
 module.exports = router;

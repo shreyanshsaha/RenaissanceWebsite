@@ -34,8 +34,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-            aria-selected="false">Contact</a>
+            aria-selected="false">Teams</a>
         </li>
+
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="user-table" role="tabpanel" aria-labelledby="user-tab">
@@ -55,14 +56,19 @@
             </thead>
             <tbody>
               <% var k=0;%>
-              <% for(let i of events1){ %>
+              <% for(let i of user){ %>
               <% k=k+1;%>
 
               <tr>
+                <% if(i.teamId!=null){ %>
                 <td data-title="ID">
-                  <%= k %>
+                  <%= i.teamId.teamMembers %>
                 </td>
-
+<% } else { %>
+  <td data-title="ID">
+      <%= 2 %>
+    </td>
+    <% } %>
                 <td data-title="Name">
                   <%= i.firstName %>
                   <%= i.lastName  %>
@@ -91,6 +97,7 @@
           </table>
 
         </div>
+
         <div class="tab-pane fade" id="addUser" role="tabpanel" aria-labelledby="add-user-table">
           <form method="POST" class="mt-4" action="/user/register">
             <div class="col">
@@ -195,8 +202,39 @@
           <script src="/js/reg_script.js"></script>
         </div>
 
+<!--Teams-->
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><h1>Teams</h1>
+          <table id="table" class="table table-hover table-mc-light-blue">
 
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+            <thead>
+              <tr>
+                <th>Sno.</th>
+                <th>Team Members </th>
+                <th>Team Name</th>
+
+                <th>#</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
+
+              <tr>
+                <td data-title="ID">
+           <%=      team.teamLeader %>
+                </td>
+
+
+
+              </tr>
+
+
+
+
+            </tbody>
+
+
+        </div>
       </div>
 
 
