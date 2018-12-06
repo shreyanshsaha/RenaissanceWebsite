@@ -1,0 +1,19 @@
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+
+// Transparent Navbar
+.navbar {
+  background-color: #fefefe;
+  .nav-link, .navbar-brand{
+    color:#000!important;
+    font-family: 'Roboto Condensed';
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+  .navbar-brand span{
+    font-family:'Kaushan Script';
+    font-size:1.5rem;
+  }
+}

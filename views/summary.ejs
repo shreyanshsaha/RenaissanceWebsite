@@ -11,12 +11,12 @@
               <h3>Startup Category</h3>
               <hr>
             </div>
-            <!-- <div class="row mt-4"> -->
+            
             <div class="col-md-12">
               <div class="input-group row">
-                <h3 id="startupType" class="col-sm-12 text-info">Ideation: </h3>
-                <!-- <div id="startupType" class="col-sm-8">Ideation: </div> -->
-                <select class="custom-select col-sm-12" id="form-startup-type" onclick="startUpTypeChange(this)">
+                <h3 id="startupType" class="col-7 text-info">Ideation: </h3>
+                
+                <select class="custom-select col-5" id="form-startup-type" onclick="startUpTypeChange(this)">
                   <optgroup label="Ideation">
                     <option value="ideation-bussiness">Bussiness</option>
                     <option value="ideation-social">Social</option>
@@ -27,7 +27,12 @@
                   </optgroup>
                 </select>
               </div>
-              <!-- </div> -->
+              
+            </div>
+
+            <div class="col-md-12 mt-1">
+              <dt class="text-muted" >What is <span id="category-title">Ideation (Bussiness)</span>:</h5><dt>
+              <dd id="category-description">Insert Description here!</dd>
             </div>
           </div>
 
@@ -104,26 +109,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="row">
-        <div class="col-sm-12">
-          <div class="input-group row">
-
-            <h3 id="startupType" class="col-sm-4 text-info">Ideation: </h3>
-             <div id="startupType" class="col-sm-8">Ideation: </div> 
-            <select class="custom-select col-sm-6 ml-1" id="form-startup-type" onclick = "startUpTypeChange(this)">
-              <optgroup label="Ideation">
-                <option value="ideation-bussiness">Bussiness</option>
-                <option value="ideation-social">Social</option>
-              </optgroup>
-              <optgroup label="Operational">
-                <option value="operational-bussiness">Bussiness</option>
-                <option value="operational-social">Social</option>
-              </optgroup>
-            </select>
-
-          </div>
-        </div>
-      </div> -->
 
       <!-- team members -->
       <!-- <div class="row mt-4"> -->
@@ -254,10 +239,10 @@
 
 
     <div class="form-group row">
-      <div class="col-sm-1">
+      <div class="col-1">
         <button class="btn btn-success" type="button" onclick="saveExecutiveSummary()">Save</button>
       </div>
-      <div class="col-sm-1">
+      <div class="col-1 ml-4">
         <button class="btn btn-danger disabled" type="button">Submit</button>
       </div>
     </div>
@@ -276,13 +261,19 @@
 
   function startUpTypeChange(sel) {
     var startUpTypeLabel = document.getElementById("startupType");
+    var descriptionHeading = document.getElementById("category-title");
     console.log(sel.value);
     if (/ideation/i.exec(sel.value)) {
       startUpTypeLabel.innerText = "Ideation: ";
+      if(/bussinesss/i.exec(sel.value))
+        descriptionHeading.innerHTML='Ideation (Bussiness)';
+      else
+        descriptionHeading.innerHTML='Ideation (Social)';
       $("#ideationEli").removeClass("d-none");
       $("#operationsEli").addClass("d-none");
     } else {
       startUpTypeLabel.innerText = "Operational: ";
+      descriptionHeading.innerText="Operational"
       $("#operationsEli").removeClass("d-none");
       $("#ideationEli").addClass("d-none");
     }
@@ -291,7 +282,7 @@
   function saveExecutiveSummary() {
 
     $.ajax({
-      url: "/user/summary",
+      url: "/team/summary",
       type: "PUT",
       data: {
         <% if(currentUser.teamId) { %>
@@ -308,108 +299,5 @@
         console.log(data);
       }
     })
-  }
-</script>
-<script>
-  if (document.getElementsByClassName(".teamMember").length >= 4) {
-    console.log("HIDE");
-    document.querySelector("#addMemberButton").classList.add("d-none");
-    document.getElementById("addUserDiv").classList.add("d-none");
-  }
-  document.querySelector("#addMember").addEventListener("click", function () {
-    console.log("Members:", document.querySelectorAll(".teamMember").length)
-    document.getElementById("addUserDiv").classList.toggle("d-none");
-    if (document.getElementsByClassName(".teamMember").length >= 4) {
-      console.log("HIDE");
-      document.querySelector("#addMemberButton").classList.add("d-none");
-      document.getElementById("addUserDiv").classList.add("d-none");
-    }
-  });
-
-
-
-
-  function addUser() {
-    var username = document.getElementById("teamUsername").value;
-    $.post("/team/add/" + username, function (data) {
-      if (/ERROR/i.exec(data)) {
-        alert(data);
-      } else {
-        console.log(data);
-        window.location.reload();
-      }
-    });
-
-    // $.post("/addTeamMember", {
-    //   teamUsername: username
-    // }, function (data) {
-    //   // alert(data);
-    //   if (/ERROR/i.exec(data)) {
-    //     alert(data);
-    //     document.getElementById("teamUsername").value = '';
-    //   } else {
-    //     alert("User added to team!");
-    //     document.getElementById("addUserDiv").classList.add("d-none");
-    //     window.location.reload();
-    //   }
-    // });
-  }
-
-  function deleteMember(memID) {
-    $.post("/team/delete/user", {
-      teamMember: memID
-    }, function (data) {
-      if (/ERROR/i.exec(data)) {
-        alert(data);
-      } else {
-        // alert("User deleted!");
-        // console.log(data);
-        window.location.reload();
-      }
-    });
-  }
-
-  function deleteAllMembers() {
-    $.ajax({
-      url: "/team/<%= currentUser.teamId %>",
-      type: "DELETE",
-      success: function (data) {
-        if (/ERROR/i.exec(data)) {
-          alert(data);
-        } else {
-          window.location.reload();
-        }
-      }
-    });
-  }
-
-  function exitTeam() {
-    console.log("Called function!");
-    $.ajax({
-      type: "PUT",
-      url: "/team/exit",
-      success: function (data) {
-        console.log("Success", data);
-        if (/ERROR/i.exec(data)) {
-          alert(data);
-        } else {
-          window.location.reload();
-        }
-      },
-      fail: function (data) {
-        alert(data);
-      }
-    })
-  }
-
-  function createNewTeam() {
-    $.post("/team/new", function (data) {
-      if (/ERROR/i.exec(data)) {
-        alert(data);
-      } else {
-        window.location.reload();
-
-      }
-    });
   }
 </script>

@@ -18,6 +18,14 @@
 //     background-size: cover;
 // }
 
+html, body{
+	padding-top:30px;
+}
+
+.heading{
+	color: #005F6B;
+}
+
 .container {
 	.sponsor-type {
 		border-top-left-radius: 10px;
@@ -28,4 +36,10 @@
 
 .img-thumbnail{
 	border:none;
+}
+
+@media(max-width: 575.98px){
+	.sponsor-type{
+		margin-left:10px;
+	}
 }

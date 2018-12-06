@@ -1,11 +1,22 @@
-
+// =======
+// Imports
+// =======
+var express = require("express");
+var methodOverride = require('method-override');
+// ========
+// Database
+// ========
 var Event = require("./models/eventModel");
 var User = require("./models/userModel");
 var Competition = require("./models/competition");
-var express = require("express");
+var Team = require("./models/teamModel");
 
+// Router
 var router = express.Router();
+router.use(methodOverride("_method"));
 
+
+// Register user to event
 router.post("/register/event/:id", async function(req, res){
 	var event = await Event.findById(req.params.id);
 
@@ -35,7 +46,9 @@ router.post("/register/event/:id", async function(req, res){
 	}
 });
 
+// Register user to presente vouss
 router.put("/register/competition/:id", async function(req, res){
+	console.log("Register Called!");
 	if(!req.isAuthenticated())
 		return res.send("Error: Need to login to register!");
 	
@@ -51,6 +64,23 @@ router.put("/register/competition/:id", async function(req, res){
 	await Competition.findByIdAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user._id}})
 	.catch((err)=>{console.log(err);});
 
+	// Create a new team
+	// Create a new team
+	// Logic: 
+	// Create a new team with the currentUser as team Leader
+	// Add the ID of the new team to the user
+	console.log(req.user);
+	if(!(req.user.teamId === null)){
+		res.send("Error: User already in a team");
+		return;
+	}
+	console.log(req.user.username, "created a new team!");
+	// Create new team
+	var newTeam = await Team.create({teamLeader: req.user._id, teamMembers: [req.user._id]});
+	console.log(newTeam._id);
+	// Update the teamId to user
+	await User.findOneAndUpdate({_id: req.user._id}, {teamId: newTeam._id});
+	
 	return res.send("Success!");
 });
 

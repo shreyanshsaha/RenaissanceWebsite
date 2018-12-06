@@ -1,8 +1,14 @@
-
+// =======
+// Imports
+// =======
 var express = require("express");
 var router = express.Router();
-var Event = require("./models/eventModel");
 var passport = require('passport');
+var middleware = require('./middleware');
+// ========
+// Database
+// ========
+var Event = require("./models/eventModel");
 
 //! Debug only
 var sponsorDetails=[
@@ -68,15 +74,6 @@ router.use(function (req, res, next) {
 	next();
 });
 
-function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	console.log("Not logged in!");
-	res.redirect("/login?ref="+req.originalUrl);
-}
-
-
 
 // ===========
 // Root Routes
@@ -96,26 +93,6 @@ router.get("/", function (req, res) {
 router.get("/sponsors", function(req, res){
 	res.render("sponsors", {sponsors: sponsorDetails});
 });
-
-// ! Executive Summary - TO BE DELETED
-// router.get("/executiveSummary", isLoggedIn, function(req, res){
-// 	Team.findOne({_id: req.user.teamId}).populate("teamMembers").exec(async function(err, team){
-// 		if(err)
-// 			return res.send(err);
-
-// 		if(team){
-// 			var summary = await Summary.findOne({teamId: req.user.teamId});
-// 			console.log(summary);
-// 			if(summary)
-// 				res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString(), summary: summary});
-// 			else
-// 			res.render("summary", {teamMembers: team.teamMembers, teamLeader: team.teamLeader.toString(), summary: null});
-// 		}
-// 		else
-// 		res.render("summary", {teamMembers: null, teamLeader: null, summary: null});
-// 	});
-// });
-
 
 
 // Feedback
@@ -149,22 +126,24 @@ router.post("/feedback", function(req, res){
 
 // Login and Logout
 router.get("/login", function (req, res) {
-	console.log(req.query.ref);
-	res.render("login", {reference:req.query.ref});
+	console.log("/login, ref:", req.query.ref);
+
+	return res.render("login");
 });
 
 router.post("/login", passport.authenticate("local", 
 	{
-		failureRedirect: "/login?ref="
+		failureRedirect: "/login?error="+'Error: User doesnt exist!'
 	}), function (req, res) {
 		console.log(req.user.username, " logged in!");
-		if(req.body.reference)
-			res.redirect(req.body.reference);
-		else
-			res.redirect("/user");
+		// if(req.body.reference)
+		// 	res.redirect(req.body.reference);
+		// else
+		// 	res.redirect("/user");
+		res.redirect("/user")
 });
 
-router.get("/logout", isLoggedIn, function (req, res) {
+router.get("/logout", middleware.isLoggedIn, function (req, res) {
 	console.log("Logout: ", req.user.username);
 	req.logout();
 	res.redirect("/");

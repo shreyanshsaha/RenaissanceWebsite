@@ -10,19 +10,19 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
-	<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="css/home.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="css/scrollbar.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/scrollbar.css" />
 
-	<link rel="stylesheet" type="text/css" media="screen" href="css/peoplestyle.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/peoplestyle.css" />
 
-	<link rel="stylesheet" type="text/css" media="screen" href="css/feedback.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="css/footer.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="css/about.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="css/stats.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="css/countdown_style.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="css/presente_style.css" />
-
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/feedback.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/footer.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/about.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/stats.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/countdown_style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/presente_style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/navbar.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/home.css" />
 	<link rel="stylesheet" href="/css/mainEvents.css" />
 	<link rel="stylesheet" href="/css/styleEve.css">
 
@@ -30,10 +30,10 @@
 	<script src="/lib/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
 
-
 </head>
 
 <body>
+
 	<!-- Navbar -->
 	<% include partials/navbar %>
 
@@ -49,9 +49,9 @@
 			<div class="countdown container"></div>
 		</div>
 	</section>
-	
+
 	<!-- About -->
-	<div class="seperation"></div>
+	<div class="seperation" id="about"></div>
 	<% include frontPart/about %>
 
 	<!-- Stats -->
@@ -59,14 +59,21 @@
 	<% include frontPart/stats %>
 
 	<!-- Main Events -->
-	<div class="seperation" id="events"></div>
+	<div class="seperation" id="competition"></div>
 
 	<main>
 		<div class='card'>
 			<div class='info'>
-				<h1 class='title'>Presente Vous<hr></h1>
+				<h1 class='title'>Presente Vous
+					<hr>
+				</h1>
 				<h3 class='date'>9th February, 2019</h3>
-				<p class='description'>Your pitch, your win. The stage is set, it awaits the ring of your inspiration and the voices of unique minds that aim to reach out and start out on their own. Presente Vous is the ultimate place to team up and get your start up the backing it needs. Don't fret, we also have the help you might need. Mentors to guide you through the process and shape up your ideas to perfection. Some areas of prime importance will be Technology- advances in sustainability, artificial intelligence and virtual reality to name a few, as well as Finances, Education, Health and Wellness.</p>
+				<p class='description'>Your pitch, your win. The stage is set, it awaits the ring of your inspiration and the
+					voices of unique minds that aim to reach out and start out on their own. Presente Vous is the ultimate place to
+					team up and get your start up the backing it needs. Don't fret, we also have the help you might need. Mentors to
+					guide you through the process and shape up your ideas to perfection. Some areas of prime importance will be
+					Technology- advances in sustainability, artificial intelligence and virtual reality to name a few, as well as
+					Finances, Education, Health and Wellness.</p>
 				<a href="/user" class="btn btn-success btn-lg">Register</a>
 			</div>
 		</div>
@@ -97,8 +104,33 @@
 	<div class="seperation"></div>
 	<% include partials/footer %>
 
+	<script>
+		
+		$('body').scroll(function () {
+			var $nav = $(".navbar-fixed-top");
+			$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+		});
+
+
+			$(document).ready(function () {
+				$('a[href^="#"]').on('click', function (e) {
+					e.preventDefault();
+
+					var target = this.hash,
+						$target = $(target);
+						console.log($target.offset().top, $('body').scrollTop());
+					$('html, body').stop().animate({
+						'scrollTop': $target.offset().top + $('body').scrollTop() - 45
+					}, 900, 'swing', function () {
+						window.location.hash = target;
+					});
+				});
+			});
+			
+	</script>
+	<script src="js/count_script.js"></script>
 </body>
-<script src="js/count_script.js"></script>
+
 
 </html>
 

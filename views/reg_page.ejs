@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
-<title>Registration</title>
 
 <head>
+	<title>Registration</title>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="google-site-verification" content="bcPE7I5x02j0ce8_qICY_EX6nOw5IE6bEpkWUbKuNE8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/scrollbar.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/navbar.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/reg_style.css" />
 	<script src="/lib/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
@@ -17,52 +20,53 @@
 
 <body>
 	<% include partials/navbar %>
-	<h1>Renaissance</h1>
-	<!-- <div class="details">Register Here</div> -->
-	<!-- <div class="details">Here</div> -->
-	<!-- Chage action to '' ? -->
-	<form method="POST" action="/user/register">
-		<div class="col">
-			<div class="minput">
-				<input type="text" id="fname" dir="auto" name="firstName" required>
-				<span class="bar"></span>
-				<label>First Name</label>
-				<div id="error-fname"></div>
-			</div>
+	<div class="container reg-form">
+		<h1 class="title">Renaissance</h1>
+		<!-- <div class="details">Register Here</div> -->
+		<!-- <div class="details">Here</div> -->
+		<!-- Chage action to '' ? -->
+		<form method="POST" action="/user/register">
+			<div class="col">
+				<div class="minput">
+					<input type="text" id="fname" dir="auto" name="firstName" required>
+					<span class="bar"></span>
+					<label>First Name</label>
+					<div id="error-fname"></div>
+				</div>
 
-			<div class="minput">
-				<input type="text" id="lname" dir="auto" name="lastName" required>
-				<span class="bar"></span>
-				<label>Last Name</label>
-				<div id="error-lname"></div>
-			</div>
+				<div class="minput">
+					<input type="text" id="lname" dir="auto" name="lastName" required>
+					<span class="bar"></span>
+					<label>Last Name</label>
+					<div id="error-lname"></div>
+				</div>
 
-			<!-- We are not storing age into database yet -->
-			<div class="minput">
-				<input type="number" id="age" dir="auto" required>
-				<span class="bar"></span>
-				<label>Age</label>
-				<div id="error-age"></div>
-			</div>
-			<!-- We are not storing gender into database yet -->
-			<div class="control-group">
-				<span class="sex">Sex :</span>
-				<label class="control control--radio">Male
-					<input type="radio" name="radio" id="male" />
-					<div class="control__indicator"></div>
-				</label>
-				<label class="control control--radio">Female
-					<input type="radio" name="radio" id="femelle" />
-					<div class="control__indicator"></div>
-				</label>
-			</div>
-			<div class="minput">
-				<input type="text" id="phno" dir="auto" name="phone" required>
-				<span class="bar"></span>
-				<label>Phone number</label>
-				<div id="error-phno"></div>
-			</div>
-			<!-- <div class="minput">
+				<!-- We are not storing age into database yet -->
+				<div class="minput">
+					<input type="number" id="age" dir="auto" required>
+					<span class="bar"></span>
+					<label>Age</label>
+					<div id="error-age"></div>
+				</div>
+				<!-- We are not storing gender into database yet -->
+				<div class="control-group">
+					<span class="sex">Sex :</span>
+					<label class="control control--radio">Male
+						<input type="radio" name="radio" id="male" />
+						<div class="control__indicator"></div>
+					</label>
+					<label class="control control--radio">Female
+						<input type="radio" name="radio" id="femelle" />
+						<div class="control__indicator"></div>
+					</label>
+				</div>
+				<div class="minput">
+					<input type="text" id="phno" dir="auto" name="phone" required>
+					<span class="bar"></span>
+					<label>Phone number</label>
+					<div id="error-phno"></div>
+				</div>
+				<!-- <div class="minput">
 				<div class="select">
 					<select id="pays">
 						<option value="">-- Department --</option>
@@ -73,60 +77,61 @@
 					<div class="select__arrow"></div>
 				</div>
 			</div> -->
-		</div>
-
-		<div class="col">
-			<div class="minput">
-				<input type="text" id="pseudo" dir="auto" name="username" required>
-
-				<span class="bar"></span>
-				<label>Username</label>
-				<div id="error-pseudo"></div>
 			</div>
 
-			<div class="minput">
-				<input type="email" id="email" dir="ltr" class="" name="email" required>
-				<span class="bar"></span>
-				<label>Email</label>
-				<div id="error-email"></div>
-			</div>
+			<div class="col">
+				<div class="minput">
+					<input type="text" id="pseudo" dir="auto" name="username" required>
 
-			<div class="minput">
-				<input type="password" id="password" dir="auto" required>
-				<span class="bar"></span>
-				<label>Password</label>
-				<div id="error-pass"></div>
-			</div>
+					<span class="bar"></span>
+					<label>Username</label>
+					<div id="error-pseudo"></div>
+				</div>
 
-			<div class="minput">
-				<input type="password" id="passwordConf" name="password" required>
-				<span class="bar"></span>
-				<label>Retype Password</label>
-				<div id="error-conf"></div>
-			</div>
-			<div class="control-group">
+				<div class="minput">
+					<input type="email" id="email" dir="ltr" class="" name="email" required>
+					<span class="bar"></span>
+					<label>Email</label>
+					<div id="error-email"></div>
+				</div>
 
-				<label class="control control--checkbox">I agree to all terms and conditions
-					<input type="checkbox" checked />
-					<div class="control__indicator"></div>
-				</label>
-			</div>
+				<div class="minput">
+					<input type="password" id="password" dir="auto" required>
+					<span class="bar"></span>
+					<label>Password</label>
+					<div id="error-pass"></div>
+				</div>
 
-			<div class="minput">
-				<!-- <span id="valid" style="margin-bottom: 5px;"></span> -->
+				<div class="minput">
+					<input type="password" id="passwordConf" name="password" required>
+					<span class="bar"></span>
+					<label>Retype Password</label>
+					<div id="error-conf"></div>
+				</div>
+				<div class="control-group">
 
-				<input type="submit" id="send" value="Submit" disabled="true" style="padding:5px;padding-top:7px;">
+					<label class="control control--checkbox">I agree to all terms and conditions
+						<input type="checkbox" checked />
+						<div class="control__indicator"></div>
+					</label>
+				</div>
+
+				<div class="minput">
+					<!-- <span id="valid" style="margin-bottom: 5px;"></span> -->
+
+					<input type="submit" id="send" value="Submit" disabled="true" style="padding:5px;padding-top:7px;">
+				</div>
 			</div>
-		</div>
-		<% if(messages) {%>
-		<div class="container">
-			<div class="alert alert-danger" role="alert">
-				<strong>Error: </strong>
-				<%=messages%>
+			<% if(messages) {%>
+			<div class="container">
+				<div class="alert alert-danger" role="alert">
+					<strong>Error: </strong>
+					<%=messages%>
+				</div>
 			</div>
-		</div>
-		<%}%>
-	</form>
+			<%}%>
+		</form>
+	</div>
 
 	<script src="/js/reg_script.js"></script>
 </body>

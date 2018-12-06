@@ -12,17 +12,18 @@
   <link rel="stylesheet" type="text/css" media="screen" href="/css/home.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/sponsors.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/footer.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/navbar.css" />
   <script src="/lib/jquery.min.js"></script>
   <script src="/js/bootstrap.js"></script>
 </head>
 <body>
   <% include partials/navbar %>
   <div class="container mt-4">
-  <h1 class="text-muted">Past Sponsors</h1>
+  <h1 class="heading">Past Sponsors</h1>
     <div class="row">
       
       <% sponsors.forEach(function(sponsor){ %>
-        <div class="col-sm-<%=sponsor.imageUrl.length*2%> mt-2">
+        <div class="col-12 col-sm-<%=sponsor.imageUrl.length*2%> mt-2">
           <div class="row mb-1">
             <div class="col-sm-12 sponsor-type">
                 <%= sponsor.type %>
@@ -31,7 +32,7 @@
 
           <div class="row sponsor-img">
             <%sponsor.imageUrl.forEach(function(imageUrl){%>
-              <div class="col-sm-<%=Math.round(12/sponsor.imageUrl.length)%>">
+              <div class="col-6 col-sm-<%=Math.round(12/sponsor.imageUrl.length)%>">
                 <img src="<%=imageUrl%>" class="img-thumbnail"/>
               </div>
             <%});%>

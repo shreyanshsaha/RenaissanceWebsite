@@ -1,6 +1,7 @@
 // =========
 // Includes
 // =========
+var Competition= require('./models/competition');
 var express = require('express'),
 	bodyParser = require('body-parser'),
 	User = require('./models/userModel'),
@@ -56,7 +57,7 @@ app.use(registerRoute);
 app.use(teamRoute);
 
 
-// app.listen(80, function () {
+// app.listen(3000, function () {
 // 	console.log("Server has started!");
 // });
 app.listen(process.env.PORT, process.env.IP);
