@@ -83,36 +83,3 @@
 </div>
 
 
-<script>
-    function saveQuestionnaire() {
-      var data={
-          name: document.getElementById('productname').value,
-          use: document.getElementById('idea').value,
-          segmentation: document.getElementById("segmentation").value,
-          competition: document.getElementById("mcompetition").value,
-          financeModel: document.getElementById("fmodel").value,
-          feasibility: document.getElementById("fidea").value,
-          breakEvenPoint: document.getElementById("bepoint").value,
-          intellectualProperty: document.getElementById("kiproperty").value,
-        }
-      console.log(data);
-
-      $.ajax({
-        url: "/team/questionnaire/save",
-        method: "put",
-        data: {
-          name: document.getElementById('productname').value,
-          use: document.getElementById('idea').value,
-          segmentation: document.getElementById("segmentation").value,
-          competition: document.getElementById("mcompetition").value,
-          financeModel: document.getElementById("fmodel").value,
-          feasibility: document.getElementById("fidea").value,
-          breakEvenPoint: document.getElementById("bepoint").value,
-          intellectualProperty: document.getElementById("kiproperty").value,
-        },
-        success: function(data){
-          console.log(data);
-        }
-      })
-    }
-  </script>

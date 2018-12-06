@@ -10,6 +10,7 @@ var socialSchema = mongoose.Schema({
   categoryProfit: String,
   marketSegmentation: String,
   financialModel: String,
+  feasibility: String,
   competition: String,
   breakEvenPoint: String
 });

@@ -105,45 +105,45 @@ router.post("/team/add/:username", middleware.isLoggedIn, function (req, res) {
 });
 
 // Delete complete team, only team leader can delete the team
-router.delete("/team/:id", async function (req, res) {
-	// logic:
-	// Remove teamId from all teamMembers
+// router.delete("/team/:id", async function (req, res) {
+// 	// logic:
+// 	// Remove teamId from all teamMembers
 
-	var team = await Team.findOne({ _id: req.params.id });
-	console.log(team.teamLeader);
-	// Check is leader is deleting it 
-	//! Not working
-	if (team.teamLeader.equals(req.user._id)) {
-		// Delete teamID from all users
-		await team.teamMembers.forEach(function (member) {
-			console.log("Member", member);
-			User.updateOne({ _id: member }, { $set: { teamId: null } }, function (err) {
-				console.log(err);
-			});
-		});
+// 	var team = await Team.findOne({ _id: req.params.id });
+// 	console.log(team.teamLeader);
+// 	// Check is leader is deleting it 
+// 	//! Not working
+// 	if (team.teamLeader.equals(req.user._id)) {
+// 		// Delete teamID from all users
+// 		await team.teamMembers.forEach(function (member) {
+// 			console.log("Member", member);
+// 			User.updateOne({ _id: member }, { $set: { teamId: null } }, function (err) {
+// 				console.log(err);
+// 			});
+// 		});
 
-		//TODO: Delete Questionnaire if it Exists
-		// Delete the team
-		Team.deleteOne({ _id: req.params.id }, async function (err, deletedTeam) {
-			// Delete its executive summary
-			await Summary.deleteOne({ teamId: req.params.id })
-				.catch((err) => {
-					return res.send(err);
-				});
+// 		//TODO: Delete Questionnaire if it Exists
+// 		// Delete the team
+// 		Team.deleteOne({ _id: req.params.id }, async function (err, deletedTeam) {
+// 			// Delete its executive summary
+// 			await Summary.deleteOne({ teamId: req.params.id })
+// 				.catch((err) => {
+// 					return res.send(err);
+// 				});
 
-			if (err)
-				res.send(err);
-			else
-				res.send("Deleted Team");
-		});
+// 			if (err)
+// 				res.send(err);
+// 			else
+// 				res.send("Deleted Team");
+// 		});
 
 
 
-	}
-	else {
-		res.send("Error: only team leader can delete a team!");
-	}
-});
+// 	}
+// 	else {
+// 		res.send("Error: only team leader can delete a team!");
+// 	}
+// });
 
 
 
@@ -239,16 +239,35 @@ router.put("/team/summary/:type", async function (req, res) {
 	return res.send(req.params.type);
 })
 
-router.put("/team/questionnaire/save", async function (req, res) {
-	var data = {
-		name: req.body.name,
-		use: req.body.use,
-		segmentation: req.body.segmentation,
-		competition: req.body.competition,
-		financeModel: req.body.financeModel,
-		feasibility: req.body.feasibility,
-		breakEvenPoint: req.body.breakEvenPoint,
-		intellectualProperty: req.body.intellectualProperty,
+router.put("/team/questionnaire/save/:type", async function (req, res) {
+	if (req.params.type === 'business') {
+		var data = {
+			name: req.body.name,
+			use: req.body.use,
+			segmentation: req.body.segmentation,
+			competition: req.body.competition,
+			financeModel: req.body.financeModel,
+			feasibility: req.body.feasibility,
+			breakEvenPoint: req.body.breakEvenPoint,
+			intellectualProperty: req.body.intellectualProperty,
+		}
+	}
+	else if (req.params.type === 'social') { }
+	else if (req.params.type === 'operational') {
+		var data = {
+			name: req.body.name,
+			functionality: req.body.functionality,
+			competition: req.body.competition,
+			intellectualProperty: req.body.intellectualProperty,
+			sellingProp: req.body.sellingProp,
+			domain: req.body.domain,
+			financialPotential: req.body.financialPotential,
+			sustainability: req.body.sustainability,
+			cost: req.body.cost,
+			capitalization:req.body.capitalization
+		}
+	} else{
+		return res.send("Error: Invalid type!");
 	}
 	if (!req.user.teamId)
 		return res.send("Error: User needs to be in a team!");
@@ -258,6 +277,10 @@ router.put("/team/questionnaire/save", async function (req, res) {
 		if (!q.q_id) {
 			if (q.type === 'bussiness')
 				var ques = await Bussiness.create(data);
+			else if(q.type==='social')
+				var ques = await Social.create(data);
+			else if(q.type==='operational')
+				var ques = Operational.create(data);
 			else
 				return res.send("Error: Invalid Type!");
 			// Add questionaare id to main document
@@ -265,7 +288,6 @@ router.put("/team/questionnaire/save", async function (req, res) {
 		}
 		else {
 			await Questionnaire.findOneAndUpdate(q._id, { $set: data });
-
 			return res.send("Success!");
 		}
 	})

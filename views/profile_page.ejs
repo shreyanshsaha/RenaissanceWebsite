@@ -195,32 +195,36 @@
 										<% } else { %>
 										<div class="card-deck">
 											<div class="card">
-												<img class="card-img-top" src=".../100px180/" alt="Card image cap">
+
 												<div class="card-body">
 													<h5 class="card-title">Ideation - Bussiness</h5>
-													<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-														content. This content is a little bit longer.</p>
+													<p class="card-text">Startups which are in ideation phase whose ideas fall under the 'Business' category
+														and in need of funding will present their ideas in front of a Jury comprising of investors who will award
+														the best startups with a prize money. </p>
 												</div>
 												<div class="card-footer">
 													<div class="btn btn-primary" onclick="selectType('bussiness')">Select</div>
 												</div>
 											</div>
 											<div class="card">
-												<img class="card-img-top" src=".../100px180/" alt="Card image cap">
+
 												<div class="card-body">
 													<h5 class="card-title">Ideation - Social</h5>
-													<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+													<p class="card-text">Startups which are in ideation phase whose ideas fall under the 'Social' category and
+														in need of funding will present their ideas in front of a Jury comprising of investors who will award the
+														best startups with a prize money. </p>
 												</div>
 												<div class="card-footer">
 													<div class="btn btn-primary" onclick="selectType('social')">Select</div>
 												</div>
 											</div>
 											<div class="card">
-												<img class="card-img-top" src=".../100px180/" alt="Card image cap">
+
 												<div class="card-body">
 													<h5 class="card-title">Operational</h5>
-													<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-														content. This card has even longer content than the first to show that equal height action.</p>
+													<p class="card-text">Startups that have already rolled out their products/services in the market will be
+														pitching in front of Investors who will judge and decide on offering funds to the startups in exchange
+														for equity or as he/she may seem fit.</p>
 												</div>
 												<div class="card-footer">
 													<div class="btn btn-primary" onclick="selectType('operational')">Select</div>
@@ -293,8 +297,62 @@
 				}
 			})
 		}
-	</script>
 
+	</script>
+	<script>
+		function saveQuestionnaire(type) {
+			if (type == 'bussiness') {
+				var data = {
+					name: document.getElementById('productname').value,
+					use: document.getElementById('idea').value,
+					segmentation: document.getElementById("segmentation").value,
+					competition: document.getElementById("mcompetition").value,
+					financeModel: document.getElementById("fmodel").value,
+					feasibility: document.getElementById("fidea").value,
+					breakEvenPoint: document.getElementById("bepoint").value,
+					intellectualProperty: document.getElementById("kiproperty").value,
+				}
+			}
+			else if (type == 'social') {
+				var data = {
+					category: document.getElementById('category-radio').value,
+					name: document.getElementById('productname').value,
+					domain: document.getElementById('domain').value,
+					socialImpact: document.getElementById('simpact').value,
+					feasibility: document.getElementById('fidea').value,
+					categoryProfit: document.getElementById('category-social').value,
+					marketSegmentation: document.getElementById('dsegmentation').value,
+					financialModel: document.getElementById('fmodel').value,
+					competition: document.getElementById('mcompetition').value,
+					breakEvenPoint: document.getElementById('bepoint').value
+				}
+			}
+			else if (type == 'operational') {
+				var data = {
+					name: document.getElementById('productname').value,
+					functionality: document.getElementById('functionality').value,
+					competition: document.getElementById('currentmarketcompetition').value,
+					intellectualProperty: document.getElementById('iproperty').value,
+					sellingProp: document.getElementById('usp').value,
+					domain: document.getElementById('domain').value,
+					financialPotential: document.getElementById('fpotential').value,
+					sustainability: document.getElementById('ssa').value,
+					cost: document.getElementById('cost').value,
+					capitalization: document.getElementById('cstructure').value
+				}
+			}
+			console.log(data);
+
+			$.ajax({
+				url: "/team/questionnaire/save/" + type,
+				method: "put",
+				data: data,
+				success: function (data) {
+					console.log(data);
+				}
+			})
+		}
+	</script>
 	<script>
 		if (document.getElementsByClassName(".teamMember").length >= 4) {
 			console.log("HIDE");
