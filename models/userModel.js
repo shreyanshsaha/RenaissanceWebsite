@@ -14,9 +14,10 @@ var userSchema = new mongoose.Schema({
   age:Number,
   gender:String,
   dateRegistered: {type: Date, default: Date.now},
+  registeredForCompetition: {type: Boolean, default:false},
   isAdmin: {type: Boolean, default:false},
   teamId: {type: mongoose.Schema.ObjectId, ref:"team", default: null},
-  questionnaire: {type: mongoose.Schema.ObjectId, ref:"questoinnaire"}
+  // questionnaire: {type: mongoose.Schema.ObjectId, ref:"questionairre", default:null}
 });
 
 

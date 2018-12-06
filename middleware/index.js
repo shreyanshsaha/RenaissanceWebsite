@@ -13,7 +13,7 @@ middlewareObj.isLoggedIn=function(req, res, next) {
         return next();
     }
     console.log(req.user, " not logged in!");
-    // res.redirect("/login/?ref=" + req.originalUrl);
+    // return res.redirect("/login/?ref=" + req.originalUrl);
     return res.redirect("/login");
 }
 
@@ -24,6 +24,11 @@ middlewareObj.isNotLoggedIn=function(req, res, next){
 		return res.redirect("/");
 }
 
+middlewareObj.isAdmin=function(req, res, next) {
+	if (req.isAuthenticated() && req.user.isAdmin === true)
+		return next();
+	res.redirect("/login");
+}
 
 
 

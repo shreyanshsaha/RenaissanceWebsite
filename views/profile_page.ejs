@@ -23,6 +23,7 @@
 <body>
 	<!-- Navbar -->
 	<% include partials/navbar %>
+
 	<div class="emp-profile">
 		<form method="post">
 
@@ -183,7 +184,50 @@
 											your Startup!
 										</h3>
 										<% }else{ %>
-										<% include summary%>
+										<% if(summary){ %>
+										<% if(summary.type==='bussiness'){ %>
+										<% include questionnaire/bussiness %>
+										<% } else if(summary.type==='social'){ %>
+										<% include questionnaire/social %>
+										<% } else if(summary.type==='operational'){ %>
+										<% include questionnaire/operation %>
+										<% } %>
+										<% } else { %>
+										<div class="card-deck">
+											<div class="card">
+												<img class="card-img-top" src=".../100px180/" alt="Card image cap">
+												<div class="card-body">
+													<h5 class="card-title">Ideation - Bussiness</h5>
+													<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+														content. This content is a little bit longer.</p>
+												</div>
+												<div class="card-footer">
+													<div class="btn btn-primary" onclick="selectType('bussiness')">Select</div>
+												</div>
+											</div>
+											<div class="card">
+												<img class="card-img-top" src=".../100px180/" alt="Card image cap">
+												<div class="card-body">
+													<h5 class="card-title">Ideation - Social</h5>
+													<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+												</div>
+												<div class="card-footer">
+													<div class="btn btn-primary" onclick="selectType('social')">Select</div>
+												</div>
+											</div>
+											<div class="card">
+												<img class="card-img-top" src=".../100px180/" alt="Card image cap">
+												<div class="card-body">
+													<h5 class="card-title">Operational</h5>
+													<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+														content. This card has even longer content than the first to show that equal height action.</p>
+												</div>
+												<div class="card-footer">
+													<div class="btn btn-primary" onclick="selectType('operational')">Select</div>
+												</div>
+											</div>
+										</div>
+										<% } %>
 										<% }; %>
 
 									</div>
@@ -233,6 +277,123 @@
 						alert(data);
 					else
 						window.location.reload();
+				}
+			});
+		}
+
+		function selectType(type) {
+			$.ajax({
+				method: "put",
+				url: "/team/summary/" + type,
+				success: function (data) {
+					if (/error/i.exec(data))
+						alert(data);
+					else
+						window.location.reload();
+				}
+			})
+		}
+	</script>
+
+	<script>
+		if (document.getElementsByClassName(".teamMember").length >= 4) {
+			console.log("HIDE");
+			document.querySelector("#addMemberButton").classList.add("d-none");
+			document.getElementById("addUserDiv").classList.add("d-none");
+		}
+		document.querySelector("#addMember").addEventListener("click", function () {
+			console.log("Members:", document.querySelectorAll(".teamMember").length)
+			document.getElementById("addUserDiv").classList.toggle("d-none");
+			if (document.getElementsByClassName(".teamMember").length >= 4) {
+				console.log("HIDE");
+				document.querySelector("#addMemberButton").classList.add("d-none");
+				document.getElementById("addUserDiv").classList.add("d-none");
+			}
+		});
+
+
+
+
+		function addUser() {
+			var username = document.getElementById("teamUsername").value;
+			$.post("/team/add/" + username, function (data) {
+				if (/ERROR/i.exec(data)) {
+					alert(data);
+				} else {
+					console.log(data);
+					window.location.reload();
+				}
+			});
+
+			// $.post("/addTeamMember", {
+			//   teamUsername: username
+			// }, function (data) {
+			//   // alert(data);
+			//   if (/ERROR/i.exec(data)) {
+			//     alert(data);
+			//     document.getElementById("teamUsername").value = '';
+			//   } else {
+			//     alert("User added to team!");
+			//     document.getElementById("addUserDiv").classList.add("d-none");
+			//     window.location.reload();
+			//   }
+			// });
+		}
+
+		function deleteMember(memID) {
+			$.post("/team/delete/user", {
+				teamMember: memID
+			}, function (data) {
+				if (/ERROR/i.exec(data)) {
+					alert(data);
+				} else {
+					// alert("User deleted!");
+					// console.log(data);
+					window.location.reload();
+				}
+			});
+		}
+
+		function deleteAllMembers() {
+			$.ajax({
+				url: "/team/<%= currentUser.teamId %>",
+				type: "DELETE",
+				success: function (data) {
+					if (/ERROR/i.exec(data)) {
+						alert(data);
+					} else {
+						window.location.reload();
+					}
+				}
+			});
+		}
+
+		function exitTeam() {
+			console.log("Called function!");
+			$.ajax({
+				type: "PUT",
+				url: "/team/exit",
+				success: function (data) {
+					console.log("Success", data);
+					if (/ERROR/i.exec(data)) {
+						alert(data);
+					} else {
+						window.location.reload();
+					}
+				},
+				fail: function (data) {
+					alert(data);
+				}
+			})
+		}
+
+		function createNewTeam() {
+			$.post("/team/new", function (data) {
+				if (/ERROR/i.exec(data)) {
+					alert(data);
+				} else {
+					window.location.reload();
+
 				}
 			});
 		}
