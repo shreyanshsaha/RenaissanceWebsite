@@ -2,7 +2,7 @@
 // Imports
 // =======
 var express = require("express");
-
+var methodOverride = require('method-override');
 // ========
 // Database
 // ========
@@ -12,6 +12,8 @@ var Competition = require("./models/competition");
 
 // Router
 var router = express.Router();
+router.use(methodOverride("_method"));
+
 
 // Register user to event
 router.post("/register/event/:id", async function(req, res){
@@ -45,6 +47,7 @@ router.post("/register/event/:id", async function(req, res){
 
 // Register user to presente vouss
 router.put("/register/competition/:id", async function(req, res){
+	console.log("Register CAlled!");
 	if(!req.isAuthenticated())
 		return res.send("Error: Need to login to register!");
 	

@@ -29,6 +29,7 @@
 			<div class="contianer">
 
 				<div class="row">
+
 					<!-- Left Column -->
 					<div class="col-md-4">
 						<!-- Profile Photo -->
@@ -61,6 +62,83 @@
 									<button type="submit" class="profile-edit-btn mt-3" name="btnAddMore">Edit Profile</button>
 								</div>
 							</div>
+						</div>
+						<!-- Team Members -->
+						<div class="row">
+							<% if(competition.userRegistered){%>
+							<div class="col-12">
+								<div class="col-sm-12">
+									<h3>Team Members</h3>
+									<hr>
+								</div>
+								<!-- </div> -->
+
+								<!-- <div class="row"> -->
+								<table class="col-sm-12 table teamTable table-hover table-stripped">
+									<thead class="bg-dark text-white">
+										<tr>
+											<td class="teams" colspan="2">Team Members</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<% if(currentUser.teamId){ %>
+											<td class="teammember" colspan="2">
+												<%= currentUser.username %>
+											</td>
+											<% } %>
+
+											<!-- <td><div class="btn btn-danger btn-sm">Delete</div></td> -->
+										</tr>
+
+										<% if(team) team.teamMembers.forEach(function(member){ %>
+										<% if(!(member.username==currentUser.username)){ %>
+										<tr>
+											<td class="teammember" colspan="2">
+												<%= member.username %>
+												<% if(String(member._id)===String(teamLeader)){ %> <span class="text-muted text-monospace">| Leader</span>
+												<% }; %>
+											</td>
+											<!-- Only leader can delete members -->
+											<% if(String(currentUser._id) == String(teamLeader)){ %>
+											<td>
+												<div class="btn btn-danger btn-sm" onclick='deleteMember("<%=member._id%>")'>Delete</div>
+											</td>
+											<% }; %>
+										</tr>
+										<% }}); %>
+										<tr id="addUserDiv" class="d-none">
+											<td colspan="2">
+												<div class="input-group mb-3">
+													<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon2" id="teamUsername">
+													<div class="input-group-append">
+														<button class="btn btn-outline-primary" type="button" onclick="addUser()">Add User</button>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr id="addMemberButton">
+											<td>
+												<% if(currentUser.teamId && (String(currentUser._id) == String(teamLeader))){ %>
+												<div class="btn btn-danger" onclick="deleteAllMembers()">Delete Team</div>
+												<% } else if(currentUser.teamId==null){ %>
+												<div class="btn btn-success" onclick="createNewTeam()">Create new team</div>
+												<% } else { %>
+												<div class="btn btn-danger" onclick="exitTeam()">Exit Team</div>
+												<% } %>
+											</td>
+											<td>
+												<% if(currentUser.teamId){ %>
+												<div id="addMember" class="btn btn-primary">&plus; Add member</div>
+												<% } else { %>
+												<div id="addMember" class="btn btn-primary disabled">&plus; Add member</div>
+												<% } %>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<%};%>
 						</div>
 					</div>
 
@@ -100,7 +178,8 @@
 
 										<% if(!competition.userRegistered){ %>
 										<h3>
-											<button type="button" class="btn btn-primary btn" onclick="registerForCompetition('<%=competition._id%>')" id="registerButton">Register</button>
+											<button type="button" class="btn btn-primary btn" onclick="registerForCompetition('<%=competition._id%>')"
+											 id="registerButton">Register</button>
 											your Startup!
 										</h3>
 										<% }else{ %>
@@ -110,7 +189,7 @@
 									</div>
 
 									<div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
-										<% if(currentUser.events.length>0){ %>
+										<!-- <%# if(currentUser.events.length>0){ %>
 											<table class="table">
 												<thead>
 													<tr>
@@ -119,30 +198,26 @@
 														<td>Payment Status</td>
 													</tr>
 												</thead>
-													<% currentUser.events.forEach(function(event){ %>
+													<%# currentUser.events.forEach(function(event){ %>
 													<tr>
 														<td>event</td>
 														<td>event</td>
 														<td>event</td>
 													</tr>
-													<% }); %>
+													<%# }); %>
 											</table>
-										<% } else { %>
+										<%# } else { %>
 											<h4 class="text-center text-muted">You haven't registered for any events yet!</h4>
-										<% }; %>
+										<%# }; %> -->
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-
 				</div>
 
-
-
 			</div>
-
 
 		</form>
 	</div>

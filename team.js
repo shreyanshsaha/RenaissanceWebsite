@@ -3,6 +3,7 @@
 // =======
 var router = require('express').Router();
 var mongoose = require("mongoose");
+var middleware = require("./middleware")
 
 // ========
 // Database
@@ -11,24 +12,12 @@ var Team = require("./models/teamModel");
 var User = require("./models/userModel");
 var Summary = require("./models/presenteSummary");
 var Competition = require("./models/competition");
-
-// ==========
-// Middleware
-// ==========
-function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	console.log("Not logged in!");
-	res.redirect("/login");
-}
-
 // ===========
 // TEAM Routes
 // ===========
 
 // Create a new Team
-router.post("/team/new", isLoggedIn, async function(req, res){
+router.post("/team/new", middleware.isLoggedIn, async function(req, res){
 	// Create a new team
 	// Logic: 
 	// Create a new team with the currentUser as team Leader
@@ -52,7 +41,7 @@ router.post("/team/new", isLoggedIn, async function(req, res){
 });
 
 // Exit a team
-router.put("/team/exit", isLoggedIn, function(req, res){
+router.put("/team/exit", middleware.isLoggedIn, function(req, res){
 	console.log(req.user.username, " exited team!");
 	Team.findOne({_id:req.user.teamId}, async function(err, team){
 		if(err)
@@ -73,7 +62,7 @@ router.put("/team/exit", isLoggedIn, function(req, res){
 });
 
 // Add new user to team
-router.post("/team/add/:username", isLoggedIn, function(req, res){
+router.post("/team/add/:username", middleware.isLoggedIn, function(req, res){
 	// Logic:
 	// Check if user is already in a team
 	// Add this user to the same team as team ID
@@ -181,5 +170,49 @@ router.post("/team/delete/user", function(req, res){
 	});
 });
 
+// Update User Summary
+router.put("/team/summary", function (req, res) {
+	// Check important fields
+	if ((req.body.teamId == '') || (req.body.startupName == '') || (req.body.startupType == '')) {
+		return res.send("Error: Empty Fields not allowed!");
+	}
+
+	// Check team status
+	if (!req.body.teamId)
+		return res.send("Error: Need to be in a team!");
+
+	var details = {
+		teamId: req.body.teamId,
+		startupName: req.body.startupName,
+		startupType: req.body.startupType,
+		isSubmitted: false,
+		executiveSummary: req.body.executiveSummary
+	};
+
+	// Find and update summary, if summary doesnt exist, it will be made automatically
+	Summary.findOne({
+		teamId: req.body.teamId
+	}, async function (err, summary) {
+		if (err)
+			return res.send("Error: " + err);
+		// create a new sumary
+		if (summary === null)
+			await Summary.create(details)
+			.catch(err => {
+				return res.send("Error: " + err);
+			});
+		else if(summary.isSubmitted)
+			return res.send("Error: Cannot update a submitted summary! Contact Admin!");
+		// update existing summary
+		else
+			await Summary.findOneAndUpdate({
+				teamId: req.user.teamId
+			}, {
+				$set: details
+			});
+	});
+	res.send("OK");
+	// Check if the startUp type is in the given options
+});
 
 module.exports = router;

@@ -1,7 +1,8 @@
-<!-- TODO: Add form tag so that the form actually submits for company -->
-<!DOCTYPE html>
-<html>
 
+<!DOCTYPE html>
+
+<html>
+<!-- TODO: Add form tag so that the form actually submits for company -->
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,9 +25,6 @@
 	<div class="form-structor">
 		<!-- TODO: Change the classes to login -->
 		<form class="signup" method="POST" action="/login">
-			<% if(reference){ %>
-			<input type="hidden" name="reference" value="<%=reference%>">
-			<% } %>
 			<h2 class="form-title" id="signup"><span>or</span>Log in</h2>
 			<div class="form-holder">
 				<input type="text" class="input" placeholder="Username" name="username" />
@@ -50,22 +48,22 @@
 		</div>
 	</div>
 
-	<!-- <% if(error){ %>
+	<!-- <%# if(error){ %>
 		<div class="error-class"></div>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 			<strong>Error!</strong>
-			<%=error%>
+			<%#=error%>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
 	</div>
-	<% } %> -->
+	<%# } %> -->
 
 	
-	<script src="/lib/jquery.min.js"></script>
+	
 	<script src="/js/login_script.js"></script>
-	<script src="/js/bootstrap.js"></script>
+	
 
 </body>
 

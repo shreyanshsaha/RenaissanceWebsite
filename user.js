@@ -1,7 +1,7 @@
 // Imports
-
 var express = require("express");
 var passport = require('passport');
+var middleware=require("./middleware")
 
 // Databases
 var User = require("./models/userModel");
@@ -13,29 +13,6 @@ var Competition = require("./models/competition");
 // Router
 var router = express.Router();
 
-
-// ===========
-// Middlewares
-// ===========
-// Check if a user is logged in
-function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated()) {
-		if(req.user.isAdmin===true)
-			return res.redirect("/admin");
-		else
-			return next();
-	}
-	console.log(req.user, " not logged in!");
-	res.redirect("/login/?ref=" + req.originalUrl);
-}
-
-// Check if a user is logged out
-function isNotLoggedIn(req, res, next){
-	if(!req.isAuthenticated())
-		return next();
-	else
-		return res.redirect("/");
-}
 
 function pathExtractor(req) {
   // Escaping user input to be treated as a literal 
@@ -57,7 +34,7 @@ function pathExtractor(req) {
 // ==========
 
 // Profile page
-router.get("/user", isLoggedIn, async function (req, res) {
+router.get("/user", middleware.isLoggedIn, async function (req, res) {
 	var events = await Event.find({});
 	var competition = await Competition.findOne({});	
 	var userFound=false;
@@ -87,9 +64,8 @@ router.get("/user", isLoggedIn, async function (req, res) {
 		return res.render("profile_page", { team: null, summary:null, teamLeader: null, events:events, competition:{name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound}});
 });
 
-
 // Register page
-router.get("/user/register", isNotLoggedIn, function (req, res) {
+router.get("/user/register", middleware.isNotLoggedIn, function (req, res) {
 	res.render("reg_page", {messages: req.query.error});
 });
 
@@ -132,52 +108,6 @@ router.post("/user/register", function (req, res) {
 		}
 	});
 
-});
-
-
-// Update User Summary
-router.put("/user/summary", function (req, res) {
-	// Check important fields
-	if ((req.body.teamId == '') || (req.body.startupName == '') || (req.body.startupType == '')) {
-		return res.send("Error: Empty Fields not allowed!");
-	}
-
-	// Check team status
-	if (!req.body.teamId)
-		return res.send("Error: Need to be in a team!");
-
-	var details = {
-		teamId: req.body.teamId,
-		startupName: req.body.startupName,
-		startupType: req.body.startupType,
-		isSubmitted: false,
-		executiveSummary: req.body.executiveSummary
-	};
-
-	// Find and update summary, if summary doesnt exist, it will be made automatically
-	Summary.findOne({
-		teamId: req.body.teamId
-	}, async function (err, summary) {
-		if (err)
-			return res.send("Error: " + err);
-		// create a new sumary
-		if (summary === null)
-			await Summary.create(details)
-			.catch(err => {
-				return res.send("Error: " + err);
-			});
-		else if(summary.isSubmitted)
-			return res.send("Error: Cannot update a submitted summary! Contact Admin!");
-		// update existing summary
-		else
-			await Summary.findOneAndUpdate({
-				teamId: req.user.teamId
-			}, {
-				$set: details
-			});
-	});
-	res.send("OK");
-	// Check if the startUp type is in the given options
 });
 
 

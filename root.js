@@ -4,7 +4,7 @@
 var express = require("express");
 var router = express.Router();
 var passport = require('passport');
-
+var middleware = require('./middleware');
 // ========
 // Database
 // ========
@@ -74,15 +74,6 @@ router.use(function (req, res, next) {
 	next();
 });
 
-function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	console.log("Not logged in!");
-	res.redirect("/login?ref="+req.originalUrl);
-}
-
-
 
 // ===========
 // Root Routes
@@ -136,25 +127,23 @@ router.post("/feedback", function(req, res){
 // Login and Logout
 router.get("/login", function (req, res) {
 	console.log("/login, ref:", req.query.ref);
-	var error=null;
-	if(req.query.error)
-		error=req.query.error;
 
-	res.render("login", {reference:req.query.ref, error: error});
+	return res.render("login");
 });
 
 router.post("/login", passport.authenticate("local", 
 	{
-		failureRedirect: "/login?ref=&error="+'Error: User doesnt exist!'
+		failureRedirect: "/login?error="+'Error: User doesnt exist!'
 	}), function (req, res) {
 		console.log(req.user.username, " logged in!");
-		if(req.body.reference)
-			res.redirect(req.body.reference);
-		else
-			res.redirect("/user");
+		// if(req.body.reference)
+		// 	res.redirect(req.body.reference);
+		// else
+		// 	res.redirect("/user");
+		res.redirect("/user")
 });
 
-router.get("/logout", isLoggedIn, function (req, res) {
+router.get("/logout", middleware.isLoggedIn, function (req, res) {
 	console.log("Logout: ", req.user.username);
 	req.logout();
 	res.redirect("/");

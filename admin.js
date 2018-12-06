@@ -21,23 +21,23 @@ var Team = require("./models/teamModel");
 function isAdmin(req, res, next) {
 	if (req.isAuthenticated() && req.user.isAdmin === true)
 		return next();
-	res.redirect("/login?ref=/admin");
+	res.redirect("/login");
 }
 
-router.use(isAdmin);
+// router.use(isAdmin);
 
 // ===========
 // Admin pages
 // ===========
 
 // Main Admin Page
-router.get("/admin", async function (req, res) {
+router.get("/admin", isAdmin, async function (req, res) {
 	var events1 = await User.find();
 	return res.render("admin_page", { events1: events1, messages:req.query.error });
 });
 
 // Delete any user
-router.get('/admin/delete/:id', async function (req, res) {
+router.get('/admin/delete/:id', isAdmin, async function (req, res) {
 	User.remove({ _id: req.params.id, isAdmin: false }, function (err, deledata) {
 		res.redirect("/admin");
 	});
