@@ -14,18 +14,12 @@ var userSchema = new mongoose.Schema({
   age:Number,
   gender:String,
   dateRegistered: {type: Date, default: Date.now},
+  registeredForCompetition: {type: Boolean, default:false},
   isAdmin: {type: Boolean, default:false},
-
-  events:[{type: mongoose.Schema.ObjectId, ref:"event"}],
-  // registeredForCompetition: {type: Boolean, default: false},
-  teamId: {type: mongoose.Schema.ObjectId, ref:"team", default: null}
-
+  teamId: {type: mongoose.Schema.ObjectId, ref:"team", default: null},
+  // questionnaire: {type: mongoose.Schema.ObjectId, ref:"questionairre", default:null}
 });
-userSchema.plugin(passportLocalMongoose);
 
-// var userSchema = new mongoose.Schema({
-//   username: String,
-//   password: String
-// });
+
 userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('user', userSchema);

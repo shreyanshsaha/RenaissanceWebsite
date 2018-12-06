@@ -1,4 +1,5 @@
-
+//! Depricated
+//! TO BE DELETED
 var mongoose = require("mongoose");
 
 var summarySchema = new mongoose.Schema({
