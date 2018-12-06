@@ -1,4 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Karla");
+.erro {
+  margin: auto;
+  margin-top: 10%;
+  position: relative;
+}
+
+.erro-col {
+  width: 30%;
+  margin-left: 35%;
+  display: inline-block;
+}
+
 .form-structor {
   background-color: #E1E8EE;
   -webkit-box-align: center;
