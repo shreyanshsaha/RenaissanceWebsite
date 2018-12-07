@@ -16,7 +16,8 @@
     margin-bottom: 5vh;
     .card-logo{
       opacity: 1;
-      background: #008C9E;
+      // background: #E1F5FE;
+      background:white;
       min-height:15vh;
       // border-radius:50%;
       h1{
@@ -24,7 +25,7 @@
         top: 50%;
         transform: translateY(-50%);
 
-        color:white;
+        color:black;
         font-size: 2rem;
         text-align: center;
         display: block;
@@ -48,4 +49,20 @@
 }
 
 
+.skew-right{
+  &>div{
+  transform: skew(9deg);
+    p, h1{
+      transform: skew(-9deg);
+    }
+  }
+}
 
+.skew-left{
+  &>div{
+    transform: skew(-9deg);
+    p, h1{
+      transform: skew(9deg);
+    }
+    }
+}
