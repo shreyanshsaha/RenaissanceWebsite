@@ -85,8 +85,7 @@ router.post("/user/register", function (req, res) {
 	if (!req.body.username || !req.body.password || !req.body.email) {
 		res.redirect(ref + "?error=" + "Username, password and email are required fields!");
 	}
-
-	// TODO: Add gender too
+	
 	var user = new User({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
@@ -94,7 +93,7 @@ router.post("/user/register", function (req, res) {
 		username: req.body.username,
 		contact: req.body.phone,
 		age: req.body.age,
-		// gender: req.body.gender
+		gender: req.body.genderRadio
 	});
 
 	console.log(user);
