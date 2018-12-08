@@ -20,13 +20,13 @@
   opacity: 1;
   background: white;
   min-height: 15vh;
+  vertical-align: middle;
 }
 
 .aboutClass .info-card .card-logo h1 {
   position: relative;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  margin-top: -18%;
   color: black;
   font-size: 2rem;
   text-align: center;
