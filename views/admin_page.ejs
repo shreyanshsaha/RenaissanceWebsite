@@ -13,11 +13,16 @@
   <link rel="stylesheet" href="/css/bootstrap.css">
   <script src="/lib/jquery.min.js"></script>
   <script src="/js/bootstrap.js"></script>
+  <script src="path/to/jquery.js"></script>
+<script src="path/to/popper.js"></script>
+<script src="path/to/bootstrap.js"></script>
+<script src="path/to/bootstrap-confirmation.js"></script>
 </head>
 
 <body>
 
   <% include partials/navbar %>
+
   <div id="demo">
     <div class="container">
       <h1>Admin Page</h1>
@@ -57,18 +62,14 @@
             <tbody>
               <% var k=0;%>
               <% for(let i of user){ %>
-              <% k=k+1;%>
+            <% k=k+1;%>
 
               <tr>
-                <% if(i.teamId!=null){ %>
+
                 <td data-title="ID">
-                  <%= i.teamId.teamMembers %>
+                  <%= k%>
                 </td>
-<% } else { %>
-  <td data-title="ID">
-      <%= 2 %>
-    </td>
-    <% } %>
+
                 <td data-title="Name">
                   <%= i.firstName %>
                   <%= i.lastName  %>
@@ -86,9 +87,12 @@
                   <%= i.contact %>
                 </td>
                 <% if(i.isAdmin==false) { %>
-                  <td><a href="/admin/delete/<%= i._id %>">Delete</td>
+                  <td>
+
+                    <a onclick="return confirm_click()" href="/admin/delete/<%= i._id %>">Delete</a></td>
                 <% } else { %>
-                  <td>Admin</td>
+                  <td>Admin
+                  </td>
                 <% } %>
               </tr>
               <% }; %>
@@ -210,7 +214,7 @@
               <tr>
                 <th>Sno.</th>
                 <th>Team Members </th>
-                <th>Team Name</th>
+                <th>Team leader</th>
 
                 <th>#</th>
 
@@ -218,15 +222,47 @@
             </thead>
             <tbody>
 
+                <% var k1=0;%>
+                <% for(var i=0; i < team.length ; i++) { %>
+                  <% if(team[i].teamMembers!=null) { %>
 
-              <tr>
-                <td data-title="ID">
-           <%=      team.teamLeader %>
+<tr>
+    <td><%= k1 %></td>
+            <td>
+
+              <% for(var k3=0;k3< team[i].teamMembers.length;k3++){  %>
+                <% if(team[i].teamMembers[k3].teamId!=null) { %>
+                <%= team[i].teamMembers[k3].username  %>
+                <% } %>
+                <% } %>
+
+
+            </td>
+                <td>
+
+                    <% for(var j=k1; j < k1+1 ; j++) { %>
+                      <% if(leader[j].teamLeader!=null && leader[j].teamLeader.teamId!=null) { %>
+<%= leader[j].teamLeader.username %>
+<% } %>
+<% } %>
                 </td>
 
+                    <td>
+                        <% for(var j=k1; j < k1+1 ; j++) { %>
+                          <% if(leader[j].teamLeader!=null && leader[j].teamLeader.teamId!=null) { %>
+
+                            <a href="/admin/deleteleader/<%= leader[j].teamLeader.teamId %>">Delete</a>
+
+    <% } %>
+    <% } %>
+
+                     </td>
 
 
-              </tr>
+</tr>
+<% k1=k1+1;%>
+<% } %>
+              <% } %>
 
 
 
@@ -243,6 +279,13 @@
     </div>
   </div>
   <script>
+    function confirm_click() {
+    var txt;
+    var r = confirm("Want to delete user?");
+    return r;
+
+}
+
     $('body').delegate('.remove', 'click', function () {
 
       $(this).parent().parent().remove();
