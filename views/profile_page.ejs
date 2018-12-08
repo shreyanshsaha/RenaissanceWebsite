@@ -193,7 +193,7 @@
 										<% } else if(summary.type==='operational'){ %>
 										<% include questionnaire/operation %>
 										<% } %>
-										<% } else { %>
+										<% } else if(currentUser.teamId){ %>
 										<div class="card-deck">
 											<div class="card">
 
@@ -232,7 +232,11 @@
 												</div>
 											</div>
 										</div>
-										<% } %>
+										<% } else {%>
+											<div class="alert alert-warning" role="alert">
+												You need to create a team to proceed further OR someone needs to add you to their team!
+											</div>
+										<% }; %>
 										<% }; %>
 
 									</div>

@@ -22,7 +22,6 @@ var Operational = require("./models/operationalModel");
 // ===========
 
 // Create a new Team
-//! Depricated
 router.post("/team/new", middleware.isLoggedIn, async function (req, res) {
 	// Create a new team
 	// Logic: 
@@ -105,45 +104,64 @@ router.post("/team/add/:username", middleware.isLoggedIn, function (req, res) {
 });
 
 // Delete complete team, only team leader can delete the team
-// router.delete("/team/:id", async function (req, res) {
-// 	// logic:
-// 	// Remove teamId from all teamMembers
+router.delete("/team/:id", async function (req, res) {
+	// logic:
+	// Remove teamId from all teamMembers
 
-// 	var team = await Team.findOne({ _id: req.params.id });
-// 	console.log(team.teamLeader);
-// 	// Check is leader is deleting it 
-// 	//! Not working
-// 	if (team.teamLeader.equals(req.user._id)) {
-// 		// Delete teamID from all users
-// 		await team.teamMembers.forEach(function (member) {
-// 			console.log("Member", member);
-// 			User.updateOne({ _id: member }, { $set: { teamId: null } }, function (err) {
-// 				console.log(err);
-// 			});
-// 		});
+	var team = await Team.findOne({ _id: req.params.id });
+	if(!team)
+		return res.send("Error: Team ID Invalid!")
+	console.log(team.teamLeader);
 
-// 		//TODO: Delete Questionnaire if it Exists
-// 		// Delete the team
-// 		Team.deleteOne({ _id: req.params.id }, async function (err, deletedTeam) {
-// 			// Delete its executive summary
-// 			await Summary.deleteOne({ teamId: req.params.id })
-// 				.catch((err) => {
-// 					return res.send(err);
-// 				});
+	// Check is leader is deleting it 
+	//! Not working
+	if (team.teamLeader.equals(req.user._id)) {
 
-// 			if (err)
-// 				res.send(err);
-// 			else
-// 				res.send("Deleted Team");
-// 		});
+		// Delete teamID from all users
+		await team.teamMembers.forEach(function (member) {
+			console.log("Member", member);
+			User.updateOne({ _id: member }, { $set: { teamId: null } }, function (err) {
+				console.log(err);
+			});
+		});
 
+		//TODO: Delete Questionnaire if it Exists
+		// Delete Questionnaire if it exists
 
+		var ques = Questionnaire.findOneAndRemove({teamId: req.params.id});
+		if(ques){
+			switch(ques.type){
+				case 'bussiness':
+					Bussiness.findOneAndRemove({_id: mongoose.Types.ObjectId(ques.q_id)})
+					break;
+				case 'social':
+					Social.findOneAndRemove({_id: mongoose.Types.ObjectId(ques.q_id)})
+					break;
+				case 'bussiness':
+					Operational.findOneAndRemove({_id: mongoose.Types.ObjectId(ques.q_id)})
+					break;
+			}
+		}
+		
+		// Delete the team
+		Team.deleteOne({ _id: req.params.id }, async function (err, deletedTeam) {
+			// Delete its executive summary
+			await Summary.deleteOne({ teamId: req.params.id })
+				.catch((err) => {
+					return res.send(err);
+				});
 
-// 	}
-// 	else {
-// 		res.send("Error: only team leader can delete a team!");
-// 	}
-// });
+			if (err)
+				res.send(err);
+			else
+				res.send("Deleted Team");
+		});
+
+	}
+	else {
+		res.send("Error: only team leader can delete a team!");
+	}
+});
 
 
 
