@@ -10,12 +10,12 @@
       <div>
         <div class="form-group">
           <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
-          <textarea class="form-control" id="productname" rows="3"></textarea>
+          <textarea class="form-control" name="name" id="productname" rows="3"><%=summary.name%></textarea>
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1"><strong>HOW WOULD YOU LIKE TO CATEGORIZE YOUR IDEA ? WHAT DOES THE
               COMPANY DO ?</strong>[100 words]</label>
-          <textarea class="form-control" id="idea" rows="3"></textarea>
+          <textarea class="form-control" id="idea" name="use" rows="3"><%=summary.use%></textarea>
         </div>
         <div class="form-group">
           <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
@@ -47,15 +47,15 @@
 
           <div class="form-group">
             <label for="mcompetition"><strong>DESCRIBE YOUR MARKET COMPETITION</strong></label>
-            <textarea class="form-control" id="mcompetition" rows="3" placeholder="what is the size of the market,type of marketchosen and what is your startups' potential market share ?"></textarea>
+            <textarea class="form-control" name="competition" id="mcompetition" rows="3" placeholder="what is the size of the market,type of marketchosen and what is your startups' potential market share ?"><%=summary.competition%></textarea>
           </div>
           <div class="form-group">
             <label for="fmodel"><strong>GIVE A FINANCIAL MODEL DESCRIPTION OF YOUR STARTUP</strong></label>
-            <textarea class="form-control" id="fmodel" rows="3" placeholder="Describe your initial investment requirements,projected revenue,funding,revenue streams and expenditure details."></textarea>
+            <textarea class="form-control" name="financeModel" id="fmodel" rows="3" placeholder="Describe your initial investment requirements,projected revenue,funding,revenue streams and expenditure details."><%=summary.financeModel%></textarea>
           </div>
           <div class="form-group">
             <label for="fidea"><strong>WHAT IS THE FEASIBILITY OF THE IDEA?</strong>[250 words]</label>
-            <textarea class="form-control" id="fidea" rows="3" placeholder="Is the proposed idea doable considering the social,economic and regional constraints?"></textarea>
+            <textarea class="form-control" name="feasibility" id="fidea" rows="3" placeholder="Is the proposed idea doable considering the social,economic and regional constraints?"><%=summary.feasibility%></textarea>
           </div>
           <div class="form-group">
             <label for="bepoint"><strong>WHAT IS THE ESTIMATED TIME OF BREAK-EVEN POINT</strong></label>
@@ -69,13 +69,13 @@
                 </p>
               </div>
             </div>
-            <textarea class="form-control" id="bepoint" rows="3"></textarea>
+            <textarea class="form-control" id="bepoint" rows="3" name="breakEvenPoint"><%=summary.breakEvenPoint%></textarea>
           </div>
           <div class="form-group">
             <label for="kiproperty"><strong>WHAT KEY INTELLECTUAL PROPERTY DOES THE COMPANY HAVE?</strong>[250 words]</label>
-            <textarea class="form-control" id="kiproperty" rows="3" placeholder="patents,patents pending,copywrights,trade secrets,trademarks,domain names if any?"></textarea>
+            <textarea class="form-control" id="kiproperty" rows="3" placeholder="patents,patents pending,copywrights,trade secrets,trademarks,domain names if any?" name="intellectualProperty"><%=summary.intellectualProperty%></textarea>
           </div>
-          <button type="button" class="btn btn-success" onclick="saveQuestionnaire()">Save</button>
+          <button type="button" class="btn btn-success" onclick="saveQuestionnaire('bussiness')">Save</button>
 
       </div>
     </div>
