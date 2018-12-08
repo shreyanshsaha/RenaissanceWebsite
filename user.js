@@ -93,8 +93,11 @@ router.post("/user/register", function (req, res) {
 		email: req.body.email,
 		username: req.body.username,
 		contact: req.body.phone,
-		age: req.body.age
+		age: req.body.age,
+		// gender: req.body.gender
 	});
+
+	console.log(user);
 
 	// Register user
 	User.register(user, req.body.password, function (err) {
@@ -102,10 +105,10 @@ router.post("/user/register", function (req, res) {
 			console.log("User register error: ", err);
 			res.redirect(ref + "?error=" + err.message);
 		} else {
-			console.log("[+] User Registered:", req.user.username);
+			console.log("[+] User Registered:", req.body.username);
 
 			// If admin has registered a user, then DO NOT go to user profile
-			if (!req.isAuthenticated() && req.user.isAdmin === false) {
+			if (!req.isAuthenticated()) {
 				passport.authenticate("local")(req, res, function () {
 					res.redirect("/user");
 				});
