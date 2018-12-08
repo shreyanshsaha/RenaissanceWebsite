@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400");
 main {
   background-image: url("/images/featuresImage.jpg");
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top:25px;
+  padding-bottom:25px;
 }
 
 main .card {
