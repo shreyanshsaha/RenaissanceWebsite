@@ -6,6 +6,7 @@ Dropdown Events on menu bar
 
 */
 @import url("https://fonts.googleapis.com/css?family=Karla:700");
+@import url("https://fonts.googleapis.com/css?family=Righteous|Noto+Serif|Poiret+One|Satisfy");
 .events {
   scroll-snap-align: start;
   padding-bottom: 10vh;
@@ -55,6 +56,7 @@ Dropdown Events on menu bar
   color: white;
   padding: 2%;
   width: 100%;
+  font-size: 1.2rem;
 }
 
 .events > .container .sideBarParent .sideBar .eventPills .row > .names:hover {
@@ -84,7 +86,7 @@ Dropdown Events on menu bar
 }
 
 .eventDivParent .eventDiv .eventName {
-  font-size: 34px;
+  font-size: 3rem;
   border-style: solid;
   border-top: none;
   border-right: none;
@@ -94,6 +96,12 @@ Dropdown Events on menu bar
 
 .eventDivParent .eventDiv .eventDate {
   font-size: 23px;
+  font-family: 'Satisfy';
+}
+
+.eventDivParent .eventDiv .eventDesc {
+  text-justify: auto;
+  font-size: 1.5rem;
 }
 
 @media (min-width: 768px) {

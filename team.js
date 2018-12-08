@@ -22,7 +22,6 @@ var Operational = require("./models/operationalModel");
 // ===========
 
 // Create a new Team
-//! Depricated
 router.post("/team/new", middleware.isLoggedIn, async function (req, res) {
 	// Create a new team
 	// Logic: 
@@ -105,45 +104,64 @@ router.post("/team/add/:username", middleware.isLoggedIn, function (req, res) {
 });
 
 // Delete complete team, only team leader can delete the team
-// router.delete("/team/:id", async function (req, res) {
-// 	// logic:
-// 	// Remove teamId from all teamMembers
+router.delete("/team/:id", async function (req, res) {
+	// logic:
+	// Remove teamId from all teamMembers
 
-// 	var team = await Team.findOne({ _id: req.params.id });
-// 	console.log(team.teamLeader);
-// 	// Check is leader is deleting it 
-// 	//! Not working
-// 	if (team.teamLeader.equals(req.user._id)) {
-// 		// Delete teamID from all users
-// 		await team.teamMembers.forEach(function (member) {
-// 			console.log("Member", member);
-// 			User.updateOne({ _id: member }, { $set: { teamId: null } }, function (err) {
-// 				console.log(err);
-// 			});
-// 		});
+	var team = await Team.findOne({ _id: req.params.id });
+	if (!team)
+		return res.send("Error: Team ID Invalid!")
+	console.log(team.teamLeader);
 
-// 		//TODO: Delete Questionnaire if it Exists
-// 		// Delete the team
-// 		Team.deleteOne({ _id: req.params.id }, async function (err, deletedTeam) {
-// 			// Delete its executive summary
-// 			await Summary.deleteOne({ teamId: req.params.id })
-// 				.catch((err) => {
-// 					return res.send(err);
-// 				});
+	// Check is leader is deleting it 
+	//! Not working
+	if (team.teamLeader.equals(req.user._id)) {
 
-// 			if (err)
-// 				res.send(err);
-// 			else
-// 				res.send("Deleted Team");
-// 		});
+		// Delete teamID from all users
+		await team.teamMembers.forEach(function (member) {
+			console.log("Member", member);
+			User.updateOne({ _id: member }, { $set: { teamId: null } }, function (err) {
+				console.log(err);
+			});
+		});
 
+		//TODO: Delete Questionnaire if it Exists
+		// Delete Questionnaire if it exists
 
+		var ques = Questionnaire.findOneAndRemove({ teamId: req.params.id });
+		if (ques) {
+			switch (ques.type) {
+				case 'bussiness':
+					Bussiness.findOneAndRemove({ _id: mongoose.Types.ObjectId(ques.q_id) })
+					break;
+				case 'social':
+					Social.findOneAndRemove({ _id: mongoose.Types.ObjectId(ques.q_id) })
+					break;
+				case 'bussiness':
+					Operational.findOneAndRemove({ _id: mongoose.Types.ObjectId(ques.q_id) })
+					break;
+			}
+		}
 
-// 	}
-// 	else {
-// 		res.send("Error: only team leader can delete a team!");
-// 	}
-// });
+		// Delete the team
+		Team.deleteOne({ _id: req.params.id }, async function (err, deletedTeam) {
+			// Delete its executive summary
+			await Summary.deleteOne({ teamId: req.params.id })
+				.catch((err) => {
+					return res.send(err);
+				});
+
+			if (err)
+				res.send(err);
+			else
+				res.send("Deleted Team");
+		});
+
+	}
+	else {
+		res.send("Error: only team leader can delete a team!");
+	}
+});
 
 
 
@@ -240,54 +258,109 @@ router.put("/team/summary/:type", async function (req, res) {
 })
 
 router.put("/team/questionnaire/save/:type", async function (req, res) {
-	if (req.params.type === 'business') {
-		var data = {
-			name: req.body.name,
-			use: req.body.use,
-			segmentation: req.body.segmentation,
-			competition: req.body.competition,
-			financeModel: req.body.financeModel,
-			feasibility: req.body.feasibility,
-			breakEvenPoint: req.body.breakEvenPoint,
-			intellectualProperty: req.body.intellectualProperty,
-		}
-	}
-	else if (req.params.type === 'social') { }
-	else if (req.params.type === 'operational') {
-		var data = {
-			name: req.body.name,
-			functionality: req.body.functionality,
-			competition: req.body.competition,
-			intellectualProperty: req.body.intellectualProperty,
-			sellingProp: req.body.sellingProp,
-			domain: req.body.domain,
-			financialPotential: req.body.financialPotential,
-			sustainability: req.body.sustainability,
-			cost: req.body.cost,
-			capitalization:req.body.capitalization
-		}
-	} else{
-		return res.send("Error: Invalid type!");
-	}
+	if (req.params.type !== 'bussiness' && req.params.type !== 'social' && req.params.type !== 'operational')
+		return res.send("Error: Invalid param type!");
+
 	if (!req.user.teamId)
 		return res.send("Error: User needs to be in a team!");
 
 	// Create questionnarire if not exists
 	Questionnaire.findOne({ teamId: mongoose.Types.ObjectId(req.user.teamId) }, async function (err, q) {
 		if (!q.q_id) {
+			console.log("Creating New!");
 			if (q.type === 'bussiness')
-				var ques = await Bussiness.create(data);
-			else if(q.type==='social')
-				var ques = await Social.create(data);
-			else if(q.type==='operational')
-				var ques = Operational.create(data);
+				var ques = await Bussiness.create({
+					name: req.body.name,
+					use: req.body.use,
+					segmentation: req.body.segmentation,
+					competition: req.body.competition,
+					financeModel: req.body.financeModel,
+					feasibility: req.body.feasibility,
+					breakEvenPoint: req.body.breakEvenPoint,
+					intellectualProperty: req.body.intellectualProperty,
+				});
+			else if (q.type === 'social')
+				var ques = await Social.create({
+					category: req.body.categoryRadio,
+					name: req.body.productname,
+					domain: req.body.domain,
+					socialEnt: req.body.senterprise,
+					socialImpact: req.body.simpact,
+					categoryProfit: req.body.categoryProfit,
+					marketSegmentation: req.body.segmentation,
+					financialModel: req.body.financeModel,
+					feasibility: req.body.fidea,
+					competition: req.body.competition,
+					breakEvenPoint: req.body.bepoint
+				});
+			else if (q.type === 'operational')
+				var ques = await Operational.create({
+					name: req.body.name,
+					functionality: req.body.functionality,
+					competition: req.body.competition,
+					intellectualProperty: req.body.intellectualProperty,
+					sellingProp: req.body.sellingProp,
+					domain: req.body.domain,
+					financialPotential: req.body.financialPotential,
+					sustainability: req.body.sustainability,
+					cost: req.body.cost,
+					capitalization: req.body.capitalization
+				});
 			else
 				return res.send("Error: Invalid Type!");
 			// Add questionaare id to main document
 			await Questionnaire.findOneAndUpdate({ teamId: req.user.teamId }, { $set: { q_id: ques._id } })
 		}
 		else {
-			await Questionnaire.findOneAndUpdate(q._id, { $set: data });
+			console.log("Updating!");
+			if (q.type === 'bussiness') {
+				var ques = await Bussiness.findOneAndUpdate({ _id: mongoose.Types.ObjectId(q.q_id) }, {
+					$set: {
+						name: req.body.name,
+						use: req.body.use,
+						segmentation: req.body.segmentation,
+						competition: req.body.competition,
+						financeModel: req.body.financeModel,
+						feasibility: req.body.feasibility,
+						breakEvenPoint: req.body.breakEvenPoint,
+						intellectualProperty: req.body.intellectualProperty,
+					}
+				}, { new: true, overwrite: true });
+				console.log("Ques: ", ques)
+			}
+			else if (q.type === 'social')
+				await Social.findOneAndUpdate({ _id: mongoose.Types.ObjectId(q.q_id) }, {
+					$set: {
+						category: req.body.categoryRadio,
+						name: req.body.productname,
+						domain: req.body.domain,
+						socialEnt: req.body.senterprise,
+						socialImpact: req.body.simpact,
+						categoryProfit: req.body.categoryProfit,
+						marketSegmentation: req.body.segmentation,
+						financialModel: req.body.financeModel,
+						feasibility: req.body.fidea,
+						competition: req.body.competition,
+						breakEvenPoint: req.body.bepoint
+					}
+				}, { new: true, overwrite: true });
+			else if (q.type === 'operational')
+				await Questionnaire.findOneAndUpdate({ _id: mongoose.Types.ObjectId(q.q_id) }, {
+					$set: {
+						name: req.body.name,
+						functionality: req.body.functionality,
+						competition: req.body.competition,
+						intellectualProperty: req.body.intellectualProperty,
+						sellingProp: req.body.sellingProp,
+						domain: req.body.domain,
+						financialPotential: req.body.financialPotential,
+						sustainability: req.body.sustainability,
+						cost: req.body.cost,
+						capitalization: req.body.capitalization
+					}
+				}, { new: true, overwrite: true });
+			else
+				return res.send("Error: Invalid Type!");
 			return res.send("Success!");
 		}
 	})

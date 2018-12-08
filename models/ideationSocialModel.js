@@ -6,6 +6,7 @@ var socialSchema = mongoose.Schema({
   category: String,
   name: String,
   domain: String,
+  socialEnt: String,
   socialImpact: String,
   categoryProfit: String,
   marketSegmentation: String,

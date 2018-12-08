@@ -9,21 +9,22 @@
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- <script src="bootstrap.js"></script>
-	<link rel="stylesheet" type="text/css" media="screen" href="bootstrap.css" /> -->
 	<script src="admin_script.js"></script>
 	<link rel="stylesheet" href="/css/bootstrap.css">
 	<script src="/lib/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/home.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/navbar.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/profile_style_new.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/css/summary_style.css" />
+	<!-- <link rel="stylesheet" type="text/css" media="screen" href="/css/summary_style.css" /> -->
 </head>
 
 <body>
 	<!-- Navbar -->
 	<% include partials/navbar %>
-
+	<%= summary %>
 	<div class="emp-profile">
 		<form method="post">
 
@@ -192,7 +193,7 @@
 										<% } else if(summary.type==='operational'){ %>
 										<% include questionnaire/operation %>
 										<% } %>
-										<% } else { %>
+										<% } else if(currentUser.teamId){ %>
 										<div class="card-deck">
 											<div class="card">
 
@@ -231,9 +232,16 @@
 												</div>
 											</div>
 										</div>
-										<% } %>
+										<div class="alert alert-danger" role="alert">
+											<strong>NOTE: </strong>You cannot change it once you select the startup type. The only way to change it is
+											to delete the team!
+										</div>
+										<% } else {%>
+										<div class="alert alert-warning" role="alert">
+											You need to create a team to proceed further OR someone needs to add you to their team!
+										</div>
 										<% }; %>
-
+										<% }; %>
 									</div>
 
 									<div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
@@ -301,6 +309,7 @@
 	</script>
 	<script>
 		function saveQuestionnaire(type) {
+			console.log(type);
 			if (type == 'bussiness') {
 				var data = {
 					name: document.getElementById('productname').value,
@@ -315,16 +324,17 @@
 			}
 			else if (type == 'social') {
 				var data = {
-					category: document.getElementById('category-radio').value,
-					name: document.getElementById('productname').value,
+					categoryRadio: document.getElementById('category-radio').value,
+					productname: document.getElementById('productname').value,
 					domain: document.getElementById('domain').value,
-					socialImpact: document.getElementById('simpact').value,
+					senterprise: document.getElementById('senterprise').value,
+					simpact: document.getElementById('simpact').value,
 					feasibility: document.getElementById('fidea').value,
 					categoryProfit: document.getElementById('category-social').value,
-					marketSegmentation: document.getElementById('dsegmentation').value,
-					financialModel: document.getElementById('fmodel').value,
-					competition: document.getElementById('mcompetition').value,
-					breakEvenPoint: document.getElementById('bepoint').value
+					segmentation: document.getElementById('dsegmentation').value,
+					financeModel: document.getElementById('fmodel').value,
+					fidea: document.getElementById('mcompetition').value,
+					bepoint: document.getElementById('bepoint').value
 				}
 			}
 			else if (type == 'operational') {
@@ -456,6 +466,8 @@
 			});
 		}
 	</script>
+
+
 </body>
 
 </html>
