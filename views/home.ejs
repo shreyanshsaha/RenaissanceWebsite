@@ -118,6 +118,7 @@
 	<script src="/js/landingPage.js"></script>
 
 	<script>
+<<<<<<< HEAD
 		jQuery(document).ready(function ($) {
 
 
@@ -125,12 +126,20 @@
 				var $nav = $(".navbar-fixed-top");
 				$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
 			});
+=======
+
+		$('body').scroll(function () {
+			var $nav = $(".navbar-fixed-top");
+			$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+		});
+>>>>>>> front page redesigned
 
 
-			$(document).ready(function () {
-				$('a[href^="#"]').on('click', function (e) {
-					e.preventDefault();
+		$(document).ready(function () {
+			$('a[href^="#"]').on('click', function (e) {
+				e.preventDefault();
 
+<<<<<<< HEAD
 					var target = this.hash,
 						$target = $(target);
 					console.log($target.offset().top, $('body').scrollTop());
@@ -142,6 +151,19 @@
 				});
 			});
 		})
+=======
+				var target = this.hash,
+					$target = $(target);
+				console.log($target.offset().top, $('body').scrollTop());
+				$('html, body').stop().animate({
+					'scrollTop': $target.offset().top + $('body').scrollTop() - 45
+				}, 900, 'swing', function () {
+					window.location.hash = target;
+				});
+			});
+		});
+
+>>>>>>> front page redesigned
 	</script>
 	<script src="js/count_script.js"></script>
 </body>
