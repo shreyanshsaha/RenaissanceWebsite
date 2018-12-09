@@ -309,44 +309,50 @@
 		function saveQuestionnaire(type) {
 			console.log(type);
 			if (type == 'bussiness') {
-				var data = {
-					name: document.getElementById('productname').value,
-					use: document.getElementById('idea').value,
-					segmentation: document.getElementById("segmentation").value,
-					competition: document.getElementById("mcompetition").value,
-					financeModel: document.getElementById("fmodel").value,
-					feasibility: document.getElementById("fidea").value,
-					breakEvenPoint: document.getElementById("bepoint").value,
-					intellectualProperty: document.getElementById("kiproperty").value,
+				window.onload = function () {
+					var data = {
+						name: document.getElementById('productname').value,
+						use: document.getElementById('idea').value,
+						segmentation: document.getElementById("segmentation").value,
+						competition: document.getElementById("mcompetition").value,
+						financeModel: document.getElementById("fmodel").value,
+						feasibility: document.getElementById("fidea").value,
+						breakEvenPoint: document.getElementById("bepoint").value,
+						intellectualProperty: document.getElementById("kiproperty").value,
+					}
 				}
 			}
 			else if (type == 'social') {
-				var data = {
-					categoryRadio: document.getElementById('category-radio').value,
-					productname: document.getElementById('productname').value,
-					domain: document.getElementById('domain').value,
-					senterprise: document.getElementById('senterprise').value,
-					simpact: document.getElementById('simpact').value,
-					feasibility: document.getElementById('fidea').value,
-					categoryProfit: document.getElementById('category-social').value,
-					segmentation: document.getElementById('dsegmentation').value,
-					financeModel: document.getElementById('fmodel').value,
-					fidea: document.getElementById('mcompetition').value,
-					bepoint: document.getElementById('bepoint').value
+				window.onload = function () {
+					var data = {
+						categoryRadio: document.getElementById('category-radio').value,
+						productname: document.getElementById('productname').value,
+						domain: document.getElementById('domain').value,
+						senterprise: document.getElementById('senterprise').value,
+						simpact: document.getElementById('simpact').value,
+						feasibility: document.getElementById('fidea').value,
+						categoryProfit: document.getElementById('category-social').value,
+						segmentation: document.getElementById('dsegmentation').value,
+						financeModel: document.getElementById('fmodel').value,
+						fidea: document.getElementById('mcompetition').value,
+						bepoint: document.getElementById('bepoint').value
+					}
 				}
 			}
 			else if (type == 'operational') {
-				var data = {
-					name: document.getElementById('productname').value,
-					functionality: document.getElementById('functionality').value,
-					competition: document.getElementById('currentmarketcompetition').value,
-					intellectualProperty: document.getElementById('iproperty').value,
-					sellingProp: document.getElementById('usp').value,
-					domain: document.getElementById('domain').value,
-					financialPotential: document.getElementById('fpotential').value,
-					sustainability: document.getElementById('ssa').value,
-					cost: document.getElementById('cost').value,
-					capitalization: document.getElementById('cstructure').value
+				window.onload = function () {
+					var data = {
+						name: document.getElementById('productname').value,
+						functionality: document.getElementById('functionality').value,
+						competition: document.getElementById('currentmarketcompetition').value,
+						intellectualProperty: document.getElementById('iproperty').value,
+						sellingProp: document.getElementById('usp').value,
+						domain: document.getElementById('domain').value,
+						financialPotential: document.getElementById('fpotential').value,
+						sustainability: document.getElementById('ssa').value,
+						cost: document.getElementById('cost').value,
+						capitalization: document.getElementById('cstructure').value
+					}
 				}
 			}
 			console.log(data);
