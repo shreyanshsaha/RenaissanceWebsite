@@ -67,16 +67,17 @@ router.get("/user", middleware.isLoggedIn, async function (req, res) {
 
 		if (summary) {
 			var type = summary.type;
-			var ques=null;
 			if (type === 'bussiness')
-			summary = await Bussiness.findOne({ _id: mongoose.Types.ObjectId(summary.q_id) })
+				summary = await Bussiness.findOne({ _id: mongoose.Types.ObjectId(summary.q_id) })
 			else if (type === 'social')
-			summary = await Social.findOne({ _id: mongoose.Types.ObjectId(summary.q_id) })
+				summary = await Social.findOne({ _id: mongoose.Types.ObjectId(summary.q_id) })
 			else if (type === 'operational')
-			summary = await Operational.findOne({ _id: mongoose.Types.ObjectId(summary.q_id) })
+				summary = await Operational.findOne({ _id: mongoose.Types.ObjectId(summary.q_id) })
+			if(!summary)
+				return res.render("profile_page", { team: team, summary: null, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });
+			
 			summary.type = type;
-
-			console.log(ques);
+			console.log(summary);
 			return res.render("profile_page", { team: team, summary: summary, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });
 		} else {
 			return res.render("profile_page", { team: team, summary: null, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });

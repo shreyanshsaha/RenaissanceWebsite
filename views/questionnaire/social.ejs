@@ -1,9 +1,7 @@
 <div class="container">
   <p>
-    <h1 class="nametitle"><strong>SOCIAL STARTUPS
-      </strong></h1>
-    <h3 class="nametitle3"><strong>IDEATION PHASE
-      </strong></h3>
+    <h1 class="nametitle"><strong>SOCIAL STARTUPS</strong></h1>
+    <h3 class="nametitle3"><strong>IDEATION PHASE</strong></h3>
   </p>
   <div class="row">
     <div class="col-sm-12">
@@ -22,12 +20,12 @@
           </div>
           <div class="form-group">
             <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
-            <textarea class="form-control" name="productname" rows="3"><%=summary.name%></textarea>
+            <textarea class="form-control" name="productname" id="productname" rows="3"><%=summary.name%></textarea>
           </div>
         </form>
         <div class="form-group">
           <label for="domain"><strong>WHICH DOMAIN DOES YOUR STARTUP FALL IN?</strong></label>
-          <input class="form-control" name="domain" rows="3" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance"><%=summary.domain%></input>
+          <input class="form-control" name="domain" rows="3" id="domain" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance" value="<%=summary.domain%>">
         </div>
         <div class="form-group">
           <label for="senterprise"><strong>DESCRIBE YOUR IDEA GIVING AN OVERVIEW OF YOUR SOCIAL ENTERPRISE ( 100 Words)</strong></label>
@@ -36,22 +34,22 @@
         </div>
         <div class="form-group">
           <label for="simpact"><strong>WHAT IS THE SOCIAL IMPACT OF YOUR IDEA ?( 250 WORDS)</strong></label>
-          <textarea class="form-control" name="simpact" rows="3" placeholder="This should clearly describe the beneficiaries of the idea proposed"><%=summary.socialImpact%></textarea>
+          <textarea class="form-control" id="simpact" rows="3" placeholder="This should clearly describe the beneficiaries of the idea proposed"><%=summary.socialImpact%></textarea>
         </div>
         <div class="form-group">
           <label for="fidea"><strong>WHAT IS THE FEASIBILITY OF THE IDEA ( 250 WORDS)
             </strong></label>
-          <textarea class="form-control" name="fidea" rows="3" placeholder="Is the proposed idea doable considering the social, economic and regional constraints?"><%=summary.feasibility%></textarea>
+          <textarea class="form-control" id="fidea" rows="3" placeholder="Is the proposed idea doable considering the social, economic and regional constraints?"><%=summary.feasibility%></textarea>
         </div>
         <form class="form-group" id="category-social">
           <p><strong>HOW WOULD YOU CATEGORIZE YOUR SOCIAL ENTERPRISE?</strong></p>
           <div>
             <input type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable">
-            <label class="custom-control-label" name="category-social" for="dsegmentation">Profitable</label>
+            <label class="custom-control-label" for="dsegmentation">Profitable</label>
           </div>
           <div>
             <input type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable">
-            <label class="custom-control-label" name="category-social" for="bsegmentation">Non-Profitable</label>
+            <label class="custom-control-label" for="bsegmentation">Non-Profitable</label>
           </div>
         </form>
         <div class="form-group">

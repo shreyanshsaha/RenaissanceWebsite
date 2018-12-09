@@ -9,7 +9,6 @@
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<script src="admin_script.js"></script>
 	<link rel="stylesheet" href="/css/bootstrap.css">
 	<script src="/lib/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
@@ -89,14 +88,12 @@
 												<%= currentUser.username %>
 											</td>
 											<% } %>
-
-											<!-- <td><div class="btn btn-danger btn-sm">Delete</div></td> -->
 										</tr>
 
 										<% if(team) team.teamMembers.forEach(function(member){ %>
 										<% if(!(member.username==currentUser.username)){ %>
 										<tr>
-											<td class="teammember" colspan="2">
+											<td class="teammember">
 												<%= member.username %>
 												<% if(String(member._id)===String(teamLeader)){ %> <span class="text-muted text-monospace">| Leader</span>
 												<% }; %>
@@ -185,14 +182,15 @@
 											your Startup!
 										</h3>
 										<% }else{ %>
-										<% if(summary){ %>
-										<% if(summary.type==='bussiness'){ %>
-										<% include questionnaire/bussiness %>
-										<% } else if(summary.type==='social'){ %>
-										<% include questionnaire/social %>
-										<% } else if(summary.type==='operational'){ %>
-										<% include questionnaire/operation %>
-										<% } %>
+											<% if(summary){ %>
+												<% if(summary.type==='bussiness'){ %>
+													<% include questionnaire/bussiness %>
+												<% } else if(summary.type==='social'){ %>
+													<% include questionnaire/social %>
+												<% } else if(summary.type==='operational'){ %>
+													<% include questionnaire/operation %>
+											<% } %>
+										<div id="savingError" class="mt-4 mb-0"></div>
 										<% } else if(currentUser.teamId){ %>
 										<div class="card-deck">
 											<div class="card">
@@ -324,7 +322,8 @@
 			}
 			else if (type == 'social') {
 				var data = {
-					categoryRadio: document.getElementById('category-radio').value,
+					// categoryRadio: document.getElementById('category-radio').value,
+					categoryRadio: null,
 					productname: document.getElementById('productname').value,
 					domain: document.getElementById('domain').value,
 					senterprise: document.getElementById('senterprise').value,
@@ -333,7 +332,7 @@
 					categoryProfit: document.getElementById('category-social').value,
 					segmentation: document.getElementById('dsegmentation').value,
 					financeModel: document.getElementById('fmodel').value,
-					fidea: document.getElementById('mcompetition').value,
+					competition: document.getElementById('mcompetition').value,
 					bepoint: document.getElementById('bepoint').value
 				}
 			}
@@ -358,7 +357,13 @@
 				method: "put",
 				data: data,
 				success: function (data) {
-					console.log(data);
+					var result = document.getElementById('savingError');
+					if(/error/i.exec(data))
+						result.innerHTML = `<div class="alert alert-danger" role="alert">
+											<strong>Error: </strong>`+data+`</div>`;
+					else
+						result.innerHTML = `<div class="alert alert-success" role="alert">
+											<strong>Success: </strong>The questionnaire is saved!</div>`;
 				}
 			})
 		}

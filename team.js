@@ -203,7 +203,7 @@ router.put("/team/summary/:type", async function (req, res) {
 		return res.send("Error: User should be in a team!");
 
 	// Check if team exists!
-	if (await Questionnaire.findOne({ teamId: req.user.teamId })) {
+	if (await Questionnaire.findOne({ teamId: req.user.teamId, q_id: {$ne: null} })) {
 		return res.send("Error: Already Selected!");
 	}
 
@@ -237,7 +237,7 @@ router.put("/team/summary/:type", async function (req, res) {
 			Questionnaire.create({ teamId: req.user.teamId, type: req.params.type, q_id: social._id });
 			break;
 		case 'operational':
-			var operational = Operational.create({
+			var operational = await Operational.create({
 				name: null,
 				functionality: null,
 				competition: null,
@@ -289,7 +289,7 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 					categoryProfit: req.body.categoryProfit,
 					marketSegmentation: req.body.segmentation,
 					financialModel: req.body.financeModel,
-					feasibility: req.body.fidea,
+					feasibility: req.body.feasibility,
 					competition: req.body.competition,
 					breakEvenPoint: req.body.bepoint
 				});
@@ -309,6 +309,8 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 			else
 				return res.send("Error: Invalid Type!");
 			// Add questionaare id to main document
+			if(!ques)
+				return res.send("Error: QUES is empty!")
 			await Questionnaire.findOneAndUpdate({ teamId: req.user.teamId }, { $set: { q_id: ques._id } })
 		}
 		else {
@@ -339,13 +341,25 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 						categoryProfit: req.body.categoryProfit,
 						marketSegmentation: req.body.segmentation,
 						financialModel: req.body.financeModel,
-						feasibility: req.body.fidea,
+						feasibility: req.body.feasibility,
 						competition: req.body.competition,
 						breakEvenPoint: req.body.bepoint
 					}
 				}, { new: true, overwrite: true });
-			else if (q.type === 'operational')
-				await Questionnaire.findOneAndUpdate({ _id: mongoose.Types.ObjectId(q.q_id) }, {
+			else if (q.type === 'operational'){
+				console.log("Q: ", q);
+				var data ={name: req.body.name,
+					functionality: req.body.functionality,
+					competition: req.body.competition,
+					intellectualProperty: req.body.intellectualProperty,
+					sellingProp: req.body.sellingProp,
+					domain: req.body.domain,
+					financialPotential: req.body.financialPotential,
+					sustainability: req.body.sustainability,
+					cost: req.body.cost,
+					capitalization: req.body.capitalization};
+					console.log(data);
+				var ques= await Operational.findOneAndUpdate({ _id: mongoose.Types.ObjectId(q.q_id) }, {
 					$set: {
 						name: req.body.name,
 						functionality: req.body.functionality,
@@ -359,6 +373,8 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 						capitalization: req.body.capitalization
 					}
 				}, { new: true, overwrite: true });
+				console.log("Ques O: ", ques)
+			}
 			else
 				return res.send("Error: Invalid Type!");
 			return res.send("Success!");
