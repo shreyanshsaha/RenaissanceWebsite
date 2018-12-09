@@ -182,14 +182,15 @@
 											your Startup!
 										</h3>
 										<% }else{ %>
-										<% if(summary){ %>
-										<% if(summary.type==='bussiness'){ %>
-										<% include questionnaire/bussiness %>
-										<% } else if(summary.type==='social'){ %>
-										<% include questionnaire/social %>
-										<% } else if(summary.type==='operational'){ %>
-										<% include questionnaire/operation %>
-										<% } %>
+											<% if(summary){ %>
+												<% if(summary.type==='bussiness'){ %>
+													<% include questionnaire/bussiness %>
+												<% } else if(summary.type==='social'){ %>
+													<% include questionnaire/social %>
+												<% } else if(summary.type==='operational'){ %>
+													<% include questionnaire/operation %>
+											<% } %>
+										<div id="savingError" class="mt-4 mb-0"></div>
 										<% } else if(currentUser.teamId){ %>
 										<div class="card-deck">
 											<div class="card">
@@ -356,7 +357,13 @@
 				method: "put",
 				data: data,
 				success: function (data) {
-					console.log(data);
+					var result = document.getElementById('savingError');
+					if(/error/i.exec(data))
+						result.innerHTML = `<div class="alert alert-danger" role="alert">
+											<strong>Error: </strong>`+data+`</div>`;
+					else
+						result.innerHTML = `<div class="alert alert-success" role="alert">
+											<strong>Success: </strong>The questionnaire is saved!</div>`;
 				}
 			})
 		}
