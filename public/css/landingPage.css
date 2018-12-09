@@ -4,7 +4,11 @@
 	font-size: 16px;
 	width: 100%;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	height: 100vh;
+=======
+	height: 100%;
+>>>>>>> front page redesigned
 =======
 	height: 100%;
 >>>>>>> front page redesigned
@@ -14,7 +18,11 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #loading-page h2 {
+=======
+h2 {
+>>>>>>> front page redesigned
 =======
 h2 {
 >>>>>>> front page redesigned
@@ -26,7 +34,11 @@ h2 {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #loading-page h2:after {
+=======
+h2:after {
+>>>>>>> front page redesigned
 =======
 h2:after {
 >>>>>>> front page redesigned
@@ -48,9 +60,15 @@ h2:hover:after {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #loading-page h3,
 #loading-page h4,
 #loading-page h5 {
+=======
+h3,
+h4,
+h5 {
+>>>>>>> front page redesigned
 =======
 h3,
 h4,
