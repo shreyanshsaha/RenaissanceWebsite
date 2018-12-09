@@ -3,13 +3,21 @@
 	font-family: 'Karla','Roboto', sans-serif;
 	font-size: 16px;
 	width: 100%;
+<<<<<<< HEAD
 	height: 100vh;
+=======
+	height: 100%;
+>>>>>>> front page redesigned
 	background: #fff;
 	margin: 0;
 	padding: 0;
 }
 
+<<<<<<< HEAD
 #loading-page h2 {
+=======
+h2 {
+>>>>>>> front page redesigned
 	color: #008080;
 	font-weight: 700;
 	font-size: 50px;
@@ -17,7 +25,11 @@
 	text-transform: lowercase;
 }
 
+<<<<<<< HEAD
 #loading-page h2:after {
+=======
+h2:after {
+>>>>>>> front page redesigned
 	content: '';
 	width: 50px;
 	height: 3px;
@@ -35,9 +47,15 @@ h2:hover:after {
 	width: 100px;
 }
 
+<<<<<<< HEAD
 #loading-page h3,
 #loading-page h4,
 #loading-page h5 {
+=======
+h3,
+h4,
+h5 {
+>>>>>>> front page redesigned
 	font-family: 'Karla','Montserrat', sans-serif;
 }
 

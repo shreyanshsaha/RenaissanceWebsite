@@ -119,6 +119,7 @@
 
 	<script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		jQuery(document).ready(function ($) {
 
 
@@ -129,6 +130,9 @@
 =======
 
 <<<<<<< HEAD
+=======
+
+>>>>>>> front page redesigned
 		$('body').scroll(function () {
 			var $nav = $(".navbar-fixed-top");
 			$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
@@ -146,10 +150,11 @@
 =======
 >>>>>>> Revert "front page redesigned"
 
-			$(document).ready(function () {
-				$('a[href^="#"]').on('click', function (e) {
-					e.preventDefault();
+		$(document).ready(function () {
+			$('a[href^="#"]').on('click', function (e) {
+				e.preventDefault();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> Revert "front page redesigned"
 =======
@@ -165,6 +170,19 @@
 				});
 			});
 		})
+=======
+				var target = this.hash,
+					$target = $(target);
+				console.log($target.offset().top, $('body').scrollTop());
+				$('html, body').stop().animate({
+					'scrollTop': $target.offset().top + $('body').scrollTop() - 45
+				}, 900, 'swing', function () {
+					window.location.hash = target;
+				});
+			});
+		});
+
+>>>>>>> front page redesigned
 =======
 				var target = this.hash,
 					$target = $(target);
