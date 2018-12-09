@@ -289,7 +289,7 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 					categoryProfit: req.body.categoryProfit,
 					marketSegmentation: req.body.segmentation,
 					financialModel: req.body.financeModel,
-					feasibility: req.body.fidea,
+					feasibility: req.body.feasibility,
 					competition: req.body.competition,
 					breakEvenPoint: req.body.bepoint
 				});
@@ -339,7 +339,7 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 						categoryProfit: req.body.categoryProfit,
 						marketSegmentation: req.body.segmentation,
 						financialModel: req.body.financeModel,
-						feasibility: req.body.fidea,
+						feasibility: req.body.feasibility,
 						competition: req.body.competition,
 						breakEvenPoint: req.body.bepoint
 					}
