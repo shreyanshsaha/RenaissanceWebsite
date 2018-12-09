@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:700');
+#loading-page {
+	font-family: 'Karla','Roboto', sans-serif;
+	font-size: 16px;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+	color: #008080;
+	font-weight: 700;
+	font-size: 50px;
+	font-family: 'Karla','Montserrat', sans-serif;
+	text-transform: lowercase;
+}
+
+h2:after {
+	content: '';
+	width: 50px;
+	height: 3px;
+	background: #40E0D0;
+	display: block;
+	margin: 15px auto;
+	transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+
+h2:hover:after {
+	width: 100px;
+}
+
+h3,
+h4,
+h5 {
+	font-family: 'Karla','Montserrat', sans-serif;
+}
+
+
+/* SCROLL TO TOP ARROW */
+
+#return-to-top {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background: rgba(64, 224, 208, 0.8);
+	width: 50px;
+	height: 50px;
+	display: block;
+	text-decoration: none;
+	-webkit-border-radius: 35px;
+	-moz-border-radius: 35px;
+	border-radius: 35px;
+	display: none;
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	z-index: 999;
+}
+
+#return-to-top span {
+	color: #fff;
+	margin: 0;
+	position: relative;
+	left: 16px;
+	top: 13px;
+	font-size: 19px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+#return-to-top:hover {
+	background: rgba(64, 224, 208, 1);
+}
+
+#return-to-top:hover span {
+	color: #fff;
+	top: 5px;
+}
+
+
+/* END SCROLL TO TOP ARROW */
+
+
+/* START PRELOADER */
+
+#preloader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #008080;
+	z-index: 99;
+	height: 100%;
+}
+
+#status {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	background-image: url("http://marinamarques.pt/img/preloader.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: -100px 0 0 -100px;
+}
+
+
+/* END PRELOADER */
+
+
+/* start header */
+
+
+
+/*/ end hamburger menu desktop overwrite bootstrap /*/
+
+
+/*/ start intro /*/
+
+.intro {
+	display: table;
+	width: 100%;
+	height: auto;
+	text-align: center;
+	color: white;
+	background: url("/images/IMG_5111.jpg") no-repeat top center scroll;
+	background-size: cover;
+	-o-background-size: cover;
+}
+
+.intro .intro-body {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 15% 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.brand-heading {
+	font-size: 100px;
+	font-family: 'Karla','Montserrat', sans-serif;
+	font-weight: 700;
+	text-align: left;
+	color: #40E0D0;
+}
+
+.intro .intro-body .intro-text {
+	font-size: 25px;
+	font-family: 'Karla', sans-serif;
+	text-align: left;
+}
+
+span.city {
+	background-color: rgba(96, 201, 188, 0.2);
+	color: #fff;
+	border-radius: 4px;
+	width: 15px;
+	font-weight: bold;
+}
+
+@media (min-width: 768px) {
+	.intro {
+		height: 100%;
+		padding: 0;
+	}
+	.intro .intro-body .brand-heading {
+		font-size: 130px;
+	}
+	.intro .intro-body .intro-text {
+		font-size: 35px;
+	}
+}
+
+
+
+.scroll {
+	width: 4px;
+	height: 4px;
+	border-radius: 2px;
+	background: #fff;
+	position: relative;
+	left: 10px;
+	-webkit-animation: scrolls 1.3s ease-out infinite;
+}
+
+@-webkit-keyframes scrolls {
+	0% {
+		top: 8px;
+		opacity: 0;
+		-webkit-transform: scaleY(1) scaleX(1);
+	}
+	5% {
+		top: 8px;
+		opacity: 0.8;
+		-webkit-transform: scaleY(1.2) scaleX(1.2);
+	}
+	10% {
+		top: 8px;
+		opacity: 1;
+		-webkit-transform: scaleY(1.6) scaleX(1.6);
+	}
+	15% {
+		top: 8px;
+		opacity: 1;
+		-webkit-transform: scaleY(1.2) scaleX(1.2);
+	}
+	20% {
+		top: 8px;
+		opacity: 1;
+		-webkit-transform: scaleY(1.2) scaleX(1.2);
+	}
+	30% {
+		top: 15px;
+		opacity: 1;
+		-webkit-transform: scaleY(1.2) scaleX(1.2);
+	}
+	100% {
+		top: 30px;
+		opacity: 0;
+		-webkit-transform: scaleY(1.2) scaleX(0.8);
+	}
+}
+
+
+/* End Scroll Down Indicator */
+
+
+/*/ end intro /*/
+
+
+/*/ start about /*/

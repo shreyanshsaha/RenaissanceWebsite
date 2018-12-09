@@ -23,6 +23,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/presente_style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/navbar.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/home.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/landingPage.css" />
 	<link rel="stylesheet" href="/css/mainEvents.css" />
 	<link rel="stylesheet" href="/css/styleEve.css">
 
@@ -40,6 +41,7 @@
 
 	<!-- Home -->
 	<% include frontPart/carousel %>
+
 
 	<!-- Countdown -->
 	<div class="separation"></div>
@@ -104,29 +106,31 @@
 	<div class="seperation"></div>
 	<% include partials/footer %>
 
+	<script src="/js/landingPage.js"></script>
+
 	<script>
-		
+
 		$('body').scroll(function () {
 			var $nav = $(".navbar-fixed-top");
 			$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
 		});
 
 
-			$(document).ready(function () {
-				$('a[href^="#"]').on('click', function (e) {
-					e.preventDefault();
+		$(document).ready(function () {
+			$('a[href^="#"]').on('click', function (e) {
+				e.preventDefault();
 
-					var target = this.hash,
-						$target = $(target);
-						console.log($target.offset().top, $('body').scrollTop());
-					$('html, body').stop().animate({
-						'scrollTop': $target.offset().top + $('body').scrollTop() - 45
-					}, 900, 'swing', function () {
-						window.location.hash = target;
-					});
+				var target = this.hash,
+					$target = $(target);
+				console.log($target.offset().top, $('body').scrollTop());
+				$('html, body').stop().animate({
+					'scrollTop': $target.offset().top + $('body').scrollTop() - 45
+				}, 900, 'swing', function () {
+					window.location.hash = target;
 				});
 			});
-			
+		});
+
 	</script>
 	<script src="js/count_script.js"></script>
 </body>
