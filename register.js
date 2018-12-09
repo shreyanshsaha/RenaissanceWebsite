@@ -64,22 +64,22 @@ router.put("/register/competition/:id", async function(req, res){
 	await Competition.findByIdAndUpdate({_id: req.params.id}, {$addToSet: {users: req.user._id}})
 	.catch((err)=>{console.log(err);});
 
-	// Create a new team
-	// Create a new team
-	// Logic: 
-	// Create a new team with the currentUser as team Leader
-	// Add the ID of the new team to the user
-	console.log(req.user);
-	if(!(req.user.teamId === null)){
-		res.send("Error: User already in a team");
-		return;
-	}
-	console.log(req.user.username, "created a new team!");
-	// Create new team
-	var newTeam = await Team.create({teamLeader: req.user._id, teamMembers: [req.user._id]});
-	console.log(newTeam._id);
-	// Update the teamId to user
-	await User.findOneAndUpdate({_id: req.user._id}, {teamId: newTeam._id});
+	// // Create a new team
+	// // Create a new team
+	// // Logic: 
+	// // Create a new team with the currentUser as team Leader
+	// // Add the ID of the new team to the user
+	// console.log(req.user);
+	// if(!(req.user.teamId === null)){
+	// 	res.send("Error: User already in a team");
+	// 	return;
+	// }
+	// console.log(req.user.username, "created a new team!");
+	// // Create new team
+	// var newTeam = await Team.create({teamLeader: req.user._id, teamMembers: [req.user._id]});
+	// console.log(newTeam._id);
+	// // Update the teamId to user
+	// await User.findOneAndUpdate({_id: req.user._id}, {teamId: newTeam._id});
 	
 	return res.send("Success!");
 });

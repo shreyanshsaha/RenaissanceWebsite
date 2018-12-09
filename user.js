@@ -2,7 +2,7 @@
 var express = require("express");
 var passport = require('passport');
 var middleware = require("./middleware")
-
+var mongoose = require("mongoose");
 // Databases
 var User = require("./models/userModel");
 var Team = require("./models/teamModel");
@@ -10,6 +10,9 @@ var Summary = require("./models/presenteSummary");
 var Event = require("./models/eventModel");
 var Competition = require("./models/competition");
 var Questionnaire = require("./models/questionnaire");
+var Bussiness = require("./models/ideationBusinessModel");
+var Social = require("./models/ideationSocialModel");
+var Operational = require("./models/operationalModel");
 
 // Router
 var router = express.Router();
@@ -56,12 +59,25 @@ router.get("/user", middleware.isLoggedIn, async function (req, res) {
 			});
 
 		var summary = await Questionnaire.findOne({ teamId: req.user.teamId });
-		// console.log("Summary:", summary);
+		console.log("Summary:", summary);
 
 		var typeSelected = false;
 		if (req.user.questionnaire)
 			typeSelected = true;
+
 		if (summary) {
+			var type = summary.type;
+			if (type === 'bussiness')
+				summary = await Bussiness.findOne({ _id: mongoose.Types.ObjectId(summary.q_id) })
+			else if (type === 'social')
+				summary = await Social.findOne({ _id: mongoose.Types.ObjectId(summary.q_id) })
+			else if (type === 'operational')
+				summary = await Operational.findOne({ _id: mongoose.Types.ObjectId(summary.q_id) })
+			if(!summary)
+				return res.render("profile_page", { team: team, summary: null, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });
+			
+			summary.type = type;
+			console.log(summary);
 			return res.render("profile_page", { team: team, summary: summary, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });
 		} else {
 			return res.render("profile_page", { team: team, summary: null, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });
@@ -85,7 +101,7 @@ router.post("/user/register", function (req, res) {
 	if (!req.body.username || !req.body.password || !req.body.email) {
 		res.redirect(ref + "?error=" + "Username, password and email are required fields!");
 	}
-	
+
 	var user = new User({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
