@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400");
 main {
   background-image: url("/images/featuresImage.jpg");
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 main .card {
@@ -49,7 +51,6 @@ main .card:hover .info:before {
 main .title {
   margin: 0;
   padding: 24px;
-  margin-bottom: 0.5em;
   font-weight: inherit;
   line-height: 1.2;
   color: #1c5b72;

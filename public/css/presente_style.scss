@@ -1,7 +1,8 @@
 main {
   // padding: 20px 64px 64px;
   background-image: url("/images/featuresImage.jpg");
-  
+  padding-top: 24px;
+  padding-bottom: 24px;
   .card {
     border-radius: 16px;
     margin: 0 auto;
@@ -52,7 +53,7 @@ main {
   .title {
     margin: 0;
     padding: 24px;
-    margin-bottom: 0.5em;
+    // margin-bottom: 0.5em;
     font-weight: inherit;
     line-height: 1.2;
     color: #1c5b72;
