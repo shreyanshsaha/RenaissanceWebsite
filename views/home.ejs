@@ -135,11 +135,19 @@
 >>>>>>> front page redesigned
 
 
+<<<<<<< HEAD
 		$(document).ready(function () {
 			$('a[href^="#"]').on('click', function (e) {
 				e.preventDefault();
 
 <<<<<<< HEAD
+=======
+
+			$(document).ready(function () {
+				$('a[href^="#"]').on('click', function (e) {
+					e.preventDefault();
+
+>>>>>>> Revert "front page redesigned"
 					var target = this.hash,
 						$target = $(target);
 					console.log($target.offset().top, $('body').scrollTop());
