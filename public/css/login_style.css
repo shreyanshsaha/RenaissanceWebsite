@@ -7,8 +7,8 @@
 
 .erro-col {
   width: 30%;
-  margin-left: 35%;
-  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-structor {
@@ -24,8 +24,8 @@
   -moz-osx-font-smoothing: grayscale;
   background-color: #222;
   border-radius: 15px;
-  height: 550px;
-  width: 350px;
+  height: 75vh;
+  width: 300px;
   position: relative;
   overflow: hidden;
   left: 50%;
@@ -283,5 +283,12 @@
   opacity: 1;
   visibility: visible;
   -webkit-transition: all .3s ease;
+}
+
+@media (max-width: 575.98px) {
+  .erro-col {
+    margin-top: 50px;
+    width: 80%;
+  }
 }
 /*# sourceMappingURL=login_style.css.map */

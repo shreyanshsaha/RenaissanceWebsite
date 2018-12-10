@@ -128,7 +128,7 @@ router.post("/feedback", function(req, res){
 router.get("/login", function (req, res) {
 	console.log("/login, ref:", req.query.ref);
 
-	return res.render("login");
+	return res.render("login", {error: req.query.error});
 });
 
 router.post("/login", passport.authenticate("local", 
