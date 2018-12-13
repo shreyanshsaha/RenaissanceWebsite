@@ -7,7 +7,7 @@ Dropdown Events on menu bar
 */
 
 @import url('https://fonts.googleapis.com/css?family=Karla:700');
-
+@import url('https://fonts.googleapis.com/css?family=Righteous|Noto+Serif|Poiret+One|Satisfy');
 // .event {
 //   background-color: #33b5e5;
 //   height: 11%;
@@ -69,6 +69,9 @@ Dropdown Events on menu bar
                 color: white;
                 padding: 2%;
                 width: 100%;
+
+                // font-family: 'Righteous';
+                font-size:1.2rem;
               }
 
               width: 100%;
@@ -138,7 +141,7 @@ Dropdown Events on menu bar
     padding: 25px;
     // display: block;
     .eventName {
-      font-size: 34px;
+      font-size: 3rem;
       border-style: solid;
       // border-color: white;
       // border-color: white black red blue;
@@ -149,35 +152,15 @@ Dropdown Events on menu bar
 
     }
 
-    .container {
-      >.row {
-        // position: relative;
-        // overflow-y: hidden;
-        // left:-10%;
-
-        // width:80%;
-        // min-height: 100%;
-        // >*{
-        //   padding: 0px;
-        //   margin:0px;
-        // }
-        // transform: translateX(-50%;)
-        // .poster{
-        //   // position: relative;
-        //   left:10%;
-        //   // top:calc(50%);
-        //   top:50%;
-        // }
-      }
-    }
-
     .eventDate {
       font-size: 23px;
+      font-family: 'Satisfy';
     }
 
-    // .eventCoordinators{
-    //   font-size:23px;padding-top:4%;border-style:solid;border-color:white;border-bottom-color:#33b5e5;
-    // }
+    .eventDesc{
+      text-justify: auto;
+      font-size:1.5rem;
+    }
   }
 }
 

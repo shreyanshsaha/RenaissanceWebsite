@@ -282,7 +282,7 @@
   function saveExecutiveSummary() {
 
     $.ajax({
-      url: "/user/summary",
+      url: "/team/summary",
       type: "PUT",
       data: {
         <% if(currentUser.teamId) { %>
@@ -299,108 +299,5 @@
         console.log(data);
       }
     })
-  }
-</script>
-<script>
-  if (document.getElementsByClassName(".teamMember").length >= 4) {
-    console.log("HIDE");
-    document.querySelector("#addMemberButton").classList.add("d-none");
-    document.getElementById("addUserDiv").classList.add("d-none");
-  }
-  document.querySelector("#addMember").addEventListener("click", function () {
-    console.log("Members:", document.querySelectorAll(".teamMember").length)
-    document.getElementById("addUserDiv").classList.toggle("d-none");
-    if (document.getElementsByClassName(".teamMember").length >= 4) {
-      console.log("HIDE");
-      document.querySelector("#addMemberButton").classList.add("d-none");
-      document.getElementById("addUserDiv").classList.add("d-none");
-    }
-  });
-
-
-
-
-  function addUser() {
-    var username = document.getElementById("teamUsername").value;
-    $.post("/team/add/" + username, function (data) {
-      if (/ERROR/i.exec(data)) {
-        alert(data);
-      } else {
-        console.log(data);
-        window.location.reload();
-      }
-    });
-
-    // $.post("/addTeamMember", {
-    //   teamUsername: username
-    // }, function (data) {
-    //   // alert(data);
-    //   if (/ERROR/i.exec(data)) {
-    //     alert(data);
-    //     document.getElementById("teamUsername").value = '';
-    //   } else {
-    //     alert("User added to team!");
-    //     document.getElementById("addUserDiv").classList.add("d-none");
-    //     window.location.reload();
-    //   }
-    // });
-  }
-
-  function deleteMember(memID) {
-    $.post("/team/delete/user", {
-      teamMember: memID
-    }, function (data) {
-      if (/ERROR/i.exec(data)) {
-        alert(data);
-      } else {
-        // alert("User deleted!");
-        // console.log(data);
-        window.location.reload();
-      }
-    });
-  }
-
-  function deleteAllMembers() {
-    $.ajax({
-      url: "/team/<%= currentUser.teamId %>",
-      type: "DELETE",
-      success: function (data) {
-        if (/ERROR/i.exec(data)) {
-          alert(data);
-        } else {
-          window.location.reload();
-        }
-      }
-    });
-  }
-
-  function exitTeam() {
-    console.log("Called function!");
-    $.ajax({
-      type: "PUT",
-      url: "/team/exit",
-      success: function (data) {
-        console.log("Success", data);
-        if (/ERROR/i.exec(data)) {
-          alert(data);
-        } else {
-          window.location.reload();
-        }
-      },
-      fail: function (data) {
-        alert(data);
-      }
-    })
-  }
-
-  function createNewTeam() {
-    $.post("/team/new", function (data) {
-      if (/ERROR/i.exec(data)) {
-        alert(data);
-      } else {
-        window.location.reload();
-
-      }
-    });
   }
 </script>

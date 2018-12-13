@@ -18,16 +18,16 @@
 
 .aboutClass .info-card .card-logo {
   opacity: 1;
-  background: #008C9E;
+  background: white;
   min-height: 15vh;
+  vertical-align: middle;
 }
 
 .aboutClass .info-card .card-logo h1 {
   position: relative;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  color: white;
+  margin-top: -18%;
+  color: black;
   font-size: 2rem;
   text-align: center;
   display: block;
@@ -39,5 +39,25 @@
   padding: 10px;
   background: rgba(0, 0, 0, 0.8);
   color: white;
+}
+
+.skew-right > div {
+  -webkit-transform: skew(9deg);
+          transform: skew(9deg);
+}
+
+.skew-right > div p, .skew-right > div h1 {
+  -webkit-transform: skew(-9deg);
+          transform: skew(-9deg);
+}
+
+.skew-left > div {
+  -webkit-transform: skew(-9deg);
+          transform: skew(-9deg);
+}
+
+.skew-left > div p, .skew-left > div h1 {
+  -webkit-transform: skew(9deg);
+          transform: skew(9deg);
 }
 /*# sourceMappingURL=about.css.map */

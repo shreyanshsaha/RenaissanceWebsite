@@ -1,0 +1,85 @@
+<div class="container">
+  <p>
+    <h1 class="nametitle"><strong>Operational
+      </strong></h1>
+  </p>
+  <div class="row">
+    <div class="col-sm-12">
+      <form>
+        <div class="form-group">
+          <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
+          <textarea class="form-control" id="productname" rows="3"><%=summary.name%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="functionality"><strong>Functionality</strong></label>
+          <input class="form-control" id="functionality" rows="3" placeholder="Describe your product/service in a clear and crisp way (100 words)" value="<%=summary.functionality%>">
+        </div>
+        <div class="form-group">
+          <label for="currentmarketcompetition"><strong>Current Market Competition</strong></label>
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="text-info">
+                What is the market size? Explain your business’s competitive positioning in market. Who are your
+                current and likely competitors? (India/global) Compared to your competition, how do you compete with
+                respect to price, features, and performance? (250 words)
+              </p>
+            </div>
+          </div>
+          <textarea class="form-control" id="currentmarketcompetition" rows="3"><%=summary.competition%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="iproperty"><strong>Intellectual Property</strong></label>
+          <textarea class="form-control" id="iproperty" rows="3" placeholder="What key intellectual property does the company have (govt permissions, real state, patents, patents pending, copyrights etc ? "><%=summary.intellectualProperty%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="usp"><strong>Uniques selling Preposition/ Market Potential</strong></label>
+          <textarea class="form-control" id="usp" rows="3" placeholder="Talk about the uniqueness your of product/service. Is any similar product/service working in the same domain as of yours? (150 words) "><%=summary.sellingProp%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="domain"><strong>What domain your product/service is centering?</strong></label>
+          <input class="form-control" id="domain" rows="3" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance (or), others (150 words)  "><%=summary.domain%></input>
+        </div>
+        <div class="form-group">
+          <label for="fpotential"><strong>Financial Potential</strong></label>
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="text-info">
+                What are your revenue streams? Aka how do you make money? Also add the profitability till today from
+                the time you started functioning. What early traction has the company gotten (sales, traffic to the
+                company’s website, app downloads, etc., as relevant)? How scalable is your business? What is the role
+                of corporates and other bodies(govt.) in providing financial help.
+              </p>
+            </div>
+          </div>
+          <textarea class="form-control" id="fpotential" rows="3"><%=summary.financialPotential%></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="ssa"><strong>Sustainability/Social Acceptance</strong></label>
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="text-info">
+                What is the life expectancy of your product/service? What are the risks involved and scalability you
+                see coming towards your business? Will it be required in future or change according to times?Will
+                acceptance be an issue or people will adapt to it?(100 words)
+              </p>
+            </div>
+          </div>
+          <textarea class="form-control" id="ssa" rows="3"><%=summary.sustainability%></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="cost"><strong>Cost Of Customer Acquisition </strong></label>
+          <input class="form-control" id="cost" rows="3" placeholder="What is the cost of customer acquisition? " value="<%=summary.cost%>">
+        </div>
+
+        <div class="form-group">
+          <label for="cstructure"><strong>Capitalization Structure</strong></label>
+          <textarea class="form-control" id="cstructure" rows="3" placeholder="How much equity and debt has the company raised; what is the capitalization structure? "><%=summary.capitalization%></textarea>
+        </div>
+
+        <button type="button" class="btn btn-success" onclick="saveQuestionnaire('operational')">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

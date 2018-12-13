@@ -1,3 +1,7 @@
+html, body {
+  padding-top: 30px;
+}
+
 .heading {
   color: #005F6B;
 }

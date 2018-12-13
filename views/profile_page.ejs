@@ -9,15 +9,15 @@
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- <script src="bootstrap.js"></script>
-	<link rel="stylesheet" type="text/css" media="screen" href="bootstrap.css" /> -->
-	<script src="admin_script.js"></script>
 	<link rel="stylesheet" href="/css/bootstrap.css">
 	<script src="/lib/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/home.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/navbar.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/profile_style_new.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/css/summary_style.css" />
+	<!-- <link rel="stylesheet" type="text/css" media="screen" href="/css/summary_style.css" /> -->
 </head>
 
 <body>
@@ -29,6 +29,7 @@
 			<div class="contianer">
 
 				<div class="row">
+
 					<!-- Left Column -->
 					<div class="col-md-4">
 						<!-- Profile Photo -->
@@ -61,6 +62,81 @@
 									<button type="submit" class="profile-edit-btn mt-3" name="btnAddMore">Edit Profile</button>
 								</div>
 							</div>
+						</div>
+						<!-- Team Members -->
+						<div class="row">
+							<% if(competition.userRegistered){%>
+							<div class="col-12">
+								<div class="col-sm-12">
+									<h3>Team Members</h3>
+									<hr>
+								</div>
+								<!-- </div> -->
+
+								<!-- <div class="row"> -->
+								<table class="col-sm-12 table teamTable table-hover table-stripped">
+									<thead class="bg-dark text-white">
+										<tr>
+											<td class="teams" colspan="2">Team Members</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<% if(currentUser.teamId){ %>
+											<td class="teammember" colspan="2">
+												<%= currentUser.username %>
+											</td>
+											<% } %>
+										</tr>
+
+										<% if(team) team.teamMembers.forEach(function(member){ %>
+										<% if(!(member.username==currentUser.username)){ %>
+										<tr>
+											<td class="teammember">
+												<%= member.username %>
+												<% if(String(member._id)===String(teamLeader)){ %> <span class="text-muted text-monospace">| Leader</span>
+												<% }; %>
+											</td>
+											<!-- Only leader can delete members -->
+											<% if(String(currentUser._id) == String(teamLeader)){ %>
+											<td>
+												<div class="btn btn-danger btn-sm" onclick='deleteMember("<%=member._id%>")'>Delete</div>
+											</td>
+											<% }; %>
+										</tr>
+										<% }}); %>
+										<tr id="addUserDiv" class="d-none">
+											<td colspan="2">
+												<div class="input-group mb-3">
+													<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon2" id="teamUsername">
+													<div class="input-group-append">
+														<button class="btn btn-outline-primary" type="button" onclick="addUser()">Add User</button>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr id="addMemberButton">
+											<td>
+												<% if(currentUser.teamId && (String(currentUser._id) == String(teamLeader))){ %>
+												<div class="btn btn-danger" onclick="deleteAllMembers()">Delete Team</div>
+												<% } else if(currentUser.teamId==null){ %>
+												<div class="btn btn-success" onclick="createNewTeam()">Create new team</div>
+												<% } else { %>
+												<div class="btn btn-danger" onclick="exitTeam()">Exit Team</div>
+												<% } %>
+											</td>
+											<td>
+												<% if(currentUser.teamId){ %>
+												<div id="addMember" class="btn btn-primary">&plus; Add member</div>
+												<% } else { %>
+												<div id="addMember" class="btn btn-primary disabled">&plus; Add member</div>
+												<% } %>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<%};%>
 						</div>
 					</div>
 
@@ -100,17 +176,73 @@
 
 										<% if(!competition.userRegistered){ %>
 										<h3>
-											<button type="button" class="btn btn-primary btn" onclick="registerForCompetition('<%=competition._id%>')" id="registerButton">Register</button>
+											<button type="button" class="btn btn-primary btn" onclick="registerForCompetition('<%=competition._id%>')"
+											 id="registerButton">Register</button>
 											your Startup!
 										</h3>
 										<% }else{ %>
-										<% include summary%>
-										<% }; %>
+											<% if(summary){ %>
+												<% if(summary.type==='bussiness'){ %>
+													<% include questionnaire/bussiness %>
+												<% } else if(summary.type==='social'){ %>
+													<% include questionnaire/social %>
+												<% } else if(summary.type==='operational'){ %>
+													<% include questionnaire/operation %>
+											<% } %>
+										<div id="savingError" class="mt-4 mb-0"></div>
+										<% } else if(currentUser.teamId){ %>
+										<div class="card-deck">
+											<div class="card">
 
+												<div class="card-body">
+													<h5 class="card-title">Ideation - Bussiness</h5>
+													<p class="card-text">Startups which are in ideation phase whose ideas fall under the 'Business' category
+														and in need of funding will present their ideas in front of a Jury comprising of investors who will award
+														the best startups with a prize money. </p>
+												</div>
+												<div class="card-footer">
+													<div class="btn btn-primary" onclick="selectType('bussiness')">Select</div>
+												</div>
+											</div>
+											<div class="card">
+
+												<div class="card-body">
+													<h5 class="card-title">Ideation - Social</h5>
+													<p class="card-text">Startups which are in ideation phase whose ideas fall under the 'Social' category and
+														in need of funding will present their ideas in front of a Jury comprising of investors who will award the
+														best startups with a prize money. </p>
+												</div>
+												<div class="card-footer">
+													<div class="btn btn-primary" onclick="selectType('social')">Select</div>
+												</div>
+											</div>
+											<div class="card">
+
+												<div class="card-body">
+													<h5 class="card-title">Operational</h5>
+													<p class="card-text">Startups that have already rolled out their products/services in the market will be
+														pitching in front of Investors who will judge and decide on offering funds to the startups in exchange
+														for equity or as he/she may seem fit.</p>
+												</div>
+												<div class="card-footer">
+													<div class="btn btn-primary" onclick="selectType('operational')">Select</div>
+												</div>
+											</div>
+										</div>
+										<div class="alert alert-danger" role="alert">
+											<strong>NOTE: </strong>You cannot change it once you select the startup type. The only way to change it is
+											to delete the team!
+										</div>
+										<% } else {%>
+										<div class="alert alert-warning" role="alert">
+											You need to create a team to proceed further OR someone needs to add you to their team!
+										</div>
+										<% }; %>
+										<% }; %>
 									</div>
 
 									<div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
-										<% if(currentUser.events.length>0){ %>
+										<!-- <%# if(currentUser.events.length>0){ %>
 											<table class="table">
 												<thead>
 													<tr>
@@ -119,30 +251,26 @@
 														<td>Payment Status</td>
 													</tr>
 												</thead>
-													<% currentUser.events.forEach(function(event){ %>
+													<%# currentUser.events.forEach(function(event){ %>
 													<tr>
 														<td>event</td>
 														<td>event</td>
 														<td>event</td>
 													</tr>
-													<% }); %>
+													<%# }); %>
 											</table>
-										<% } else { %>
+										<%# } else { %>
 											<h4 class="text-center text-muted">You haven't registered for any events yet!</h4>
-										<% }; %>
+										<%# }; %> -->
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-
 				</div>
 
-
-
 			</div>
-
 
 		</form>
 	</div>
@@ -161,7 +289,189 @@
 				}
 			});
 		}
+
+		function selectType(type) {
+			$.ajax({
+				method: "put",
+				url: "/team/summary/" + type,
+				success: function (data) {
+					if (/error/i.exec(data))
+						alert(data);
+					else
+						window.location.reload();
+				}
+			})
+		}
+
 	</script>
+	<script>
+		function saveQuestionnaire(type) {
+			console.log(type);
+			if (type == 'bussiness') {
+				var data = {
+					name: document.getElementById('productname').value,
+					use: document.getElementById('idea').value,
+					segmentation: document.getElementById("segmentation").value,
+					competition: document.getElementById("mcompetition").value,
+					financeModel: document.getElementById("fmodel").value,
+					feasibility: document.getElementById("fidea").value,
+					breakEvenPoint: document.getElementById("bepoint").value,
+					intellectualProperty: document.getElementById("kiproperty").value,
+				}
+			}
+			else if (type == 'social') {
+				var data = {
+					// categoryRadio: document.getElementById('category-radio').value,
+					categoryRadio: null,
+					productname: document.getElementById('productname').value,
+					domain: document.getElementById('domain').value,
+					senterprise: document.getElementById('senterprise').value,
+					simpact: document.getElementById('simpact').value,
+					feasibility: document.getElementById('fidea').value,
+					categoryProfit: document.getElementById('category-social').value,
+					segmentation: document.getElementById('dsegmentation').value,
+					financeModel: document.getElementById('fmodel').value,
+					competition: document.getElementById('mcompetition').value,
+					bepoint: document.getElementById('bepoint').value
+				}
+			}
+			else if (type == 'operational') {
+				var data = {
+					name: document.getElementById('productname').value,
+					functionality: document.getElementById('functionality').value,
+					competition: document.getElementById('currentmarketcompetition').value,
+					intellectualProperty: document.getElementById('iproperty').value,
+					sellingProp: document.getElementById('usp').value,
+					domain: document.getElementById('domain').value,
+					financialPotential: document.getElementById('fpotential').value,
+					sustainability: document.getElementById('ssa').value,
+					cost: document.getElementById('cost').value,
+					capitalization: document.getElementById('cstructure').value
+				}
+			}
+			console.log(data);
+
+			$.ajax({
+				url: "/team/questionnaire/save/" + type,
+				method: "put",
+				data: data,
+				success: function (data) {
+					var result = document.getElementById('savingError');
+					if(/error/i.exec(data))
+						result.innerHTML = `<div class="alert alert-danger" role="alert">
+											<strong>Error: </strong>`+data+`</div>`;
+					else
+						result.innerHTML = `<div class="alert alert-success" role="alert">
+											<strong>Success: </strong>The questionnaire is saved!</div>`;
+				}
+			})
+		}
+	</script>
+	<script>
+		if (document.getElementsByClassName(".teamMember").length >= 4) {
+			console.log("HIDE");
+			document.querySelector("#addMemberButton").classList.add("d-none");
+			document.getElementById("addUserDiv").classList.add("d-none");
+		}
+		document.querySelector("#addMember").addEventListener("click", function () {
+			console.log("Members:", document.querySelectorAll(".teamMember").length)
+			document.getElementById("addUserDiv").classList.toggle("d-none");
+			if (document.getElementsByClassName(".teamMember").length >= 4) {
+				console.log("HIDE");
+				document.querySelector("#addMemberButton").classList.add("d-none");
+				document.getElementById("addUserDiv").classList.add("d-none");
+			}
+		});
+
+
+
+
+		function addUser() {
+			var username = document.getElementById("teamUsername").value;
+			$.post("/team/add/" + username, function (data) {
+				if (/ERROR/i.exec(data)) {
+					alert(data);
+				} else {
+					console.log(data);
+					window.location.reload();
+				}
+			});
+
+			// $.post("/addTeamMember", {
+			//   teamUsername: username
+			// }, function (data) {
+			//   // alert(data);
+			//   if (/ERROR/i.exec(data)) {
+			//     alert(data);
+			//     document.getElementById("teamUsername").value = '';
+			//   } else {
+			//     alert("User added to team!");
+			//     document.getElementById("addUserDiv").classList.add("d-none");
+			//     window.location.reload();
+			//   }
+			// });
+		}
+
+		function deleteMember(memID) {
+			$.post("/team/delete/user", {
+				teamMember: memID
+			}, function (data) {
+				if (/ERROR/i.exec(data)) {
+					alert(data);
+				} else {
+					// alert("User deleted!");
+					// console.log(data);
+					window.location.reload();
+				}
+			});
+		}
+
+		function deleteAllMembers() {
+			$.ajax({
+				url: "/team/<%= currentUser.teamId %>",
+				type: "DELETE",
+				success: function (data) {
+					if (/ERROR/i.exec(data)) {
+						alert(data);
+					} else {
+						window.location.reload();
+					}
+				}
+			});
+		}
+
+		function exitTeam() {
+			console.log("Called function!");
+			$.ajax({
+				type: "PUT",
+				url: "/team/exit",
+				success: function (data) {
+					console.log("Success", data);
+					if (/ERROR/i.exec(data)) {
+						alert(data);
+					} else {
+						window.location.reload();
+					}
+				},
+				fail: function (data) {
+					alert(data);
+				}
+			})
+		}
+
+		function createNewTeam() {
+			$.post("/team/new", function (data) {
+				if (/ERROR/i.exec(data)) {
+					alert(data);
+				} else {
+					window.location.reload();
+
+				}
+			});
+		}
+	</script>
+
+
 </body>
 
 </html>

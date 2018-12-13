@@ -21,8 +21,13 @@ var rootRoute = require("./root"),
 // Setting up express and database
 // ===============================
 var app = express();
+<<<<<<< HEAD
 //mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
  mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
+=======
+// mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
+mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
+>>>>>>> origin/master
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({
@@ -57,9 +62,9 @@ app.use(registerRoute);
 app.use(teamRoute);
 
 
-app.listen(3000, function () {
-	console.log("Server has started!");
-});
-// app.listen(process.env.PORT, process.env.IP);
+// app.listen(3000, function () {
+// 	console.log("Server has started!");
+// });
+app.listen(process.env.PORT, process.env.IP);
 
 
