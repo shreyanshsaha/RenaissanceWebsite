@@ -13,7 +13,7 @@ var Questionnaire = require("./models/questionnaire");
 var Bussiness = require("./models/ideationBusinessModel");
 var Social = require("./models/ideationSocialModel");
 var Operational = require("./models/operationalModel");
-
+var Temp = require("./models/tempModel");
 // Router
 var router = express.Router();
 
