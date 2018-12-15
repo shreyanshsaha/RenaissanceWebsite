@@ -16,7 +16,7 @@ var Competition = require("./models/competition");
 var Bussiness = require("./models/ideationBusinessModel");
 var Social = require("./models/ideationSocialModel");
 var Operational = require("./models/operationalModel");
-
+var Temp = require("./models/tempModel");
 // ===========
 // TEAM Routes
 // ===========

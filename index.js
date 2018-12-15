@@ -16,13 +16,13 @@ var rootRoute = require("./root"),
 		registerRoute = require("./register"),
 		teamRoute = require("./team");
 
-
+       var tempRoute= require("./temp");
 // ===============================
 // Setting up express and database
 // ===============================
 var app = express();
-// mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
-mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
+ mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
+//mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({
@@ -55,8 +55,12 @@ app.use(userRoute);
 app.use(adminRoute);
 app.use(registerRoute);
 app.use(teamRoute);
+app.use(tempRoute);
+/*
+app.get("/temp", function (req, res) {
 
-
+	return res.send("view_post");
+});*/
  app.listen(3000, function () {
  	console.log("Server has started!");
  });

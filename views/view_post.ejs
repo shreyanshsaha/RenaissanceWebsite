@@ -1,0 +1,24 @@
+<html>
+
+<head>
+
+<title>See Post</title>
+</head>
+<body>
+   <h1>ALL THE POST</h1>
+    <% for(var i=0; i< test.length ; i++) { %>
+<div style="border:2px solid black;width: 50%;height: 50%">
+
+<h2><%= test[i].heading %></h2>
+<br>
+
+<img src="<%= test[i].imageUrl %>" width="50%" height="50%">
+<br>
+
+<%= test[i].description %>
+</div>
+<br>
+<% } %>
+</body>
+
+</html>
