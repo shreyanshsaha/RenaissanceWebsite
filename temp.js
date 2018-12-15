@@ -49,7 +49,7 @@ router.get("/edit",  async function (req, res) {
 	return res.render("edit_post",{test:test});
 });
 
-router.post("/edit/change/:id", multer(multerConf).single('myimage'), async function (req, res) {
+router.post("/edit/:id", multer(multerConf).single('myimage'), async function (req, res) {
 
 	if(req.file)
 	{

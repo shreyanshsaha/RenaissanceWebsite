@@ -99,18 +99,12 @@
                   <%= i.contact %>
                 </td>
                 <% if(i.isAdmin==false) { %>
-<<<<<<< HEAD
                   <td>
 
                     <a onclick="return confirm_click()" href="/admin/delete/<%= i._id %>">Delete</a></td>
                 <% } else { %>
                   <td>Admin
                   </td>
-=======
-                <td><a href="/admin/delete/<%= i._id %>">Delete</td>
-                <% } else { %>
-                <td>Admin</td>
->>>>>>> origin/master
                 <% } %>
               </tr>
               <% }; %>
