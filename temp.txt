@@ -1,0 +1,86 @@
+ 1082  wc -l index.js 
+ 1115  wc
+ 1116  wc --help
+ 1117  find . -name '*.php' | xargs wc -l
+ 1118  find . -name '*' | xargs wc -l
+ 1121  cat file.txt | wc
+ 1122  cat file.txt | wc -l
+ 1125  while read p; do   wc "$p"; done <file.txt
+ 1126  while read p; do   wc -l "$p"; done <file.txt
+ 1127  sum=0;while read p; do sum+=wc -l "$p"; done <file.txt
+ 1128  sum=0;while read p; do wc -l "$p"; done <file.txt
+ 1129  wc -l index.js 
+ 1130  wc -l < index.js 
+ 1131  sum=0;while read p; do wc -l<"$p"; done <file.txt
+ 1132  sum=0;while read p; do sum+=exec('wc -l<"$p"'); done <file.txt
+ 1133  sum=0;while read p; do wc -l<"$p"; done <file.txt
+ 1134  sum=0;while read p; do sum+=wc -l<"$p"; done <file.txt
+ 1135  sum=0;while read p; do wc -l<"$p"; done <file.txt
+ 1136  sum=0;while read p; do $('wc -l<"$p"'); done <file.txt
+ 1137  sum=0;while read p; do $('wc -l<$p'); done <file.txt
+ 1138  sum=0;while read p; do $(wc -l<$p); done <file.txt
+ 1139  sum=0;while read p; do sum+=$(wc -l<$p); done <file.txt
+ 1140  sum=0;while read p; do sum+=$(wc -l<$p); echo sum done <file.txt; ;
+ 1141  sum=0;while read p; do sum+=$(wc -l<$p); echo sum; done <file.txt; ;
+ 1142  sum=0;while read p; do sum+=$(wc -l<$p); done; echo sum <file.txt; ;
+ 1143  sum=0;while read p; do sum+=$(wc -l<$p); done; echo $sum <file.txt; ;
+ 1144  sum=0;while read p; do sum+=$(wc -l<$p); done <file.txt
+ 1145  $sum=0;while read p; do $sum+=$(wc -l<$p); done <file.txt
+ 1146  sum=0;while read p; do sum+=$(wc -l<$p); done <file.txt
+ 1147  sum=0;while read p; do sum+=$(wc -l<$p); done; <file.txt
+ 1148  sum=0;while read p; do sum+=$(wc -l<$p); done; echo sum <file.txt
+ 1149  sum=0;while read p; do sum+=$(wc -l<$p); done; echo sum; <file.txt
+ 1150  sum=0;while read p; do sum+=$(wc -l<$p); done; <file.txt
+ 1151  sum=0;while read p; do sum+=$(wc -l<$p); done <file.txt
+ 1152  sum=0;while read p; do sum+=$(wc -l<$p); echo sum; done <file.txt
+ 1153  sum=0;while read p; do sum+=$(wc -l<$p); echo $sum; done <file.txt
+ 1154  sum=0;while read p; do $sum+=$(wc -l<$p); echo $sum; done <file.txt
+ 1155  sum=0;while read p; do sum+=$(wc -l<$p); echo $sum; done <file.txt
+ 1156  sum=0;while read p; do $(sum+=$(wc -l<$p)); echo $sum; done <file.txt
+ 1157  sum=0;while read p; do $($sum+=$(wc -l<$p)); echo $sum; done <file.txt
+ 1158  sum=0;while read p; do $($sum+=(wc -l<$p)); echo $sum; done <file.txt
+ 1159  sum=0;while read p; do $($sum+=$((wc -l<$p))); echo $sum; done <file.txt
+ 1160  sum=0;while read p; do $(sum+=$(wc -l<$p)); echo $sum; done <file.txt
+ 1161  sum=0;while read p; do sum+=$(wc -l<$p); echo $sum; done <file.txt
+ 1162  sum=0;while read p; do sum=$(wc -l<$p); echo $sum; done <file.txt
+ 1163  sum=0; total=0;while read p; do sum=$(wc -l<$p); total+=sum; echo $sum; done <file.txt
+ 1164  sum=0; total=0;while read p; do sum=$(wc -l<$p); total+=sum; echo $sum; echo $total; done <file.txt
+ 1165  sum=0; total=0;while read p; do sum=$(wc -l<$p); total+=$sum; echo $sum; echo $total; done <file.txt
+ 1166  sum=0; total=0;while read p; do sum=$(wc -l<$p); $((total+=$sum)); echo $sum; echo $total; done <file.txt
+ 1167  sum=0; total=0;while read p; do sum=$(wc -l<$p); $(($total+=$sum)); echo $sum; echo $total; done <file.txt
+ 1168  sum=0; total=0;while read p; do sum=$(wc -l<$p); $($total+=$sum); echo $sum; echo $total; done <file.txt
+ 1169  sum=0; total=0;while read p; do sum=$(wc -l<$p); $(($total+=$sum)); echo $sum; echo $total; done <file.txt
+ 1170  sum=0; total=0;while read p; do sum=$(wc -l<$p); total+=$sum; echo $sum; echo $total; done <file.txt
+ 1171  sum=0; total=0;while read p; do sum=$(wc -l<$p); $(($total+=$sum)); echo $sum; echo $total; done <file.txt
+ 1172  sum=0; total=0;while read p; do sum=$(wc -l<$p); $((total+=$sum)); echo $sum; echo $total; done <file.txt
+ 1173  sum=0; total=0;while read p; do sum=$(wc -w<$p); $((total+=$sum)); echo $sum; echo $total; done <file.txt
+ 1174  wc -w index.js 
+ 1427  iwconfig
+ 1428  sudo iwconfig
+ 1560  iwconfig
+ 1567  iwconfig
+ 1570  iwconfig
+ 1677  iwconfig
+ 1678  watch -n 1 iwconfig
+ 1680  watch -n 1 iwconfig
+ 1681  iwconfig
+ 1682  watch -n 1 iwconfig
+ 1683  iwconfig
+ 1686  iwconfig
+ 1696  watch -n 1 iwconfig
+ 1700  iwconfig
+ 1944  wc < file.txt 
+ 1945  wc | file.txt 
+ 1946  cat file.txt | wc
+ 1947  history | grep wc
+ 1948  sum=0; total=0;while read p; do sum=$(wc -w<$p); $((total+=$sum)); echo $sum; echo $total; done <file.txt
+ 1949  sum=0; total=0;while read p; do sum=$(wc -w<$p); $((total+=$sum)); echo $total; done <file.txt
+ 1950  history | grep wc
+ 1951  sum=0;while read p; do sum+=$(wc -l<$p); echo $sum; done <file.txt
+ 1954  sum=0; total=0;while read p; do sum=$(wc -w<$p); $((total+=$sum)); echo $sum; echo $total; done <file.txt
+ 1955  sum=0; total=0;while read p; do sum=$(wc -w<$p); $((total+=$sum)); echo sum; echo total; done <file.txt
+ 1956  sum=0; total=0;while read p; do $sum=$(wc -w<$p); $((total+=$sum)); echo sum; echo total; done <file.txt
+ 1957  sum=0; total=0;while read p; do sum=$((wc -w<$p)); $((total+=$sum)); echo sum; echo total; done <file.txt
+ 1958  sum=0; total=0;while read p; do sum=$($(wc -w<$p)); $((total+=$sum)); echo sum; echo total; done <file.txt
+ 1959  sum=0; total=0;while read p; do sum=$(wc -w<$p); $((total+=$sum)); echo sum; echo total; done <file.txt
+ 1960  history | grep wc > temp.txt
