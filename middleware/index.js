@@ -7,7 +7,6 @@ middlewareObj.isLoggedIn=function(req, res, next) {
     if (req.isAuthenticated()) {
       if(req.user.isAdmin===true){
         console.log("Logged In user is ADMIN!");
-        console.log(req.get('referer'))
         return res.redirect("/admin");
       }
       else

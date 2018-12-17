@@ -48,6 +48,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.navbar {
+  background-color: white !important;
+}
+
 #demo {
   /* margin: 20px auto; */
   /* max-width: 960px; */

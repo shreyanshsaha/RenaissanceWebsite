@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Renaissance | Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/navbar.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/admin_style.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/reg_style.css" />
 
@@ -38,7 +41,8 @@
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="user-tab" data-toggle="tab" href="#user-table" role="tab" aria-controls="user-table"
-            aria-selected="true">Users</a>
+            aria-selected="true">Users <span class="badge badge-primary">
+              <%= events1.length%></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="add-user-table" data-toggle="tab" href="#addUser" role="tab" aria-controls="addUser"
@@ -46,7 +50,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" id="ques-tab" data-toggle="tab" href="#ques" role="tab" aria-controls="ques"
-            aria-selected="false">Questionnaires</a>
+            aria-selected="false">Questionnaires <span class="badge badge-primary">
+              <%= qlength %></span></a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
@@ -226,18 +231,205 @@
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
               <% bussiness.forEach(function(b){ %>
-                <%= b %>
+              <div class="row text-muted">
+                <table class="mb-4 table-hover">
+                  <tr>
+                    <td>Startup Name:</td>
+                    <td>
+                      <%= b.name %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>What does the company do:</td>
+                    <td>
+                      <%= b.use %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Market Segmentation:</td>
+                    <td>
+                      <%= b.segmentation %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Market Competition:</td>
+                    <td>
+                      <%= b.competition %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Financial Model:</td>
+                    <td>
+                      <%= b.financeModel %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Idea Feasibility:</td>
+                    <td>
+                      <%= b.feasibility %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Break Even Point:</td>
+                    <td>
+                      <%= b.breakEvenPoint %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Intellectual Property:</td>
+                    <td>
+                      <%= b.intellectualProperty %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
               <% }) %>
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <% social.forEach(function(questionnaire){ %>
+              <table class="mb-4">
+                <tr>
+                  <td>Startup Name:</td>
+                  <td>
+                    <%= questionnaire.name %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Startup Category:</td>
+                  <td>
+                    <%= questionnaire.category %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Domain:</td>
+                  <td>
+                    <%= questionnaire.domain %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Overview of Social Enterprise:</td>
+                  <td>
+                    <%= questionnaire.socialEnt %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Overview of Social Impact:</td>
+                  <td>
+                    <%= questionnaire.socialImpact %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Profile Category:</td>
+                  <td>
+                    <%= questionnaire.categoryProfit %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Market Segment:</td>
+                  <td>
+                    <%= questionnaire.marketSegmentation %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Financial Model:</td>
+                  <td>
+                    <%= questionnaire.financialModel %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Feasibility of idea:</td>
+                  <td>
+                    <%= questionnaire.feasibility %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Market Competition:</td>
+                  <td>
+                    <%= questionnaire.competition %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Break Even Point:</td>
+                  <td>
+                    <%= questionnaire.breakEvenPoint %>
+                  </td>
+                </tr>
+              </table>
+              <% }) %>
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+              <% operational.forEach(function(questionnaire){ %>
+              <table class="mb-4">
+                <tr>
+                  <td>Startup Name:</td>
+                  <td>
+                    <%= questionnaire.name %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Functionality:</td>
+                  <td>
+                    <%= questionnaire.functionality %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Market Competition:</td>
+                  <td>
+                    <%= questionnaire.competition %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Intellectual Property:</td>
+                  <td>
+                    <%= questionnaire.intellectualProperty %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Market Proposition:</td>
+                  <td>
+                    <%= questionnaire.sellingProp %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Domain:</td>
+                  <td>
+                    <%= questionnaire.domain %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Financial Potential:</td>
+                  <td>
+                    <%= questionnaire.financialPotential %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sustainability:</td>
+                  <td>
+                    <%= questionnaire.sustainability %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Cost Of Customer Acquisition:</td>
+                  <td>
+                    <%= questionnaire.cost %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Capitalization Structure:</td>
+                  <td>
+                    <%= questionnaire.capitalization %>
+                  </td>
+                </tr>
+              </table>
+              <% }) %>
+            </div>
           </div>
         </div>
 
       </div>
 
 
-
+      operational
 
     </div>
   </div>

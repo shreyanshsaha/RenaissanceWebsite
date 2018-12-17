@@ -143,7 +143,7 @@ router.post("/login", passport.authenticate("local",
 		res.redirect("/user")
 });
 
-router.get("/logout", middleware.isLoggedIn, function (req, res) {
+router.get("/logout", function (req, res) {
 	console.log("Logout: ", req.user.username);
 	req.logout();
 	res.redirect("/");
