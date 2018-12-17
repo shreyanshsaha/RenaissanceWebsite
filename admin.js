@@ -14,6 +14,7 @@ var Summary = require("./models/presenteSummary");
 var Event = require("./models/eventModel");
 var Team = require("./models/teamModel");
 var middleware = require("./middleware");
+var Bussiness = require("./models/ideationBusinessModel");
 
 // router.use(isAdmin);
 
@@ -24,7 +25,8 @@ var middleware = require("./middleware");
 // Main Admin Page
 router.get("/admin", middleware.isAdmin, async function (req, res) {
 	var events1 = await User.find();
-	return res.render("admin_page", { events1: events1, messages:req.query.error });
+	var bussiness = await Bussiness.find();
+	return res.render("admin_page", { events1: events1, messages:req.query.error, bussiness:bussiness });
 });
 
 // Delete any user
