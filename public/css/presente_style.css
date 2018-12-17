@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400");
 main {
   background-image: url("/images/featuresImage.jpg");
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 main .card {
   border-radius: 16px;
   margin: 0 auto;
-  width: 85%;
+  width: 75vw;
   height: 80vh;
   -webkit-box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
           box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
@@ -50,7 +50,8 @@ main .card:hover .info:before {
 
 main .title {
   margin: 0;
-  padding: 24px;
+  padding-top: 24px;
+  padding-left: 10px;
   font-weight: inherit;
   line-height: 1.2;
   color: #1c5b72;
