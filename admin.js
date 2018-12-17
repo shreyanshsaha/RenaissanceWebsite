@@ -14,6 +14,10 @@ var Summary = require("./models/presenteSummary");
 var Event = require("./models/eventModel");
 var Team = require("./models/teamModel");
 var middleware = require("./middleware");
+var Bussiness = require("./models/ideationBusinessModel");
+var Social = require("./models/ideationSocialModel");
+var Operational = require("./models/operationalModel");
+var Questionnaires = require("./models/questionnaire");
 
 // router.use(isAdmin);
 
@@ -24,7 +28,11 @@ var middleware = require("./middleware");
 // Main Admin Page
 router.get("/admin", middleware.isAdmin, async function (req, res) {
 	var events1 = await User.find();
-	return res.render("admin_page", { events1: events1, messages:req.query.error });
+	var bussiness = await Bussiness.find();
+	var social = await Social.find();
+	var operational = await Operational.find();
+	var questionnaires = await Questionnaires.find();
+	return res.render("admin_page", { events1: events1, messages:req.query.error, bussiness:bussiness, social: social, operational: operational, qlength: questionnaires.length});
 });
 
 // Delete any user

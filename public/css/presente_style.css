@@ -50,6 +50,7 @@ main .card:hover .info:before {
 
 main .title {
   margin: 0;
+
   padding-top: 24px;
   padding-left: 10px;
   font-weight: inherit;
