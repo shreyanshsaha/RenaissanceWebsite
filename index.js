@@ -57,7 +57,7 @@ app.use(registerRoute);
 app.use(teamRoute);
 
 
-// app.listen(3000, function () {
+// app.listen(3000, '192.168.43.155', function () {
 // 	console.log("Server has started!");
 // });
 app.listen(process.env.PORT, process.env.IP);

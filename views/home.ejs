@@ -7,6 +7,11 @@
 	<title>Renaissance</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="Vit chennai,Renaissance VIT chennai,Vellore Institute of Technology,Entrepreneurship fest of vit,Start up vit,Startup funding,Investors,Mentors,Boot camp,Prozontevou,Prezontevou,Lean six sigma,Chatur ideas,VIT start up" />
+
+	<script src="/lib/jquery.min.js"></script>
+	<script src="/js/bootstrap.js"></script>
+
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
@@ -23,12 +28,13 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/presente_style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/navbar.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="/css/home.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/landingPage.css" />
 	<link rel="stylesheet" href="/css/mainEvents.css" />
 	<link rel="stylesheet" href="/css/styleEve.css">
 
-
 	<script src="/lib/jquery.min.js"></script>
 	<script src="/js/bootstrap.js"></script>
+
 	<meta name="google-site-verification" content="IGibADENjG-Opby8Dcgpo7QUN4jZ7pKoMaI1siPLvVQ" />
 	<meta name="google-site-verification" content="-mQkI3D39QANkyliUUf84Apu6TCcBImj3ubVMzb7Ltg" />
 </head>
@@ -41,15 +47,16 @@
 	<!-- Home -->
 	<% include frontPart/carousel %>
 
+
 	<!-- Countdown -->
-	<div class="separation"></div>
-	<section class="landing">
+	<div class="separation mt-4"></div>
+	<div class="landing">
 		<div class="landing-inner">
 			<p class="landing-text">A platform for budding enterpreuners</p>
 			<h1 class="landing-inner-text">Coming Soon</h1>
 			<div class="countdown container"></div>
 		</div>
-	</section>
+	</div>
 
 	<!-- About -->
 	<div class="seperation" id="about"></div>
@@ -104,21 +111,30 @@
 	<div class="seperation"></div>
 	<% include partials/footer %>
 
-	<script>
-		
-		$('body').scroll(function () {
-			var $nav = $(".navbar-fixed-top");
-			$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-		});
+	<script src="/js/landingPage.js"></script>
 
+	<script>
+		jQuery(document).ready(function ($) {
+
+			$('body').scroll(function () {
+				var $nav = $(".navbar-fixed-top");
+				$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+			});
+
+			$('body').scroll(function () {
+				var $nav = $(".navbar-fixed-top");
+				$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+			});
 
 			$(document).ready(function () {
 				$('a[href^="#"]').on('click', function (e) {
 					e.preventDefault();
 
+
+
 					var target = this.hash,
 						$target = $(target);
-						console.log($target.offset().top, $('body').scrollTop());
+					console.log($target.offset().top, $('body').scrollTop());
 					$('html, body').stop().animate({
 						'scrollTop': $target.offset().top + $('body').scrollTop() - 45
 					}, 900, 'swing', function () {
@@ -126,7 +142,8 @@
 					});
 				});
 			});
-			
+		})
+		
 	</script>
 	<script src="js/count_script.js"></script>
 </body>

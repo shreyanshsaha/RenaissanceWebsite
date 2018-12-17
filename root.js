@@ -128,7 +128,7 @@ router.post("/feedback", function(req, res){
 router.get("/login", function (req, res) {
 	console.log("/login, ref:", req.query.ref);
 
-	return res.render("login");
+	return res.render("login", {error: req.query.error});
 });
 
 router.post("/login", passport.authenticate("local", 
@@ -143,7 +143,7 @@ router.post("/login", passport.authenticate("local",
 		res.redirect("/user")
 });
 
-router.get("/logout", middleware.isLoggedIn, function (req, res) {
+router.get("/logout", function (req, res) {
 	console.log("Logout: ", req.user.username);
 	req.logout();
 	res.redirect("/");
