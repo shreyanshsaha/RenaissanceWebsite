@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400");
 main {
   background-image: url("/images/featuresImage.jpg");
+  background-repeat: no-repeat;
   padding-top: 30px;
   padding-bottom: 30px;
 }
