@@ -1,6 +1,8 @@
 main {
   // padding: 20px 64px 64px;
   background-image: url("/images/featuresImage.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   padding-top:30px;
   padding-bottom:30px;
   .card {
