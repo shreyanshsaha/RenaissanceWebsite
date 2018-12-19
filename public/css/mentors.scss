@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Charm');
+
 .mentorContainer {
   // height: 300vh;
   // display: table;
@@ -215,6 +217,12 @@
     -webkit-transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
     transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
   }
+
+  
+    .heading{
+      font-family: 'Charm';
+      border-bottom: 2px solid grey;
+    }
 }
 
 
