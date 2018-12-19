@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css?family=Charm");
+.mentorContainer {
+  overflow: auto;
+  /* Common style */
+  /* Anchor will cover the whole item by default */
+  /* For some effects it will show as a button */
+}
+
+.mentorContainer *,
+.mentorContainer *:after,
+.mentorContainer *:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.mentorContainer .clearfix:before,
+.mentorContainer .clearfix:after {
+  content: '';
+}
+
+.mentorContainer .clearfix:after {
+  clear: both;
+}
+
+.mentorContainer section {
+  padding: 1em;
+  text-align: center;
+}
+
+.mentorContainer .grid {
+  position: relative;
+  /* clear: both; */
+  margin: 0 auto;
+  padding: 1em 0 4em;
+  max-width: 90vw;
+  list-style: none;
+  text-align: center;
+}
+
+.mentorContainer .grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden;
+  margin: 10px 1%;
+  max-width: 20vw;
+  min-width: 20vw;
+  max-height: 20vw;
+  min-height: 20vw;
+  /* max-width: 480px; */
+  /* width: 48%; */
+  /* height: auto; */
+  background: #3085a3;
+  text-align: center;
+  cursor: pointer;
+}
+
+.mentorContainer .grid figure .mentor-image {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100%;
+  opacity: 0.8;
+}
+
+.mentorContainer .grid figure figcaption {
+  padding: 1em;
+  text-transform: uppercase;
+  /* font-size: 1.25em; */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.mentorContainer .grid figure .figcaption-text {
+  position: relative;
+  top: 80%;
+}
+
+.mentorContainer .grid figure figcaption::before,
+.mentorContainer .grid figure figcaption::after {
+  pointer-events: none;
+}
+
+.mentorContainer .grid figure figcaption,
+.mentorContainer .grid figure figcaption > a {
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mentorContainer .grid figure .mentor-name {
+  /* word-spacing: -0.15em; */
+  font-weight: 300;
+  color: white;
+  font-size: 1.5em;
+  text-shadow: 5px 4px 10px black, -5px -4px 20px black, 15px 20px 40px black;
+}
+
+.mentorContainer .grid figure .mentor-name span {
+  font-weight: 800;
+}
+
+.mentorContainer .grid figure .mentor-name,
+.mentorContainer .grid figure p {
+  color: white;
+  margin: 0;
+}
+
+.mentorContainer .grid figure p {
+  letter-spacing: 1px;
+}
+
+.mentorContainer figure.effect-apollo {
+  background: #3498db;
+  width: 10%;
+  height: 30%;
+}
+
+.mentorContainer figure.effect-apollo figcaption::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  content: '';
+  -webkit-transition: -webkit-transform 0.6s;
+  transition: -webkit-transform 0.6s;
+  transition: transform 0.6s;
+  transition: transform 0.6s, -webkit-transform 0.6s;
+  -webkit-transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+  transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+}
+
+.mentorContainer figure.effect-apollo p {
+  position: absolute;
+  /* right: -40px; */
+  bottom: 0;
+  font-size: 0.9em;
+  font-weight: 600;
+  /* top:-500%; */
+  margin: 0;
+  padding: 0 5px;
+  min-width: 100%;
+  border-right: 4px solid #fff;
+  text-shadow: 5px 4px 10px black, -5px -4px 20px black, 15px 20px 40px black;
+  text-align: right;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+}
+
+.mentorContainer figure.effect-apollo .mentor-name {
+  text-align: left;
+}
+
+.mentorContainer figure.effect-apollo .mentor-image {
+  opacity: 0.95;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
+  -webkit-transform: scale3d(1.05, 1.05, 1);
+  transform: scale3d(1.05, 1.05, 1);
+}
+
+.mentorContainer figure.effect-apollo:hover .mentor-image {
+  opacity: 0.6;
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+}
+
+.mentorContainer figure.effect-apollo:hover figcaption::before {
+  -webkit-transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, 100%, 0);
+  transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, 100%, 0);
+}
+
+.mentorContainer figure.effect-apollo:hover p {
+  opacity: 1;
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+
+.mentorContainer figure.effect-apollo:hover .mentor-name {
+  opacity: 0;
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+
+.mentorContainer figure.effect-apollo {
+  background: #3498db;
+}
+
+.mentorContainer figure.effect-apollo figcaption::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  content: '';
+  -webkit-transition: -webkit-transform 0.6s;
+  transition: -webkit-transform 0.6s;
+  transition: transform 0.6s;
+  transition: transform 0.6s, -webkit-transform 0.6s;
+  -webkit-transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+  transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+}
+
+.mentorContainer .heading {
+  font-family: 'Charm';
+  border-bottom: 2px solid grey;
+}
+
+@media screen and (max-width: 600px) {
+  .grid figure {
+    margin: 10px 1%;
+    max-width: 50vw;
+    min-width: 50vw;
+    max-height: 50vw;
+    min-height: 50vw;
+    cursor: pointer;
+  }
+}
+/*# sourceMappingURL=mentors.css.map */
