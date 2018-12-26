@@ -57,6 +57,7 @@ router.get("/user", middleware.isLoggedIn, async function (req, res) {
 			.catch(err => {
 				console.log(err);
 			});
+		console.log("User team: ", team);
 
 		var summary = await Questionnaire.findOne({ teamId: req.user.teamId });
 		console.log("Summary:", summary);
