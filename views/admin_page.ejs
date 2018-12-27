@@ -21,8 +21,6 @@
 <body>
 
   <% include partials/navbar %>
-
-  <%= JSON.stringify(teamLeaders) %>
   <div id="demo">
     <div class="container">
       <% if(messages) {%>
@@ -432,7 +430,7 @@
                   <% }; %>
                 </button>
                 <div class="col-12 collapse mt-4" id="ope<%=String(summary._id).substr(1,6)%>">
-                  <form>
+                  
                     <div class="form-group">
                       <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
                       <textarea class="form-control" id="productname" rows="3"><%=summary.name%></textarea>
@@ -515,8 +513,8 @@
                       <textarea class="form-control" id="cstructure" rows="3" placeholder="How much equity and debt has the company raised; what is the capitalization structure? "><%=summary.capitalization%></textarea>
                     </div>
 
-                    <button type="button" class="btn btn-success" onclick="saveQuestionnaire('operational')">Save</button>
-                  </form>
+                  
+                  
                 </div>
               </div>
               <% }; %>
