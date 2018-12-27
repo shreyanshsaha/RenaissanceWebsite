@@ -57,6 +57,7 @@
       </ul>
 
       <div class="tab-content" id="myTabContent">
+        <!-- Users List -->
         <div class="tab-pane fade show active" id="user-table" role="tabpanel" aria-labelledby="user-tab">
 
           <table id="table" class="table table-hover table-mc-light-blue">
@@ -110,6 +111,8 @@
           </table>
 
         </div>
+
+        <!-- Make new user -->
         <div class="tab-pane fade" id="addUser" role="tabpanel" aria-labelledby="add-user-table">
           <form method="POST" class="mt-4" action="/user/register">
             <div class="col">
@@ -152,17 +155,6 @@
                 <label>Phone number</label>
                 <div id="error-phno"></div>
               </div>
-              <!-- <div class="minput">
-<div class="select">
-<select id="pays">
-<option value="">-- Department --</option>
-<option value="finance">Finance</option>
-<option value="webdev">WebDev</option>
-<option value="sponsorship">Sponsorship</option>
-</select>
-<div class="select__arrow"></div>
-</div>
-</div> -->
             </div>
 
             <div class="col">
@@ -211,6 +203,8 @@
 
           </form>
         </div>
+
+        <!-- Summary List -->
         <div class="tab-pane fade" id="ques" role="tabpanel" aria-labelledby="ques-tab">
           <!-- List to select bussiness, social or operational -->
           <ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
@@ -235,9 +229,8 @@
             <!-- Bussiness Pill -->
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
               <% bussiness.forEach(function(summary){ %>
+                <% if(teamLeaders[summary._id]){ %>
               <div class="row mb-2">
-
-
 
                 <button data-toggle="collapse" class="btn btn-primary" style="width:100%" href="#bus<%=String(summary._id).substr(1,6)%>">
                   Leader Name:
@@ -311,6 +304,7 @@
                   </div>
                 </div>
               </div>
+              <% }; %>
               <% }) %>
             </div>
 
@@ -318,214 +312,250 @@
             <!-- Social Pill -->
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
               <% social.forEach(function(summary){ %>
-                <div class="row">
-                  <div class="col-12">
+                <% if(teamLeaders[summary._id]){ %>
+              <div class="row mb-2">
+                <button data-toggle="collapse" class="btn btn-primary" style="width:100%" href="#soc<%=String(summary._id).substr(1,6)%>">
+                  Leader Name:
+                  <%#= summary._id %>
+                  <% if(teamLeaders[summary._id]){ %>
+                  <%= teamLeaders[summary._id] %>
+                  <% }; %>
+                </button>
+                <div class="col-12 collapse mt-4" id="soc<%=String(summary._id).substr(1,6)%>">
 
-                    <p><strong>HOW WOULD YOU CATEGORIZE YOUR IDEA?</strong></p>
-                    <div class="form-group">
-                      <div class="form-radio-control">
-                        <input type="radio" name="categoryRadio" class="custom-radio-input" name="category" id="soriented"
-                          value="service-oriented">
-                        <label class="custom-control-label" for="soriented">Service Oriented</label>
-                      </div>
-                      <div class="form-radio-control">
-                        <input type="radio" class="custom-radio-input" name="categoryRadio" id="poriented" name="category"
-                          value="product-oriented">
-                        <label class="custom-control-label" for="poriented">Product Oriented</label>
+                  <p><strong>HOW WOULD YOU CATEGORIZE YOUR IDEA?</strong></p>
+                  <div class="form-group">
+                    <div class="form-radio-control">
+                      <input type="radio" name="categoryRadio" class="custom-radio-input" name="category" id="soriented"
+                        value="service-oriented">
+                      <label class="custom-control-label" for="soriented">Service Oriented</label>
+                    </div>
+                    <div class="form-radio-control">
+                      <input type="radio" class="custom-radio-input" name="categoryRadio" id="poriented" name="category"
+                        value="product-oriented">
+                      <label class="custom-control-label" for="poriented">Product Oriented</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
+                    <textarea class="form-control" name="productname" id="productname" rows="3"><%=summary.name%></textarea>
+                    </form>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="domain"><strong>WHICH DOMAIN DOES YOUR STARTUP FALL IN?</strong></label>
+                    <input class="form-control" name="domain" rows="3" id="domain" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance"
+                      value="<%=summary.domain%>">
+                  </div>
+                  <div class="form-group">
+                    <label for="senterprise"><strong>DESCRIBE YOUR IDEA GIVING AN OVERVIEW OF YOUR SOCIAL ENTERPRISE (
+                        100 Words)</strong></label>
+                    <textarea class="
+  form-control" id="senterprise" rows="3"><%=summary.socialEnt%></textarea> </div>
+                  <div class="form-group">
+                    <label for="simpact"><strong>WHAT IS THE SOCIAL IMPACT OF YOUR IDEA ?( 250 WORDS)</strong></label>
+                    <textarea class="form-control" id="simpact" rows="3" placeholder="This should clearly describe the beneficiaries of the idea proposed"><%=summary.socialImpact%></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="fidea"><strong>WHAT IS THE FEASIBILITY OF THE IDEA ( 250 WORDS)
+                      </strong></label>
+                    <textarea class="form-control" id="fidea" rows="3" placeholder="Is the proposed idea doable considering the social, economic and regional constraints?"><%=summary.feasibility%></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <p><strong>HOW WOULD YOU CATEGORIZE YOUR SOCIAL ENTERPRISE?</strong></p>
+                    <div>
+                      <input type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable">
+                      <label class="custom-control-label" for="dsegmentation">Profitable</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable">
+                      <label class="custom-control-label" for="bsegmentation">Non-Profitable</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" name="segmentation" id="dsegmentation">
+                      <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" name="segmentation" id="bsegmentation">
+                      <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" name="segmentation" id="psegmentation">
+                      <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" name="segmentation" id="gsegmentation">
+                      <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="fmodel"><strong>GIVE A FINANCIAL MODEL DESCRIPTIONOF YOUR STARTUP</strong></label>
+                    <textarea class="form-control" id="fmodel" name="financeModel" rows="3" placeholder="Describe your initial investment requirements, projected revenue, funding and expenditure details. Revenue streams if this is a profitable enterprise"><%=summary.financialModel%></textarea>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="mcompetition"><strong>DESCRIBE YOUR MARKET COMPETITION</strong></label>
+                    <textarea class="form-control" name="competition" id="mcompetition" rows="3" placeholder="what is the size of the market,type of marketchosen and what is your startups' potential market share ?"><%=summary.competition%></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="bepoint"><strong>WHAT IS THE ESTIMATED TIME OF BREAK-EVEN POINT</strong></label>
+                    <div class="row">
+                      <div class="col-sm-12">
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
-                      <textarea class="form-control" name="productname" id="productname" rows="3"><%=summary.name%></textarea>
-                      </form>
-                    </div>
-                    <!-- </div>
+                    <textarea name="bepoint" class="form-control" id="bepoint" rows="3"><%=summary.breakEvenPoint%></textarea>
+                  </div>
                 </div>
               </div>
-              -->
-                    <div class="form-group">
-                      <label for="domain"><strong>WHICH DOMAIN DOES YOUR STARTUP FALL IN?</strong></label>
-                      <input class="form-control" name="domain" rows="3" id="domain" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance"
-                        value="<%=summary.domain%>">
-                    </div>
-                    <div class="form-group">
-                      <label for="senterprise"><strong>DESCRIBE YOUR IDEA GIVING AN OVERVIEW OF YOUR SOCIAL ENTERPRISE (
-                          100 Words)</strong></label>
-                      <textarea class="
-  form-control" id="senterprise" rows="3"><%=summary.socialEnt%></textarea> </div>
-                    <div class="form-group">
-                      <label for="simpact"><strong>WHAT IS THE SOCIAL IMPACT OF YOUR IDEA ?( 250 WORDS)</strong></label>
-                      <textarea class="form-control" id="simpact" rows="3" placeholder="This should clearly describe the beneficiaries of the idea proposed"><%=summary.socialImpact%></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="fidea"><strong>WHAT IS THE FEASIBILITY OF THE IDEA ( 250 WORDS)
-                        </strong></label>
-                      <textarea class="form-control" id="fidea" rows="3" placeholder="Is the proposed idea doable considering the social, economic and regional constraints?"><%=summary.feasibility%></textarea>
-                    </div>
-
-                    <div class="form-group">
-                      <p><strong>HOW WOULD YOU CATEGORIZE YOUR SOCIAL ENTERPRISE?</strong></p>
-                      <div>
-                        <input type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable">
-                        <label class="custom-control-label" for="dsegmentation">Profitable</label>
-                      </div>
-                      <div>
-                        <input type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable">
-                        <label class="custom-control-label" for="bsegmentation">Non-Profitable</label>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="segmentation" id="dsegmentation">
-                        <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="segmentation" id="bsegmentation">
-                        <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="segmentation" id="psegmentation">
-                        <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="segmentation" id="gsegmentation">
-                        <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="fmodel"><strong>GIVE A FINANCIAL MODEL DESCRIPTIONOF YOUR STARTUP</strong></label>
-                      <textarea class="form-control" id="fmodel" name="financeModel" rows="3" placeholder="Describe your initial investment requirements, projected revenue, funding and expenditure details. Revenue streams if this is a profitable enterprise"><%=summary.financialModel%></textarea>
-                    </div>
+              <% }; %>
+              <% }) %>
+            </div>
 
 
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+              <% operational.forEach(function(summary){ %>
+              <% if(teamLeaders[summary._id]){ %>
+
+
+              <div class="row mb-2">
+                <button data-toggle="collapse" class="btn btn-primary" style="width:100%" href="#ope<%=String(summary._id).substr(1,6)%>">
+                  Leader Name:
+                  <%#= summary._id %>
+                  <% if(teamLeaders[summary._id]){ %>
+                  <%= teamLeaders[summary._id] %>
+                  <% }; %>
+                </button>
+                <div class="col-12 collapse mt-4" id="ope<%=String(summary._id).substr(1,6)%>">
+                  <form>
                     <div class="form-group">
-                      <label for="mcompetition"><strong>DESCRIBE YOUR MARKET COMPETITION</strong></label>
-                      <textarea class="form-control" name="competition" id="mcompetition" rows="3" placeholder="what is the size of the market,type of marketchosen and what is your startups' potential market share ?"><%=summary.competition%></textarea>
+                      <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
+                      <textarea class="form-control" id="productname" rows="3"><%=summary.name%></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="bepoint"><strong>WHAT IS THE ESTIMATED TIME OF BREAK-EVEN POINT</strong></label>
+                      <label for="functionality"><strong>Functionality</strong></label>
+                      <input class="form-control" id="functionality" rows="3" placeholder="Describe your product/service in a clear and crisp way (100 words)"
+                        value="<%=summary.functionality%>">
+                    </div>
+                    <div class="form-group">
+                      <label for="currentmarketcompetition"><strong>Current Market Competition</strong></label>
                       <div class="row">
                         <div class="col-sm-12">
                           <p class="text-info">
-                            The break-even point (BEP) or break-even level represents the sales amount that is required
-                            to cover
-                            total costs, consisting of both fixed and variable costs to the company. Total profit at the
-                            break-even
-                            point is zero
+                            What is the market size? Explain your business’s competitive positioning in market. Who are
+                            your
+                            current and likely competitors? (India/global) Compared to your competition, how do you
+                            compete with
+                            respect to price, features, and performance? (250 words)
                           </p>
                         </div>
                       </div>
-                      <textarea name="bepoint" class="form-control" id="bepoint" rows="3"><%=summary.breakEvenPoint%></textarea>
+                      <textarea class="form-control" id="currentmarketcompetition" rows="3"><%=summary.competition%></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="iproperty"><strong>Intellectual Property</strong></label>
+                      <textarea class="form-control" id="iproperty" rows="3" placeholder="What key intellectual property does the company have (govt permissions, real state, patents, patents pending, copyrights etc ? "><%=summary.intellectualProperty%></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="usp"><strong>Uniques selling Preposition/ Market Potential</strong></label>
+                      <textarea class="form-control" id="usp" rows="3" placeholder="Talk about the uniqueness your of product/service. Is any similar product/service working in the same domain as of yours? (150 words) "><%=summary.sellingProp%></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="domain"><strong>What domain your product/service is centering?</strong></label>
+                      <input class="form-control" id="domain" rows="3" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance (or), others (150 words)  ">
+                      <%=summary.domain%></input>
+                    </div>
+                    <div class="form-group">
+                      <label for="fpotential"><strong>Financial Potential</strong></label>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <p class="text-info">
+                            What are your revenue streams? Aka how do you make money? Also add the profitability till
+                            today from
+                            the time you started functioning. What early traction has the company gotten (sales,
+                            traffic to the
+                            company’s website, app downloads, etc., as relevant)? How scalable is your business? What
+                            is the role
+                            of corporates and other bodies(govt.) in providing financial help.
+                          </p>
+                        </div>
+                      </div>
+                      <textarea class="form-control" id="fpotential" rows="3"><%=summary.financialPotential%></textarea>
                     </div>
 
-                    <button type="button" class="btn btn-success" onclick="saveQuestionnaire('social')">Save</button>
+                    <div class="form-group">
+                      <label for="ssa"><strong>Sustainability/Social Acceptance</strong></label>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <p class="text-info">
+                            What is the life expectancy of your product/service? What are the risks involved and
+                            scalability you
+                            see coming towards your business? Will it be required in future or change according to
+                            times?Will
+                            acceptance be an issue or people will adapt to it?(100 words)
+                          </p>
+                        </div>
+                      </div>
+                      <textarea class="form-control" id="ssa" rows="3"><%=summary.sustainability%></textarea>
+                    </div>
 
-                  </div>
+                    <div class="form-group">
+                      <label for="cost"><strong>Cost Of Customer Acquisition </strong></label>
+                      <input class="form-control" id="cost" rows="3" placeholder="What is the cost of customer acquisition? "
+                        value="<%=summary.cost%>">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="cstructure"><strong>Capitalization Structure</strong></label>
+                      <textarea class="form-control" id="cstructure" rows="3" placeholder="How much equity and debt has the company raised; what is the capitalization structure? "><%=summary.capitalization%></textarea>
+                    </div>
+
+                    <button type="button" class="btn btn-success" onclick="saveQuestionnaire('operational')">Save</button>
+                  </form>
                 </div>
-              <% }) %>
-            </div>
-              <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                <% operational.forEach(function(questionnaire){ %>
-                <table class="mb-4">
-                  <tr>
-                    <td>Startup Name:</td>
-                    <td>
-                      <%= questionnaire.name %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Functionality:</td>
-                    <td>
-                      <%= questionnaire.functionality %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Market Competition:</td>
-                    <td>
-                      <%= questionnaire.competition %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Intellectual Property:</td>
-                    <td>
-                      <%= questionnaire.intellectualProperty %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Market Proposition:</td>
-                    <td>
-                      <%= questionnaire.sellingProp %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Domain:</td>
-                    <td>
-                      <%= questionnaire.domain %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Financial Potential:</td>
-                    <td>
-                      <%= questionnaire.financialPotential %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Sustainability:</td>
-                    <td>
-                      <%= questionnaire.sustainability %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Cost Of Customer Acquisition:</td>
-                    <td>
-                      <%= questionnaire.cost %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Capitalization Structure:</td>
-                    <td>
-                      <%= questionnaire.capitalization %>
-                    </td>
-                  </tr>
-                </table>
-                <% }) %>
               </div>
-
+              <% }; %>
+              <% }) %>
             </div>
 
           </div>
 
         </div>
+
       </div>
+    </div>
 
-      <script src="/js/reg_script.js"></script>
+    <script src="/js/reg_script.js"></script>
 
-      <script>
-        $('body').delegate('.remove', 'click', function () {
+    <script>
+      $('body').delegate('.remove', 'click', function () {
 
-          $(this).parent().parent().remove();
-          /*$.ajax({
-          url: 'admin.js',
-          type: 'GET',
-          data: {var1: ok},
-          success: function(data) {
-          console.log("success");
-          }});*/
+        $(this).parent().parent().remove();
+        /*$.ajax({
+        url: 'admin.js',
+        type: 'GET',
+        data: {var1: ok},
+        success: function(data) {
+        console.log("success");
+        }});*/
 
-        });
-        // Genderate a random password
-        function regenPass() {
-          document.getElementById('password').value = Math.random().toString(36).substring(2, 6) + Math.random().toString(
-            36).substring(2, 6);
-        }
+      });
+      // Genderate a random password
+      function regenPass() {
+        document.getElementById('password').value = Math.random().toString(36).substring(2, 6) + Math.random().toString(
+          36).substring(2, 6);
+      }
 
 
-        regenPass();
-        up(1, 'password');
-        tabBooleans[7] = true;
-      </script>
+      regenPass();
+      up(1, 'password');
+      tabBooleans[7] = true;
+    </script>
 </body>
 
 </html>
