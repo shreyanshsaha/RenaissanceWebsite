@@ -21,6 +21,8 @@
 <body>
 
   <% include partials/navbar %>
+
+  <%= JSON.stringify(teamLeaders) %>
   <div id="demo">
     <div class="container">
       <% if(messages) {%>
@@ -238,8 +240,12 @@
 
 
 
-                <button data-toggle="collapse" class="btn btn-primary" style="width:100%" href="#bus<%=String(summary._id).substr(1,6)%>">Leader
-                  Name:</button>
+                <button data-toggle="collapse" class="btn btn-primary" style="width:100%" href="#bus<%=String(summary._id).substr(1,6)%>">
+                  Leader Name: <%#= summary._id %>
+                  <% if(teamLeaders[summary._id]){ %>
+                    <%= teamLeaders[summary._id] %>
+                  <% }; %>
+                </button>
                 <div class="col-12 collapse mt-4" id="bus<%=String(summary._id).substr(1,6)%>">
                   <div class="form-group">
                     <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>

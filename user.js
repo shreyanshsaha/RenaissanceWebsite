@@ -57,10 +57,8 @@ router.get("/user", middleware.isLoggedIn, async function (req, res) {
 			.catch(err => {
 				console.log(err);
 			});
-		console.log("User team: ", team);
 
 		var summary = await Questionnaire.findOne({ teamId: req.user.teamId });
-		console.log("Summary:", summary);
 
 		var typeSelected = false;
 		if (req.user.questionnaire)
@@ -78,7 +76,6 @@ router.get("/user", middleware.isLoggedIn, async function (req, res) {
 				return res.render("profile_page", { team: team, summary: null, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });
 			
 			summary.type = type;
-			console.log(summary);
 			return res.render("profile_page", { team: team, summary: summary, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });
 		} else {
 			return res.render("profile_page", { team: team, summary: null, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });

@@ -44,8 +44,8 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 	var teamLeaders={};
 	
 	// a wrapper function so that foreach executes asynclly
-	const start = async () => {
-		await asyncForEach(operational, async (b) => {
+	const start = async (array) => {
+		await asyncForEach(array, async (b) => {
 			var teamDetails = await Questionnaires.findOne({
 				q_id: b._id
 			}).populate({
@@ -58,12 +58,14 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 				teamLeaders[b._id] = teamDetails.teamId.teamLeader.username
 			else
 				teamLeaders[b._id]=null;
-			console.log(teamLeaders[b._id]);
 		});
 	}
-	start();
-
-	console.log(teamLeaders);
+	await start(bussiness);
+	await start(social);
+	await start(operational);
+	
+	console.log('Leaders:\n', JSON.stringify(teamLeaders));
+	
 
 	return res.render("admin_page", {
 		events1: events1,
