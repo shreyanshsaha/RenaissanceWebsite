@@ -21,6 +21,14 @@ var Questionnaires = require("./models/questionnaire");
 
 // router.use(isAdmin);
 
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
+
+
+
 // ===========
 // Admin pages
 // ===========
@@ -32,12 +40,50 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 	var social = await Social.find();
 	var operational = await Operational.find();
 	var questionnaires = await Questionnaires.find();
-	return res.render("admin_page", { events1: events1, messages:req.query.error, bussiness:bussiness, social: social, operational: operational, qlength: questionnaires.length});
+
+	var teamLeaders={};
+	
+	// a wrapper function so that foreach executes asynclly
+	const start = async (array) => {
+		await asyncForEach(array, async (b) => {
+			var teamDetails = await Questionnaires.findOne({
+				q_id: b._id
+			}).populate({
+				path: 'teamId',
+				populate: {
+					path: 'teamLeader'
+				}
+			});
+			if(teamDetails && teamDetails.teamId)
+				teamLeaders[b._id] = teamDetails.teamId.teamLeader.username
+			else
+				teamLeaders[b._id]=null;
+		});
+	}
+	await start(bussiness);
+	await start(social);
+	await start(operational);
+	
+	console.log('Leaders:\n', JSON.stringify(teamLeaders));
+	
+
+	return res.render("admin_page", {
+		events1: events1,
+		messages: req.query.error,
+		bussiness: bussiness,
+		social: social,
+		operational: operational,
+		qlength: questionnaires.length,
+		teamLeaders: teamLeaders
+	});
 });
 
 // Delete any user
 router.get('/admin/delete/:id', middleware.isAdmin, async function (req, res) {
-	User.remove({ _id: req.params.id, isAdmin: false }, function (err, deledata) {
+	User.remove({
+		_id: req.params.id,
+		isAdmin: false
+	}, function (err, deledata) {
 		res.redirect("/admin");
 	});
 });
