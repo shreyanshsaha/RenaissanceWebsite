@@ -22,9 +22,9 @@ var Questionnaires = require("./models/questionnaire");
 // router.use(isAdmin);
 
 async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
+	for (let index = 0; index < array.length; index++) {
+		await callback(array[index], index, array);
+	}
 }
 
 
@@ -41,8 +41,9 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 	var operational = await Operational.find();
 	var questionnaires = await Questionnaires.find();
 
-	var teamLeaders={};
-	
+	var teamLeaders = {};
+	var submitted = {};
+
 	// a wrapper function so that foreach executes asynclly
 	const start = async (array) => {
 		await asyncForEach(array, async (b) => {
@@ -54,18 +55,22 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 					path: 'teamLeader'
 				}
 			});
-			if(teamDetails && teamDetails.teamId)
+			if (teamDetails && teamDetails.teamId) {
 				teamLeaders[b._id] = teamDetails.teamId.teamLeader.username
-			else
-				teamLeaders[b._id]=null;
+				submitted[b._id] = teamDetails.isSubmitted;
+			} else {
+				teamLeaders[b._id] = null;
+				submitted[b._id] = false;
+			}
+
 		});
 	}
 	await start(bussiness);
 	await start(social);
 	await start(operational);
-	
+
 	console.log('Leaders:\n', JSON.stringify(teamLeaders));
-	
+
 
 	return res.render("admin_page", {
 		events1: events1,
@@ -74,7 +79,8 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 		social: social,
 		operational: operational,
 		qlength: questionnaires.length,
-		teamLeaders: teamLeaders
+		teamLeaders: teamLeaders,
+		submitted: submitted
 	});
 });
 
