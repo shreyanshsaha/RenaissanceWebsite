@@ -34,10 +34,17 @@ router.post("/team/new", middleware.isLoggedIn, async function (req, res) {
 	}
 	console.log(req.user.username, "created a new team!");
 	// Create new team
-	var newTeam = await Team.create({ teamLeader: req.user._id, teamMembers: [req.user._id] });
+	var newTeam = await Team.create({
+		teamLeader: req.user._id,
+		teamMembers: [req.user._id]
+	});
 	console.log(newTeam._id);
 	// Update the teamId to user
-	User.findOneAndUpdate({ _id: req.user._id }, { teamId: newTeam._id }, function (err, newUser) {
+	User.findOneAndUpdate({
+		_id: req.user._id
+	}, {
+		teamId: newTeam._id
+	}, function (err, newUser) {
 		if (err)
 			res.send(err);
 		else
@@ -48,7 +55,9 @@ router.post("/team/new", middleware.isLoggedIn, async function (req, res) {
 // Exit a team
 router.put("/team/exit", middleware.isLoggedIn, function (req, res) {
 	console.log(req.user.username, " exited team!");
-	Team.findOne({ _id: req.user.teamId }, async function (err, team) {
+	Team.findOne({
+		_id: req.user.teamId
+	}, async function (err, team) {
 		if (err)
 			return res.send("Error: " + toString(err));
 
@@ -60,8 +69,20 @@ router.put("/team/exit", middleware.isLoggedIn, function (req, res) {
 
 		// Pull member from the team
 		// Clear the teamID for the member
-		await User.findOneAndUpdate({ _id: req.user._id }, { $set: { teamId: null } });
-		await Team.findByIdAndUpdate({ _id: team._id }, { $pull: { teamMembers: req.user._id } });
+		await User.findOneAndUpdate({
+			_id: req.user._id
+		}, {
+			$set: {
+				teamId: null
+			}
+		});
+		await Team.findByIdAndUpdate({
+			_id: team._id
+		}, {
+			$pull: {
+				teamMembers: req.user._id
+			}
+		});
 		res.send("Success");
 	});
 });
@@ -74,7 +95,9 @@ router.post("/team/add/:username", middleware.isLoggedIn, function (req, res) {
 	if (req.user.teamId === null)
 		return res.send("Error: Create team first!");
 
-	User.findOne({ username: req.params.username }, async function (err, teamUser) {
+	User.findOne({
+		username: req.params.username
+	}, async function (err, teamUser) {
 		if (err)
 			return res.send(err);
 		else if (!teamUser)
@@ -97,8 +120,20 @@ router.post("/team/add/:username", middleware.isLoggedIn, function (req, res) {
 		if (!userFound)
 			return res.send("Error: Member needs to register for Presente vous!");
 		// Add user to team list
-		await Team.updateOne({ _id: req.user.teamId }, { $addToSet: { teamMembers: teamUser._id } });
-		await User.findOneAndUpdate({ _id: teamUser._id }, { $set: { teamId: req.user.teamId } });
+		await Team.updateOne({
+			_id: req.user.teamId
+		}, {
+			$addToSet: {
+				teamMembers: teamUser._id
+			}
+		});
+		await User.findOneAndUpdate({
+			_id: teamUser._id
+		}, {
+			$set: {
+				teamId: req.user.teamId
+			}
+		});
 		return res.send("User Added!");
 	});
 });
@@ -108,7 +143,9 @@ router.delete("/team/:id", async function (req, res) {
 	// logic:
 	// Remove teamId from all teamMembers
 
-	var team = await Team.findOne({ _id: req.params.id });
+	var team = await Team.findOne({
+		_id: req.params.id
+	});
 	if (!team)
 		return res.send("Error: Team ID Invalid!")
 	console.log(team.teamLeader);
@@ -120,7 +157,13 @@ router.delete("/team/:id", async function (req, res) {
 		// Delete teamID from all users
 		await team.teamMembers.forEach(function (member) {
 			console.log("Member", member);
-			User.updateOne({ _id: member }, { $set: { teamId: null } }, function (err) {
+			User.updateOne({
+				_id: member
+			}, {
+				$set: {
+					teamId: null
+				}
+			}, function (err) {
 				console.log(err);
 			});
 		});
@@ -128,25 +171,37 @@ router.delete("/team/:id", async function (req, res) {
 		//TODO: Delete Questionnaire if it Exists
 		// Delete Questionnaire if it exists
 
-		var ques = Questionnaire.findOneAndRemove({ teamId: req.params.id });
+		var ques = Questionnaire.findOneAndRemove({
+			teamId: req.params.id
+		});
 		if (ques) {
 			switch (ques.type) {
 				case 'bussiness':
-					Bussiness.findOneAndRemove({ _id: mongoose.Types.ObjectId(ques.q_id) })
+					Bussiness.findOneAndRemove({
+						_id: mongoose.Types.ObjectId(ques.q_id)
+					})
 					break;
 				case 'social':
-					Social.findOneAndRemove({ _id: mongoose.Types.ObjectId(ques.q_id) })
+					Social.findOneAndRemove({
+						_id: mongoose.Types.ObjectId(ques.q_id)
+					})
 					break;
 				case 'bussiness':
-					Operational.findOneAndRemove({ _id: mongoose.Types.ObjectId(ques.q_id) })
+					Operational.findOneAndRemove({
+						_id: mongoose.Types.ObjectId(ques.q_id)
+					})
 					break;
 			}
 		}
 
 		// Delete the team
-		Team.deleteOne({ _id: req.params.id }, async function (err, deletedTeam) {
+		Team.deleteOne({
+			_id: req.params.id
+		}, async function (err, deletedTeam) {
 			// Delete its executive summary
-			await Summary.deleteOne({ teamId: req.params.id })
+			await Summary.deleteOne({
+					teamId: req.params.id
+				})
 				.catch((err) => {
 					return res.send(err);
 				});
@@ -157,8 +212,7 @@ router.delete("/team/:id", async function (req, res) {
 				res.send("Deleted Team");
 		});
 
-	}
-	else {
+	} else {
 		res.send("Error: only team leader can delete a team!");
 	}
 });
@@ -170,7 +224,9 @@ router.post("/team/delete/user", function (req, res) {
 	// Delete members from each others table
 	if (!req.user.teamId)
 		return res.send("Error: User not in a team!");
-	Team.findOne({ "_id": req.user.teamId }, async function (err, team) {
+	Team.findOne({
+		"_id": req.user.teamId
+	}, async function (err, team) {
 		console.log("team: ", team);
 		// Check if user is team leader
 		if (err)
@@ -183,13 +239,24 @@ router.post("/team/delete/user", function (req, res) {
 			console.log(mongoose.Schema.Types.ObjectId(req.user._id) === mongoose.Schema.Types.ObjectId(team.teamLeader));
 			// res.send("OK");
 
-			await User.findOneAndUpdate({ _id: req.body.teamMember }, { $set: { teamId: null } });
-			await Team.findOneAndUpdate({ _id: team._id }, { $pull: { teamMembers: req.body.teamMember } });
+			await User.findOneAndUpdate({
+				_id: req.body.teamMember
+			}, {
+				$set: {
+					teamId: null
+				}
+			});
+			await Team.findOneAndUpdate({
+				_id: team._id
+			}, {
+				$pull: {
+					teamMembers: req.body.teamMember
+				}
+			});
 			// // Pull the member from the team
 
 			return res.send("Success");
-		}
-		else {
+		} else {
 			return res.send("Error: Only team leader can delete members!");
 		}
 	});
@@ -203,7 +270,12 @@ router.put("/team/summary/:type", async function (req, res) {
 		return res.send("Error: User should be in a team!");
 
 	// Check if team exists!
-	if (await Questionnaire.findOne({ teamId: req.user.teamId, q_id: {$ne: null} })) {
+	if (await Questionnaire.findOne({
+			teamId: req.user.teamId,
+			q_id: {
+				$ne: null
+			}
+		})) {
 		return res.send("Error: Already Selected!");
 	}
 
@@ -220,7 +292,11 @@ router.put("/team/summary/:type", async function (req, res) {
 				breakEvenPoint: null,
 				intellectualProperty: null
 			});
-			Questionnaire.create({ teamId: req.user.teamId, type: req.params.type, q_id: bussiness._id });
+			Questionnaire.create({
+				teamId: req.user.teamId,
+				type: req.params.type,
+				q_id: bussiness._id
+			});
 			break;
 		case 'social':
 			var social = await Social.create({
@@ -234,7 +310,11 @@ router.put("/team/summary/:type", async function (req, res) {
 				competition: null,
 				breakEvenPoint: null
 			});
-			Questionnaire.create({ teamId: req.user.teamId, type: req.params.type, q_id: social._id });
+			Questionnaire.create({
+				teamId: req.user.teamId,
+				type: req.params.type,
+				q_id: social._id
+			});
 			break;
 		case 'operational':
 			var operational = await Operational.create({
@@ -249,7 +329,11 @@ router.put("/team/summary/:type", async function (req, res) {
 				cost: null,
 				capitalization: null
 			});
-			Questionnaire.create({ teamId: req.user.teamId, type: req.params.type, q_id: operational._id });
+			Questionnaire.create({
+				teamId: req.user.teamId,
+				type: req.params.type,
+				q_id: operational._id
+			});
 			break;
 	}
 
@@ -265,9 +349,11 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 		return res.send("Error: User needs to be in a team!");
 
 	// Create questionnarire if not exists
-	Questionnaire.findOne({ teamId: mongoose.Types.ObjectId(req.user.teamId) }, async function (err, q) {
-		if(q.isSubmitted===true)
-			return res.send("Error: Cannot save a submitted questionnaire!");	
+	Questionnaire.findOne({
+		teamId: mongoose.Types.ObjectId(req.user.teamId)
+	}, async function (err, q) {
+		if (q.isSubmitted === true)
+			return res.send("Error: Cannot save a submitted questionnaire!");
 		if (!q.q_id) {
 			console.log("Creating New!");
 			if (q.type === 'bussiness')
@@ -311,14 +397,21 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 			else
 				return res.send("Error: Invalid Type!");
 			// Add questionaare id to main document
-			if(!ques)
+			if (!ques)
 				return res.send("Error: QUES is empty!")
-			await Questionnaire.findOneAndUpdate({ teamId: req.user.teamId }, { $set: { q_id: ques._id } })
-		}
-		else {
+			await Questionnaire.findOneAndUpdate({
+				teamId: req.user.teamId
+			}, {
+				$set: {
+					q_id: ques._id
+				}
+			})
+		} else {
 			console.log("Updating!");
 			if (q.type === 'bussiness') {
-				var ques = await Bussiness.findOneAndUpdate({ _id: mongoose.Types.ObjectId(q.q_id) }, {
+				var ques = await Bussiness.findOneAndUpdate({
+					_id: mongoose.Types.ObjectId(q.q_id)
+				}, {
 					$set: {
 						name: req.body.name,
 						use: req.body.use,
@@ -329,11 +422,15 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 						breakEvenPoint: req.body.breakEvenPoint,
 						intellectualProperty: req.body.intellectualProperty,
 					}
-				}, { new: true, overwrite: true });
+				}, {
+					new: true,
+					overwrite: true
+				});
 				console.log("Ques: ", ques)
-			}
-			else if (q.type === 'social')
-				await Social.findOneAndUpdate({ _id: mongoose.Types.ObjectId(q.q_id) }, {
+			} else if (q.type === 'social')
+				await Social.findOneAndUpdate({
+					_id: mongoose.Types.ObjectId(q.q_id)
+				}, {
 					$set: {
 						category: req.body.categoryRadio,
 						name: req.body.productname,
@@ -347,10 +444,14 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 						competition: req.body.competition,
 						breakEvenPoint: req.body.bepoint
 					}
-				}, { new: true, overwrite: true });
-			else if (q.type === 'operational'){
+				}, {
+					new: true,
+					overwrite: true
+				});
+			else if (q.type === 'operational') {
 				console.log("Q: ", q);
-				var data ={name: req.body.name,
+				var data = {
+					name: req.body.name,
 					functionality: req.body.functionality,
 					competition: req.body.competition,
 					intellectualProperty: req.body.intellectualProperty,
@@ -359,9 +460,12 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 					financialPotential: req.body.financialPotential,
 					sustainability: req.body.sustainability,
 					cost: req.body.cost,
-					capitalization: req.body.capitalization};
-					console.log(data);
-				var ques= await Operational.findOneAndUpdate({ _id: mongoose.Types.ObjectId(q.q_id) }, {
+					capitalization: req.body.capitalization
+				};
+				console.log(data);
+				var ques = await Operational.findOneAndUpdate({
+					_id: mongoose.Types.ObjectId(q.q_id)
+				}, {
 					$set: {
 						name: req.body.name,
 						functionality: req.body.functionality,
@@ -374,10 +478,12 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 						cost: req.body.cost,
 						capitalization: req.body.capitalization
 					}
-				}, { new: true, overwrite: true });
+				}, {
+					new: true,
+					overwrite: true
+				});
 				console.log("Ques O: ", ques)
-			}
-			else
+			} else
 				return res.send("Error: Invalid Type!");
 			return res.send("Success!");
 		}
@@ -388,14 +494,30 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 });
 
 
-router.post("/team/questionnaire/submit", function(req, res){
-	if(!req.isAuthenticated())
+router.post("/team/questionnaire/submit", function (req, res) {
+	if (!req.isAuthenticated())
 		return res.send("Error: Need to be logged in!");
-	else{
-		Questionnaire.updateMany({teamId: req.user.teamId}, {$set: {isSubmitted: true}});
-		return res.send("Submitted the questionnaire!");
+	else {
+		Questionnaire.updateMany({
+			teamId: req.user.teamId
+		}, {
+			$set: {
+				isSubmitted: true
+			}
+		}, function (err, data) {
+			if (err)
+				return res.send(err);
+
+			return res.send("Submitted the questionnaire!");
+		});
 	}
 });
+
+
+
+
+
+
 //! Depricated
 // Update User Summary
 router.put("/team/summary", function (req, res) {
@@ -425,9 +547,9 @@ router.put("/team/summary", function (req, res) {
 		// create a new sumary
 		if (summary === null)
 			await Summary.create(details)
-				.catch(err => {
-					return res.send("Error: " + err);
-				});
+			.catch(err => {
+				return res.send("Error: " + err);
+			});
 		else if (summary.isSubmitted)
 			return res.send("Error: Cannot update a submitted summary! Contact Admin!");
 		// update existing summary
@@ -435,8 +557,8 @@ router.put("/team/summary", function (req, res) {
 			await Summary.findOneAndUpdate({
 				teamId: req.user.teamId
 			}, {
-					$set: details
-				});
+				$set: details
+			});
 	});
 	res.send("OK");
 	// Check if the startUp type is in the given options
