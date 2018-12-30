@@ -96,7 +96,12 @@
           <textarea name="bepoint" class="form-control" id="bepoint" rows="3"><%=summary.breakEvenPoint%></textarea>
         </div>
 
-        <button type="button" class="btn btn-success" onclick="saveQuestionnaire('social')">Save</button>
+        <% if(submitted===false){ %> 
+          <button type="button" class="btn btn-success" onclick="saveQuestionnaire('social')">Save</button>
+          <button type="button" class="btn btn-danger" onclick="submitQuestionnaire()">Submit</button>
+        <%} else {%>
+          <div class="alert alert-primary text-center"><p class="text-info text-center">Questionnaire has been submitted! It cannot be changed!</p></div>
+        <% } %>
       </form>
     </div>
   </div>
