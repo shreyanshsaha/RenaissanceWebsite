@@ -387,6 +387,15 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 
 });
 
+
+router.post("/team/questionnaire/submit", function(req, res){
+	if(!req.isAuthenticated())
+		return res.send("Error: Need to be logged in!");
+	else{
+		Questionnaire.updateMany({teamId: req.user.teamId}, {$set: {isSubmitted: true}});
+		return res.send("Submitted the questionnaire!");
+	}
+});
 //! Depricated
 // Update User Summary
 router.put("/team/summary", function (req, res) {
