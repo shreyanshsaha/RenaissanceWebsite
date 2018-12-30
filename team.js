@@ -266,6 +266,8 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 
 	// Create questionnarire if not exists
 	Questionnaire.findOne({ teamId: mongoose.Types.ObjectId(req.user.teamId) }, async function (err, q) {
+		if(q.isSubmitted===true)
+			return res.send("Error: Cannot save a submitted questionnaire!");	
 		if (!q.q_id) {
 			console.log("Creating New!");
 			if (q.type === 'bussiness')

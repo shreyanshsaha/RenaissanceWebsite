@@ -59,12 +59,14 @@ router.get("/user", middleware.isLoggedIn, async function (req, res) {
 			});
 
 		var summary = await Questionnaire.findOne({ teamId: req.user.teamId });
-
 		var typeSelected = false;
 		if (req.user.questionnaire)
 			typeSelected = true;
 
 		if (summary) {
+			var submitted = false;
+			if(summary.isSubmitted)
+				submitted=true;
 			var type = summary.type;
 			if (type === 'bussiness')
 				summary = await Bussiness.findOne({ _id: mongoose.Types.ObjectId(summary.q_id) })
@@ -76,7 +78,7 @@ router.get("/user", middleware.isLoggedIn, async function (req, res) {
 				return res.render("profile_page", { team: team, summary: null, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });
 			
 			summary.type = type;
-			return res.render("profile_page", { team: team, summary: summary, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });
+			return res.render("profile_page", { team: team, summary: summary, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound }, submitted: submitted });
 		} else {
 			return res.render("profile_page", { team: team, summary: null, teamLeader: team.teamLeader, events: events, competition: { name: competition.name, description: competition.description, _id: competition._id, userRegistered: userFound } });
 		}

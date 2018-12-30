@@ -75,8 +75,12 @@
             <label for="kiproperty"><strong>WHAT KEY INTELLECTUAL PROPERTY DOES THE COMPANY HAVE?</strong>[250 words]</label>
             <textarea class="form-control" id="kiproperty" rows="3" placeholder="patents,patents pending,copywrights,trade secrets,trademarks,domain names if any?" name="intellectualProperty"><%=summary.intellectualProperty%></textarea>
           </div>
-          <button type="button" class="btn btn-success" onclick="saveQuestionnaire('bussiness')">Save</button>
-
+          <% if(submitted===false){ %> 
+            <button type="button" class="btn btn-success" onclick="saveQuestionnaire('bussiness')">Save</button>
+            <button type="button" class="btn btn-danger" onclick="submitQuestionnaire()">Submit</button>
+          <%} else {%>
+            <div class="alert alert-warning"><p class="text-muted">Quetionnaire has been submitted! It cannot be changed!</p></div>
+          <% } %>
       </div>
     </div>
   </div>
