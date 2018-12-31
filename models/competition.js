@@ -9,7 +9,7 @@ var competitionSchema = new mongoose.Schema({
   venue: String,
   date: String,
   description: String,
-  users: [{type: mongoose.Schema.ObjectId, ref:"users"}],
+  users: [{type: mongoose.Schema.ObjectId, ref:"user"}],
   teamRequired: {type: Boolean, default: false}
 });
 
