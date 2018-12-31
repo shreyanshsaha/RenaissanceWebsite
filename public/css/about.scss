@@ -91,17 +91,6 @@
         // transform: translateY(-50%);
         h1{
           margin-top:-15%;
-          // margin-top:initial;
-  
-          color:black;
-          font-size: 2rem;
-          text-align: center;
-          display: block;
-          font-family: 'Karla','Times New Roman', Times, serif;
-          // Shadow
-          text-shadow:  0px 5px 5px     rgba(0,0,0,0.2),
-                        10px 10px 15px  rgba(0,0,0,0.1),
-                        10px 10px 20px  rgba(0,0,0,0.1);
         }
   
       }
@@ -109,10 +98,6 @@
       .card-text{
         padding:10px;
         text-align: justify;
-        // background: rgba(255, 255, 255, 0.7);
-        // color:rgba(0, 0, 0, 0.8);
-        background: rgba(0,0,0,0.8);
-        color: rgb(255, 255, 255);
       }
     }
   }
