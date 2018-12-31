@@ -275,7 +275,7 @@
                       <button data-toggle="collapse" class="btn btn-danger col-10" style="width:100%" href="#bus<%=String(summary._id).substr(1,6)%>">
                         Deleted!
                       </button>
-                      <div class="btn btn-danger col-1 ml-1" onclick="removeQuestionnaire()">Remove</div>
+                      <div class="btn btn-danger col-1 ml-auto" onclick="removeQuestionnaire('<%=summary._id%>', 'bussiness', this)">Remove</div>
                       <% }; %>
                   <div class="col-12 collapse mt-4" id="bus<%=String(summary._id).substr(1,6)%>">
                     <div class="form-group">
@@ -365,9 +365,10 @@
                         <% }; %>
                       </button>
                       <% } else { %>
-                      <button data-toggle="collapse" class="btn btn-danger" style="width:100%" href="#soc<%=String(summary._id).substr(1,6)%>">
+                      <button data-toggle="collapse" class="btn btn-danger col-10" style="width:100%" href="#soc<%=String(summary._id).substr(1,6)%>">
                         Deleted!
                       </button>
+                      <div class="btn btn-danger col-1 ml-auto" onclick="removeQuestionnaire('<%=summary._id%>', 'social', this)">Remove</div>
                       <% }; %>
                   <div class="col-12 collapse mt-4" id="soc<%=String(summary._id).substr(1,6)%>">
 
@@ -483,9 +484,10 @@
                     <% }; %>
                   </button>
                   <% } else { %>
-                  <button data-toggle="collapse" class="btn btn-danger" style="width:100%" href="#ope<%=String(summary._id).substr(1,6)%>">
+                  <button data-toggle="collapse" class="btn btn-danger col-10" style="width:100%" href="#ope<%=String(summary._id).substr(1,6)%>">
                     Deleted!
                   </button>
+                  <div class="btn btn-danger col-1 ml-auto" onclick="removeQuestionnaire('<%=summary._id%>', 'operational', this)">Remove</div>
                   <% }; %>
                   <div class="col-12 collapse mt-4" id="ope<%=String(summary._id).substr(1,6)%>">
 
@@ -603,6 +605,19 @@
           36).substring(2, 6);
       }
 
+      function removeQuestionnaire(id, type, DOM){
+        $.ajax({
+          url:'/admin/delete/questionnaire/'+type,
+          type: "PUT",
+          data: {id: id},
+          success: function(data) {
+            if(/error/i.exec(data))
+              alert(data);
+            else
+              console.log(DOM.parentNode.remove());
+          }
+        })
+      }
 
       regenPass();
       up(1, 'password');

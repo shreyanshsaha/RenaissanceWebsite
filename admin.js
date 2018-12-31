@@ -5,6 +5,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
+// var mongoose = require("mongoose");
 
 // ========
 // Database
@@ -95,4 +96,41 @@ router.get('/admin/delete/:id', middleware.isAdmin, async function (req, res) {
 	});
 });
 
+// Delete questionnaire
+router.put("/admin/delete/questionnaire/:type", async function (req, res) {
+	var data = req.body;
+	var id = data.id;
+	
+	// delete from proper collection
+	if (req.params.type == 'bussiness')
+		await Bussiness.findOneAndRemove({
+			_id: id
+		})
+		.catch(function (err) {
+			return res.send("Error: " + String(err));
+		});
+	else if (req.params.type == 'social')
+		await Social.findOneAndRemove({
+			_id: id
+		})
+		.catch(function (err) {
+			return res.send("Error: " + String(err));
+		});
+	else if (req.params.type == 'operational')
+		await Operational.findOneAndRemove({
+			_id: id
+		})
+		.catch(function (err) {
+			return res.send("Error: " + String(err));
+		});
+	else
+		return res.send("Error: Unknown startup type to remove!");
+
+	await Questionnaires.findOneAndRemove({q_id: id})
+	.catch(function(err){
+		return res.send("Error: "+ String(err));
+	});
+
+	return res.send("Success");
+})
 module.exports = router;
