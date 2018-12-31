@@ -18,6 +18,7 @@ var Bussiness = require("./models/ideationBusinessModel");
 var Social = require("./models/ideationSocialModel");
 var Operational = require("./models/operationalModel");
 var Questionnaires = require("./models/questionnaire");
+var Competition = require("./models/competition");
 
 // router.use(isAdmin);
 
@@ -40,7 +41,8 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 	var social = await Social.find();
 	var operational = await Operational.find();
 	var questionnaires = await Questionnaires.find();
-
+	var competition = await Competition.findOne().select('users').populate('users');
+	// console.log(JSON.stringify(competiton));
 	var teamLeaders={};
 	
 	// a wrapper function so that foreach executes asynclly
@@ -64,7 +66,7 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 	await start(social);
 	await start(operational);
 	
-	console.log('Leaders:\n', JSON.stringify(teamLeaders));
+	// console.log('Leaders:\n', JSON.stringify(teamLeaders));
 	
 
 	return res.render("admin_page", {
@@ -74,7 +76,8 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 		social: social,
 		operational: operational,
 		qlength: questionnaires.length,
-		teamLeaders: teamLeaders
+		teamLeaders: teamLeaders,
+		registered: competition
 	});
 });
 
