@@ -242,26 +242,6 @@
 									</div>
 
 									<div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
-										<!-- <%# if(currentUser.events.length>0){ %>
-											<table class="table">
-												<thead>
-													<tr>
-														<td>Name</td>
-														<td>Date</td>
-														<td>Payment Status</td>
-													</tr>
-												</thead>
-													<%# currentUser.events.forEach(function(event){ %>
-													<tr>
-														<td>event</td>
-														<td>event</td>
-														<td>event</td>
-													</tr>
-													<%# }); %>
-											</table>
-										<%# } else { %>
-											<h4 class="text-center text-muted">You haven't registered for any events yet!</h4>
-										<%# }; %> -->
 									</div>
 								</div>
 							</div>
@@ -305,6 +285,16 @@
 
 	</script>
 	<script>
+		function submitQuestionnaire(){
+			var val = confirm("Do you really want to submit? You wont be able to make any changes after that!");
+			if(!val)
+				return;
+			$.post("/team/questionnaire/submit", function(data){
+				console.log(data);
+			})
+		}
+
+
 		function saveQuestionnaire(type) {
 			console.log(type);
 			if (type == 'bussiness') {
