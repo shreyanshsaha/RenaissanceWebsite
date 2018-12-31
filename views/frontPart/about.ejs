@@ -45,7 +45,7 @@
 
 			<!-- Vision of Renaissance -->
 			<div class="col-md-12 info-card skew-right">
-				<div class="row  card-text">
+				<div class="row  card-text align-items">
 					<div class="col-sm-3 card-logo">
 						<h1>Vision of Renaissance</h1>
 					</div>
@@ -67,3 +67,12 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	var width = $(window).width();
+	console.log(width);
+			if (width <= '720') {
+				document.querySelectorAll('.card-logo')[1].classList.add('order-first');
+			}
+	
+</script>

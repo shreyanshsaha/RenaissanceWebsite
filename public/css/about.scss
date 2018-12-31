@@ -7,7 +7,9 @@
   background-repeat: no-repeat;
   background-image: url("/images/about1.jpg");
   // background: rgba(0,0,0,0.9);
-  min-height: 90vh;
+  // min-height: 90vh;
+  overflow: auto;
+  padding-bottom:50px;
   
   .info-card{
     opacity: 1;
@@ -68,4 +70,71 @@
         transform: skew(9deg);
       }
     }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .aboutClass{
+    .info-card{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 90vw;
+      margin-bottom: 10px;
+
+      .card-logo{
+
+        // border-radius:50%;
+        vertical-align: middle;
+        position: relative;
+        top: 50%;
+        // transform: translateY(-50%);
+        h1{
+          margin-top:-15%;
+          // margin-top:initial;
+  
+          color:black;
+          font-size: 2rem;
+          text-align: center;
+          display: block;
+          font-family: 'Karla','Times New Roman', Times, serif;
+          // Shadow
+          text-shadow:  0px 5px 5px     rgba(0,0,0,0.2),
+                        10px 10px 15px  rgba(0,0,0,0.1),
+                        10px 10px 20px  rgba(0,0,0,0.1);
+        }
+  
+      }
+      
+      .card-text{
+        padding:10px;
+        text-align: justify;
+        // background: rgba(255, 255, 255, 0.7);
+        // color:rgba(0, 0, 0, 0.8);
+        background: rgba(0,0,0,0.8);
+        color: rgb(255, 255, 255);
+      }
+    }
+  }
+
+
+  .skew-right{
+    &>div{
+    transform: skew(0);
+      p, h1{
+        // border: 10px solid red;
+        transform: skew(0);
+      }
+    }
+  }
+  
+  .skew-left{
+    &>div{
+      transform: skew(0);
+        p, h1{
+          transform: skew(0);
+        }
+      }
+  }
+
 }
