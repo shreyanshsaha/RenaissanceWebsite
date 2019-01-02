@@ -9,13 +9,13 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding:20px;
+  /* padding:20px; */
 }
-.header {
+/* .header {
   text-align: center;
   padding: 20px;
   font-size:20px;
-}
+} */
 /* Responsive layout - makes a two column-layout instead of four columns */
 /* @media (max-width: 800px) {
   .column {
@@ -26,6 +26,7 @@
 .card {
   opacity: 0.8;
   filter: alpha(opacity=60);
+  
 }
 .card-title {
   font-weight:bold;
@@ -40,6 +41,7 @@
 .modal-footer {
   background-image: linear-gradient(white,#7FDBFF);
 }
+
 #left-panel-link {
   position: relative;
   left: 5%;
@@ -86,37 +88,43 @@
   </div>
 
   <!-- Photo Grid -->
-  <div class="card-columns">
+  <div class="card-columns container">
     <% var k=0 %>
-   <% test.forEach(function(internship) { %>
+    <% test.forEach(function(internship) { %>
+      <% k=k+1 %>
+      <div class="card">
+        <img class="card-img card-img-top" src="<%= internship.imageUrl %>" alt="Company logo">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-success"><i class="fa fa-briefcase" style="font-size:20px;"></i>
+              <%= internship.company %>
+            </li>
+            <li class="list-group-item list-group-item-success"><i class="fa fa-user" style="font-size:20px;"></i>
+              <%= internship.role %>
+            </li>
+            <li class="list-group-item list-group-item-success"><i class="fa fa-map-marker" style="font-size:20px;"></i>
+              <%= internship.location %>
+            </li>
+            <li class="list-group-item list-group-item-success"><i class="fa fa-clock-o" style="font-size:20px;"></i>
+              <%= internship.duration %>
+            </li>
+            <li class="list-group-item list-group-item-success"><i class="fa fa-inr" style="font-size:20px;"></i>
+              <%= internship.cost %>
+            </li>
+          </ul>
 
-          <% k=k+1 %>
-    <div class="card">
-      <img class="card-img card-img-top" src="<%= internship.imageUrl %>"
-        alt="Company logo">
-      <div class="card-body">
-        <h5 class="card-title"></h5>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-success"><i class="fa fa-briefcase" style="font-size:20px;"></i>
-              <%= internship.company %> </li>
-          <li class="list-group-item list-group-item-success"><i class="fa fa-user" style="font-size:20px;"></i> <%= internship.role %></li>
-          <li class="list-group-item list-group-item-success"><i class="fa fa-map-marker" style="font-size:20px;"></i>
-             <%= internship.location %></li>
-          <li class="list-group-item list-group-item-success"><i class="fa fa-clock-o" style="font-size:20px;"></i>
-             <%= internship.duration %> </li>
-          <li class="list-group-item list-group-item-success"><i class="fa fa-inr" style="font-size:20px;"></i> <%= internship.cost %></li>
-        </ul>
-
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn" id="left-panel-link">Register</button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal<%= k %>" id="right-panel-link">
+            Learn More
+          </button>
+        </div>
       </div>
-      <div class="card-footer">
-        <button type="button" class="btn" id="left-panel-link">Register</button>
-        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal<%= k %>" id="right-panel-link">
-          Learn More
-        </button>
-      </div>
-    </div>
     <% }) %>
-
+  </div>
+  
   <!--Modal 1-->
   <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

@@ -14,7 +14,8 @@ var rootRoute = require("./root"),
 		userRoute = require("./user"),
 		adminRoute = require("./admin"),
 		registerRoute = require("./register"),
-		teamRoute = require("./team");
+		teamRoute = require("./team"),
+		internshipRoute = require("./temp");
 
 
 // ===============================
@@ -55,7 +56,7 @@ app.use(userRoute);
 app.use(adminRoute);
 app.use(registerRoute);
 app.use(teamRoute);
-
+app.use(internshipRoute);
 
 app.listen(3000, function () {
 	console.log("Server has started!");

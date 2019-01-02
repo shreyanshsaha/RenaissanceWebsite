@@ -43,7 +43,7 @@ var tempData = [
 var model = mongoose.model("temp", tempSchema);
 
 module.exports = model;
-//model.insertMany(tempData); //! Comment THIS
+// model.insertMany(tempData); //! Comment THIS
 /*
 await Temp.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.body._id) }, {
   $set: {
