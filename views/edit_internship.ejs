@@ -15,14 +15,24 @@ width: 100%;
 height: 50px
 
 }
+#b11{
+position: relative;
+float:right;
+
+}
 
 </style>
 </head>
 
 
 <body>
+
+
+    <br>
+   <a href="add_internship" target="_blank"> <button class="btn btn-danger" id="b11">+ Add Post</button></a>
     <br>
     <br>
+
     <% for(var i=0;i< test.length;i++) { %>
         <center>
 <form id="post<%= i %>" method="POST" action="/edit/<%= test[i]._id %>" enctype="multipart/form-data">
@@ -58,6 +68,11 @@ height: 50px
       <td><h4>Duration</h4></td>
       <td><textarea  type="text" name="duration" value="<%= test[i].company %>"><%= test[i].duration %></textarea></td>
       </tr>
+      <tr>
+
+        <td><h4>Description</h4></td>
+        <td><textarea  type="text" name="description" value="<%= test[i].description %>"><%= test[i].description %></textarea></td>
+        </tr>
 <tr>
 
 <td colspan="2"> <center><button onclick="return confirm_click()" type="submit" class="btn btn-success">Save</button></center></td>
