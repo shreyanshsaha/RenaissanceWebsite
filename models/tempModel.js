@@ -1,43 +1,49 @@
 var mongoose = require("mongoose");
 
 var tempSchema = new mongoose.Schema({
-  heading: String,
+  role: String,
   imageUrl: String,
-  description: String,
+  company: String,
+  location:String,
+  cost:String,
+  duration:String,
+description:String
 });
 
 var tempData = [
   {
-    "heading": "Heading 1",
-    "imageUrl": "/images/p2.jpg",
-    "description": "Lorem ipsum dolor sit amet, id lorem veritus eam, ad ius fabellas instructior. Ex eam aeterno volumus tibique, ceteros vulputate abhorreant ea cum. Qui at volumus urbanitas honestatis. Ea duo summo dissentiet repudiandae, id sumo semper essent vim, et sumo congue sententiae sit. Ad sed oblique veritus. Est in magna liberavisse."
+    "role": "Social Media Marketing Intern",
+    "imageUrl": "/images/myimage-1546366613809.jpeg",
+    "company": "Zergon Bizsupport",
+    "location":"Noida",
+    "cost":"3000 / Month",
+    "duration":"3 - 6 Months"
   },
-  {
-    "heading": "Heading 2",
-    "imageUrl": "/images/p2.jpg",
-    "description": "Lorem ipsum dolor sit amet, id lorem veritus eam, ad ius fabellas instructior. Ex eam aeterno volumus tibique, ceteros vulputate abhorreant ea cum. Qui at volumus urbanitas honestatis. Ea duo summo dissentiet repudiandae, id sumo semper essent vim, et sumo congue sententiae sit. Ad sed oblique veritus. Est in magna liberavisse."
-  },
-  {
-    "heading": "Heading 3",
-    "imageUrl": "/images/p2.jpg",
-    "description": "Lorem ipsum dolor sit amet, id lorem veritus eam, ad ius fabellas instructior. Ex eam aeterno volumus tibique, ceteros vulputate abhorreant ea cum. Qui at volumus urbanitas honestatis. Ea duo summo dissentiet repudiandae, id sumo semper essent vim, et sumo congue sententiae sit. Ad sed oblique veritus. Est in magna liberavisse."
-  },
-  {
-    "heading": "Heading 4",
-    "imageUrl": "/images/p2.jpg",
-    "description": "Lorem ipsum dolor sit amet, id lorem veritus eam, ad ius fabellas instructior. Ex eam aeterno volumus tibique, ceteros vulputate abhorreant ea cum. Qui at volumus urbanitas honestatis. Ea duo summo dissentiet repudiandae, id sumo semper essent vim, et sumo congue sententiae sit. Ad sed oblique veritus. Est in magna liberavisse."
-  },
-  {
-    "heading": "Heading 1",
-    "imageUrl": "/images/p2.jpg",
-    "description": "Lorem ipsum dolor sit amet, id lorem veritus eam, ad ius fabellas instructior. Ex eam aeterno volumus tibique, ceteros vulputate abhorreant ea cum. Qui at volumus urbanitas honestatis. Ea duo summo dissentiet repudiandae, id sumo semper essent vim, et sumo congue sententiae sit. Ad sed oblique veritus. Est in magna liberavisse."
-  }
+  { "role": "Content Writer ",
+  "imageUrl": "/images/myimage-1546366647746.jpeg",
+  "company": "GIGGLE AND BYTES",
+  "location":"Delhi",
+  "cost":"3000 - 5000 / Month",
+  "duration":"2 Months"
+},
+  { "role": "Internship In Anchoring and Reporting",
+  "imageUrl": "/images/myimage-1546366673891.jpeg",
+  "company": "NOW24",
+  "location":"Delhi",
+  "cost":"Expenses Covered",
+  "duration":"3 Months"},
+  { "role": "Client Acquisition Intern",
+  "imageUrl": "/images/myimage-1546366660734.jpeg",
+  "company": "Typho Design",
+  "location":"Work From Home",
+  "cost":"No Salary",
+  "duration":"1 - 12 Months"}
 ];
 
 var model = mongoose.model("temp", tempSchema);
-model.insertMany(tempData); //! Comment THIS
-module.exports = model;
 
+module.exports = model;
+//model.insertMany(tempData); //! Comment THIS
 /*
 await Temp.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.body._id) }, {
   $set: {

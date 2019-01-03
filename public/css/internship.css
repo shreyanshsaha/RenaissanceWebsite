@@ -1,0 +1,93 @@
+.navbar {
+  background-color: white;
+}
+
+body {
+  font-family: 'Montserrat';
+  padding: 20px;
+}
+
+.bg-img {
+  background-attachment: fixed;
+  background-image: url("/images/internshipBack.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  display: block;
+}
+
+.header-container {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 50vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-container .header {
+  font-style: Bold;
+  text-align: center;
+  padding: 20px;
+  font-size: 3rem;
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2), 10px 10px 15px rgba(0, 0, 0, 0.1), 10px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  opacity: 0.8;
+  filter: alpha(opacity=60);
+  margin-top: 10px;
+}
+
+.card-title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-text {
+  text-align: justify;
+}
+
+.modal-header {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#7FDBFF), to(white));
+  background-image: linear-gradient(#7FDBFF, white);
+}
+
+.modal-footer {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#7FDBFF));
+  background-image: linear-gradient(white, #7FDBFF);
+}
+
+.left-panel-link {
+  position: relative;
+  left: 5%;
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.right-panel-link {
+  position: absolute;
+  right: 10%;
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sep {
+  height: 25px;
+}
+/*# sourceMappingURL=internship.css.map */

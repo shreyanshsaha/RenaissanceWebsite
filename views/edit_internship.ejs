@@ -1,0 +1,124 @@
+<html>
+
+<head>
+  <title>EDIT_POST</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="jquery-3.3.1.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <style>
+
+    textarea,input {
+
+width: 100%;
+height: 50px
+
+}
+#b11{
+position: relative;
+float:right;
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+  <br>
+  <a href="add_internship" target="_blank"> <button class="btn btn-danger" id="b11">+ Add Post</button></a>
+  <br>
+  <br>
+
+  <% for(var i=0;i< test.length;i++) { %>
+  <center>
+    <form id="post<%= i %>" method="POST" action="/edit/<%= test[i]._id %>" enctype="multipart/form-data">
+      <table border="1" width="50%">
+        <tr>
+          <td>
+            <h4>Role</h4>
+          </td>
+          <td><input name="role" type="text" value="<%= test[i].role %>" id="heading"></td>
+
+        </tr>
+        <tr>
+          <td>
+            <h4>Image</h4>
+          </td>
+          <td><img src="<%= test[i].imageUrl %>" width="20%" height="20%"> <br><br><input type="file" name="myimage"></td>
+
+        </tr>
+
+        <tr>
+
+          <td>
+            <h4>Company</h4>
+          </td>
+          <td><textarea type="text" name="company" value="<%= test[i].company %>"><%= test[i].company %></textarea></td>
+        </tr>
+        <tr>
+
+          <td>
+            <h4>Location</h4>
+          </td>
+          <td><textarea type="text" name="location" value="<%= test[i].company %>"><%= test[i].location %></textarea></td>
+        </tr>
+        <tr>
+
+          <td>
+            <h4>Cost</h4>
+          </td>
+          <td><textarea type="text" name="cost" value="<%= test[i].company %>"><%= test[i].cost %></textarea></td>
+        </tr>
+        <tr>
+
+          <td>
+            <h4>Duration</h4>
+          </td>
+          <td><textarea type="text" name="duration" value="<%= test[i].company %>"><%= test[i].duration %></textarea></td>
+        </tr>
+        <tr>
+
+          <td>
+            <h4>Description</h4>
+          </td>
+          <td><textarea type="text" name="description" value="<%= test[i].description %>"><%= test[i].description %></textarea></td>
+        </tr>
+        <tr>
+
+          <td colspan="2">
+            <center><button onclick="return confirm_click()" type="submit" class="btn btn-success">Save</button></center>
+          </td>
+
+        </tr>
+      </table>
+
+
+    </form>
+    <hr>
+  </center>
+
+  <% } %>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script>
+    function confirm_click() {
+      var txt;
+      var r = confirm("Are you sure?");
+      return r;
+
+    }
+  </script>
+</body>
+
+
+
+</html>

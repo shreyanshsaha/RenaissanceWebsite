@@ -5,13 +5,13 @@ main {
   background-repeat: no-repeat;
   padding-top: 30px;
   padding-bottom: 30px;
+  overflow: auto;
 }
 
 main .card {
   border-radius: 16px;
   margin: 0 auto;
   width: 75vw;
-  height: 80vh;
   -webkit-box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
           box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
   overflow: hidden;
@@ -79,8 +79,7 @@ main .btn {
 main .description {
   margin: 0;
   padding: 0 24px 24px;
-  font-size: 0.618em;
-  line-height: 1.5;
+  font-size: 1.2rem;
   margin-bottom: 1.3em;
 }
 
@@ -92,15 +91,37 @@ main * {
   transition: all .3s ease;
 }
 
+@media only screen and (max-width: 600px) {
+  main {
+    overflow: auto;
+  }
+  main .card {
+    border-radius: 16px;
+    margin: 0 auto;
+    width: 90vw;
+  }
+  main .info {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0), white);
+  }
+  main .info .description {
+    margin: 0;
+    padding: 0 24px 24px;
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 1.3em;
+    text-align: justify;
+  }
+}
+
 @media (min-width: 800px) {
-  main .title {
+  .title {
     font-size: 4.236em;
     font-weight: 300;
   }
 }
 
 @media (min-width: 800px) {
-  main .description {
+  .description {
     font-size: 1.3em;
   }
 }
