@@ -47,6 +47,10 @@ router.get("/internship", async function (req, res) {
 		test: test
 	});
 });
+router.get("/add_internship", async function (req, res) {
+
+	return res.render("add_internship");
+});
 
 router.get("/edit", async function (req, res) {
 	var test = await Temp.find();
@@ -68,7 +72,8 @@ router.post("/edit/:id", multer(multerConf).single('myimage'), async function (r
 				company: req.body.company,
 				location: req.body.location,
 				cost: req.body.cost,
-				duration: req.body.duration
+				duration: req.body.duration,
+				description: req.body.description
 			}
 		}, function (err, deledata) {
 			res.redirect("/edit");
@@ -82,7 +87,8 @@ router.post("/edit/:id", multer(multerConf).single('myimage'), async function (r
 				company: req.body.company,
 				location: req.body.location,
 				cost: req.body.cost,
-				duration: req.body.duration
+				duration: req.body.duration,
+				description: req.body.description
 			}
 		}, function (err, deledata) {
 			res.redirect("/edit");
@@ -91,4 +97,47 @@ router.post("/edit/:id", multer(multerConf).single('myimage'), async function (r
 	}
 
 });
+
+//add internship
+
+router.post("/add_internship/new", multer(multerConf).single('myimage1'), async function (req, res) {
+
+	if (req.file) {
+		req.body.myimage = req.file.destination.slice(6) + '/' + req.file.filename;
+		new Temp({
+				role: req.body.role,
+				imageUrl: req.body.myimage,
+				company: req.body.company,
+				location: req.body.location,
+				cost: req.body.cost,
+				duration: req.body.duration,
+			description: req.body.description
+		}).save(function(err,doc){
+if(err) return res.json(err);
+else
+return res.redirect("/internship");
+		});
+	}
+	else{
+		new Temp({
+			role: req.body.role,
+			imageUrl: req.body.myimage,
+			company: req.body.company,
+			location: req.body.location,
+			cost: req.body.cost,
+			duration: req.body.duration,
+			description: req.body.description
+	}).save(function(err,doc){
+if(err) return res.json(err);
+else
+return res.redirect("/internship");
+	});
+
+
+
+
+
+	}
+});
+
 module.exports = router;
