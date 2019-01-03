@@ -8,78 +8,20 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/internship.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <style>
-    body {
-    font-family: 'Montserrat';
-    background-image: url("https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding:20px;
-  }
-  .header {
-    font-style: Bold;
-    text-align: center;
-    padding: 20px;
-    font-size:20px;
-  }
-
-  .card {
-    opacity: 0.8;
-    filter: alpha(opacity=60);
-    margin-top:10px;
-  }
-  .card-title {
-    font-weight:bold;
-    text-align: center;
-  }
-  .card-text {
-    text-align: justify;
-  }
-  .modal-header {
-    background-image: linear-gradient(#7FDBFF,white);
-  }
-  .modal-footer {
-    background-image: linear-gradient(white,#7FDBFF);
-  }
-  .left-panel-link {
-    position: relative;
-    left: 5%;
-    background-color: #555;
-    color: white;
-    font-size: 16px;
-    padding: 12px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  .right-panel-link {
-    position: absolute;
-    right: 10%;
-    background-color: #555;
-    color: white;
-    font-size: 16px;
-    padding: 12px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  .sep {
-    height: 25px;
-  }
-  </style>
-
 
 </head>
 
 <body>
 
+  <% include partials/navbar %>
   <!-- Header -->
-  <div class="header">
-    <h1>Renaissance Image Grid</h1>
+  <div class="bg-img"></div>
+  <div class="mt-4 header-container">
+    <h1 class="header">Internships</h1>
   </div>
 
 
@@ -129,7 +71,9 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title <%=k%></h5>
+              <h5 class="modal-title" id="exampleModalLabel">Modal title
+                <%=k%>
+              </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
