@@ -3,7 +3,8 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var bodyparser = require('body-parser');
-var multer = require('multer')
+var multer = require('multer');
+var middleware = require("./middleware");
 //var upload = multer({ dest: 'public/images' })
 const multerConf = {
 	storage: multer.diskStorage({
@@ -47,7 +48,7 @@ router.get("/internship", async function (req, res) {
 		test: test
 	});
 });
-router.get("/add_internship", async function (req, res) {
+router.get("/add_internship", middleware.isAdmin, async function (req, res) {
 
 	return res.render("add_internship");
 });
@@ -59,7 +60,7 @@ router.get("/edit", async function (req, res) {
 	});
 });
 
-router.post("/edit/:id", multer(multerConf).single('myimage'), async function (req, res) {
+router.post("/edit/:id", middleware.isAdmin, multer(multerConf).single('myimage'), async function (req, res) {
 
 	if (req.file) {
 		req.body.myimage = req.file.destination.slice(6) + '/' + req.file.filename;
@@ -100,25 +101,10 @@ router.post("/edit/:id", multer(multerConf).single('myimage'), async function (r
 
 //add internship
 
-router.post("/add_internship/new", multer(multerConf).single('myimage1'), async function (req, res) {
+router.post("/add_internship/new", middleware.isAdmin, multer(multerConf).single('myimage1'), async function (req, res) {
 
 	if (req.file) {
 		req.body.myimage = req.file.destination.slice(6) + '/' + req.file.filename;
-		new Temp({
-				role: req.body.role,
-				imageUrl: req.body.myimage,
-				company: req.body.company,
-				location: req.body.location,
-				cost: req.body.cost,
-				duration: req.body.duration,
-			description: req.body.description
-		}).save(function(err,doc){
-if(err) return res.json(err);
-else
-return res.redirect("/internship");
-		});
-	}
-	else{
 		new Temp({
 			role: req.body.role,
 			imageUrl: req.body.myimage,
@@ -127,16 +113,25 @@ return res.redirect("/internship");
 			cost: req.body.cost,
 			duration: req.body.duration,
 			description: req.body.description
-	}).save(function(err,doc){
-if(err) return res.json(err);
-else
-return res.redirect("/internship");
-	});
-
-
-
-
-
+		}).save(function (err, doc) {
+			if (err) return res.json(err);
+			else
+				return res.redirect("/internship");
+		});
+	} else {
+		new Temp({
+			role: req.body.role,
+			imageUrl: req.body.myimage,
+			company: req.body.company,
+			location: req.body.location,
+			cost: req.body.cost,
+			duration: req.body.duration,
+			description: req.body.description
+		}).save(function (err, doc) {
+			if (err) return res.json(err);
+			else
+				return res.redirect("/internship");
+		});
 	}
 });
 
