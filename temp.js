@@ -53,7 +53,7 @@ router.get("/add_internship", middleware.isAdmin, async function (req, res) {
 	return res.render("add_internship");
 });
 
-router.get("/edit", async function (req, res) {
+router.get("/edit", middleware.isAdmin, async function (req, res) {
 	var test = await Temp.find();
 	return res.render("edit_internship", {
 		test: test
