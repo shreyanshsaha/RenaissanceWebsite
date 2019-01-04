@@ -117,8 +117,14 @@
 	<script src="/js/landingPage.js"></script>
 
 	<script>
+		
+		
 		jQuery(document).ready(function ($) {
-
+			$('#navbar-toggle-button').click(function(){
+				console.log('button pressed!');
+				$('nav').toggleClass('scrolled');
+			})
+			
 			$('body').scroll(function () {
 				var $nav = $(".navbar-fixed-top");
 				$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
