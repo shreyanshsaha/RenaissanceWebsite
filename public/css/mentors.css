@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Charm");
+@import url("https://fonts.googleapis.com/css?family=Staatliches");
 .mentorContainer {
   overflow: auto;
   /* Common style */
@@ -31,10 +31,11 @@
   position: relative;
   /* clear: both; */
   margin: 0 auto;
-  padding: 1em 0 4em;
+  padding: 1em 0 1rem;
   max-width: 90vw;
   list-style: none;
   text-align: center;
+  overflow: auto;
 }
 
 .mentorContainer .grid figure {
@@ -209,18 +210,43 @@
 }
 
 .mentorContainer .heading {
-  font-family: 'Charm';
+  font-family: 'Staatliches';
   border-bottom: 2px solid grey;
 }
 
-@media screen and (max-width: 600px) {
-  .grid figure {
-    margin: 10px 1%;
-    max-width: 50vw;
-    min-width: 50vw;
-    max-height: 50vw;
-    min-height: 50vw;
-    cursor: pointer;
+@media only screen and (max-width: 600px) {
+  .mentorContainer {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+  }
+  .mentorContainer .grid {
+    width: inherit;
+  }
+  .mentorContainer .grid figure {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    padding: 0px;
+    position: relative;
+    float: left;
+    overflow: hidden;
+    max-width: 40vw;
+    min-width: 40vw;
+    max-height: 40vw;
+    min-height: 40vw;
+  }
+  .mentorContainer .grid figure .figcaption-text {
+    padding: 0px;
+    margin: 0px;
+  }
+  .mentorContainer .grid figure .figcaption-text * {
+    font-size: 1rem;
+  }
+  .mentorContainer .grid figure .figcaption-text p {
+    font-size: 0.75rem;
+    padding: 0px 0px 0px 0px;
   }
 }
 /*# sourceMappingURL=mentors.css.map */
