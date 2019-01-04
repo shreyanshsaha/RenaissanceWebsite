@@ -3,6 +3,7 @@ main {
   background-image: url("/images/featuresImage.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   padding-top: 30px;
   padding-bottom: 30px;
   overflow: auto;

@@ -63,9 +63,7 @@ html {
 
 .seperation {
   width: 100vw;
-  height: 2vh;
-  display: inline-block;
-  clear: both;
+  height: 1vh;
   background-color: white;
 }
 
