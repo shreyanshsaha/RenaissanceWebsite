@@ -5,20 +5,20 @@
   </p>
   <div class="row">
     <div class="col-12">
-      <form>
-        <div>
+      <form name="mainForm">
+        <form name="categoryIdeaForm">
           <p><strong>HOW WOULD YOU CATEGORIZE YOUR IDEA?</strong></p>
           <div class="form-group">
             <div class="form-radio-control">
-              <input type="radio" class="custom-radio-input" name="ideaCategory" id="soriented" value="service-oriented">
+              <input type="radio" class="custom-radio-input" name="ideaCategory" id="soriented" value="service-oriented" <%if(summary.category==='service-oriented'){%> checked <%}%> >
               <label class="control-label" for="soriented">Service Oriented</label>
             </div>
             <div class="form-radio-control">
-              <input type="radio" class="custom-radio-input" name="ideaCategory" id="poriented" value="product-oriented">
+              <input type="radio" class="custom-radio-input" name="ideaCategory" id="poriented" value="product-oriented" <%if(summary.category==='product-oriented'){%> checked <%}%>>
               <label class="control-label" for="poriented">Product Oriented</label>
             </div>
           </div>
-        </div>
+        </form>
         <div class="form-group">
           <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
           <textarea class="form-control" name="productname" id="productname" rows="3"><%=summary.name%></textarea>
@@ -45,11 +45,11 @@
         <form class="form-group" id="category-social">
           <p><strong>HOW WOULD YOU CATEGORIZE YOUR SOCIAL ENTERPRISE?</strong></p>
           <div>
-            <input type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable">
+            <input type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable" <%if(summary.categoryProfit==='profitable'){%> checked <%}%>>
             <label class="control-label" for="profitable">Profitable</label>
           </div>
           <div>
-            <input type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable">
+            <input type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable" <%if(summary.categoryProfit==='non-profitable'){%> checked <%}%>>
             <label class="control-label" for="nprofitable">Non-Profitable</label>
           </div>
         </form>
