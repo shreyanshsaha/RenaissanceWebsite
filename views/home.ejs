@@ -47,7 +47,7 @@
 
 	<!-- Countdown -->
 	<div class="seperation mt-4"></div>
-	
+
 	<div class="countdown-landing">
 		<div class="landing-inner">
 			<p class="landing-text">A platform for budding enterpreuners</p>
@@ -117,14 +117,16 @@
 	<script src="/js/landingPage.js"></script>
 
 	<script>
-		
-		
 		jQuery(document).ready(function ($) {
-			$('#navbar-toggle-button').click(function(){
-				console.log('button pressed!');
-				$('nav').toggleClass('scrolled');
+			$('#navbar-toggle-button').click(function () {
+				if (!$('nav').hasClass('scrolled'))
+					$('nav').toggleClass('scrolled');
 			})
-			
+			$('.navbar-nav>li>a').on('click', function () {
+				$('.navbar-collapse').collapse('hide');
+			});
+
+
 			$('body').scroll(function () {
 				var $nav = $(".navbar-fixed-top");
 				$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
@@ -152,7 +154,6 @@
 				});
 			});
 		})
-		
 	</script>
 	<script src="js/count_script.js"></script>
 </body>
