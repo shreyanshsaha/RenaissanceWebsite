@@ -291,34 +291,36 @@
                     </div>
                     <div class="form-group">
                       <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
-                      <div class="form-control form-check" id="segmentation">
-
-                        <div class="form-check">
-
-                          <input type="checkbox" class="form-control-input" id="dsegmentation" value="demographic">
-                          <label class="form-control-label" for="dsegmentation">Demographic Segmentation</label>
-
-                        </div>
-                        <div class="form-check">
-
-                          <input type="checkbox" class="form-control-input" id="bsegmentation" value="behavioral">
-                          <label class="form-control-label" for="bsegmentation">Behavioral Segmentation</label>
-
-                        </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="dsegmentation"
+                          value="demographic-segmentation"
+                          <%if(summary.segmentation.includes('demographic-segmentation')){%>checked
+                        <%}%>>
+                        <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="bsegmentation"
+                          value="behavioral-segmentation"
+                          <%if(summary.segmentation.includes('behavioral-segmentation')){%>checked
+                        <%}%>>
+                        <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="psegmentation"
+                          value="psycological-segmentation"
+                          <%if(summary.segmentation.includes('psycological-segmentation')){%>checked
+                        <%}%>>
+                        <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="gsegmentation"
+                          value="geographic-segmentation"
+                          <%if(summary.segmentation.includes('geographic-segmentation')){%>checked
+                        <%}%>>
+                        <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <div class="form-check">
 
-                        <input type="checkbox" class="form-control-input" id="psegmentation" value="phychographic">
-                        <label class="form-control-label" for="psegmentation">Psychographic Segmentation</label>
-                      </div>
-                      <div class="form-check">
-
-                        <input type="checkbox" class="form-control-input" id="gsegmentation" value="geographic">
-                        <label class="form-control-label" for="gsegmentation">Geographic Segmentation</label>
-                      </div>
-                    </div>
                     <div class="form-group">
                       <label for="mcompetition"><strong>DESCRIBE YOUR MARKET COMPETITION</strong></label>
                       <textarea readonly class="form-control" name="competition" id="mcompetition" rows="3" placeholder="what is the size of the market,type of marketchosen and what is your startups' potential market share ?"><%=summary.competition%></textarea>
@@ -377,14 +379,14 @@
                     <p><strong>HOW WOULD YOU CATEGORIZE YOUR IDEA?</strong></p>
                     <div class="form-group">
                       <div class="form-radio-control">
-                        <input  disabled type="radio" class="custom-radio-input" name="ideaCategory" id="soriented" value="service-oriented"
-                          <%if(summary.category==='service-oriented' ){%> checked
+                        <input disabled type="radio" class="custom-radio-input" name="ideaCategory" id="soriented"
+                          value="service-oriented" <%if(summary.category==='service-oriented' ){%> checked
                         <%}%> >
                         <label class="control-label" for="soriented">Service Oriented</label>
                       </div>
                       <div class="form-radio-control">
-                        <input disabled type="radio" class="custom-radio-input" name="ideaCategory" id="poriented" value="product-oriented"
-                          <%if(summary.category==='product-oriented' ){%> checked
+                        <input disabled type="radio" class="custom-radio-input" name="ideaCategory" id="poriented"
+                          value="product-oriented" <%if(summary.category==='product-oriented' ){%> checked
                         <%}%>>
                         <label class="control-label" for="poriented">Product Oriented</label>
                       </div>

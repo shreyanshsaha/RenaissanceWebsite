@@ -285,7 +285,7 @@ router.put("/team/summary/:type", async function (req, res) {
 			var bussiness = await Bussiness.create({
 				name: null,
 				use: null,
-				segmentation: null,
+				segmentation: [],
 				competition: null,
 				financeModel: null,
 				feasibility: null,
@@ -305,7 +305,7 @@ router.put("/team/summary/:type", async function (req, res) {
 				domain: null,
 				socialImpact: null,
 				categoryProfit: null,
-				marketSegmentation: null,
+				marketSegmentation: [],
 				financialModel: null,
 				competition: null,
 				breakEvenPoint: null
@@ -360,7 +360,7 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 				var ques = await Bussiness.create({
 					name: req.body.name,
 					use: req.body.use,
-					segmentation: req.body.segmentation,
+					segmentation: JSON.parse(req.body.segmentation),
 					competition: req.body.competition,
 					financeModel: req.body.financeModel,
 					feasibility: req.body.feasibility,
@@ -415,7 +415,7 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 					$set: {
 						name: req.body.name,
 						use: req.body.use,
-						segmentation: req.body.segmentation,
+						segmentation: JSON.parse(req.body.segmentation),
 						competition: req.body.competition,
 						financeModel: req.body.financeModel,
 						feasibility: req.body.feasibility,

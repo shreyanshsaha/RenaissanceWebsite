@@ -297,10 +297,15 @@
 		function saveQuestionnaire(type) {
 			console.log(type);
 			if (type == 'bussiness') {
+				var segmentationArray = [];
+				$("input:checkbox[name=segmentation]:checked").each(function () {
+					segmentationArray.push($(this).val());
+				});
+				console.log(segmentationArray);
 				var data = {
 					name: document.getElementById('productname').value,
 					use: document.getElementById('idea').value,
-					segmentation: document.getElementById("segmentation").value,
+					segmentation: JSON.stringify(segmentationArray),
 					competition: document.getElementById("mcompetition").value,
 					financeModel: document.getElementById("fmodel").value,
 					feasibility: document.getElementById("fidea").value,
