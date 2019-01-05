@@ -9,7 +9,7 @@ var socialSchema = mongoose.Schema({
   socialEnt: String,
   socialImpact: String,
   categoryProfit: String,
-  marketSegmentation: String,
+  marketSegmentation: [{type: String}],
   financialModel: String,
   feasibility: String,
   competition: String,

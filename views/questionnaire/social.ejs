@@ -56,19 +56,19 @@
         <div class="form-group">
           <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" name="segmentation" id="dsegmentation">
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="dsegmentation" value="demographic-segmentation" <%if(summary.marketSegmentation.includes('demographic-segmentation')){%>checked<%}%>>
             <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" name="segmentation" id="bsegmentation">
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="bsegmentation" value="behavioral-segmentation" <%if(summary.marketSegmentation.includes('behavioral-segmentation')){%>checked<%}%>>
             <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" name="segmentation" id="psegmentation">
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="psegmentation" value="psycological-segmentation" <%if(summary.marketSegmentation.includes('psycological-segmentation')){%>checked<%}%>>
             <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" name="segmentation" id="gsegmentation">
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="gsegmentation" value="geographic-segmentation" <%if(summary.marketSegmentation.includes('geographic-segmentation')){%>checked<%}%>>
             <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
           </div>
         </div>

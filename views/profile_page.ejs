@@ -181,14 +181,14 @@
 											your Startup!
 										</h3>
 										<% }else{ %>
-											<% if(summary){ %>
-												<% if(summary.type==='bussiness'){ %>
-													<% include questionnaire/bussiness %>
-												<% } else if(summary.type==='social'){ %>
-													<% include questionnaire/social %>
-												<% } else if(summary.type==='operational'){ %>
-													<% include questionnaire/operation %>
-											<% } %>
+										<% if(summary){ %>
+										<% if(summary.type==='bussiness'){ %>
+										<% include questionnaire/bussiness %>
+										<% } else if(summary.type==='social'){ %>
+										<% include questionnaire/social %>
+										<% } else if(summary.type==='operational'){ %>
+										<% include questionnaire/operation %>
+										<% } %>
 										<div id="savingError" class="mt-4 mb-0"></div>
 										<% } else if(currentUser.teamId){ %>
 										<div class="card-deck">
@@ -282,14 +282,13 @@
 				}
 			})
 		}
-
 	</script>
 	<script>
-		function submitQuestionnaire(){
+		function submitQuestionnaire() {
 			var val = confirm("Do you really want to submit? You wont be able to make any changes after that!");
-			if(!val)
+			if (!val)
 				return;
-			$.post("/team/questionnaire/submit", function(data){
+			$.post("/team/questionnaire/submit", function (data) {
 				console.log(data);
 			})
 		}
@@ -308,8 +307,12 @@
 					breakEvenPoint: document.getElementById("bepoint").value,
 					intellectualProperty: document.getElementById("kiproperty").value,
 				}
-			}
-			else if (type == 'social') {
+			} else if (type == 'social') {
+				var segmentationArray = [];
+				$("input:checkbox[name=segmentation]:checked").each(function () {
+					segmentationArray.push($(this).val());
+				});
+				console.log(segmentationArray);
 				var data = {
 					categoryRadio: $("input:radio[name=ideaCategory]:checked").val(),
 					productname: document.getElementById('productname').value,
@@ -318,13 +321,12 @@
 					simpact: document.getElementById('simpact').value,
 					feasibility: document.getElementById('fidea').value,
 					categoryProfit: $("input:radio[name=categoryProfit]:checked").val(),
-					segmentation: document.getElementById('dsegmentation').value,
+					segmentation: JSON.stringify(segmentationArray),
 					financeModel: document.getElementById('fmodel').value,
 					competition: document.getElementById('mcompetition').value,
 					bepoint: document.getElementById('bepoint').value
 				}
-			}
-			else if (type == 'operational') {
+			} else if (type == 'operational') {
 				var data = {
 					name: document.getElementById('productname').value,
 					functionality: document.getElementById('functionality').value,
@@ -346,11 +348,13 @@
 				data: data,
 				success: function (data) {
 					var result = document.getElementById('savingError');
-					if(/error/i.exec(data))
+					if (/error/i.exec(data))
 						result.innerHTML = `<div class="alert alert-danger" role="alert">
-											<strong>Error: </strong>`+data+`</div>`;
+											<strong>Error: </strong>` + data +
+						`</div>`;
 					else
-						result.innerHTML = `<div class="alert alert-success" role="alert">
+						result.innerHTML =
+						`<div class="alert alert-success" role="alert">
 											<strong>Success: </strong>The questionnaire is saved!</div>`;
 				}
 			})
