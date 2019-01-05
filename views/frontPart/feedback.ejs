@@ -29,7 +29,7 @@
 	<script>
 		function submitFeedback(){
 			var feedbackAlert = document.getElementById("feedbackAlert");
-			$.post("/feedback",
+			jQuery.post("/feedback",
 				{
 					name: document.getElementById('input-name').value,
 					email: document.getElementById('input-email').value,

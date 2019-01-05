@@ -69,10 +69,9 @@
 </div>
 
 <script>
-	var width = $(window).width();
+	var width = jQuery(window).width();
 	console.log(width);
-			if (width <= '720') {
-				document.querySelectorAll('.card-logo')[1].classList.add('order-first');
-			}
-	
+	if (width <= '720') {
+		document.querySelectorAll('.card-logo')[1].classList.add('order-first');
+	}
 </script>

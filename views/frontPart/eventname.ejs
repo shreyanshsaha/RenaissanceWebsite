@@ -1,12 +1,3 @@
-<!--
-	Overview
-	Structure
-	Eligibility
-	Rules and Regulations
-	Prizes & Awards
-	-->
-
-
 
 <div class="events">
 	<div class="container">
@@ -80,103 +71,8 @@
 				</div>
 				<% } %>
 			</div>
-
 		</div>
-
-
 	</div>
-
 </div>
 
-
-
-
-
-
-
-
-<script>
-	function applyEvent(eventID) {
-		var applyAlert = document.getElementById("applyAlert" + eventID);
-		$.post("/register/event/" + eventID, function (data) {
-			if (/ERROR/i.exec(data)) {
-				console.log(data);
-				data = data.replace(/ERROR/i, '');
-				var htmlToInsert =
-					`
-					<div class="alert alert-danger alert-dismissible fade show" role="alert">
-					  <strong>Error!</strong>` +
-					data +
-					`!
-					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					  </button>
-					</div>
-				`;
-				applyAlert.innerHTML = htmlToInsert;
-			} else {
-				var htmlToInsert =
-					`
-				<div class="alert alert-success alert-dismissible fade show" role="alert">
-				  You have successfully registered for the event!
-				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				    <span aria-hidden="true">&times;</span>
-				  </button>
-				</div>
-				`;
-				applyAlert.innerHTML = htmlToInsert;
-			}
-		});
-	}
-</script>
-
-<script>
-	// TODO: Make this also change with no of events
-	// TODO: Make a function which hides every event
-	myFunction1();
-
-	function myFunction1() {
-		$("#eventCollapseDiv").collapse('hide');
-		document.getElementById("event1").style.display = "block";
-		document.getElementById("event2").style.display = "none";
-		document.getElementById("event3").style.display = "none";
-		// document.getElementById("event4").style.display = "none";
-		// document.getElementById("event5").style.display = "none";
-	}
-
-	function myFunction2() {
-		$("#eventCollapseDiv").collapse('hide');
-		document.getElementById("event1").style.display = "none";
-		document.getElementById("event2").style.display = "block";
-		document.getElementById("event3").style.display = "none";
-		// document.getElementById("event4").style.display = "none";
-		// document.getElementById("event5").style.display = "none";
-	}
-
-	function myFunction3() {
-		$("#eventCollapseDiv").collapse('hide');
-		document.getElementById("event1").style.display = "none";
-		document.getElementById("event2").style.display = "none";
-		document.getElementById("event3").style.display = "block";
-		// document.getElementById("event4").style.display = "none";
-		// document.getElementById("event5").style.display = "none";
-	}
-
-	function myFunction4() {
-		$("#eventCollapseDiv").collapse('hide');
-		document.getElementById("event1").style.display = "none";
-		document.getElementById("event2").style.display = "none";
-		document.getElementById("event3").style.display = "none";
-		// document.getElementById("event4").style.display = "block";
-		// document.getElementById("event5").style.display = "none";
-	}
-
-	function myFunction5() {
-		$("#eventCollapseDiv").collapse('hide');
-		document.getElementById("event1").style.display = "none";
-		document.getElementById("event2").style.display = "none";
-		document.getElementById("event3").style.display = "none";
-		// document.getElementById("event4").style.display = "none";
-		// document.getElementById("event5").style.display = "block";
-	}
-</script>
+<script src="/js/events.js"></script>
