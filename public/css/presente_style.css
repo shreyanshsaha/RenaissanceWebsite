@@ -3,9 +3,24 @@ main {
   background-image: url("/images/featuresImage.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   padding-top: 30px;
   padding-bottom: 30px;
   overflow: auto;
+  overflow-x: hidden;
+}
+
+main .competition-heading {
+  width: inherit;
+}
+
+main .competition-heading h1 {
+  font-family: 'Open Sans';
+  border-left: 5px solid white;
+  padding: 10px;
+  left: 5vw;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 5vh;
 }
 
 main .card {

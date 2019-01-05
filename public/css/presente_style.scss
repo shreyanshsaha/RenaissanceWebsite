@@ -1,12 +1,28 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400");
+
 main {
   // padding: 20px 64px 64px;
   background-image: url("/images/featuresImage.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  padding-top:30px;
-  padding-bottom:30px;
+  background-attachment: fixed;
+  padding-top: 30px;
+  padding-bottom: 30px;
   overflow: auto;
+  overflow-x: hidden;
+  .competition-heading {
+    width: inherit;
+    h1 {
+      font-family: 'Open Sans';
+      border-left: 5px solid white;
+      padding:10px;
+      left: 5vw;
+      background-color: rgba(255, 255, 255, 0.5);
+      // width: 25vw;
+      margin-bottom: 5vh;
+    }
+  }
+
   .card {
     border-radius: 16px;
     margin: 0 auto;
@@ -20,7 +36,7 @@ main {
     background-image: url('/images/presente-fore.jpg');
     background-size: cover;
   }
-  
+
   .info {
     position: relative;
     width: 100%;
@@ -33,7 +49,7 @@ main {
     transition: transform 0.5s ease-out;
     padding-bottom: 50px;
   }
-  
+
   .info:before {
     z-index: -1;
     display: block;
@@ -48,12 +64,12 @@ main {
     // opacity: 0.25;
     transition: transform 0.5s ease-out;
   }
-  
+
   .card:hover .info,
   .card:hover .info:before {
     transform: translateY(0) translateZ(0);
   }
-  
+
   .title {
     margin: 0;
     padding-top: 24px;
@@ -64,6 +80,7 @@ main {
     color: #1c5b72;
     font-size: 2.618em
   }
+
   .date {
     margin: 0;
     padding: 24px;
@@ -74,75 +91,79 @@ main {
     color: #1c5b72;
     font-size: 1.618em
   }
-  .btn{
+
+  .btn {
     // width: 200px;
     // align-self: auto;
-    margin:auto;
-    left:2%;
+    margin: auto;
+    left: 2%;
     // line-height: 1;
   }
+
   .description {
     margin: 0;
     padding: 0 24px 24px;
     // font-size: 0.618em ;
-    font-size:1.2rem;
+    font-size: 1.2rem;
     // line-height: 1.5;
     margin-bottom: 1.3em;
   }
-  
-  
-  
+
+
+
   * {
     box-sizing: border-box;
     position: relative;
     transition: all .3s ease
   }
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 }
 
 @media only screen and (max-width: 600px) {
   main {
-    
+
     overflow: auto;
-    
+
     .card {
       border-radius: 16px;
       margin: 0 auto;
       width: 90vw;
     }
-    
-    
-    
-    .info{
-    background: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255,1));
-    .description {
-      margin: 0;
-      padding: 0 24px 24px;
-      font-size: 1em ;
-      line-height: 1.5;
-      margin-bottom: 1.3em;
-      text-align: justify;
+
+
+
+    .info {
+      background: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+
+      .description {
+        margin: 0;
+        padding: 0 24px 24px;
+        font-size: 1em;
+        line-height: 1.5;
+        margin-bottom: 1.3em;
+        text-align: justify;
+      }
     }
-  }
-  
+
   }
 }
 
-  
+
 @media (min-width:800px) {
   .title {
-     font-size: 4.236em;
-     font-weight: 300;
-     // padding: 0;
-   }
- }
- @media (min-width:800px) {
-   .description {
-     font-size: 1.3em;
-   }
- }
+    font-size: 4.236em;
+    font-weight: 300;
+    // padding: 0;
+  }
+}
+
+@media (min-width:800px) {
+  .description {
+    font-size: 1.3em;
+  }
+}
