@@ -8,10 +8,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="Vit chennai,Renaissance VIT chennai,Vellore Institute of Technology,Entrepreneurship fest of vit,Start up vit,Startup funding,Investors,Mentors,Boot camp,Prozontevou,Prezontevou,Lean six sigma,Chatur ideas,VIT start up" />
 
-	<script src="/lib/jquery.min.js"></script>
-	<script src="/js/bootstrap.js"></script>
-
-
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
@@ -51,7 +47,7 @@
 
 	<!-- Countdown -->
 	<div class="seperation mt-4"></div>
-	
+
 	<div class="countdown-landing">
 		<div class="landing-inner">
 			<p class="landing-text">A platform for budding enterpreuners</p>
@@ -74,6 +70,9 @@
 	<div class="seperation" id="competition"></div>
 
 	<main>
+		<div class="competition-heading">
+			<h1>The Competition</h1>
+		</div>
 		<div class='card'>
 			<div class='info'>
 				<h1 class='title'>Presente Vous</h1>
@@ -119,6 +118,14 @@
 
 	<script>
 		jQuery(document).ready(function ($) {
+			$('#navbar-toggle-button').click(function () {
+				if (!$('nav').hasClass('scrolled'))
+					$('nav').toggleClass('scrolled');
+			})
+			$('.navbar-nav>li>a').on('click', function () {
+				$('.navbar-collapse').collapse('hide');
+			});
+
 
 			$('body').scroll(function () {
 				var $nav = $(".navbar-fixed-top");
@@ -147,7 +154,6 @@
 				});
 			});
 		})
-		
 	</script>
 	<script src="js/count_script.js"></script>
 </body>

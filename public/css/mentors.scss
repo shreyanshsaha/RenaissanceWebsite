@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Charm');
+@import url('https://fonts.googleapis.com/css?family=Staatliches');
 
 .mentorContainer {
   // height: 300vh;
   // display: table;
-  overflow:auto; 
+  overflow: auto;
+
   *,
   *:after,
   *:before {
@@ -32,10 +33,11 @@
     position: relative;
     /* clear: both; */
     margin: 0 auto;
-    padding: 1em 0 4em;
+    padding: 1em 0 1rem;
     max-width: 90vw;
     list-style: none;
     text-align: center;
+    overflow: auto;
   }
 
   /* Common style */
@@ -99,7 +101,7 @@
     /* word-spacing: -0.15em; */
     font-weight: 300;
     color: white;
-    font-size:1.5em;
+    font-size: 1.5em;
     text-shadow: 5px 4px 10px black,
       -5px -4px 20px black,
       15px 20px 40px black;
@@ -111,7 +113,7 @@
 
   .grid figure .mentor-name,
   .grid figure p {
-    color:white;
+    color: white;
     margin: 0;
   }
 
@@ -218,21 +220,50 @@
     transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
   }
 
-  
-    .heading{
-      font-family: 'Charm';
-      border-bottom: 2px solid grey;
-    }
+
+  .heading {
+    font-family: 'Staatliches';
+    border-bottom: 2px solid grey;
+  }
 }
 
 
-@media screen and (max-width: 600px) {
-  .grid figure {
-    margin: 10px 1%;
-    max-width: 50vw;
-    min-width: 50vw;
-    max-height: 50vw;
-    min-height: 50vw;
-    cursor: pointer;
+@media only screen and (max-width: 600px) {
+  .mentorContainer {
+    margin:0px;
+    padding:0px;
+    width: 100vw;
+    .grid {
+      width: inherit;
+      // margin:0px;
+      // padding:0px;
+      figure {
+        // margin:1px;
+        margin-top:5px;
+        margin-bottom: 5px;
+        margin-left:2.5px;
+        margin-right: 2.5px;
+        padding:0px;
+        position: relative;
+        float: left;
+        overflow: hidden;
+  
+        max-width: 40vw;
+        min-width: 40vw;
+        max-height: 40vw;
+        min-height: 40vw;
+        .figcaption-text{
+          padding: 0px;
+          margin:0px;
+          *{
+            font-size: 1rem;
+          }
+          p{
+            font-size:0.75rem;
+            padding: 0px 0px 0px 0px;
+          }
+        }
+      }
+    }
   }
 }

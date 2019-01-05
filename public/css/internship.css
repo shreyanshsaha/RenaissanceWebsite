@@ -7,6 +7,12 @@ body {
   padding: 20px;
 }
 
+.header {
+  text-align: left;
+  padding: 20px;
+  font-size: 20px;
+}
+
 .bg-img {
   background-attachment: fixed;
   background-image: url("/images/internshipBack.jpg");
@@ -28,6 +34,7 @@ body {
   width: 50vw;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
 }
 
 .header-container .header {
@@ -39,7 +46,7 @@ body {
 }
 
 .card {
-  opacity: 0.8;
+  opacity: 0.9;
   filter: alpha(opacity=60);
   margin-top: 10px;
 }
@@ -89,5 +96,19 @@ body {
 
 .sep {
   height: 25px;
+}
+
+/*Optimisation for Mobiles*/
+@media (max-width: 800px) {
+  .header-container {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .header-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 /*# sourceMappingURL=internship.css.map */

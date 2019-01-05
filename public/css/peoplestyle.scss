@@ -62,7 +62,20 @@
 
 .contact{
   background-color: #212121;
-  text-align: center;
+  // text-align: center;
+}
+
+.contact{
+  .headin{
+    position: relative;
+    font-family: 'Open Sans';
+    top:2vh;
+    margin-left:5vw;
+    padding:5px;
+    color:black;
+    background-color: rgba(255,255,255,0.7);
+    border-left:4px solid white;
+  }
 }
 
 .picture p{
