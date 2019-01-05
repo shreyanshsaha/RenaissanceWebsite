@@ -311,14 +311,13 @@
 			}
 			else if (type == 'social') {
 				var data = {
-					// categoryRadio: document.getElementById('category-radio').value,
-					categoryRadio: null,
+					categoryRadio: $("input:radio[name=ideaCategory]:checked").val(),
 					productname: document.getElementById('productname').value,
 					domain: document.getElementById('domain').value,
 					senterprise: document.getElementById('senterprise').value,
 					simpact: document.getElementById('simpact').value,
 					feasibility: document.getElementById('fidea').value,
-					categoryProfit: document.getElementById('category-social').value,
+					categoryProfit: $("input:radio[name=categoryProfit]:checked").val(),
 					segmentation: document.getElementById('dsegmentation').value,
 					financeModel: document.getElementById('fmodel').value,
 					competition: document.getElementById('mcompetition').value,

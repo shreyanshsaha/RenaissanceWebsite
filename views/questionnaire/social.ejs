@@ -5,27 +5,28 @@
   </p>
   <div class="row">
     <div class="col-12">
-      <form>
-        <form id="category-radio">
+      <form name="mainForm">
+        <form name="categoryIdeaForm">
           <p><strong>HOW WOULD YOU CATEGORIZE YOUR IDEA?</strong></p>
           <div class="form-group">
             <div class="form-radio-control">
-              <input type="radio" name="categoryRadio" class="custom-radio-input" name="category" id="soriented" value="service-oriented">
-              <label class="custom-control-label" for="soriented">Service Oriented</label>
+              <input type="radio" class="custom-radio-input" name="ideaCategory" id="soriented" value="service-oriented" <%if(summary.category==='service-oriented'){%> checked <%}%> >
+              <label class="control-label" for="soriented">Service Oriented</label>
             </div>
             <div class="form-radio-control">
-              <input type="radio" class="custom-radio-input" name="categoryRadio" id="poriented" name="category" value="product-oriented">
-              <label class="custom-control-label" for="poriented">Product Oriented</label>
+              <input type="radio" class="custom-radio-input" name="ideaCategory" id="poriented" value="product-oriented" <%if(summary.category==='product-oriented'){%> checked <%}%>>
+              <label class="control-label" for="poriented">Product Oriented</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
-            <textarea class="form-control" name="productname" id="productname" rows="3"><%=summary.name%></textarea>
           </div>
         </form>
         <div class="form-group">
+          <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
+          <textarea class="form-control" name="productname" id="productname" rows="3"><%=summary.name%></textarea>
+        </div>
+        <div class="form-group">
           <label for="domain"><strong>WHICH DOMAIN DOES YOUR STARTUP FALL IN?</strong></label>
-          <input class="form-control" name="domain" rows="3" id="domain" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance" value="<%=summary.domain%>">
+          <input class="form-control" name="domain" rows="3" id="domain" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance"
+            value="<%=summary.domain%>">
         </div>
         <div class="form-group">
           <label for="senterprise"><strong>DESCRIBE YOUR IDEA GIVING AN OVERVIEW OF YOUR SOCIAL ENTERPRISE ( 100 Words)</strong></label>
@@ -44,12 +45,12 @@
         <form class="form-group" id="category-social">
           <p><strong>HOW WOULD YOU CATEGORIZE YOUR SOCIAL ENTERPRISE?</strong></p>
           <div>
-            <input type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable">
-            <label class="custom-control-label" for="dsegmentation">Profitable</label>
+            <input type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable" <%if(summary.categoryProfit==='profitable'){%> checked <%}%>>
+            <label class="control-label" for="profitable">Profitable</label>
           </div>
           <div>
-            <input type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable">
-            <label class="custom-control-label" for="bsegmentation">Non-Profitable</label>
+            <input type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable" <%if(summary.categoryProfit==='non-profitable'){%> checked <%}%>>
+            <label class="control-label" for="nprofitable">Non-Profitable</label>
           </div>
         </form>
         <div class="form-group">
@@ -96,11 +97,13 @@
           <textarea name="bepoint" class="form-control" id="bepoint" rows="3"><%=summary.breakEvenPoint%></textarea>
         </div>
 
-        <% if(submitted===false){ %> 
-          <button type="button" class="btn btn-success" onclick="saveQuestionnaire('social')">Save</button>
-          <button type="button" class="btn btn-danger" onclick="submitQuestionnaire()">Submit</button>
+        <% if(submitted===false){ %>
+        <button type="button" class="btn btn-success" onclick="saveQuestionnaire('social')">Save</button>
+        <button type="button" class="btn btn-danger" onclick="submitQuestionnaire()">Submit</button>
         <%} else {%>
-          <div class="alert alert-primary text-center"><p class="text-info text-center">Questionnaire has been submitted! It cannot be changed!</p></div>
+        <div class="alert alert-primary text-center">
+          <p class="text-info text-center">Questionnaire has been submitted! It cannot be changed!</p>
+        </div>
         <% } %>
       </form>
     </div>
