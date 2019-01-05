@@ -375,84 +375,84 @@
                     <p><strong>HOW WOULD YOU CATEGORIZE YOUR IDEA?</strong></p>
                     <div class="form-group">
                       <div class="form-radio-control">
-                        <input type="radio" name="categoryRadio" class="custom-radio-input" name="category" id="soriented"
+                        <input readonly type="radio" name="categoryRadio" class="custom-radio-input" name="category" id="soriented"
                           value="service-oriented">
                         <label class="custom-control-label" for="soriented">Service Oriented</label>
                       </div>
                       <div class="form-radio-control">
-                        <input type="radio" class="custom-radio-input" name="categoryRadio" id="poriented" name="category"
+                        <input readonly type="radio" class="custom-radio-input" name="categoryRadio" id="poriented" name="category"
                           value="product-oriented">
                         <label class="custom-control-label" for="poriented">Product Oriented</label>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
-                      <textarea class="form-control" name="productname" id="productname" rows="3"><%=summary.name%></textarea>
+                      <textarea readonly class="form-control" name="productname" id="productname" rows="3"><%=summary.name%></textarea>
                       </form>
                     </div>
 
                     <div class="form-group">
                       <label for="domain"><strong>WHICH DOMAIN DOES YOUR STARTUP FALL IN?</strong></label>
-                      <input class="form-control" name="domain" rows="3" id="domain" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance"
+                      <input readonly class="form-control" name="domain" rows="3" id="domain" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance"
                         value="<%=summary.domain%>">
                     </div>
                     <div class="form-group">
                       <label for="senterprise"><strong>DESCRIBE YOUR IDEA GIVING AN OVERVIEW OF YOUR SOCIAL ENTERPRISE
                           (
                           100 Words)</strong></label>
-                      <textarea class="
+                      <textarea readonly class="
   form-control" id="senterprise" rows="3"><%=summary.socialEnt%></textarea>
                     </div>
                     <div class="form-group">
                       <label for="simpact"><strong>WHAT IS THE SOCIAL IMPACT OF YOUR IDEA ?( 250 WORDS)</strong></label>
-                      <textarea class="form-control" id="simpact" rows="3" placeholder="This should clearly describe the beneficiaries of the idea proposed"><%=summary.socialImpact%></textarea>
+                      <textarea readonly class="form-control" id="simpact" rows="3" placeholder="This should clearly describe the beneficiaries of the idea proposed"><%=summary.socialImpact%></textarea>
                     </div>
                     <div class="form-group">
                       <label for="fidea"><strong>WHAT IS THE FEASIBILITY OF THE IDEA ( 250 WORDS)
                         </strong></label>
-                      <textarea class="form-control" id="fidea" rows="3" placeholder="Is the proposed idea doable considering the social, economic and regional constraints?"><%=summary.feasibility%></textarea>
+                      <textarea readonly class="form-control" id="fidea" rows="3" placeholder="Is the proposed idea doable considering the social, economic and regional constraints?"><%=summary.feasibility%></textarea>
                     </div>
 
                     <div class="form-group">
                       <p><strong>HOW WOULD YOU CATEGORIZE YOUR SOCIAL ENTERPRISE?</strong></p>
                       <div>
-                        <input type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable">
+                        <input readonly type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable">
                         <label class="custom-control-label" for="dsegmentation">Profitable</label>
                       </div>
                       <div>
-                        <input type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable">
+                        <input readonly type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable">
                         <label class="custom-control-label" for="bsegmentation">Non-Profitable</label>
                       </div>
                     </div>
                     <div class="form-group">
                       <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="segmentation" id="dsegmentation">
+                        <input readonly type="checkbox" class="custom-control-input" name="segmentation" id="dsegmentation">
                         <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="segmentation" id="bsegmentation">
+                        <input readonly type="checkbox" class="custom-control-input" name="segmentation" id="bsegmentation">
                         <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="segmentation" id="psegmentation">
+                        <input readonly type="checkbox" class="custom-control-input" name="segmentation" id="psegmentation">
                         <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="segmentation" id="gsegmentation">
+                        <input readonly type="checkbox" class="custom-control-input" name="segmentation" id="gsegmentation">
                         <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <label for="fmodel"><strong>GIVE A FINANCIAL MODEL DESCRIPTIONOF YOUR STARTUP</strong></label>
-                      <textarea class="form-control" id="fmodel" name="financeModel" rows="3" placeholder="Describe your initial investment requirements, projected revenue, funding and expenditure details. Revenue streams if this is a profitable enterprise"><%=summary.financialModel%></textarea>
+                      <textarea readonly class="form-control" id="fmodel" name="financeModel" rows="3" placeholder="Describe your initial investment requirements, projected revenue, funding and expenditure details. Revenue streams if this is a profitable enterprise"><%=summary.financialModel%></textarea>
                     </div>
 
 
                     <div class="form-group">
                       <label for="mcompetition"><strong>DESCRIBE YOUR MARKET COMPETITION</strong></label>
-                      <textarea class="form-control" name="competition" id="mcompetition" rows="3" placeholder="what is the size of the market,type of marketchosen and what is your startups' potential market share ?"><%=summary.competition%></textarea>
+                      <textarea readonly class="form-control" name="competition" id="mcompetition" rows="3" placeholder="what is the size of the market,type of marketchosen and what is your startups' potential market share ?"><%=summary.competition%></textarea>
                     </div>
                     <div class="form-group">
                       <label for="bepoint"><strong>WHAT IS THE ESTIMATED TIME OF BREAK-EVEN POINT</strong></label>
@@ -460,7 +460,7 @@
                         <div class="col-sm-12">
                         </div>
                       </div>
-                      <textarea name="bepoint" class="form-control" id="bepoint" rows="3"><%=summary.breakEvenPoint%></textarea>
+                      <textarea readonly name="bepoint" class="form-control" id="bepoint" rows="3"><%=summary.breakEvenPoint%></textarea>
                     </div>
                   </div>
               </div>
@@ -493,11 +493,11 @@
 
                     <div class="form-group">
                       <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
-                      <textarea class="form-control" id="productname" rows="3"><%=summary.name%></textarea>
+                      <textarea readonly class="form-control" id="productname" rows="3"><%=summary.name%></textarea>
                     </div>
                     <div class="form-group">
                       <label for="functionality"><strong>Functionality</strong></label>
-                      <input class="form-control" id="functionality" rows="3" placeholder="Describe your product/service in a clear and crisp way (100 words)"
+                      <input readonly class="form-control" id="functionality" rows="3" placeholder="Describe your product/service in a clear and crisp way (100 words)"
                         value="<%=summary.functionality%>">
                     </div>
                     <div class="form-group">
@@ -513,19 +513,19 @@
                           </p>
                         </div>
                       </div>
-                      <textarea class="form-control" id="currentmarketcompetition" rows="3"><%=summary.competition%></textarea>
+                      <textarea readonly class="form-control" id="currentmarketcompetition" rows="3"><%=summary.competition%></textarea>
                     </div>
                     <div class="form-group">
                       <label for="iproperty"><strong>Intellectual Property</strong></label>
-                      <textarea class="form-control" id="iproperty" rows="3" placeholder="What key intellectual property does the company have (govt permissions, real state, patents, patents pending, copyrights etc ? "><%=summary.intellectualProperty%></textarea>
+                      <textarea readonly class="form-control" id="iproperty" rows="3" placeholder="What key intellectual property does the company have (govt permissions, real state, patents, patents pending, copyrights etc ? "><%=summary.intellectualProperty%></textarea>
                     </div>
                     <div class="form-group">
                       <label for="usp"><strong>Uniques selling Preposition/ Market Potential</strong></label>
-                      <textarea class="form-control" id="usp" rows="3" placeholder="Talk about the uniqueness your of product/service. Is any similar product/service working in the same domain as of yours? (150 words) "><%=summary.sellingProp%></textarea>
+                      <textarea readonly class="form-control" id="usp" rows="3" placeholder="Talk about the uniqueness your of product/service. Is any similar product/service working in the same domain as of yours? (150 words) "><%=summary.sellingProp%></textarea>
                     </div>
                     <div class="form-group">
                       <label for="domain"><strong>What domain your product/service is centering?</strong></label>
-                      <input class="form-control" id="domain" rows="3" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance (or), others (150 words)  ">
+                      <input readonly class="form-control" id="domain" rows="3" placeholder="Education, Livelihoods, Social welfare, Public Health, Sustainability, Policy and Governance (or), others (150 words)  ">
                       <%=summary.domain%></input>
                     </div>
                     <div class="form-group">
@@ -543,7 +543,7 @@
                           </p>
                         </div>
                       </div>
-                      <textarea class="form-control" id="fpotential" rows="3"><%=summary.financialPotential%></textarea>
+                      <textarea readonly class="form-control" id="fpotential" rows="3"><%=summary.financialPotential%></textarea>
                     </div>
 
                     <div class="form-group">
@@ -559,18 +559,18 @@
                           </p>
                         </div>
                       </div>
-                      <textarea class="form-control" id="ssa" rows="3"><%=summary.sustainability%></textarea>
+                      <textarea readonly class="form-control" id="ssa" rows="3"><%=summary.sustainability%></textarea>
                     </div>
 
                     <div class="form-group">
                       <label for="cost"><strong>Cost Of Customer Acquisition </strong></label>
-                      <input class="form-control" id="cost" rows="3" placeholder="What is the cost of customer acquisition? "
+                      <input readonly class="form-control" id="cost" rows="3" placeholder="What is the cost of customer acquisition? "
                         value="<%=summary.cost%>">
                     </div>
 
                     <div class="form-group">
                       <label for="cstructure"><strong>Capitalization Structure</strong></label>
-                      <textarea class="form-control" id="cstructure" rows="3" placeholder="How much equity and debt has the company raised; what is the capitalization structure? "><%=summary.capitalization%></textarea>
+                      <textarea readonly class="form-control" id="cstructure" rows="3" placeholder="How much equity and debt has the company raised; what is the capitalization structure? "><%=summary.capitalization%></textarea>
                     </div>
                   </div>
               </div>
