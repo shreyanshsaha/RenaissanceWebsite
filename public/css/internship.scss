@@ -105,17 +105,10 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
-  .col-4 {
-    -ms-flex: 0 0 auto;
-    flex: 0 0 auto;
-    width: auto;
-    max-width: none;
-    margin-left: 10%;
-    margin-right: 10%;
-  }
   .header-container {
     display: block;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: auto;
+    margin-right: auto;
   }
+
 }
