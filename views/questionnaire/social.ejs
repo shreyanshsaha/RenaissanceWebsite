@@ -10,11 +10,15 @@
           <p><strong>HOW WOULD YOU CATEGORIZE YOUR IDEA?</strong></p>
           <div class="form-group">
             <div class="form-radio-control">
-              <input type="radio" class="custom-radio-input" name="ideaCategory" id="soriented" value="service-oriented" <%if(summary.category==='service-oriented'){%> checked <%}%> >
+              <input type="radio" class="custom-radio-input" name="ideaCategory" id="soriented" value="service-oriented"
+                <%if(summary.category==='service-oriented' ){%> checked
+              <%}%> >
               <label class="control-label" for="soriented">Service Oriented</label>
             </div>
             <div class="form-radio-control">
-              <input type="radio" class="custom-radio-input" name="ideaCategory" id="poriented" value="product-oriented" <%if(summary.category==='product-oriented'){%> checked <%}%>>
+              <input type="radio" class="custom-radio-input" name="ideaCategory" id="poriented" value="product-oriented"
+                <%if(summary.category==='product-oriented' ){%> checked
+              <%}%>>
               <label class="control-label" for="poriented">Product Oriented</label>
             </div>
           </div>
@@ -45,30 +49,43 @@
         <form class="form-group" id="category-social">
           <p><strong>HOW WOULD YOU CATEGORIZE YOUR SOCIAL ENTERPRISE?</strong></p>
           <div>
-            <input type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable" <%if(summary.categoryProfit==='profitable'){%> checked <%}%>>
+            <input type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable"
+              <%if(summary.categoryProfit==='profitable' ){%> checked
+            <%}%>>
             <label class="control-label" for="profitable">Profitable</label>
           </div>
           <div>
-            <input type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable" <%if(summary.categoryProfit==='non-profitable'){%> checked <%}%>>
+            <input type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable"
+              <%if(summary.categoryProfit==='non-profitable' ){%> checked
+            <%}%>>
             <label class="control-label" for="nprofitable">Non-Profitable</label>
           </div>
         </form>
         <div class="form-group">
           <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="dsegmentation" value="demographic-segmentation" <%if(summary.marketSegmentation.includes('demographic-segmentation')){%>checked<%}%>>
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="dsegmentation"
+              value="demographic-segmentation" <%if(summary.marketSegmentation.includes('demographic-segmentation')){%>checked
+            <%}%>>
             <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="bsegmentation" value="behavioral-segmentation" <%if(summary.marketSegmentation.includes('behavioral-segmentation')){%>checked<%}%>>
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="bsegmentation"
+              value="behavioral-segmentation" <%if(summary.marketSegmentation.includes('behavioral-segmentation')){%>checked
+            <%}%>>
             <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="psegmentation" value="psycological-segmentation" <%if(summary.marketSegmentation.includes('psycological-segmentation')){%>checked<%}%>>
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="psegmentation"
+              value="psycological-segmentation"
+              <%if(summary.marketSegmentation.includes('psycological-segmentation')){%>checked
+            <%}%>>
             <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
           </div>
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="gsegmentation" value="geographic-segmentation" <%if(summary.marketSegmentation.includes('geographic-segmentation')){%>checked<%}%>>
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="gsegmentation"
+              value="geographic-segmentation" <%if(summary.marketSegmentation.includes('geographic-segmentation')){%>checked
+            <%}%>>
             <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
           </div>
         </div>
