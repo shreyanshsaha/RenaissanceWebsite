@@ -74,7 +74,8 @@ router.post("/edit/:id", middleware.isAdmin, multer(multerConf).single('myimage'
 				location: req.body.location,
 				cost: req.body.cost,
 				duration: req.body.duration,
-				description: req.body.description
+				description: req.body.description,
+					link: req.body.link
 			}
 		}, function (err, deledata) {
 			res.redirect("/edit");
@@ -89,7 +90,8 @@ router.post("/edit/:id", middleware.isAdmin, multer(multerConf).single('myimage'
 				location: req.body.location,
 				cost: req.body.cost,
 				duration: req.body.duration,
-				description: req.body.description
+				description: req.body.description,
+					link: req.body.link
 			}
 		}, function (err, deledata) {
 			res.redirect("/edit");
@@ -97,6 +99,12 @@ router.post("/edit/:id", middleware.isAdmin, multer(multerConf).single('myimage'
 
 	}
 
+});
+// delete internship
+router.get('/edit/delete/:id',middleware.isAdmin, async function (req, res) {
+	Temp.remove({ _id: req.params.id}, function (err, deledata) {
+		res.redirect("/edit");
+	});
 });
 
 //add internship
@@ -112,7 +120,8 @@ router.post("/add_internship/new", middleware.isAdmin, multer(multerConf).single
 			location: req.body.location,
 			cost: req.body.cost,
 			duration: req.body.duration,
-			description: req.body.description
+			description: req.body.description,
+				link: req.body.link
 		}).save(function (err, doc) {
 			if (err) return res.json(err);
 			else
@@ -126,7 +135,8 @@ router.post("/add_internship/new", middleware.isAdmin, multer(multerConf).single
 			location: req.body.location,
 			cost: req.body.cost,
 			duration: req.body.duration,
-			description: req.body.description
+			description: req.body.description,
+				link: req.body.link
 		}).save(function (err, doc) {
 			if (err) return res.json(err);
 			else
