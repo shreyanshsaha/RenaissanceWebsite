@@ -74,7 +74,8 @@ router.post("/edit/:id", middleware.isAdmin, multer(multerConf).single('myimage'
 				location: req.body.location,
 				cost: req.body.cost,
 				duration: req.body.duration,
-				description: req.body.description
+				description: req.body.description,
+					link: req.body.link
 			}
 		}, function (err, deledata) {
 			res.redirect("/edit");
@@ -89,7 +90,8 @@ router.post("/edit/:id", middleware.isAdmin, multer(multerConf).single('myimage'
 				location: req.body.location,
 				cost: req.body.cost,
 				duration: req.body.duration,
-				description: req.body.description
+				description: req.body.description,
+					link: req.body.link
 			}
 		}, function (err, deledata) {
 			res.redirect("/edit");
@@ -118,7 +120,8 @@ router.post("/add_internship/new", middleware.isAdmin, multer(multerConf).single
 			location: req.body.location,
 			cost: req.body.cost,
 			duration: req.body.duration,
-			description: req.body.description
+			description: req.body.description,
+				link: req.body.link
 		}).save(function (err, doc) {
 			if (err) return res.json(err);
 			else
@@ -132,7 +135,8 @@ router.post("/add_internship/new", middleware.isAdmin, multer(multerConf).single
 			location: req.body.location,
 			cost: req.body.cost,
 			duration: req.body.duration,
-			description: req.body.description
+			description: req.body.description,
+				link: req.body.link
 		}).save(function (err, doc) {
 			if (err) return res.json(err);
 			else
