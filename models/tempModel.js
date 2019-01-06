@@ -7,7 +7,8 @@ var tempSchema = new mongoose.Schema({
   location:String,
   cost:String,
   duration:String,
-description:String
+description:String,
+link:String
 });
 
 var tempData = [
