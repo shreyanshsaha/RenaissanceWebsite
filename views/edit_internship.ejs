@@ -75,10 +75,13 @@
           <td><textarea type="text" class="form-control" name="description" value="<%= test[i].description %>"><%= test[i].description %></textarea></td>
         </tr>
         <tr>
-
-          <td colspan="2">
-            <div class="mx-auto"><button onclick="return confirm_click()" type="submit" class="btn btn-success">Save</button></div>
+<td >
+            <center><a onclick="return confirm_click()" href="/edit/delete/<%= test[i]._id %>">Delete</a></center>
           </td>
+          <td >
+            <center><button onclick="return confirm_click()" type="submit" class="btn btn-success">Save</button></center>
+          </td>
+          
 
         </tr>
       </table>
