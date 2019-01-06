@@ -98,6 +98,12 @@ router.post("/edit/:id", middleware.isAdmin, multer(multerConf).single('myimage'
 	}
 
 });
+// delete internship
+router.get('/edit/delete/:id',middleware.isAdmin, async function (req, res) {
+	Temp.remove({ _id: req.params.id}, function (err, deledata) {
+		res.redirect("/edit");
+	});
+});
 
 //add internship
 
