@@ -5,6 +5,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
+// var mongoose = require("mongoose");
 
 // ========
 // Database
@@ -18,6 +19,7 @@ var Bussiness = require("./models/ideationBusinessModel");
 var Social = require("./models/ideationSocialModel");
 var Operational = require("./models/operationalModel");
 var Questionnaires = require("./models/questionnaire");
+var Competition = require("./models/competition");
 
 // router.use(isAdmin);
 
@@ -40,6 +42,7 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 	var social = await Social.find();
 	var operational = await Operational.find();
 	var questionnaires = await Questionnaires.find();
+	var competition = await Competition.findOne().select('users').populate('users');
 
 	var teamLeaders = {};
 	var submitted = {};
@@ -69,8 +72,6 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 	await start(social);
 	await start(operational);
 
-	console.log('Leaders:\n', JSON.stringify(teamLeaders));
-
 
 	return res.render("admin_page", {
 		events1: events1,
@@ -80,6 +81,7 @@ router.get("/admin", middleware.isAdmin, async function (req, res) {
 		operational: operational,
 		qlength: questionnaires.length,
 		teamLeaders: teamLeaders,
+		registered: competition,
 		submitted: submitted
 	});
 });
@@ -94,4 +96,41 @@ router.get('/admin/delete/:id', middleware.isAdmin, async function (req, res) {
 	});
 });
 
+// Delete questionnaire
+router.put("/admin/delete/questionnaire/:type", async function (req, res) {
+	var data = req.body;
+	var id = data.id;
+	
+	// delete from proper collection
+	if (req.params.type == 'bussiness')
+		await Bussiness.findOneAndRemove({
+			_id: id
+		})
+		.catch(function (err) {
+			return res.send("Error: " + String(err));
+		});
+	else if (req.params.type == 'social')
+		await Social.findOneAndRemove({
+			_id: id
+		})
+		.catch(function (err) {
+			return res.send("Error: " + String(err));
+		});
+	else if (req.params.type == 'operational')
+		await Operational.findOneAndRemove({
+			_id: id
+		})
+		.catch(function (err) {
+			return res.send("Error: " + String(err));
+		});
+	else
+		return res.send("Error: Unknown startup type to remove!");
+
+	await Questionnaires.findOneAndRemove({q_id: id})
+	.catch(function(err){
+		return res.send("Error: "+ String(err));
+	});
+
+	return res.send("Success");
+})
 module.exports = router;

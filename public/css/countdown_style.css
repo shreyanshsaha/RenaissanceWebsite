@@ -1,125 +1,98 @@
-  @import url('https://fonts.googleapis.com/css?family=Karla');
-  .landing-inner {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 1);
-    text-align: center;
-    color: #fff;
-    overflow: hidden;
-    margin-top: 10px;
-    /* background: #333; */
-  }
-  
-  .landing {
-    background-image: url('./images/showcase.jpg');
-    background-size: cover;
-    background-position: center;
-    /* height: 40vh; */
+@import url("https://fonts.googleapis.com/css?family=Karla");
+.countdown-landing .landing-inner {
+  background: black;
+  text-align: center;
+  color: #fff;
+  padding-bottom: 5vh;
+}
 
+.countdown-landing .landing-inner .landing-inner-text {
+  font-size: 50px;
+  font-family: 'Karla', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.countdown-landing .landing-inner .landing-text {
+  font-size: 20px;
+}
+
+.countdown-landing .landing-inner .countdown {
+  font-size: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.countdown-landing .landing-inner .countdown .row {
+  background-color: #17a2b8;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  padding: 20px;
+  border: 1px #fff solid;
+  border-radius: 10px;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.countdown-landing .landing-inner .countdown .row div {
+  padding: 20px;
+  border: 1px #fff solid;
+  border-radius: 10px;
+  background: #000;
+  margin: 5px;
+}
+
+.countdown-landing .landing-inner .countdown .row div:first-child {
+  background: #17a2b8;
+}
+
+.countdown-landing .landing-inner .countdown .row span {
+  display: block;
+  font-size: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+  .countdown-landing .landing-inner .landing-inner-text {
+    font-size: 2rem;
   }
-  
-  .landing .landing-inner-text {
-    font-size: 50px;
-    font-family: 'Karla','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
-  
-  .landing .landing-text {
+  .countdown-landing .landing-inner .landing-text {
     font-size: 20px;
   }
-  
-  .countdown {
-    font-size: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-bottom: 10px;
+  .countdown-landing .landing-inner .countdown {
+    font-size: 1rem;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  .countdown div {
-    padding: 20px;
-    border: 1px #fff solid;
+  .countdown-landing .landing-inner .countdown .row {
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 10px;
-    background: #000;
-    opacity: 1;
-    margin: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  .countdown div:first-child {
+  .countdown-landing .landing-inner .countdown .row div {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    margin: 2px;
+    font-size: 1.5rem;
+  }
+  .countdown-landing .landing-inner .countdown .row div:first-child {
     background: #17a2b8;
   }
-  
-  .countdown span {
-    display: block;
-    font-size: 25px;
+  .countdown-landing .landing-inner .countdown .row div span {
+    position: absolute;
+    left: 0px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    font-size: 0.9rem;
   }
-  
-  @media (max-width: 650px) {
-    .landing img {
-      width: 70%;
-    }
-  
-
-    .landing .landing-inner-text {
-      font-size: 30px;
-    }
-  
-    .countdown {
-      font-size: 20px;
-
-      /* flex-direction: column;
-      display: grid;
-      padding: 0; */
-
-      flex-direction: column;
-      display: grid;
-      padding: 0;
-
-      flex-direction: column;
-      display: grid;
-      padding: 0;
-    }
-    
-    .countdown div {
-      /* padding: 5px; */
-      margin: 0px;
-
-    }
-    .countdown span{
-      font-size: 15px;
-    }  
-    .countdown div:first-child {
-
-      /* display: inline-table; */
-      /* width: 100%; */
-      /* padding: 10px; */
-    } 
-   
-      display: block;
-      width: 100%;
-      /* padding: 10px; */
-    }
-
-    
-  }
-  
-  
-  @media (max-height: 600px) {
-    img {
-      width: 20%;
-    }
-/*   
-    landing-text {
-      display: none;
-    } */
-  }
-  
-  @media (max-height: 400px) {
-     img {
-      padding-bottom: 30px;
-    }
-    
-    /* landing-inner-text {
-      display: none;
-    } */
-  }
+}
+/*# sourceMappingURL=countdown_style.css.map */

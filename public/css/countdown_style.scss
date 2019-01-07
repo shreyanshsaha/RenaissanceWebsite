@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Karla');
+
+.countdown-landing {
+  // *{
+  //   border: 1px solid red!important;
+  // }
+  .landing-inner {
+    // display: inline-block;
+    // width: 100%;
+    background: rgba(0, 0, 0, 1);
+    text-align: center;
+    color: #fff;
+    padding-bottom: 5vh;
+
+    .landing-inner-text {
+      font-size: 50px;
+      font-family: 'Karla', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .landing-text {
+      font-size: 20px;
+    }
+
+    .countdown {
+      // display: flex;
+      font-size: 50px;
+
+      // padding-bottom: 10px;
+      margin-left: auto;
+      margin-right: auto;
+
+      .row {
+        background-color: #17a2b8;
+        justify-content: center;
+        // align-items: center;
+        text-align: center;
+        // background-color: red;
+        padding: 20px;
+        border: 1px #fff solid;
+        border-radius: 10px;
+        // height: 40vh;
+        overflow: auto;
+        margin-left: auto;
+        margin-right: auto;
+
+        div {
+          padding: 20px;
+          border: 1px #fff solid;
+          border-radius: 10px;
+          background: #000;
+          margin: 5px;
+
+          &:first-child {
+            background: #17a2b8;
+          }
+        }
+
+        span {
+          display: block;
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .countdown-landing {
+    .landing-inner {
+  
+      .landing-inner-text {
+        font-size: 2rem;
+        
+      }
+  
+      .landing-text {
+        font-size: 20px;
+      }
+  
+      .countdown {
+        font-size: 1rem;
+        
+        margin-left: auto;
+        margin-right: auto;
+  
+        .row {
+          padding-top: 5px;
+          padding-bottom: 5px;
+          border-radius: 10px;
+          padding-left: 0px;
+          padding-right: 0px;
+          
+          overflow: auto;
+          margin-left: auto;
+          margin-right: auto;
+          
+          div {
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top:20px;
+            padding-bottom:20px;
+            // width:25vw;
+            
+            border-radius: 10px;
+            margin: 2px;
+            font-size: 1.5rem;
+            &:first-child {
+              background: #17a2b8;
+            }
+            span {
+              position: absolute;
+              left:0px;
+              left:50%;
+              transform: translateX(-50%);
+              // display: block;
+              font-size: 0.9rem;
+              // border:1px solid red;
+            }
+          }
+  
+        }
+      }
+    }
+  }
+}
