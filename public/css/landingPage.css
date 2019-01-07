@@ -186,6 +186,12 @@ span.city {
 	/* background-color: rgba(96, 201, 188, 0.2); */
 }
 
+.notification-sec {
+	text-align: left;
+	font-size: 14px;
+	text-shadow: 2px 2px #000;
+}
+
 @-webkit-keyframes blurFadeInOut {
 	100% {
 		opacity: 0;
@@ -225,6 +231,13 @@ span.city {
 	.notification{
 		font-size: 30px;
 	}
+
+
+	.notification-sec {
+		font-size: 18px;
+		text-shadow: 1px 1px #111;
+	}
+
 	
 }
 
