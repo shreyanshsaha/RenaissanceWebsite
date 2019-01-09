@@ -18,30 +18,31 @@
           <textarea class="form-control" id="idea" name="use" rows="3"><%=summary.use%></textarea>
         </div>
         <div class="form-group">
-          <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
-          <div class="form-control form-check" id="segmentation">
-
-            <div class="form-check">
-
-              <input type="checkbox" class="form-control-input" id="dsegmentation" value="demographic">
-              <label class="form-control-label" for="dsegmentation">Demographic Segmentation</label>
-
+            <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="dsegmentation"
+                value="demographic-segmentation" <%if(summary.segmentation.includes('demographic-segmentation')){%>checked
+              <%}%>>
+              <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
             </div>
-            <div class="form-check">
-
-              <input type="checkbox" class="form-control-input" id="bsegmentation" value="behavioral">
-              <label class="form-control-label" for="bsegmentation">Behavioral Segmentation</label>
-
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="bsegmentation"
+                value="behavioral-segmentation" <%if(summary.segmentation.includes('behavioral-segmentation')){%>checked
+              <%}%>>
+              <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
             </div>
-            <div class="form-check">
-
-              <input type="checkbox" class="form-control-input" id="psegmentation" value="phychographic">
-              <label class="form-control-label" for="psegmentation">Psychographic Segmentation</label>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="psegmentation"
+                value="psycological-segmentation"
+                <%if(summary.segmentation.includes('psycological-segmentation')){%>checked
+              <%}%>>
+              <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
             </div>
-            <div class="form-check">
-
-              <input type="checkbox" class="form-control-input" id="gsegmentation" value="geographic">
-              <label class="form-control-label" for="gsegmentation">Geographic Segmentation</label>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="gsegmentation"
+                value="geographic-segmentation" <%if(summary.segmentation.includes('geographic-segmentation')){%>checked
+              <%}%>>
+              <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
             </div>
           </div>
 

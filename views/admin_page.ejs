@@ -258,25 +258,25 @@
             <!-- Bussiness Pill -->
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
               <% bussiness.forEach(function(summary){ %>
-              
+
               <div class="row mb-2">
-                  <% if(teamLeaders[summary._id]){ %>
-                    <% if(submitted[summary._id]){ %>
-                    <button data-toggle="collapse" class="btn btn-success" style="width:100%" href="#bus<%=String(summary._id).substr(1,6)%>">
-                      <% } else { %>
-                      <button data-toggle="collapse" class="btn btn-primary" style="width:100%" href="#bus<%=String(summary._id).substr(1,6)%>">
-                        <% } %>
-                        Leader Name:
-                        <% if(teamLeaders[summary._id]){ %>
-                        <%= teamLeaders[summary._id] %>
-                        <% }; %>
-                      </button>
-                      <% } else { %>
-                      <button data-toggle="collapse" class="btn btn-danger col-10" style="width:100%" href="#bus<%=String(summary._id).substr(1,6)%>">
-                        Deleted!
-                      </button>
-                      <div class="btn btn-danger col-1 ml-auto" onclick="removeQuestionnaire('<%=summary._id%>', 'bussiness', this)">Remove</div>
-                      <% }; %>
+                <% if(teamLeaders[summary._id]){ %>
+                <% if(submitted[summary._id]){ %>
+                <button data-toggle="collapse" class="btn btn-success" style="width:100%" href="#bus<%=String(summary._id).substr(1,6)%>">
+                  <% } else { %>
+                  <button data-toggle="collapse" class="btn btn-primary" style="width:100%" href="#bus<%=String(summary._id).substr(1,6)%>">
+                    <% } %>
+                    Leader Name:
+                    <% if(teamLeaders[summary._id]){ %>
+                    <%= teamLeaders[summary._id] %>
+                    <% }; %>
+                  </button>
+                  <% } else { %>
+                  <button data-toggle="collapse" class="btn btn-danger col-10" style="width:100%" href="#bus<%=String(summary._id).substr(1,6)%>">
+                    Deleted!
+                  </button>
+                  <div class="btn btn-danger col-1 ml-auto" onclick="removeQuestionnaire('<%=summary._id%>', 'bussiness', this)">Remove</div>
+                  <% }; %>
                   <div class="col-12 collapse mt-4" id="bus<%=String(summary._id).substr(1,6)%>">
                     <div class="form-group">
                       <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
@@ -291,34 +291,36 @@
                     </div>
                     <div class="form-group">
                       <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
-                      <div class="form-control form-check" id="segmentation">
-
-                        <div class="form-check">
-
-                          <input type="checkbox" class="form-control-input" id="dsegmentation" value="demographic">
-                          <label class="form-control-label" for="dsegmentation">Demographic Segmentation</label>
-
-                        </div>
-                        <div class="form-check">
-
-                          <input type="checkbox" class="form-control-input" id="bsegmentation" value="behavioral">
-                          <label class="form-control-label" for="bsegmentation">Behavioral Segmentation</label>
-
-                        </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="dsegmentation"
+                          value="demographic-segmentation"
+                          <%if(summary.segmentation.includes('demographic-segmentation')){%>checked
+                        <%}%>>
+                        <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="bsegmentation"
+                          value="behavioral-segmentation"
+                          <%if(summary.segmentation.includes('behavioral-segmentation')){%>checked
+                        <%}%>>
+                        <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="psegmentation"
+                          value="psycological-segmentation"
+                          <%if(summary.segmentation.includes('psycological-segmentation')){%>checked
+                        <%}%>>
+                        <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="gsegmentation"
+                          value="geographic-segmentation"
+                          <%if(summary.segmentation.includes('geographic-segmentation')){%>checked
+                        <%}%>>
+                        <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <div class="form-check">
 
-                        <input type="checkbox" class="form-control-input" id="psegmentation" value="phychographic">
-                        <label class="form-control-label" for="psegmentation">Psychographic Segmentation</label>
-                      </div>
-                      <div class="form-check">
-
-                        <input type="checkbox" class="form-control-input" id="gsegmentation" value="geographic">
-                        <label class="form-control-label" for="gsegmentation">Geographic Segmentation</label>
-                      </div>
-                    </div>
                     <div class="form-group">
                       <label for="mcompetition"><strong>DESCRIBE YOUR MARKET COMPETITION</strong></label>
                       <textarea readonly class="form-control" name="competition" id="mcompetition" rows="3" placeholder="what is the size of the market,type of marketchosen and what is your startups' potential market share ?"><%=summary.competition%></textarea>
@@ -343,7 +345,7 @@
                     </div>
                   </div>
               </div>
-              
+
               <% }) %>
             </div>
 
@@ -351,44 +353,48 @@
             <!-- Social Pill -->
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
               <% social.forEach(function(summary){ %>
-              
+
               <div class="row mb-2">
-                  <% if(teamLeaders[summary._id]){ %>
-                    <% if(submitted[summary._id]){ %>
-                    <button data-toggle="collapse" class="btn btn-success" style="width:100%" href="#soc<%=String(summary._id).substr(1,6)%>">
-                      <% } else { %>
-                      <button data-toggle="collapse" class="btn btn-primary" style="width:100%" href="#soc<%=String(summary._id).substr(1,6)%>">
-                        <% } %>
-                        Leader Name:
-                        <% if(teamLeaders[summary._id]){ %>
-                        <%= teamLeaders[summary._id] %>
-                        <% }; %>
-                      </button>
-                      <% } else { %>
-                      <button data-toggle="collapse" class="btn btn-danger col-10" style="width:100%" href="#soc<%=String(summary._id).substr(1,6)%>">
-                        Deleted!
-                      </button>
-                      <div class="btn btn-danger col-1 ml-auto" onclick="removeQuestionnaire('<%=summary._id%>', 'social', this)">Remove</div>
-                      <% }; %>
+                <% if(teamLeaders[summary._id]){ %>
+                <% if(submitted[summary._id]){ %>
+                <button data-toggle="collapse" class="btn btn-success" style="width:100%" href="#soc<%=String(summary._id).substr(1,6)%>">
+                  <% } else { %>
+                  <button data-toggle="collapse" class="btn btn-primary" style="width:100%" href="#soc<%=String(summary._id).substr(1,6)%>">
+                    <% } %>
+                    Leader Name:
+                    <% if(teamLeaders[summary._id]){ %>
+                    <%= teamLeaders[summary._id] %>
+                    <% }; %>
+                  </button>
+                  <% } else { %>
+                  <button data-toggle="collapse" class="btn btn-danger col-10" style="width:100%" href="#soc<%=String(summary._id).substr(1,6)%>">
+                    Deleted!
+                  </button>
+                  <div class="btn btn-danger col-1 ml-auto" onclick="removeQuestionnaire('<%=summary._id%>', 'social', this)">Remove</div>
+                  <% }; %>
                   <div class="col-12 collapse mt-4" id="soc<%=String(summary._id).substr(1,6)%>">
+
+
 
                     <p><strong>HOW WOULD YOU CATEGORIZE YOUR IDEA?</strong></p>
                     <div class="form-group">
                       <div class="form-radio-control">
-                        <input readonly type="radio" name="categoryRadio" class="custom-radio-input" name="category" id="soriented"
-                          value="service-oriented">
-                        <label class="custom-control-label" for="soriented">Service Oriented</label>
+                        <input disabled type="radio" class="custom-radio-input" name="ideaCategory" id="soriented"
+                          value="service-oriented" <%if(summary.category==='service-oriented' ){%> checked
+                        <%}%> >
+                        <label class="control-label" for="soriented">Service Oriented</label>
                       </div>
                       <div class="form-radio-control">
-                        <input readonly type="radio" class="custom-radio-input" name="categoryRadio" id="poriented" name="category"
-                          value="product-oriented">
-                        <label class="custom-control-label" for="poriented">Product Oriented</label>
+                        <input disabled type="radio" class="custom-radio-input" name="ideaCategory" id="poriented"
+                          value="product-oriented" <%if(summary.category==='product-oriented' ){%> checked
+                        <%}%>>
+                        <label class="control-label" for="poriented">Product Oriented</label>
                       </div>
                     </div>
+
                     <div class="form-group">
                       <label for="productname"><strong>STARTUP/PRODUCT NAME</strong></label>
                       <textarea readonly class="form-control" name="productname" id="productname" rows="3"><%=summary.name%></textarea>
-                      </form>
                     </div>
 
                     <div class="form-group">
@@ -416,30 +422,46 @@
                     <div class="form-group">
                       <p><strong>HOW WOULD YOU CATEGORIZE YOUR SOCIAL ENTERPRISE?</strong></p>
                       <div>
-                        <input readonly type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable">
-                        <label class="custom-control-label" for="dsegmentation">Profitable</label>
+                        <input readonly type="radio" name="categoryProfit" class="radio-input" id="profitable" value="profitable"
+                          <%if(summary.categoryProfit==='profitable' ){%> checked
+                        <%}%>>
+                        <label class="control-label" for="profitable">Profitable</label>
                       </div>
                       <div>
-                        <input readonly type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable">
-                        <label class="custom-control-label" for="bsegmentation">Non-Profitable</label>
+                        <input readonly type="radio" name="categoryProfit" class="radio-input" id="nprofitable" value="non-profitable"
+                          <%if(summary.categoryProfit==='non-profitable' ){%> checked
+                        <%}%>>
+                        <label class="control-label" for="nprofitable">Non-Profitable</label>
                       </div>
                     </div>
                     <div class="form-group">
                       <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
                       <div class="custom-control custom-checkbox">
-                        <input readonly type="checkbox" class="custom-control-input" name="segmentation" id="dsegmentation">
+                        <input readonly type="checkbox" class="custom-control-input marketSegmentation" name="segmentation"
+                          id="dsegmentation" value="demographic-segmentation"
+                          <%if(summary.marketSegmentation.includes('demographic-segmentation')){%>checked
+                        <%}%>>
                         <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input readonly type="checkbox" class="custom-control-input" name="segmentation" id="bsegmentation">
+                        <input readonly type="checkbox" class="custom-control-input marketSegmentation" name="segmentation"
+                          id="bsegmentation" value="behavioral-segmentation"
+                          <%if(summary.marketSegmentation.includes('behavioral-segmentation')){%>checked
+                        <%}%>>
                         <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input readonly type="checkbox" class="custom-control-input" name="segmentation" id="psegmentation">
+                        <input readonly type="checkbox" class="custom-control-input marketSegmentation" name="segmentation"
+                          id="psegmentation" value="psycological-segmentation"
+                          <%if(summary.marketSegmentation.includes('psycological-segmentation')){%>checked
+                        <%}%>>
                         <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
                       </div>
                       <div class="custom-control custom-checkbox">
-                        <input readonly type="checkbox" class="custom-control-input" name="segmentation" id="gsegmentation">
+                        <input readonly type="checkbox" class="custom-control-input marketSegmentation" name="segmentation"
+                          id="gsegmentation" value="geographic-segmentation"
+                          <%if(summary.marketSegmentation.includes('geographic-segmentation')){%>checked
+                        <%}%>>
                         <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
                       </div>
                     </div>
@@ -464,7 +486,7 @@
                     </div>
                   </div>
               </div>
-              
+
               <% }) %>
             </div>
 
@@ -605,13 +627,15 @@
           36).substring(2, 6);
       }
 
-      function removeQuestionnaire(id, type, DOM){
+      function removeQuestionnaire(id, type, DOM) {
         $.ajax({
-          url:'/admin/delete/questionnaire/'+type,
+          url: '/admin/delete/questionnaire/' + type,
           type: "PUT",
-          data: {id: id},
-          success: function(data) {
-            if(/error/i.exec(data))
+          data: {
+            id: id
+          },
+          success: function (data) {
+            if (/error/i.exec(data))
               alert(data);
             else
               console.log(DOM.parentNode.remove());
