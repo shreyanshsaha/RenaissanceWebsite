@@ -285,7 +285,7 @@ router.put("/team/summary/:type", async function (req, res) {
 			var bussiness = await Bussiness.create({
 				name: null,
 				use: null,
-				segmentation: null,
+				segmentation: [],
 				competition: null,
 				financeModel: null,
 				feasibility: null,
@@ -305,7 +305,7 @@ router.put("/team/summary/:type", async function (req, res) {
 				domain: null,
 				socialImpact: null,
 				categoryProfit: null,
-				marketSegmentation: null,
+				marketSegmentation: [],
 				financialModel: null,
 				competition: null,
 				breakEvenPoint: null
@@ -360,14 +360,14 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 				var ques = await Bussiness.create({
 					name: req.body.name,
 					use: req.body.use,
-					segmentation: req.body.segmentation,
+					segmentation: JSON.parse(req.body.segmentation),
 					competition: req.body.competition,
 					financeModel: req.body.financeModel,
 					feasibility: req.body.feasibility,
 					breakEvenPoint: req.body.breakEvenPoint,
 					intellectualProperty: req.body.intellectualProperty,
 				});
-			else if (q.type === 'social')
+			else if (q.type === 'social') {
 				var ques = await Social.create({
 					category: req.body.categoryRadio,
 					name: req.body.productname,
@@ -375,13 +375,13 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 					socialEnt: req.body.senterprise,
 					socialImpact: req.body.simpact,
 					categoryProfit: req.body.categoryProfit,
-					marketSegmentation: req.body.segmentation,
+					marketSegmentation: JSON.parse(req.body.segmentation),
 					financialModel: req.body.financeModel,
 					feasibility: req.body.feasibility,
 					competition: req.body.competition,
 					breakEvenPoint: req.body.bepoint
 				});
-			else if (q.type === 'operational')
+			} else if (q.type === 'operational')
 				var ques = await Operational.create({
 					name: req.body.name,
 					functionality: req.body.functionality,
@@ -415,7 +415,7 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 					$set: {
 						name: req.body.name,
 						use: req.body.use,
-						segmentation: req.body.segmentation,
+						segmentation: JSON.parse(req.body.segmentation),
 						competition: req.body.competition,
 						financeModel: req.body.financeModel,
 						feasibility: req.body.feasibility,
@@ -427,7 +427,8 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 					overwrite: true
 				});
 				console.log("Ques: ", ques)
-			} else if (q.type === 'social')
+			} else if (q.type === 'social') {
+				console.log("Segmentation: ", JSON.parse(req.body.segmentation));
 				await Social.findOneAndUpdate({
 					_id: mongoose.Types.ObjectId(q.q_id)
 				}, {
@@ -438,7 +439,7 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 						socialEnt: req.body.senterprise,
 						socialImpact: req.body.simpact,
 						categoryProfit: req.body.categoryProfit,
-						marketSegmentation: req.body.segmentation,
+						marketSegmentation: JSON.parse(req.body.segmentation),
 						financialModel: req.body.financeModel,
 						feasibility: req.body.feasibility,
 						competition: req.body.competition,
@@ -448,7 +449,7 @@ router.put("/team/questionnaire/save/:type", async function (req, res) {
 					new: true,
 					overwrite: true
 				});
-			else if (q.type === 'operational') {
+			} else if (q.type === 'operational') {
 				console.log("Q: ", q);
 				var data = {
 					name: req.body.name,

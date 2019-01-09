@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 var bussinessSchema = mongoose.Schema({
   name: String,
   use: String,
-  segmentation: String,
+  segmentation: [{type:String}],
   competition: String,
   financeModel: String,
   feasibility: String,

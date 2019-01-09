@@ -180,3 +180,24 @@ Dropdown Events on menu bar
     visibility: visible;
   }
 }
+@media (max-width: 768px) {
+ 
+  .eventDivParent .eventDiv {
+    overflow: auto;
+    height: auto;
+    max-height: 210vh;
+    font-size: 0.25rem;
+  }
+  .eventDivParent .eventDiv .eventName {
+    font-size: 2.5rem;
+  }
+  .events h1 {
+    background-color:rgba(214, 214, 214, 0.733);
+    border-radius: 5px;
+    color: black;
+  }
+  .eventDivParent .eventDiv .eventDesc {
+    font-size: 1.25rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+}

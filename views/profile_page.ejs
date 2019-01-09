@@ -181,14 +181,14 @@
 											your Startup!
 										</h3>
 										<% }else{ %>
-											<% if(summary){ %>
-												<% if(summary.type==='bussiness'){ %>
-													<% include questionnaire/bussiness %>
-												<% } else if(summary.type==='social'){ %>
-													<% include questionnaire/social %>
-												<% } else if(summary.type==='operational'){ %>
-													<% include questionnaire/operation %>
-											<% } %>
+										<% if(summary){ %>
+										<% if(summary.type==='bussiness'){ %>
+										<% include questionnaire/bussiness %>
+										<% } else if(summary.type==='social'){ %>
+										<% include questionnaire/social %>
+										<% } else if(summary.type==='operational'){ %>
+										<% include questionnaire/operation %>
+										<% } %>
 										<div id="savingError" class="mt-4 mb-0"></div>
 										<% } else if(currentUser.teamId){ %>
 										<div class="card-deck">
@@ -282,183 +282,237 @@
 				}
 			})
 		}
-
 	</script>
 	<script>
-		function submitQuestionnaire(){
+		function submitQuestionnaire() {
 			var val = confirm("Do you really want to submit? You wont be able to make any changes after that!");
-			if(!val)
-				return;
-			$.post("/team/questionnaire/submit", function(data){
+			<%if(summary){%>
+			<%if (summary.type == 'bussiness') {%>
+			if (
+					document.getElementById('productname').value == '' ||
+					document.getElementById('idea').value == '' ||
+					document.getElementById('mcompetition').value == '' ||
+					document.getElementById('fmodel').value == '' ||
+					document.getElementById('fidea').value == '' ||
+					document.getElementById('bepoint').value == '' ||
+					document.getElementById('kiproperty').value == ''
+				)
+					return alert('Fields cannot be empty!');
+				<% }else if (summary.type == 'social') {%>
+					if (
+						$("input:radio[name=ideaCategory]:checked").val() == '' ||
+						document.getElementById('productname').value == '' ||
+						document.getElementById('domain').value == '' ||
+						document.getElementById('senterprise').value == '' ||
+						document.getElementById('simpact').value == '' ||
+						document.getElementById('fidea').value == '' ||
+						$("input:radio[name=categoryProfit]:checked").val() == '' ||
+						document.getElementById('fmodel').value == '' ||
+						document.getElementById('mcompetition').value == '' ||
+						document.getElementById('bepoint').value == ''
+					)
+						return alert('Fields cannot be empty!');
+				<%} else {%>
+					if (
+						document.getElementById('productname').value == '' ||
+						document.getElementById('functionality').value == '' ||
+						document.getElementById('currentmarketcompetition').value == '' ||
+						document.getElementById('iproperty').value == '' ||
+						document.getElementById('usp').value == '' ||
+						document.getElementById('domain').value == '' ||
+						document.getElementById('fpotential').value == '' ||
+						document.getElementById('ssa').value == '' ||
+						document.getElementById('cost').value == '' ||
+						document.getElementById('cstructure').value == ''
+					)
+						return alert('Fields cannot be empty!');
+				<%}%>
+				<%}%>
+			if (!val)
+					return;
+				$.post("/team/questionnaire/submit", function (data) {
+					console.log(data);
+					if(!/error/i.exec(data))
+						window.location.reload();
+				})
+			}
+
+
+			function saveQuestionnaire(type) {
+				console.log(type);
+				if (type == 'bussiness') {
+					var segmentationArray = [];
+					$("input:checkbox[name=segmentation]:checked").each(function () {
+						segmentationArray.push($(this).val());
+					});
+					console.log(segmentationArray);
+
+					var data = {
+						name: document.getElementById('productname').value,
+						use: document.getElementById('idea').value,
+						segmentation: JSON.stringify(segmentationArray),
+						competition: document.getElementById("mcompetition").value,
+						financeModel: document.getElementById("fmodel").value,
+						feasibility: document.getElementById("fidea").value,
+						breakEvenPoint: document.getElementById("bepoint").value,
+						intellectualProperty: document.getElementById("kiproperty").value,
+					}
+				} else if (type == 'social') {
+
+					var segmentationArray = [];
+					$("input:checkbox[name=segmentation]:checked").each(function () {
+						segmentationArray.push($(this).val());
+					});
+					console.log(segmentationArray);
+					var data = {
+						categoryRadio: $("input:radio[name=ideaCategory]:checked").val(),
+						productname: document.getElementById('productname').value,
+						domain: document.getElementById('domain').value,
+						senterprise: document.getElementById('senterprise').value,
+						simpact: document.getElementById('simpact').value,
+						feasibility: document.getElementById('fidea').value,
+						categoryProfit: $("input:radio[name=categoryProfit]:checked").val(),
+						segmentation: JSON.stringify(segmentationArray),
+						financeModel: document.getElementById('fmodel').value,
+						competition: document.getElementById('mcompetition').value,
+						bepoint: document.getElementById('bepoint').value
+					}
+				} else if (type == 'operational') {
+					var data = {
+						name: document.getElementById('productname').value,
+						functionality: document.getElementById('functionality').value,
+						competition: document.getElementById('currentmarketcompetition').value,
+						intellectualProperty: document.getElementById('iproperty').value,
+						sellingProp: document.getElementById('usp').value,
+						domain: document.getElementById('domain').value,
+						financialPotential: document.getElementById('fpotential').value,
+						sustainability: document.getElementById('ssa').value,
+						cost: document.getElementById('cost').value,
+						capitalization: document.getElementById('cstructure').value
+					}
+				}
 				console.log(data);
-			})
-		}
 
-
-		function saveQuestionnaire(type) {
-			console.log(type);
-			if (type == 'bussiness') {
-				var data = {
-					name: document.getElementById('productname').value,
-					use: document.getElementById('idea').value,
-					segmentation: document.getElementById("segmentation").value,
-					competition: document.getElementById("mcompetition").value,
-					financeModel: document.getElementById("fmodel").value,
-					feasibility: document.getElementById("fidea").value,
-					breakEvenPoint: document.getElementById("bepoint").value,
-					intellectualProperty: document.getElementById("kiproperty").value,
-				}
-			}
-			else if (type == 'social') {
-				var data = {
-					// categoryRadio: document.getElementById('category-radio').value,
-					categoryRadio: null,
-					productname: document.getElementById('productname').value,
-					domain: document.getElementById('domain').value,
-					senterprise: document.getElementById('senterprise').value,
-					simpact: document.getElementById('simpact').value,
-					feasibility: document.getElementById('fidea').value,
-					categoryProfit: document.getElementById('category-social').value,
-					segmentation: document.getElementById('dsegmentation').value,
-					financeModel: document.getElementById('fmodel').value,
-					competition: document.getElementById('mcompetition').value,
-					bepoint: document.getElementById('bepoint').value
-				}
-			}
-			else if (type == 'operational') {
-				var data = {
-					name: document.getElementById('productname').value,
-					functionality: document.getElementById('functionality').value,
-					competition: document.getElementById('currentmarketcompetition').value,
-					intellectualProperty: document.getElementById('iproperty').value,
-					sellingProp: document.getElementById('usp').value,
-					domain: document.getElementById('domain').value,
-					financialPotential: document.getElementById('fpotential').value,
-					sustainability: document.getElementById('ssa').value,
-					cost: document.getElementById('cost').value,
-					capitalization: document.getElementById('cstructure').value
-				}
-			}
-			console.log(data);
-
-			$.ajax({
-				url: "/team/questionnaire/save/" + type,
-				method: "put",
-				data: data,
-				success: function (data) {
-					var result = document.getElementById('savingError');
-					if(/error/i.exec(data))
-						result.innerHTML = `<div class="alert alert-danger" role="alert">
-											<strong>Error: </strong>`+data+`</div>`;
-					else
-						result.innerHTML = `<div class="alert alert-success" role="alert">
+				$.ajax({
+					url: "/team/questionnaire/save/" + type,
+					method: "put",
+					data: data,
+					success: function (data) {
+						var result = document.getElementById('savingError');
+						if (/error/i.exec(data))
+							result.innerHTML = `<div class="alert alert-danger" role="alert">
+											<strong>Error: </strong>` + data +
+								`</div>`;
+						else
+							result.innerHTML =
+								`<div class="alert alert-success" role="alert">
 											<strong>Success: </strong>The questionnaire is saved!</div>`;
-				}
-			})
-		}
+					}
+				})
+			}
 	</script>
 	<script>
-		if (document.getElementsByClassName(".teamMember").length >= 4) {
-			console.log("HIDE");
-			document.querySelector("#addMemberButton").classList.add("d-none");
-			document.getElementById("addUserDiv").classList.add("d-none");
-		}
-		document.querySelector("#addMember").addEventListener("click", function () {
-			console.log("Members:", document.querySelectorAll(".teamMember").length)
-			document.getElementById("addUserDiv").classList.toggle("d-none");
 			if (document.getElementsByClassName(".teamMember").length >= 4) {
 				console.log("HIDE");
 				document.querySelector("#addMemberButton").classList.add("d-none");
 				document.getElementById("addUserDiv").classList.add("d-none");
 			}
-		});
-
-
-
-
-		function addUser() {
-			var username = document.getElementById("teamUsername").value;
-			$.post("/team/add/" + username, function (data) {
-				if (/ERROR/i.exec(data)) {
-					alert(data);
-				} else {
-					console.log(data);
-					window.location.reload();
+			document.querySelector("#addMember").addEventListener("click", function () {
+				console.log("Members:", document.querySelectorAll(".teamMember").length)
+				document.getElementById("addUserDiv").classList.toggle("d-none");
+				if (document.getElementsByClassName(".teamMember").length >= 4) {
+					console.log("HIDE");
+					document.querySelector("#addMemberButton").classList.add("d-none");
+					document.getElementById("addUserDiv").classList.add("d-none");
 				}
 			});
 
-			// $.post("/addTeamMember", {
-			//   teamUsername: username
-			// }, function (data) {
-			//   // alert(data);
-			//   if (/ERROR/i.exec(data)) {
-			//     alert(data);
-			//     document.getElementById("teamUsername").value = '';
-			//   } else {
-			//     alert("User added to team!");
-			//     document.getElementById("addUserDiv").classList.add("d-none");
-			//     window.location.reload();
-			//   }
-			// });
-		}
 
-		function deleteMember(memID) {
-			$.post("/team/delete/user", {
-				teamMember: memID
-			}, function (data) {
-				if (/ERROR/i.exec(data)) {
-					alert(data);
-				} else {
-					// alert("User deleted!");
-					// console.log(data);
-					window.location.reload();
-				}
-			});
-		}
 
-		function deleteAllMembers() {
-			$.ajax({
-				url: "/team/<%= currentUser.teamId %>",
-				type: "DELETE",
-				success: function (data) {
+
+			function addUser() {
+				var username = document.getElementById("teamUsername").value;
+				$.post("/team/add/" + username, function (data) {
+					if (/ERROR/i.exec(data)) {
+						alert(data);
+					} else {
+						console.log(data);
+						window.location.reload();
+					}
+				});
+
+				// $.post("/addTeamMember", {
+				//   teamUsername: username
+				// }, function (data) {
+				//   // alert(data);
+				//   if (/ERROR/i.exec(data)) {
+				//     alert(data);
+				//     document.getElementById("teamUsername").value = '';
+				//   } else {
+				//     alert("User added to team!");
+				//     document.getElementById("addUserDiv").classList.add("d-none");
+				//     window.location.reload();
+				//   }
+				// });
+			}
+
+			function deleteMember(memID) {
+				$.post("/team/delete/user", {
+					teamMember: memID
+				}, function (data) {
+					if (/ERROR/i.exec(data)) {
+						alert(data);
+					} else {
+						// alert("User deleted!");
+						// console.log(data);
+						window.location.reload();
+					}
+				});
+			}
+
+			function deleteAllMembers() {
+				$.ajax({
+					url: "/team/<%= currentUser.teamId %>",
+					type: "DELETE",
+					success: function (data) {
+						if (/ERROR/i.exec(data)) {
+							alert(data);
+						} else {
+							window.location.reload();
+						}
+					}
+				});
+			}
+
+			function exitTeam() {
+				console.log("Called function!");
+				$.ajax({
+					type: "PUT",
+					url: "/team/exit",
+					success: function (data) {
+						console.log("Success", data);
+						if (/ERROR/i.exec(data)) {
+							alert(data);
+						} else {
+							window.location.reload();
+						}
+					},
+					fail: function (data) {
+						alert(data);
+					}
+				})
+			}
+
+			function createNewTeam() {
+				$.post("/team/new", function (data) {
 					if (/ERROR/i.exec(data)) {
 						alert(data);
 					} else {
 						window.location.reload();
+
 					}
-				}
-			});
-		}
-
-		function exitTeam() {
-			console.log("Called function!");
-			$.ajax({
-				type: "PUT",
-				url: "/team/exit",
-				success: function (data) {
-					console.log("Success", data);
-					if (/ERROR/i.exec(data)) {
-						alert(data);
-					} else {
-						window.location.reload();
-					}
-				},
-				fail: function (data) {
-					alert(data);
-				}
-			})
-		}
-
-		function createNewTeam() {
-			$.post("/team/new", function (data) {
-				if (/ERROR/i.exec(data)) {
-					alert(data);
-				} else {
-					window.location.reload();
-
-				}
-			});
-		}
+				});
+			}
 	</script>
 
 
