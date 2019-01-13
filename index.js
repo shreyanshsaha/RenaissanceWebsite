@@ -67,34 +67,7 @@ app.use(registerRoute);
 app.use(teamRoute);
 app.use(internshipRoute);
 app.use(forgetRoute);
-/*
-var transporter = nodemailer.createTransport({
-	service: 'gmail',
-	secure:false,
-	port:3000,
-	auth: {
-	  user: 'studentvit0@gmail.com',
-	  pass: 'Priyam@12'
-	},
-	tls:{
-		rejectUnauthorised:false
-	}
-  });
-  
-  var mailOptions = {
-	from: 'studentvit0@gmail.com',
-	to: 'priyamgupta340@gmail.com',
-	subject: 'Sending Email using Node.js',
-	text: 'That was easy!'
-  };
-  
-  transporter.sendMail(mailOptions, function(error, info){
-	if (error) {
-	  console.log(error);
-	} else {
-	  console.log('Email sent: ' + info.response);
-	}
-  });*/
+
 app.listen(3000, function () {
 	console.log("Server has started!");
  });
