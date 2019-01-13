@@ -53,7 +53,7 @@ router.post('/forgot', function(req, res, next) {
             port:3000,
             auth: {
                user: 'tech.renaissance18@gmail.com',
-              pass: '******'
+              pass: 'vit_cc_tech.'
             },
             tls:{
                 rejectUnauthorised:false
@@ -126,7 +126,7 @@ router.post('/forgot', function(req, res, next) {
             port:3000,
             auth: {
                user: 'tech.renaissance18@gmail.com',
-              pass: '*******'
+              pass: 'vit_cc_tech.'
             },
             tls:{
                 rejectUnauthorised:false
