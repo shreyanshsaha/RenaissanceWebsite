@@ -147,6 +147,6 @@ router.post('/forgot', function(req, res, next) {
     ], function(err) {
      return  res.redirect('/');
     });
-  });
+  }); 
 
 module.exports = router;
