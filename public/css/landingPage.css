@@ -172,19 +172,21 @@ span.city {
 
 .notification{
 	text-align: left;
-	font-size: 20px;
+	font-size: 15px;
 	text-transform: uppercase;
 	text-shadow: 2px 2px #000;
-	-webkit-animation: blurFadeInOut 3s ease-in backwards;
-	-moz-animation: blurFadeInOut 3s ease-in backwards;
-	-ms-animation: blurFadeInOut 3s ease-in backwards;
-	animation: blurFadeInOut 3s ease-in backwards;
+	-webkit-animation: blurFadeInOut 5s ease-in backwards;
+	-moz-animation: blurFadeInOut 5s ease-in backwards;
+	-ms-animation: blurFadeInOut 5s ease-in backwards;
+	animation: blurFadeInOut 5s ease-in backwards;
 	animation-iteration-count: infinite;
 	-webkit-animation-iteration-count: infinite; 
 	
 	
 	/* background-color: rgba(96, 201, 188, 0.2); */
 }
+
+
 
 .notification-sec {
 	text-align: left;
@@ -229,7 +231,7 @@ span.city {
 		font-size: 35px;
 	}
 	.notification{
-		font-size: 30px;
+		font-size: 20px;
 	}
 
 
