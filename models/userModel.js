@@ -17,6 +17,8 @@ var userSchema = new mongoose.Schema({
   registeredForCompetition: {type: Boolean, default:false},
   isAdmin: {type: Boolean, default:false},
   teamId: {type: mongoose.Schema.ObjectId, ref:"team", default: null},
+  resetPasswordToken: String,
+    resetPasswordExpires: Date,
   // questionnaire: {type: mongoose.Schema.ObjectId, ref:"questionairre", default:null}
 });
 
