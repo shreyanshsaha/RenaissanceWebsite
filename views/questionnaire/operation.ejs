@@ -3,6 +3,9 @@
     <h1 class="nametitle"><strong>Operational
       </strong></h1>
   </p>
+  <%if(submitted){%>
+    <div class="alert alert-primary text-center"><p class="text-info text-center">Questionnaire has been submitted! It cannot be changed!</p></div>
+  <% } %>
   <div class="row">
     <div class="col-sm-12">
       <form>
@@ -81,9 +84,7 @@
         <% if(submitted===false){ %> 
           <button type="button" class="btn btn-success" onclick="saveQuestionnaire('operational')">Save</button>
           <button type="button" class="btn btn-danger" onclick="submitQuestionnaire()">Submit</button>
-        <%} else {%>
-          <div class="alert alert-primary text-center"><p class="text-info text-center">Questionnaire has been submitted! It cannot be changed!</p></div>
-        <% } %>
+        <%}%>
       </form>
     </div>
   </div>
