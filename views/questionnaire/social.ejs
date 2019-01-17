@@ -3,6 +3,11 @@
     <h1 class="nametitle"><strong>SOCIAL STARTUPS</strong></h1>
     <h3 class="nametitle3"><strong>IDEATION PHASE</strong></h3>
   </p>
+  <%if(submitted){%>
+    <div class="alert alert-primary text-center">
+      <p class="text-info text-center">Questionnaire has been submitted! It cannot be changed!</p>
+    </div>
+    <% } %>
   <div class="row">
     <div class="col-12">
       <form name="mainForm">
@@ -117,11 +122,7 @@
         <% if(submitted===false){ %>
         <button type="button" class="btn btn-success" onclick="saveQuestionnaire('social')">Save</button>
         <button type="button" class="btn btn-danger" onclick="submitQuestionnaire()">Submit</button>
-        <%} else {%>
-        <div class="alert alert-primary text-center">
-          <p class="text-info text-center">Questionnaire has been submitted! It cannot be changed!</p>
-        </div>
-        <% } %>
+        <%} %>
       </form>
     </div>
   </div>
