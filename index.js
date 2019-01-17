@@ -70,7 +70,7 @@ app.use(forgetRoute);
 
 app.listen(3000, function () {
 	console.log("Server has started!");
- });
-app.listen(process.env.PORT, process.env.IP);
+});
+// app.listen(process.env.PORT, process.env.IP);
 
 

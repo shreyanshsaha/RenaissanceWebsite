@@ -287,6 +287,7 @@
 		function submitQuestionnaire() {
 			var val = confirm("Do you really want to submit? You wont be able to make any changes after that!");
 			<%if(summary){%>
+				saveQuestionnaire('<%=summary.type%>');
 			<%if (summary.type == 'bussiness') {%>
 			if (
 					document.getElementById('productname').value == '' ||
