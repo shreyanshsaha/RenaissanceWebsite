@@ -6,9 +6,65 @@
       </strong></h3>
   </p>
   <%if(submitted){%>
-  <div class="alert alert-primary text-center"><p class="text-info text-center">Questionnaire has been submitted! It cannot be changed!</p></div>
+  <div class="alert alert-primary text-center">
+    <p class="text-info text-center">Questionnaire has been submitted! It cannot be changed!</p>
+  </div>
   <% } %>
   <div class="row">
+    <div class="col-12">
+      <div class="row mt-4">
+        <ul class="nav nav-tabs col-sm-12" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#eligibilityTabContent" role="tab"
+              aria-selected="true">Eligibility</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#rulesTabContent" role="tab" aria-controls="profile"
+              aria-selected="false">Rules &amp; Regulations</a>
+          </li>
+        </ul>
+        <div class="tab-content col-sm-12" id="myTabContent">
+          <div class="tab-pane fade show active" id="eligibilityTabContent" role="tabpanel" aria-labelledby="home-tab">
+
+            <!-- Ideation Eligibility -->
+            <ul id="ideationEli" class="">
+              <li>There are no restrictions on any individual to participate. Anyone from students to professionals
+                can
+                participate.</li>
+              <li>Participant age must not cross 30 years as of 7th February, 2019.</li>
+              <li>Participant teams should have a visual model of the idea (prototype would be preferable).</li>
+            </ul>
+          </div>
+
+          <div class="tab-pane fade" id="rulesTabContent" role="operationRules" aria-labelledby="profile-tab">
+            <!-- Rules and Regulations are same for both -->
+            <ul>
+              <li class="text-danger">The shortlisted teans would have to oay the fee amount (2000 INR) for pitching their startups in front of the investors</li>
+              <li>Each team should consist of 1-4 members, with one member as the Team Leader.</li>
+              <li>There can be multiple teams from the same college.</li>
+              <li>A participant cannot be a member of more than one team. In case of such a discrepancy, both the
+                teams
+                will be disqualified.</li>
+              <li>Ideas submitted as part of a team’s business venture must represent the original work of the team
+                members.</li>
+              <li>Teams must answer each question in the questionnaire in detail in order to be considered for
+                evaluation.</li>
+              <li>Entries submitted after the deadline will not be considered. The name given to the idea/entry
+                cannot
+                be changed post submission.</li>
+              <li>The team members are required to carry some form of Identification.</li>
+              <li>The e-mail id and phone number used for registration will be used as the medium of contact
+                throughout
+                the competition.</li>
+              <li>Teams must comply with the judging criteria, and the final decision of the Judges.</li>
+              <li>Rights to all the final decisions related to the competition remains with VIT Chennai.</li>
+              <li>Any misconduct during the course of the competition would lead to disqualification of the team.</li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="col-12">
       <div>
         <div class="form-group">
@@ -21,72 +77,70 @@
           <textarea class="form-control" id="idea" name="use" rows="3"><%=summary.use%></textarea>
         </div>
         <div class="form-group">
-            <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="dsegmentation"
-                value="demographic-segmentation" <%if(summary.segmentation.includes('demographic-segmentation')){%>checked
-              <%}%>>
-              <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="bsegmentation"
-                value="behavioral-segmentation" <%if(summary.segmentation.includes('behavioral-segmentation')){%>checked
-              <%}%>>
-              <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="psegmentation"
-                value="psycological-segmentation"
-                <%if(summary.segmentation.includes('psycological-segmentation')){%>checked
-              <%}%>>
-              <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="gsegmentation"
-                value="geographic-segmentation" <%if(summary.segmentation.includes('geographic-segmentation')){%>checked
-              <%}%>>
-              <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
-            </div>
+          <p><strong>WHAT IS THE TYPE OF MARKET SEGMENTATION USED?</strong></p>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="dsegmentation"
+              value="demographic-segmentation" <%if(summary.segmentation.includes('demographic-segmentation')){%>checked
+            <%}%>>
+            <label class="custom-control-label" for="dsegmentation">Demographic Segmentation</label>
           </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="bsegmentation"
+              value="behavioral-segmentation" <%if(summary.segmentation.includes('behavioral-segmentation')){%>checked
+            <%}%>>
+            <label class="custom-control-label" for="bsegmentation">Behavioral Segmentation</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="psegmentation"
+              value="psycological-segmentation" <%if(summary.segmentation.includes('psycological-segmentation')){%>checked
+            <%}%>>
+            <label class="custom-control-label" for="psegmentation">Psychographic Segmentation</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input marketSegmentation" name="segmentation" id="gsegmentation"
+              value="geographic-segmentation" <%if(summary.segmentation.includes('geographic-segmentation')){%>checked
+            <%}%>>
+            <label class="custom-control-label" for="gsegmentation">Geographic Segmentation</label>
+          </div>
+        </div>
 
-          <div class="form-group">
-            <label for="mcompetition"><strong>DESCRIBE YOUR MARKET COMPETITION</strong></label>
-            <textarea class="form-control" name="competition" id="mcompetition" rows="3" placeholder="what is the size of the market,type of marketchosen and what is your startups' potential market share ?"><%=summary.competition%></textarea>
-          </div>
-          <div class="form-group">
-            <label for="fmodel"><strong>GIVE A FINANCIAL MODEL DESCRIPTION OF YOUR STARTUP</strong></label>
-            <textarea class="form-control" name="financeModel" id="fmodel" rows="3" placeholder="Describe your initial investment requirements,projected revenue,funding,revenue streams and expenditure details."><%=summary.financeModel%></textarea>
-          </div>
-          <div class="form-group">
-            <label for="fidea"><strong>WHAT IS THE FEASIBILITY OF THE IDEA?</strong>[250 words]</label>
-            <textarea class="form-control" name="feasibility" id="fidea" rows="3" placeholder="Is the proposed idea doable considering the social,economic and regional constraints?"><%=summary.feasibility%></textarea>
-          </div>
-          <div class="form-group">
-            <label for="bepoint"><strong>WHAT IS THE ESTIMATED TIME OF BREAK-EVEN POINT</strong></label>
-            <div class="row">
-              <div class="col-sm-12">
-                <p class="text-info">
-                  The break-even point (BEP) or break-even level represents the sales amount that is required to cover
-                  total costs, consisting of both fixed and variable costs to the company. Total profit at the
-                  break-even
-                  point is zero
-                </p>
-              </div>
+        <div class="form-group">
+          <label for="mcompetition"><strong>DESCRIBE YOUR MARKET COMPETITION</strong></label>
+          <textarea class="form-control" name="competition" id="mcompetition" rows="3" placeholder="what is the size of the market,type of marketchosen and what is your startups' potential market share ?"><%=summary.competition%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="fmodel"><strong>GIVE A FINANCIAL MODEL DESCRIPTION OF YOUR STARTUP</strong></label>
+          <textarea class="form-control" name="financeModel" id="fmodel" rows="3" placeholder="Describe your initial investment requirements,projected revenue,funding,revenue streams and expenditure details."><%=summary.financeModel%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="fidea"><strong>WHAT IS THE FEASIBILITY OF THE IDEA?</strong>[250 words]</label>
+          <textarea class="form-control" name="feasibility" id="fidea" rows="3" placeholder="Is the proposed idea doable considering the social,economic and regional constraints?"><%=summary.feasibility%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="bepoint"><strong>WHAT IS THE ESTIMATED TIME OF BREAK-EVEN POINT</strong></label>
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="text-info">
+                The break-even point (BEP) or break-even level represents the sales amount that is required to cover
+                total costs, consisting of both fixed and variable costs to the company. Total profit at the
+                break-even
+                point is zero
+              </p>
             </div>
-            <textarea class="form-control" id="bepoint" rows="3" name="breakEvenPoint"><%=summary.breakEvenPoint%></textarea>
           </div>
-          <div class="form-group">
-            <label for="kiproperty"><strong>WHAT KEY INTELLECTUAL PROPERTY DOES THE COMPANY HAVE?</strong>[250 words]</label>
-            <textarea class="form-control" id="kiproperty" rows="3" placeholder="patents,patents pending,copywrights,trade secrets,trademarks,domain names if any?" name="intellectualProperty"><%=summary.intellectualProperty%></textarea>
-          </div>
-          <% if(submitted===false){ %> 
-            <button type="button" class="btn btn-success" onclick="saveQuestionnaire('bussiness')">Save</button>
-            <button type="button" class="btn btn-danger" onclick="submitQuestionnaire()">Submit</button>
-          <%}%>
-          
+          <textarea class="form-control" id="bepoint" rows="3" name="breakEvenPoint"><%=summary.breakEvenPoint%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="kiproperty"><strong>WHAT KEY INTELLECTUAL PROPERTY DOES THE COMPANY HAVE?</strong>[250 words]</label>
+          <textarea class="form-control" id="kiproperty" rows="3" placeholder="patents,patents pending,copywrights,trade secrets,trademarks,domain names if any?"
+            name="intellectualProperty"><%=summary.intellectualProperty%></textarea>
+        </div>
+        <% if(submitted===false){ %>
+        <button type="button" class="btn btn-success" onclick="saveQuestionnaire('bussiness')">Save</button>
+        <button type="button" class="btn btn-danger" onclick="submitQuestionnaire()">Submit</button>
+        <%}%>
+
       </div>
     </div>
   </div>
 </div>
-
-
