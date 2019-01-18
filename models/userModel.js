@@ -7,9 +7,9 @@ var userSchema = new mongoose.Schema({
 
   firstName:      {type: String, lowercase: true, required: true},
   lastName:       {type: String, lowercase: true, required: true},
-  email:          {type: String, lowercase: true, required: true},
-  username: String,
-  contact: Number,
+  email:          {type: String, lowercase: true, required: true, unique:true},
+  username: {type:String, unique:true},
+  contact: {type:Number, unique:true},
   password: String,
   age:Number,
   gender:String,
