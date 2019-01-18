@@ -49,9 +49,9 @@ router.post('/forgot', function (req, res, next) {
     },
     function (token, user, done) {
       var smtpTransport = nodemailer.createTransport(smtpTransportNodemailer({
-        service: 'Gmail',
-        host:'smtp.gmail.com',
-        secure: false,
+        service: 'gmail',
+        // host:'smtp.gmail.com',
+        // secure: false,
         // port: 3000,
         auth: {
           user: 'tech.renaissance18@gmail.com',
@@ -74,6 +74,8 @@ router.post('/forgot', function (req, res, next) {
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       smtpTransport.sendMail(mailOptions, function (err) {
+        if(err)
+          console.log("Mail error:", err);
         console.log('mail sent');
         req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
         done(err, 'done');
