@@ -75,7 +75,7 @@ router.post('/forgot', function(req, res, next) {
           console.log('mail sent');
         req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
           done(err, 'done');
-         return res.send("Success");
+         return res.redirect("/forgot");
         });
       }
     ], function(err) {
