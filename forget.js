@@ -5,6 +5,7 @@ var LocalStrategy = require('passport-local');
 var bodyparser = require('body-parser');
 var async = require("async");
 var nodemailer = require("nodemailer");
+var smtpTransport = require("nodemailer-smtp-transport");
 var crypto = require("crypto");
 
 
@@ -47,7 +48,7 @@ router.post('/forgot', function (req, res, next) {
       });
     },
     function (token, user, done) {
-      var smtpTransport = nodemailer.createTransport({
+      var smtpTransport = nodemailer.createTransport(smtpTransport({
         service: 'Gmail',
         host:'smtp.gmail.com',
         secure: false,
@@ -59,7 +60,7 @@ router.post('/forgot', function (req, res, next) {
         tls: {
           rejectUnauthorised: false
         }
-      });
+      }));
 
 
 
