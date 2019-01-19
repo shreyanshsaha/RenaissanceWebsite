@@ -11,7 +11,15 @@ var middleware = require('./middleware');
 var Event = require("./models/eventModel");
 
 //! Debug only
-var sponsorDetails=[
+
+var sponsors = [
+	"/images/newSponsors/1.jpg",
+	"/images/newSponsors/2.png",
+	"/images/newSponsors/3.png",
+	"/images/newSponsors/download.png",
+	"/images/newSponsors/outOfTheBlue.jpeg",
+]
+var pastSponsorDetails=[
 	{
 		type:"Startup Ecosystem Partners",
 		imageUrl:[
@@ -91,7 +99,7 @@ router.get("/", function (req, res) {
 
 // Past Sponsors
 router.get("/sponsors", function(req, res){
-	res.render("sponsors", {sponsors: sponsorDetails});
+	res.render("sponsors", {pastSponsors: pastSponsorDetails, sponsors: sponsors});
 });
 
 
