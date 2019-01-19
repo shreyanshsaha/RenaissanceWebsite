@@ -15,10 +15,23 @@ var Event = require("./models/eventModel");
 var sponsors = [
 	"/images/newSponsors/1.jpg",
 	"/images/newSponsors/2.png",
-	"/images/newSponsors/3.png",
+	"/images/newSponsors/3.jpg",
 	"/images/newSponsors/download.png",
-	"/images/newSponsors/outOfTheBlue.jpeg",
+	"/images/newSponsors/outOfTheBlue.jpg",
 ]
+
+var partners = [
+	"/images/partners/1.png",
+	"/images/partners/2.jpg",
+	"/images/partners/3.jpg",
+	"/images/partners/4.png",
+	"/images/partners/5.png",
+	"/images/partners/6.jpg",
+	"/images/partners/7.png",
+	"/images/partners/8.jpg",
+	"/images/partners/9.JPG"
+]
+
 var pastSponsorDetails=[
 	{
 		type:"Startup Ecosystem Partners",
@@ -99,7 +112,7 @@ router.get("/", function (req, res) {
 
 // Past Sponsors
 router.get("/sponsors", function(req, res){
-	res.render("sponsors", {pastSponsors: pastSponsorDetails, sponsors: sponsors});
+	res.render("sponsors", {pastSponsors: pastSponsorDetails, sponsors: sponsors, partners: partners});
 });
 
 
