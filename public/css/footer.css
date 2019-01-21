@@ -5,10 +5,9 @@
   color: white;
   min-height: 20vh;
   width: 90vw;
-  margin: auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-family: 'Karla','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Karla', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .footer > * {
