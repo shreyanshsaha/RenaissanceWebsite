@@ -9,7 +9,7 @@ var middleware = require('./middleware');
 // Database
 // ========
 var Event = require("./models/eventModel");
-
+var Stock = require("./models/stockModel");
 //! Debug only
 
 var sponsors = [
@@ -101,6 +101,32 @@ router.use(function (req, res, next) {
 // ===========
 
 // Root
+//stock markting
+router.get("/newreg", async function (req, res) {
+
+	return res.render("stock_marketing");
+});
+router.post("/newregistration",  async function (req, res) {
+
+	
+		new Stock({
+			email: req.body.email,
+			registrationno: req.body.register,
+			name: req.body.name,
+			number:req.body.number,
+			whatsnumber:req.body.number2			
+		}).save(function (err, doc) {
+			if (err)
+			{ 	req.flash('error','Something went wrong.');
+			return res.json(err);}
+			else{
+			req.flash('success','Registration  Successful.');
+				return res.redirect("/newreg");}
+		});
+	
+	
+});
+//
 router.get("/", function (req, res) {
 	Event.find({}, function(err, events){
 		if(err)
