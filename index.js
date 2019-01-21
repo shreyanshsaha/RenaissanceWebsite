@@ -27,8 +27,8 @@ var rootRoute = require("./root"),
 // Setting up express and database
 // ===============================
 var app = express();
- mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
-// mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
+//  mongoose.connect("mongodb://localhost/renaissance", {useNewUrlParser: true});
+mongoose.connect("mongodb://heroku_np15kmnp:8560fls5thno6kh6di7hleddbg@ds263642.mlab.com:63642/heroku_np15kmnp", {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
