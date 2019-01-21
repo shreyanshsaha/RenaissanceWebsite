@@ -15,12 +15,13 @@
   <link rel="stylesheet" type="text/css" media="screen" href="/css/navbar.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/footer.css" />
 </head>
+
 <body>
   <% include partials/navbar %>
-  <div class="container mt-4">
-    <h1>Stock Trading | Registrations</h1>
+  <div class="container" style="margin-top:100px">
+    <h3 class="text-muted">Stock Trading Registrations</h3>
     <table class="table table-hover table-stripped table-sm mt-4">
-      <thead>
+      <thead class="bg-dark text-white">
         <tr>
           <td>Name</td>
           <td>Email</td>
@@ -30,19 +31,30 @@
         </tr>
       </thead>
       <tbody>
-        <% stockRegistrations.forEach(function(registration)){ %>
-          <tr>
-            <td>registration.name</td>
-            <td>registration.email</td>
-            <td>registration.rno</td>
-            <td>registration.whatsapp</td>
-            <td>registration.contact</td>
-          </tr>
-        <% } %>
+        <% stockRegistrations.forEach(function(registration){ %>
+        <tr>
+          <td>
+            <%=registration.name%>
+          </td>
+          <td>
+            <%=registration.email%>
+          </td>
+          <td>
+            <%=registration.registrationno%>
+          </td>
+          <td>
+            <%=registration.number%>
+          </td>
+          <td>
+            <%=registration.whatsnumber%>
+          </td>
+        </tr>
+        <% }); %>
       </tbody>
     </table>
   </div>
+
   
-  <% include partials/footer %>
 </body>
+
 </html>

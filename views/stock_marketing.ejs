@@ -2,87 +2,87 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.css">
-  <link rel="stylesheet" href="/css/navbar.css">
-  <link rel="stylesheet" href="/css/internship.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/internship.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 
 </head>
 
 <body>
-<% include partials/navbar %>
-<br><br>
-<br><br><div class="container">
+    <% include partials/navbar %>
+    <br><br>
+    <br><br>
+    <div class="container">
         <% if(error && error.length > 0) { %>
-          <div class="alert alert-danger"><p><%=error %></p></div>
+        <div class="alert alert-danger">
+            <p>
+                <%=error %>
+            </p>
+        </div>
         <% } %>
-        
+
         <% if(success && success.length > 0) { %>
-          <div class="alert alert-success"><p><%= success %></p></div>
+        <div class="alert alert-success">
+            <p>
+                <%= success %>
+            </p>
+        </div>
         <% } %>
-     </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                  
-                   
-                    <form method="POST" action="/newregistration" id="new" >
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label for="name">  Email :</label>
-                                <input type="email" class="form-control"  name="email" maxlength="50"required >
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label for="name">  Name :</label>
-                                <input type="text" class="form-control"  name="name" maxlength="50" required>
-                            </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+
+
+                <form method="POST" action="/newregistration" id="new">
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label for="name"> Email :</label>
+                            <input type="email" class="form-control" name="email" maxlength="50" required>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label for="Image"> Registration No. :</label>
-                                <input type="text" class="form-control"  name="register"required>
-                            </div>
-                             
-                            <div class="col-sm-6 form-group">
-                                <label for="email"> Whatsapp No. :</label>
-                                <input type="number" class="form-control" name="number"  required >
-                            </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="name"> Name :</label>
+                            <input type="text" class="form-control" name="name" maxlength="50" required>
                         </div>
-                        
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label for="name"> Contact no. :</label>
-                                <input class="form-control" type="number" name="number2"   rows="7" required>
-                            </div>
-                           
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label for="Image"> Registration No. :</label>
+                            <input type="text" class="form-control" name="register" required>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12 form-group">
-                                <button onclick="return confirm_click()" type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs" name="add">SUBMIT </button>
-                            </div>
+
+                        <div class="col-sm-6 form-group">
+                            <label for="email"> Whatsapp No. :</label>
+                            <input type="number" class="form-control" name="number" required>
                         </div>
-                    </form>
-                   
-                </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label for="name"> Contact no. :</label>
+                            <input class="form-control" type="number" name="number2" rows="7" required>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <button onclick="return confirm_click()" type="submit" class="btn btn-lg btn-success btn-block"
+                                id="btnContactUs" name="add">SUBMIT </button>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
-    
-        <script>
+    </div>
+</body>
 
-            function confirm_click() {
-              var txt;
-              var r = confirm("Are you sure ?");
-              return r;
-          
-          }
-          
-            </script>
-    </body>
 </html>

@@ -32,10 +32,9 @@ var partners = [
 	"/images/partners/9.JPG"
 ]
 
-var pastSponsorDetails=[
-	{
-		type:"Startup Ecosystem Partners",
-		imageUrl:[
+var pastSponsorDetails = [{
+		type: "Startup Ecosystem Partners",
+		imageUrl: [
 			"/images/sponsors/startup1.jpg",
 			"/images/sponsors/startup2.jpg",
 			"/images/sponsors/startup3.jpg",
@@ -45,36 +44,36 @@ var pastSponsorDetails=[
 		]
 	},
 	{
-		type:"Knowlege Partners",
-		imageUrl:[
+		type: "Knowlege Partners",
+		imageUrl: [
 			"/images/sponsors/knowledge1.jpg",
 			"/images/sponsors/knowledge2.jpg",
 			"/images/sponsors/knowledge3.jpg"
 		]
 	},
 	{
-		type:"Technology Partners",
-		imageUrl:[
+		type: "Technology Partners",
+		imageUrl: [
 			"/images/sponsors/tech1.jpg",
 			"/images/sponsors/tech2.jpg"
 		]
 	},
 	{
-		type:"Event Partners",
-		imageUrl:[
+		type: "Event Partners",
+		imageUrl: [
 			"/images/sponsors/event1.jpg",
 			"/images/sponsors/event2.jpg"
 		]
 	},
 	{
-		type:"Audio Partners",
-		imageUrl:[
+		type: "Audio Partners",
+		imageUrl: [
 			"/images/sponsors/audio1.jpg"
 		]
 	},
 	{
-		type:"Media Partners",
-		imageUrl:[
+		type: "Media Partners",
+		imageUrl: [
 			"/images/sponsors/media1.jpg",
 			"/images/sponsors/media2.jpg",
 			"/images/sponsors/media3.jpg",
@@ -102,53 +101,69 @@ router.use(function (req, res, next) {
 
 // Root
 //stock markting
-router.get("/newreg", async function (req, res) {
-
-	return res.render("stock_marketing");
+router.get("/stock", async function (req, res) {
+	return res.render("stockTrading");
 });
-router.post("/newregistration",  async function (req, res) {
 
-	
-		new Stock({
+router.post("/stock", async function (req, res) {
+
+
+	Stock.create({
 			email: req.body.email,
 			registrationno: req.body.register,
 			name: req.body.name,
-			number:req.body.number,
-			whatsnumber:req.body.number2			
-		}).save(function (err, doc) {
-			if (err)
-			{ 	req.flash('error','Something went wrong.');
-			return res.json(err);}
-			else{
-			req.flash('success','Registration  Successful.');
-				return res.redirect("/newreg");}
-		});
-	
-	
+			number: req.body.number,
+			whatsnumber: req.body.number2
+		},
+		function (err, doc) {
+			if (err) {
+				req.flash('error', 'Something went wrong.');
+				console.log(err);
+				return res.redirect("/stock");
+			} else {
+				req.flash('success', 'Registration  Successful.');
+				return res.redirect("/stock");
+			}
+		}
+	);
 });
+
+router.get("/admin/stock", async function (req, res) {
+	var stockRegistrations = await Stock.find();
+	return res.render("stockTradingAdmin", {
+		stockRegistrations: stockRegistrations
+	});
+});
+
 //
 router.get("/", function (req, res) {
-	Event.find({}, function(err, events){
-		if(err)
+	Event.find({}, function (err, events) {
+		if (err)
 			console.log(err);
 		else
-			res.render("home", { events: events });
+			res.render("home", {
+				events: events
+			});
 	});
 });
 
 // Past Sponsors
-router.get("/sponsors", function(req, res){
-	res.render("sponsors", {pastSponsors: pastSponsorDetails, sponsors: sponsors, partners: partners});
+router.get("/sponsors", function (req, res) {
+	res.render("sponsors", {
+		pastSponsors: pastSponsorDetails,
+		sponsors: sponsors,
+		partners: partners
+	});
 });
 
 
 // Feedback
-router.post("/feedback", function(req, res){
+router.post("/feedback", function (req, res) {
 	var name = req.body.name;
 	var email = req.body.email;
 	var message = req.body.feedbackMsg;
 	var subject = req.body.subject;
-	if(name==='' || email==='' ||message===''){
+	if (name === '' || email === '' || message === '') {
 		res.send("ERROR: Field is empty");
 		return;
 	}
@@ -156,15 +171,14 @@ router.post("/feedback", function(req, res){
 		name: name,
 		email: email,
 		feedbackText: message,
-		subject:subject
+		subject: subject
 	};
 
-	Feedback.create(newfeedback, function(err, feedback){
-		if(err){
+	Feedback.create(newfeedback, function (err, feedback) {
+		if (err) {
 			console.log(err);
 			res.send("ERROR: Feedback could not be submitted");
-		}
-		else{
+		} else {
 			console.log(newfeedback);
 			res.send("SUCCESS");
 		}
@@ -175,19 +189,20 @@ router.post("/feedback", function(req, res){
 router.get("/login", function (req, res) {
 	console.log("/login, ref:", req.query.ref);
 
-	return res.render("login", {error: req.query.error});
+	return res.render("login", {
+		error: req.query.error
+	});
 });
 
-router.post("/login", passport.authenticate("local", 
-	{
-		failureRedirect: "/login?error="+'Error: User doesnt exist!'
-	}), function (req, res) {
-		console.log(req.user.username, " logged in!");
-		// if(req.body.reference)
-		// 	res.redirect(req.body.reference);
-		// else
-		// 	res.redirect("/user");
-		res.redirect("/user")
+router.post("/login", passport.authenticate("local", {
+	failureRedirect: "/login?error=" + 'Error: User doesnt exist!'
+}), function (req, res) {
+	console.log(req.user.username, " logged in!");
+	// if(req.body.reference)
+	// 	res.redirect(req.body.reference);
+	// else
+	// 	res.redirect("/user");
+	res.redirect("/user")
 });
 
 router.get("/logout", function (req, res) {
