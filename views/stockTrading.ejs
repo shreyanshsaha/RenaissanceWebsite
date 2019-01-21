@@ -2,6 +2,7 @@
 	<head>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<style>
+			/* TODO: Remove inline css */
 			.layout
 			{
 				margin-left:40%;
@@ -14,14 +15,13 @@
 			h1
 			{
 				margin-left: 39%;
-				color: 
 			}
 		</style>
 	</head>
 	<body>
-		<h1 class="text-primary"><u>STOCK TRADING</u></h1>
+		<h1 class="text-primary">STOCK TRADING</h1>
 		<div class="layout">
-			<form>
+			<div>
 				<div class="form-group">
 				    <label for="email">Email Address:</label>
 				    <input type="email" class="form-control" id="email" required="true">
@@ -42,8 +42,19 @@
 				    <label for="cnumber">Contact Number:</label>
 				    <input type="text" class="form-control" id="cnumber" required="true">
 			  	</div>
-		  		<button type="submit" class="btn btn-primary">Submit</button>
-		  	</form>
+		  		<button type="button" onclick="submitResponse()" class="btn btn-primary">Submit</button>
+		  	</div>
 		</div>
+
+		<script>
+			function submitResponse(){
+				$.ajax({
+					url: "/",
+					data: {
+						
+					}
+				})
+			}
+		</script>
 	</body>
 </html>
