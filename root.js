@@ -5,6 +5,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require('passport');
 var middleware = require('./middleware');
+
 // ========
 // Database
 // ========
@@ -128,7 +129,7 @@ router.post("/stock", async function (req, res) {
 	);
 });
 
-router.get("/admin/stock", async function (req, res) {
+router.get("/admin/stock", middleware.isStockAdmin, async function (req, res) {
 	var stockRegistrations = await Stock.find();
 	return res.render("stockTradingAdmin", {
 		stockRegistrations: stockRegistrations

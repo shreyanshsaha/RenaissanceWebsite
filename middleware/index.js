@@ -17,6 +17,13 @@ middlewareObj.isLoggedIn=function(req, res, next) {
     return res.redirect("/login");
 }
 
+middlewareObj.isStockAdmin=function(req, res, next){
+  if(req.isAuthenticated())
+    if(req.user.username == 'admin.stock')
+      return next();
+  return res.redirect("/login");
+}
+
 middlewareObj.isNotLoggedIn=function(req, res, next){
 	if(!req.isAuthenticated())
 		return next();
