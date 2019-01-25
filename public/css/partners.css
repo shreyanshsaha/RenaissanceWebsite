@@ -1,0 +1,22 @@
+body {
+  background: -webkit-linear-gradient(left, #b163e6, #00c6ff);
+  color: white;
+  margin-top: 75px;
+}
+
+img {
+  height: auto;
+  width: 100%;
+}
+
+.img-container {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+}
+
+.heading {
+  font-size: 3rem;
+}
+/*# sourceMappingURL=partners.css.map */

@@ -213,5 +213,9 @@ router.get("/logout", function (req, res) {
 });
 
 
+router.get("/partners", function(req, res){
+	return res.render("partners");
+})
+
 
 module.exports = router;
