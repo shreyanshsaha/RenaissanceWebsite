@@ -24,10 +24,14 @@ img {
 .sub-heading{
   font-size: 2.5rem;
   border-bottom: 2px solid white;
-  width:25vw;
+  width:50vw;
   margin-left:auto;
-  margin-right:auto;
-  
+  margin-right:auto; 
+}
+
+.group-img-container{
+  border:5px solid white;
+  border-radius: 10px;
 }
 
 @media only screen and (max-width: 600px) {
