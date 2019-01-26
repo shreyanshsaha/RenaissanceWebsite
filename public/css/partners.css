@@ -14,9 +14,24 @@ img {
   height: 200px;
   width: 200px;
   overflow: hidden;
+  border: 5px solid white;
 }
 
 .heading {
   font-size: 3rem;
+}
+
+.sub-heading {
+  font-size: 2.5rem;
+  border-bottom: 2px solid white;
+  width: 25vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .sub-heading {
+    width: 90vw;
+  }
 }
 /*# sourceMappingURL=partners.css.map */
