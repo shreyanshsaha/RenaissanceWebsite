@@ -19,7 +19,7 @@ var sponsors = [
 	"/images/newSponsors/3.jpg",
 	"/images/newSponsors/download.png",
 	"/images/newSponsors/outOfTheBlue.jpg",
-	"/public/images/sponsors/cclothing.jpeg"
+	"/images/sponsors/cclothing.jpeg"
 ]
 
 var partners = [
